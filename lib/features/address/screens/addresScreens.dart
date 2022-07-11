@@ -31,7 +31,6 @@ class _AddressScreenState extends State<AddressScreen> {
   final _addressFormKey = GlobalKey<FormState>();
 
   String addressToBeUsed = "";
-
   List<PaymentItem> paymentItems = [];
   final AddressServices addressServices = AddressServices();
 
@@ -87,7 +86,7 @@ class _AddressScreenState extends State<AddressScreen> {
   }
 
   void payPressed(String addressFromProvider) {
-    addressToBeUsed = '';
+    addressToBeUsed = "";
 
     bool isForm = flatBuildingController.text.isNotEmpty ||
         areaController.text.isNotEmpty ||
@@ -97,7 +96,7 @@ class _AddressScreenState extends State<AddressScreen> {
     if (isForm) {
       if (_addressFormKey.currentState!.validate()) {
         addressToBeUsed =
-            '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text},';
+            '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text}';
       } else {
         throw Exception('Please enter all the values!');
       }
@@ -106,8 +105,6 @@ class _AddressScreenState extends State<AddressScreen> {
     } else {
       showSnackBar(context, 'ERROR');
     }
-
-    print(addressToBeUsed);
   }
 
   @override
