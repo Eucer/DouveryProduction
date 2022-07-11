@@ -8,7 +8,7 @@ import 'package:v1douvery/constantes/utils.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/user.dart';
 import 'package:v1douvery/provider/user_provider.dart';
-import 'package:http/http.dart ' as http;
+import 'package:http/http.dart' as http;
 
 class ProductDetailsServices {
   void addToCart({
