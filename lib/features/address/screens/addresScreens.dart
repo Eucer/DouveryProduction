@@ -241,7 +241,7 @@ class _AddressScreenState extends State<AddressScreen> {
                     paymentConfigurationAsset: 'applepay.json',
                     paymentItems: paymentItems,
                     width: double.infinity,
-                    height: 30,
+                    height: 50,
                     style: ApplePayButtonStyle.black,
                     type: ApplePayButtonType.buy,
                     margin: const EdgeInsets.only(top: 15.0),
