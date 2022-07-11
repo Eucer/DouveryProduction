@@ -14,9 +14,10 @@ import 'package:v1douvery/features/address/services/addressServices.dart';
 import '../../../provider/user_provider.dart';
 
 class AddressScreen extends StatefulWidget {
-  final String totalAmout;
+  static const String routeName = '/address';
+  final String totalAmount;
   final String cantid;
-  AddressScreen({Key? key, required this.totalAmout, required this.cantid})
+  AddressScreen({Key? key, required this.totalAmount, required this.cantid})
       : super(key: key);
 
   @override
@@ -39,7 +40,7 @@ class _AddressScreenState extends State<AddressScreen> {
     super.initState();
     paymentItems.add(
       PaymentItem(
-        amount: widget.totalAmout,
+        amount: widget.totalAmount,
         label: 'Total Amount',
         status: PaymentItemStatus.final_price,
       ),
@@ -66,7 +67,7 @@ class _AddressScreenState extends State<AddressScreen> {
     addressServices.placeOrder(
       context: context,
       address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmout),
+      totalSum: double.parse(widget.totalAmount),
     );
   }
 
@@ -81,7 +82,7 @@ class _AddressScreenState extends State<AddressScreen> {
     addressServices.placeOrder(
       context: context,
       address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmout),
+      totalSum: double.parse(widget.totalAmount),
     );
   }
 
@@ -224,7 +225,7 @@ class _AddressScreenState extends State<AddressScreen> {
                             ),
                             Container(
                               child: Text(
-                                widget.totalAmout,
+                                widget.totalAmount,
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w600),
                               ),

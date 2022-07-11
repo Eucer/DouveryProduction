@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
+import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/admin/screens/addProductScreen.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/home/screens/categoryDealsScreen.dart';
@@ -28,7 +29,15 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => AddProductScreen(),
       );
-
+    case AddressScreen.routeName:
+      var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => AddressScreen(
+          totalAmount: totalAmount,
+          cantid: '',
+        ),
+      );
     default:
       return MaterialPageRoute(
         settings: routeSettings,
