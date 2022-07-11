@@ -18,6 +18,7 @@ import 'package:v1douvery/common/widgets/header_text.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
@@ -356,9 +357,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     primary: Color(0xffed174f), // background
                                     // foreground
                                   ),
-                                  onPressed: () {
-                                    // Respond to button press
-                                  },
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AddressScreen(
+                                        totalAmout:
+                                            widget.product.price.toString(),
+                                        cantid: widget.product.name.toString(),
+                                      ),
+                                    ),
+                                  ),
                                   icon: Icon(Icons.payments, size: 16),
                                   label: Text("Pagar"),
                                 ),
