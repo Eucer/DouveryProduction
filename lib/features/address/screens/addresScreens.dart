@@ -98,6 +98,8 @@ class _AddressScreenState extends State<AddressScreen> {
       if (_addressFormKey.currentState!.validate()) {
         addressToBeUsed =
             '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text},';
+      } else {
+        throw Exception('Please enter all the values!');
       }
     } else if (addressFromProvider.isNotEmpty) {
       addressToBeUsed = addressFromProvider;
