@@ -50,7 +50,7 @@ class CartScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => AddressScreen(
-                            totalAmout: sum.toString(),
+                            totalAmount: sum.toString(),
                             cantid: user.cart.length.toString(),
                           ),
                         ),
