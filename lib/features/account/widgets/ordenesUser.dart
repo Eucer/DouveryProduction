@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
+import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/account/services/accountServices.dart';
+import 'package:v1douvery/models/order.dart';
 
 class OrdersUser extends StatefulWidget {
   const OrdersUser({Key? key}) : super(key: key);
@@ -10,15 +13,21 @@ class OrdersUser extends StatefulWidget {
   State<OrdersUser> createState() => _OrdersUserState();
 }
 
-List list = [
-  'https://m.media-amazon.com/images/I/71rXSVqET9L._AC_SX679_.jpg',
-  'https://m.media-amazon.com/images/I/71rXSVqET9L._AC_SX679_.jpg',
-  'https://m.media-amazon.com/images/I/71rXSVqET9L._AC_SX679_.jpg',
-  'https://m.media-amazon.com/images/I/71rXSVqET9L._AC_SX679_.jpg',
-  'https://m.media-amazon.com/images/I/71rXSVqET9L._AC_SX679_.jpg',
-];
-
 class _OrdersUserState extends State<OrdersUser> {
+  List<Order>? orders;
+  final AccountServices accountServices = AccountServices();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchOrders();
+  }
+
+  void fetchOrders() async {
+    orders = await accountServices.fetchMyOrders(context: context);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,19 +41,21 @@ class _OrdersUserState extends State<OrdersUser> {
               textAction: 'Ver mas',
             ),
           ),
-          Container(
-            height: 130,
-            padding: EdgeInsets.only(top: 0, right: 0),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return SingleProduct(
-                  imagen: list[index],
-                );
-              },
-            ),
-          )
+          orders == null
+              ? const Loader()
+              : Container(
+                  height: 130,
+                  padding: EdgeInsets.only(top: 0, right: 0),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: orders!.length,
+                    itemBuilder: (context, index) {
+                      return SingleProduct(
+                        imagen: orders![index].products[0].images[0],
+                      );
+                    },
+                  ),
+                )
         ],
       ),
     );
