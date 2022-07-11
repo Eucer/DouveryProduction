@@ -361,9 +361,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => AddressScreen(
-                                        totalAmout:
+                                        totalAmount:
                                             widget.product.price.toString(),
-                                        cantid: widget.product.name.toString(),
                                       ),
                                     ),
                                   ),
