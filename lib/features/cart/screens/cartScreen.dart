@@ -55,8 +55,10 @@ class CartScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      icon: Icon(Icons.payments, size: 50),
-                      label: Text("Proceed to Buy (${user.cart.length} items)"),
+                      icon: Icon(Icons.payments, size: 36),
+                      label: Text(
+                        "Proceed to Buy (${user.cart.length} items)",
+                      ),
                     ),
                   ),
                   CartSubtotal(),
