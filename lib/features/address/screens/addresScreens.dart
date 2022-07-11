@@ -14,10 +14,12 @@ import 'package:v1douvery/features/address/services/addressServices.dart';
 import '../../../provider/user_provider.dart';
 
 class AddressScreen extends StatefulWidget {
-  final String totalAmout;
-  final String cantid;
-  AddressScreen({Key? key, required this.totalAmout, required this.cantid})
-      : super(key: key);
+  static const String routeName = '/address';
+  final String totalAmount;
+  const AddressScreen({
+    Key? key,
+    required this.totalAmount,
+  }) : super(key: key);
 
   @override
   State<AddressScreen> createState() => _AddressScreenState();
@@ -39,7 +41,7 @@ class _AddressScreenState extends State<AddressScreen> {
     super.initState();
     paymentItems.add(
       PaymentItem(
-        amount: widget.totalAmout,
+        amount: widget.totalAmount,
         label: 'Total Amount',
         status: PaymentItemStatus.final_price,
       ),
@@ -66,7 +68,7 @@ class _AddressScreenState extends State<AddressScreen> {
     addressServices.placeOrder(
       context: context,
       address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmout),
+      totalSum: double.parse(widget.totalAmount),
     );
   }
 
@@ -81,7 +83,7 @@ class _AddressScreenState extends State<AddressScreen> {
     addressServices.placeOrder(
       context: context,
       address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmout),
+      totalSum: double.parse(widget.totalAmount),
     );
   }
 
@@ -113,161 +115,104 @@ class _AddressScreenState extends State<AddressScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
-          elevation: 0,
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               color: GlobalVariables.appBarbackgroundColor,
             ),
           ),
-          title: FadeInLeft(
-            duration: const Duration(milliseconds: 300),
-            from: 10,
-            child: Text(
-              'Volver',
-              style: const TextStyle(
-                fontSize: 19,
-                color: Colors.white,
-              ),
-            ),
-          ),
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CenterSearchNav(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  if (address.isNotEmpty)
-                    Column(
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black12,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              address,
-                              style: const TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              if (address.isNotEmpty)
+                Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black12,
                         ),
-                        const SizedBox(height: 20),
-                        const Text(
-                          'OR',
-                          style: TextStyle(
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          address,
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
-                        const SizedBox(height: 20),
-                      ],
+                      ),
                     ),
-                  Form(
-                    key: _addressFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: flatBuildingController,
-                          hintText: 'Flat, House no, Building',
-                        ),
-                        const SizedBox(height: 10),
-                        CustomTextField(
-                          controller: areaController,
-                          hintText: 'Area, Street',
-                        ),
-                        const SizedBox(height: 10),
-                        CustomTextField(
-                          controller: pincodeController,
-                          hintText: 'Pincode',
-                        ),
-                        const SizedBox(height: 10),
-                        CustomTextField(
-                          controller: cityController,
-                          hintText: 'Town/City',
-                        ),
-                        const SizedBox(height: 10),
-                      ],
+                    const SizedBox(height: 20),
+                    const Text(
+                      'OR',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                widget.cantid + ' items',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w300),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                'Total : ',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                widget.totalAmout,
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              Form(
+                key: _addressFormKey,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      controller: flatBuildingController,
+                      hintText: 'Flat, House no, Building',
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  ApplePayButton(
-                    onPressed: () => payPressed(address),
-                    paymentConfigurationAsset: 'applepay.json',
-                    paymentItems: paymentItems,
-                    width: double.infinity,
-                    height: 50,
-                    style: ApplePayButtonStyle.black,
-                    type: ApplePayButtonType.buy,
-                    margin: const EdgeInsets.only(top: 15.0),
-                    onPaymentResult: onApplePayResult,
-                    loadingIndicator: const Center(
-                      child: CircularProgressIndicator(),
+                    const SizedBox(height: 10),
+                    CustomTextField(
+                      controller: areaController,
+                      hintText: 'Area, Street',
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  GooglePayButton(
-                    onPressed: () => payPressed(address),
-                    paymentConfigurationAsset: 'gpay.json',
-                    onPaymentResult: onGooglePayResult,
-                    paymentItems: paymentItems,
-                    width: double.infinity,
-                    height: 50,
-                    style: GooglePayButtonStyle.black,
-                    type: GooglePayButtonType.buy,
-                    margin: const EdgeInsets.only(top: 15),
-                    loadingIndicator: const Center(
-                      child: CircularProgressIndicator(),
+                    const SizedBox(height: 10),
+                    CustomTextField(
+                      controller: pincodeController,
+                      hintText: 'Pincode',
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    CustomTextField(
+                      controller: cityController,
+                      hintText: 'Town/City',
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
               ),
-            ),
-          ],
+              ApplePayButton(
+                width: double.infinity,
+                style: ApplePayButtonStyle.whiteOutline,
+                type: ApplePayButtonType.buy,
+                paymentConfigurationAsset: 'applepay.json',
+                onPaymentResult: onApplePayResult,
+                paymentItems: paymentItems,
+                margin: const EdgeInsets.only(top: 15),
+                height: 50,
+                onPressed: () => payPressed(address),
+              ),
+              const SizedBox(height: 10),
+              GooglePayButton(
+                onPressed: () => payPressed(address),
+                paymentConfigurationAsset: 'gpay.json',
+                onPaymentResult: onGooglePayResult,
+                paymentItems: paymentItems,
+                height: 50,
+                style: GooglePayButtonStyle.black,
+                type: GooglePayButtonType.buy,
+                margin: const EdgeInsets.only(top: 15),
+                loadingIndicator: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
