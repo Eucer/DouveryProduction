@@ -36,9 +36,7 @@ userRouter.post("/api/add-to-cart", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
-  
 
-//*Delete cart db
 userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -61,7 +59,6 @@ userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
   }
 });
 
-
 // save user address
 userRouter.post("/api/save-user-address", auth, async (req, res) => {
   try {
@@ -74,7 +71,6 @@ userRouter.post("/api/save-user-address", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
-
 
 // order product
 userRouter.post("/api/order", auth, async (req, res) => {
