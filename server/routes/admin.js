@@ -1,6 +1,7 @@
 const express = require("express");
 const adminRouter = express.Router();
 const admin = require("../middlewares/admin");
+const Order = require("../modelos/order");
 const { Product } = require("../modelos/product");
 
 
@@ -44,6 +45,16 @@ adminRouter.post("/admin/delete-product", admin, async (req,res) => {
    
     res.json(product);
   }catch(e){
+    res.status(500).json({ error: e.message });
+  }
+});
+
+//* View Order the products
+adminRouter.get("/admin/get-orders", admin, async (req, res) => {
+  try {
+    const orders = await Order.find({});
+    res.json(orders);
+  } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });

@@ -8,9 +8,8 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/constantes/utils.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/models/order.dart';
-import 'package:v1douvery/models/product.dart';
-import 'package:http/http.dart' as http;
 import 'package:v1douvery/provider/user_provider.dart';
+import 'package:http/http.dart' as http;
 
 class AccountServices {
   Future<List<Order>> fetchMyOrders({

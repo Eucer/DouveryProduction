@@ -51,7 +51,7 @@ class _OrdersUserState extends State<OrdersUser> {
                     itemCount: orders!.length,
                     itemBuilder: (context, index) {
                       return SingleProduct(
-                        imagen: orders![index].products[0].images[0],
+                        imagen: orders![index].products[0].images[index],
                       );
                     },
                   ),
