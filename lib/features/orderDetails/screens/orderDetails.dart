@@ -159,6 +159,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      const SizedBox(height: 10),
                       Container(
                         decoration: BoxDecoration(
                             border: Border.all(
@@ -205,23 +206,30 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                                   ),
                                 ],
                               ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black12,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Order ID:          ${widget.order.id}'),
-                            Text(
-                                'Order Total:      \$${widget.order.totalPrice}'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                        color: Colors.black12,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    color: GlobalVariables.backgroundColor),
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        'Order ID:          ${widget.order.id}'),
+                                    Text(
+                                        'Order Total:      \$${widget.order.totalPrice}'),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
