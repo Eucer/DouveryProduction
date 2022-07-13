@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
-import 'package:v1douvery/features/admin/screens/addProductScreen.dart';
+import 'package:v1douvery/features/admin/widgests/addProductScreen.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';
 import 'package:v1douvery/models/product.dart';
 
