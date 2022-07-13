@@ -107,7 +107,7 @@ class _PostsScreenState extends State<PostsScreen> {
                                         fontSize: 12.0,
                                       ),
                                       textAlign: TextAlign.start,
-                                      maxLines: 2,
+                                      maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
