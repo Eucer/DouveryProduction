@@ -8,6 +8,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/screens/account_screen.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
+import 'package:v1douvery/features/admin/screens/analtyScreen.dart';
+import 'package:v1douvery/features/admin/screens/ordersScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screens.dart';
 
 class MainScreenAdmin extends StatelessWidget {
@@ -38,8 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
     double bottomBarBorderWidth = 2;
     List<Widget> data = [
       AdminScreen(),
-      AdminScreen(),
-      AdminScreen(),
+      OrdersScreen(),
+      AnalyticsScreen(),
     ];
 
     return CupertinoPageScaffold(

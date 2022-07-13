@@ -31,6 +31,20 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
     currentStep = widget.order.status;
   }
 
+  // !!! ONLY FOR ADMIN!!!
+  void changeOrderStatus(int status) {
+    adminServices.changeOrdersStatus(
+      context: context,
+      status: status + 1,
+      order: widget.order,
+      onSuccess: () {
+        setState(() {
+          currentStep += 1;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
@@ -85,7 +99,8 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                             if (user.type == 'admin') {
                               return CustomButton(
                                 text: 'Done',
-                                onTap: () {},
+                                onTap: () =>
+                                    changeOrderStatus(details.currentStep),
                               );
                             }
                             return const SizedBox();
@@ -141,6 +156,16 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                             ),
                             Step(
                               title: const Text('Delivered'),
+                              content: const Text(
+                                'Your order has been delivered and signed by you!',
+                              ),
+                              isActive: currentStep >= 3,
+                              state: currentStep >= 3
+                                  ? StepState.complete
+                                  : StepState.indexed,
+                            ),
+                            Step(
+                              title: const Text('Finish'),
                               content: const Text(
                                 'Your order has been delivered and signed by you!',
                               ),
