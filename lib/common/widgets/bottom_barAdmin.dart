@@ -43,65 +43,60 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     return CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          // Try removing opacity to observe the lack of a blur effect and of sliding content.
-          backgroundColor: Colors.red,
-          middle: const Text('Sample Code'),
-        ),
         child: CupertinoTabScaffold(
-          resizeToAvoidBottomInset: true,
-          tabBar: CupertinoTabBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: Container(
-                  child: Icon(Iconsax.home4),
-                ),
-                activeIcon: Container(
-                  width: bottomBarWidth,
-                  margin: EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xff19323C),
-                        width: bottomBarBorderWidth,
-                      ),
-                    ),
-                  ),
-                  height: 40,
-                  child: Icon(
-                    Iconsax.home4,
-                    size: 30,
+      resizeToAvoidBottomInset: true,
+      tabBar: CupertinoTabBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Container(
+              child: Icon(Iconsax.home4),
+            ),
+            activeIcon: Container(
+              width: bottomBarWidth,
+              margin: EdgeInsets.only(),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xff19323C),
+                    width: bottomBarBorderWidth,
                   ),
                 ),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  IconlyLight.activity,
-                ),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Iconsax.shapes,
-                ),
-              ),
-            ],
-            border: Border(
-              top: BorderSide(
-                color: Color.fromARGB(26, 5, 12, 43),
+              height: 40,
+              child: Icon(
+                Iconsax.home4,
+                size: 30,
               ),
             ),
-            backgroundColor: GlobalVariables.backgroundNavBarColor,
-            activeColor: GlobalVariables.buttomColor,
-            inactiveColor: GlobalVariables.unselectedNavBarColor,
-            iconSize: 28,
           ),
-          tabBuilder: (context, index) {
-            return CupertinoTabView(
-              builder: (context) {
-                return data[index];
-              },
-            );
+          BottomNavigationBarItem(
+            icon: Icon(
+              IconlyLight.activity,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Iconsax.shapes,
+            ),
+          ),
+        ],
+        border: Border(
+          top: BorderSide(
+            color: Color.fromARGB(26, 5, 12, 43),
+          ),
+        ),
+        backgroundColor: GlobalVariables.backgroundNavBarColor,
+        activeColor: GlobalVariables.buttomColor,
+        inactiveColor: GlobalVariables.unselectedNavBarColor,
+        iconSize: 28,
+      ),
+      tabBuilder: (context, index) {
+        return CupertinoTabView(
+          builder: (context) {
+            return data[index];
           },
-        ));
+        );
+      },
+    ));
   }
 }

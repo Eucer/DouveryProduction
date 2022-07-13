@@ -4,6 +4,7 @@ import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/services/accountServices.dart';
+import 'package:v1douvery/features/orderDetails/screens/orderDetails.dart';
 import 'package:v1douvery/models/order.dart';
 
 class OrdersUser extends StatefulWidget {
@@ -50,8 +51,21 @@ class _OrdersUserState extends State<OrdersUser> {
                     scrollDirection: Axis.horizontal,
                     itemCount: orders!.length,
                     itemBuilder: (context, index) {
-                      return SingleProduct(
-                        imagen: orders![index].products[0].images[0],
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderDetailScreen(
+                              order: orders![index],
+                            ),
+                            settings: RouteSettings(
+                              arguments: orders![index],
+                            ),
+                          ),
+                        ),
+                        child: SingleProduct(
+                          imagen: orders![index].products[0].images[0],
+                        ),
                       );
                     },
                   ),

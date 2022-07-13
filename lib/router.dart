@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
-import 'package:v1douvery/features/admin/screens/addProductScreen.dart';
+import 'package:v1douvery/features/admin/widgests/addProductScreen.dart';
+import 'package:v1douvery/features/admin/widgests/addProductScreen.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/home/screens/categoryDealsScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screens.dart';

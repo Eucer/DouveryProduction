@@ -26,43 +26,9 @@ class AccountScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
-      appBar: PreferredSize(
+      appBar: const PreferredSize(
         preferredSize: Size.fromHeight(45),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          elevation: 0,
-          title: Row(
-            children: [
-              Text(
-                'Douvery ',
-                style: GoogleFonts.lato(
-                    color: Color(0xffFCFCFC), fontWeight: FontWeight.bold),
-              ),
-              Icon(Icons.wifi_2_bar_sharp),
-            ],
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(IconlyLight.addUser),
-              onPressed: () {},
-            ),
-            Badge(
-              toAnimate: false,
-              position: BadgePosition.topEnd(top: 2, end: 3),
-              animationDuration: Duration(milliseconds: 300),
-              badgeColor: Color(0xffe84118),
-              badgeContent: Text(
-                userCartLen.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 13),
-              ),
-              child: IconButton(
-                icon: const Icon(IconlyLight.buy),
-                onPressed: () {},
-              ),
-            ),
-          ],
-          backgroundColor: GlobalVariables.appBarbackgroundColor,
-        ),
+        child: TopTitleButtom(),
       ),
 
       //SelectBody

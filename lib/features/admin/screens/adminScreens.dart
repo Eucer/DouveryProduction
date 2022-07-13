@@ -7,7 +7,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/AdmintopTitleButtom.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/centerSearchNav.dart';
 
-import 'postsScreens.dart';
+import '../widgests/postsScreens.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({Key? key}) : super(key: key);
