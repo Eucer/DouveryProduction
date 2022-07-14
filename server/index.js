@@ -10,7 +10,7 @@ const userRouter  = require("./routes/user");
 
 //* INITIALIZATION
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const DB =
   "mongodb+srv://germys:5eucerYw0z7Z@cluster0.ga2lq.mongodb.net/?retryWrites=true&w=majority";
@@ -29,6 +29,6 @@ mongoose.connect(DB).then(() => {
   console.log("Connect great!");
 });
 
-app.listen(PORT,"0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`connected at port ${PORT}`);
 });
