@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'https://douvery.herokuapp.com/';
+String uri = 'https://douvery-germisgarcia38-gmailcom.vercel.app/';
 
 class GlobalVariables {
   //* COLORES
