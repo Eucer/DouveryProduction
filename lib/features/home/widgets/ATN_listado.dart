@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -104,7 +105,7 @@ class _SliderCardsState extends State<SliderCards> {
   fetchCategoryProducts() async {
     productList = await homeServices.fetchCategoryProducts(
       context: context,
-      category: 'Mobiles',
+      category: 'Electronics',
     );
     setState(() {});
   }
@@ -119,147 +120,6 @@ class _SliderCardsState extends State<SliderCards> {
       );
 }
 
-Widget _cards(BuildContext context) {
-  return Container(
-    decoration: const BoxDecoration(
-      border: Border(
-        right: BorderSide(
-          width: 1.0,
-          color: Color.fromARGB(8, 33, 33, 33),
-        ),
-        left: BorderSide(
-          width: 1.0,
-          color: Color.fromARGB(8, 33, 33, 33),
-        ),
-      ),
-    ),
-    child: Column(
-      children: [
-        Center(
-          child: Container(
-            margin: const EdgeInsets.only(top: 2.0),
-            width: 120.0,
-            height: 40,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 5, bottom: 5),
-              child: Center(
-                child: Text(
-                  'Titulos',
-                  style: TextStyle(
-                    color: Color(0xff1C2833),
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 0.4,
-                    fontSize: 11.0,
-                  ),
-                  textAlign: TextAlign.start,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ),
-          ),
-        ),
-        ImagenViewDectetor(context),
-        Container(
-          height: 30,
-          width: 120.0,
-          color: Color(0xffFffffff),
-          child: FlatButton(
-            onPressed: () {
-              _modalInteriorFerce(context);
-            },
-            child: Icon(Icons.keyboard_control),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-GestureDetector ImagenViewDectetor(BuildContext context) {
-  return GestureDetector(
-    child: Image(
-      width: 80.0,
-      height: 100.0,
-      fit: BoxFit.cover,
-      image: NetworkImage(
-          'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2021/FathersDay/Fuji_LPHero_FD21_es_US.pngs'),
-    ),
-  );
-}
-
-class MyStatelessWidget extends StatelessWidget {
-  const MyStatelessWidget({Key? key}) : super(key: key);
-
-  @override
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: Center(
-        child: Ink(
-          decoration: const ShapeDecoration(
-            color: Colors.lightBlue,
-            shape: CircleBorder(),
-          ),
-          child: IconButton(
-            icon: const Icon(Icons.android),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-//edit modal
-void _modalInteriorFerce(BuildContext context) {
-  showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc) {
-        return Container(
-          height: 500,
-          color: Colors.white,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 5.0),
-                child: Container(
-                  margin: const EdgeInsets.only(top: 14.0, bottom: 5),
-                  width: 120.0,
-                  height: 10,
-                  child: Expanded(
-                    child: Text(
-                      'Titulos',
-                      style: TextStyle(
-                          color: Color(0xff1C2833),
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 0.4,
-                          fontSize: 12.0),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 14.0, bottom: 5),
-                width: 120.0,
-                height: 30,
-                child: Text(
-                  'Descrop',
-                  style: TextStyle(
-                      color: Color(0xff1C2833),
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 0.4,
-                      fontSize: 12.0),
-                ),
-              ),
-            ],
-          ),
-        );
-      });
-}
-
 class CarouselProductToNamedCategory extends StatelessWidget {
   const CarouselProductToNamedCategory({
     Key? key,
@@ -270,6 +130,8 @@ class CarouselProductToNamedCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //edit modal
+
     return productList == null
         ? const Loader()
         : Container(
@@ -282,6 +144,43 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final product = productList![index];
+
+                  void _modalInteriorFerce(BuildContext context) {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext bc) {
+                        final product = productList![index];
+                        return Container(
+                          height: 600,
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 200,
+                                child: CachedNetworkImage(
+                                    imageUrl: product.images[0]),
+                              ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(top: 14.0, bottom: 5),
+                                width: 120.0,
+                                height: 30,
+                                child: Text(
+                                  'Descrop',
+                                  style: TextStyle(
+                                      color: Color(0xff1C2833),
+                                      fontWeight: FontWeight.w400,
+                                      letterSpacing: 0.4,
+                                      fontSize: 12.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }
+
                   return GestureDetector(
                     onTap: () => Navigator.push(
                       context,
@@ -292,7 +191,6 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                       ),
                     ),
                     child: Container(
-                      width: 120,
                       decoration: const BoxDecoration(
                         border: Border(
                             left: BorderSide(
@@ -316,9 +214,9 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                                     product.name,
                                     style: TextStyle(
                                       color: Color(0xff1C2833),
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w400,
                                       letterSpacing: 0.4,
-                                      fontSize: 12.0,
+                                      fontSize: 11.0,
                                     ),
                                     textAlign: TextAlign.start,
                                     maxLines: 2,
@@ -329,16 +227,8 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                  top: BorderSide(
-                                color: GlobalVariables.colorTextGreylv10,
-                                width: 1,
-                              )),
-                              color: Colors.white,
-                            ),
-                            width: 120,
-                            height: 100,
+                            width: 120.0,
+                            height: 100.0,
                             child: productList == null
                                 ? const Loader()
                                 : SingleProduct(

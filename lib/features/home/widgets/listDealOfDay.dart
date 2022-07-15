@@ -52,7 +52,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
               : Container(
                   color: GlobalVariables.backgroundColor,
                   child: SizedBox(
-                    height: 200,
+                    height: 180,
                     width: double.infinity,
                     child: ListView.builder(
                       itemCount: productList!.length,
@@ -70,7 +70,6 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                           ),
                           child: Container(
                             width: 150,
-                            height: 200.0,
                             child: Column(
                               children: [
                                 Container(
@@ -128,7 +127,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                                         padding: const EdgeInsets.only(
                                             left: 60.0, bottom: 0.0),
                                         child: Text(
-                                          product.price.toString(),
+                                          r'$' + product.price.toString(),
                                           style: GoogleFonts.roboto(
                                             color: Color(0xff1C2833),
                                             fontWeight: FontWeight.w400,
