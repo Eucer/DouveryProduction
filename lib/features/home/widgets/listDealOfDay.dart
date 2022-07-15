@@ -52,7 +52,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
               : Container(
                   color: GlobalVariables.backgroundColor,
                   child: SizedBox(
-                    height: 180,
+                    height: 190,
                     width: double.infinity,
                     child: ListView.builder(
                       itemCount: productList!.length,

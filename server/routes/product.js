@@ -1,9 +1,8 @@
+var crypto = require('crypto');
 const express = require("express");
 const productRouter  = express.Router();
 const auth = require("../middlewares/auth");
 const { Product } = require("../modelos/product");
-
-
 
 //*
 productRouter.get("/api/products/", auth, async (req, res) => {
@@ -106,16 +105,30 @@ productRouter.get("/api/list-product-deal", auth, async (req, res) => {
   }
 });
 
-
-productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
+// c
+productRouter.get("/api/list-radomn", auth, async (req, res) => {
   try {
-    const products = await Product.find({ marca:{$regex: req.params.marca, $options:'i'} ,});
+    const products = await Product.find({marca: 'Apple'} );
+   
     res.json(products);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
+
+
+productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
+  try {
+   
+    const products = await Product.find({ category: req.query.category });
+      
+    products.id = nanoid() 
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 
 
