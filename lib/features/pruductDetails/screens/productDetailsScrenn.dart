@@ -212,7 +212,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         ).toList(),
                         options: CarouselOptions(
                           viewportFraction: 1,
-                          height: 350,
+                          height: 400,
                           aspectRatio: 2.0,
                           onPageChanged: (index, reason) {
                             setState(
