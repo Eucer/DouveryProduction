@@ -81,6 +81,31 @@ productRouter.get("/api/deal-of-day", auth, async (req, res) => {
 
 
 
+// c
+productRouter.get("/api/list-product-deal", auth, async (req, res) => {
+  try {
+    let products = await Product.find({});
+
+    products = products.sort((a, b) => {
+      let aSum = 0;
+      let bSum = 0;
+
+      for (let i = 0; i < a.ratings.length; i++) {
+        aSum += a.ratings[i].rating;
+      }
+
+      for (let i = 0; i < b.ratings.length; i++) {
+        bSum += b.ratings[i].rating;
+      }
+      return aSum < bSum ? 1 : -1;
+    });
+
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 
 productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
   try {

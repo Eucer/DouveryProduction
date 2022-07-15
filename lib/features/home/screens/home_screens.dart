@@ -12,6 +12,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/widgets/ATN_listado.dart';
 import 'package:v1douvery/features/home/widgets/banner_widget.dart';
 import 'package:v1douvery/features/home/widgets/deal-of-day.dart';
+import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavSearchTitle(),
             BannerWidget(),
             CardsOneWidget(),
+            ListDealOfDay(),
             DealOfDay(),
             DealOfDay(),
             DealOfDay(),

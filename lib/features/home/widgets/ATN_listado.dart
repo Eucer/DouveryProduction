@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/common/widgets/loader.dart';
+import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
+import 'package:v1douvery/features/home/screens/categoryDealsScreen.dart';
+import 'package:v1douvery/features/home/services/homeServices.dart';
+import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/user.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
@@ -74,18 +81,40 @@ class _CardsOneWidget extends State<CardsOneWidget> {
   }
 }
 
-class SliderCards extends StatelessWidget {
+class SliderCards extends StatefulWidget {
+  @override
+  State<SliderCards> createState() => _SliderCardsState();
+}
+
+class _SliderCardsState extends State<SliderCards> {
   PageController _controller = PageController(
     viewportFraction: 0.4,
   );
+
+  List<Product>? productList;
+
+  final HomeServices homeServices = HomeServices();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCategoryProducts();
+  }
+
+  fetchCategoryProducts() async {
+    productList = await homeServices.fetchCategoryProducts(
+      context: context,
+      category: 'Mobiles',
+    );
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) => Padding(
         padding:
             const EdgeInsets.only(left: 100.0, top: 5.0, right: 0, bottom: 0),
-        child: Container(
-          color: Colors.white,
-          height: 180.0,
+        child: CarouselProductToNamedCategory(
+          productList: productList,
         ),
       );
 }
@@ -212,7 +241,6 @@ void _modalInteriorFerce(BuildContext context) {
                   ),
                 ),
               ),
-              Imagen(context),
               Container(
                 margin: const EdgeInsets.only(top: 14.0, bottom: 5),
                 width: 120.0,
@@ -232,84 +260,109 @@ void _modalInteriorFerce(BuildContext context) {
       });
 }
 
-GestureDetector Imagen(BuildContext context) {
-  return GestureDetector(
-    child: Image(
-      width: 120.0,
-      height: 100.0,
-      fit: BoxFit.cover,
-      image: NetworkImage(
-          'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2021/FathersDay/Fuji_LPHero_FD21_es_US.pngs'),
-    ),
-  );
-}
+class CarouselProductToNamedCategory extends StatelessWidget {
+  const CarouselProductToNamedCategory({
+    Key? key,
+    required this.productList,
+  }) : super(key: key);
 
-class BottomDetailsPriceNav extends StatelessWidget {
-  const BottomDetailsPriceNav({Key? key}) : super(key: key);
+  final List<Product>? productList;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 1.0, bottom: 1.0),
-          child: Container(
-            height: 33,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.white,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    children: const [
-                      const Icon(Icons.star,
-                          color: Color(0xffE67E22), size: 16),
-                      const Icon(Icons.star,
-                          color: Color(0xffE67E22), size: 16),
-                      const Icon(Icons.star,
-                          color: Color(0xffE67E22), size: 16),
-                      const Icon(Icons.star,
-                          color: Color(0xffE67E22), size: 16),
-                      const Icon(Icons.star,
-                          color: Color(0xffE67E22), size: 16),
-                      Text(
-                        '4.5 (50) ',
-                        style: TextStyle(color: Colors.grey, fontSize: 13),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'Precio :',
-                        style: TextStyle(color: Colors.black54, fontSize: 15),
-                      ),
-
-                      Text(
-                        r' $85.11 ',
-                        style: TextStyle(
-                          color: Color(0xff1C2833),
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 0.4,
-                          fontSize: 15.0,
+    return productList == null
+        ? const Loader()
+        : Container(
+            color: GlobalVariables.backgroundColor,
+            child: SizedBox(
+              height: 180,
+              width: double.infinity,
+              child: ListView.builder(
+                itemCount: productList!.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final product = productList![index];
+                  return GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailsScreen(
+                          product: product,
                         ),
                       ),
-                      SizedBox(width: 10),
-                      //
-                      Text(
-                        'Envio: ',
-                        style: TextStyle(color: Colors.black54, fontSize: 15),
+                    ),
+                    child: Container(
+                      width: 120,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                            left: BorderSide(
+                          color: GlobalVariables.colorTextGreylv10,
+                          width: 1,
+                        )),
+                        color: Colors.white,
                       ),
-
-                      Text(
-                        'Gratis',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 4, 161, 17),
-                            fontSize: 15),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 2.0),
+                              width: 120.0,
+                              height: 40,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, right: 5, bottom: 5),
+                                child: Center(
+                                  child: Text(
+                                    product.name,
+                                    style: TextStyle(
+                                      color: Color(0xff1C2833),
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 0.4,
+                                      fontSize: 12.0,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                color: GlobalVariables.colorTextGreylv10,
+                                width: 1,
+                              )),
+                              color: Colors.white,
+                            ),
+                            width: 120,
+                            height: 100,
+                            child: productList == null
+                                ? const Loader()
+                                : SingleProduct(
+                                    imagen: product.images[0],
+                                  ),
+                          ),
+                          Container(
+                            height: 30,
+                            width: 120.0,
+                            color: Color(0xffFffffff),
+                            child: FlatButton(
+                              onPressed: () {
+                                _modalInteriorFerce(context);
+                              },
+                              child: Icon(Icons.keyboard_control),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ]),
-          ),
-        ),
-      ],
-    );
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
   }
 }
