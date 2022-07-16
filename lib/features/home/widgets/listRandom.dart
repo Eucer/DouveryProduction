@@ -43,7 +43,7 @@ class _ListRandomState extends State<ListRandom> {
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             color: Colors.white,
             child: headerDoubleText(
-              textHeader: 'Popular',
+              textHeader: 'Menos de ' + r'$100',
               textAction: 'Ver mas',
             ),
           ),
@@ -52,7 +52,7 @@ class _ListRandomState extends State<ListRandom> {
               : Container(
                   color: GlobalVariables.backgroundColor,
                   child: SizedBox(
-                    height: 180,
+                    height: 200,
                     width: double.infinity,
                     child: ListView.builder(
                       itemCount: productList!.length,
@@ -72,13 +72,24 @@ class _ListRandomState extends State<ListRandom> {
                             width: 150,
                             child: Column(
                               children: [
+                                Align(
+                                  child: Container(
+                                      child: Icon(
+                                    Icons.price_change,
+                                    color: Color.fromARGB(176, 255, 3, 100),
+                                  )),
+                                ),
                                 Container(
                                   width: 135.0,
                                   height: 110.0,
                                   child: productList == null
                                       ? const Loader()
-                                      : SingleProduct(
-                                          imagen: product.images[0],
+                                      : Column(
+                                          children: [
+                                            SingleProduct(
+                                              imagen: product.images[0],
+                                            ),
+                                          ],
                                         ),
                                 ),
                                 Align(
@@ -102,24 +113,6 @@ class _ListRandomState extends State<ListRandom> {
                                             textAlign: TextAlign.start,
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 58.0),
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 2.0),
-                                          child: Text(
-                                            'Envio ' + 'Gratis',
-                                            style: GoogleFonts.roboto(
-                                              color: Color.fromARGB(
-                                                  255, 4, 161, 17),
-                                              fontWeight: FontWeight.w500,
-                                              letterSpacing: 1,
-                                              fontSize: 10.0,
-                                            ),
                                           ),
                                         ),
                                       ),
