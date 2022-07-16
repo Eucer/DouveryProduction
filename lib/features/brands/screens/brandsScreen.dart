@@ -22,18 +22,17 @@ class BrandsScreen extends StatefulWidget {
 
 class _BrandsScreenState extends State<BrandsScreen> {
   List<Product>? productList;
-  final BrandsServices brandsServices = BrandsServices();
-
+  final HomeServices homeServices = HomeServices();
   @override
   void initState() {
     super.initState();
-    fetchBrandsProducts();
+    fetchMarcaProducts();
   }
 
-  fetchBrandsProducts() async {
-    productList = await brandsServices.fetchBrandsProducts(
+  fetchMarcaProducts() async {
+    productList = await homeServices.fetchMarcaProducts(
       context: context,
-      brands: widget.brands,
+      marca: widget.brands,
     );
     setState(() {});
   }

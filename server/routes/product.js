@@ -15,10 +15,34 @@ productRouter.get("/api/products/", auth, async (req, res) => {
   });
   
 
+  productRouter.get("/api/marca/products/", auth, async (req, res) => {
+    try {
+     
+      const products = await Product.find({ marca: req.query.marca });
+      res.json(products);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+  
+  
+  //*
+productRouter.get("/api/products/new", auth, async (req, res) => {
+  try {
+    
+    const products = await Product.find().sort({_id: -1});
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
+
 //*
 productRouter.get("/api/products/search/:name", auth, async (req, res) => {
   try {
-    const products = await Product.find({ name:{$regex: req.params.name, $options:'i'} ,});
+    const products = await Product.find({ name:{$regex: req.params.name, $options:'i'},});
     res.json(products);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -83,7 +107,7 @@ productRouter.get("/api/deal-of-day", auth, async (req, res) => {
 // c
 productRouter.get("/api/list-product-deal", auth, async (req, res) => {
   try {
-    let products = await Product.find({});
+    let products = await Product.find({}).limit(20);
 
     products = products.sort((a, b) => {
       let aSum = 0;
@@ -97,7 +121,7 @@ productRouter.get("/api/list-product-deal", auth, async (req, res) => {
         bSum += b.ratings[i].rating;
       }
       return aSum < bSum ? 1 : -1;
-    });
+    },);
 
     res.json(products);
   } catch (e) {
@@ -108,7 +132,7 @@ productRouter.get("/api/list-product-deal", auth, async (req, res) => {
 // c
 productRouter.get("/api/list-radomn", auth, async (req, res) => {
   try {
-    const products = await Product.find({marca: 'Apple'} );
+    const products = await Product.find({price: {$lte: '100'}} );
    
     res.json(products);
   } catch (e) {

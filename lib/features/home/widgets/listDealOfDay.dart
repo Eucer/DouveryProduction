@@ -107,7 +107,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                                       ),
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(right: 58.0),
+                                            const EdgeInsets.only(right: 68.0),
                                         child: Container(
                                           margin:
                                               const EdgeInsets.only(top: 2.0),

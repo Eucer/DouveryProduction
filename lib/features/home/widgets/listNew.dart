@@ -99,11 +99,11 @@ class _SliderCardsState extends State<SliderCards> {
   @override
   void initState() {
     super.initState();
-    fetchCategoryProducts();
+    fetchNewProducts();
   }
 
-  fetchCategoryProducts() async {
-    productList = await homeServices.fetchCategoryProducts(
+  fetchNewProducts() async {
+    productList = await homeServices.fetchNewProducts(
       context: context,
       category: 'Electronics',
     );
@@ -204,7 +204,7 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                           Center(
                             child: Container(
                               margin: const EdgeInsets.only(top: 2.0),
-                              width: 120.0,
+                              width: 130.0,
                               height: 40,
                               child: Padding(
                                 padding: const EdgeInsets.only(
