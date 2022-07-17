@@ -11,10 +11,11 @@ class Import extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>().user;
+
     return Column(
       children: [
         Container(
-            margin: EdgeInsets.only(top: 10, right: 8, bottom: 0, left: 10),
+            margin: EdgeInsets.only(top: 10, right: 8, bottom: 0, left: 8),
             child: Column(
               children: [
                 Container(
@@ -23,11 +24,11 @@ class Import extends StatelessWidget {
                     child: headerDoubleText(
                         textHeader: 'Para ti', textAction: 'Ver mas')),
                 Container(
-                  height: 400,
+                  height: 380,
                   color: GlobalVariables.backgroundColor,
                   child: ListView.builder(
-                    itemCount: user.viewed.length,
-                    shrinkWrap: true,
+                    itemCount: 3,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Container(
                         child: RecomendProduct(
