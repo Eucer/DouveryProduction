@@ -25,6 +25,8 @@ class Product {
     this.rating,
   });
 
+  get length => null;
+
   Map<String, dynamic> toMap() {
     return {
       'name': name,
