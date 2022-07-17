@@ -9,6 +9,7 @@ class User {
   final String type;
   final String token;
   final List<dynamic> cart;
+  final List<dynamic> viewed;
   User({
     required this.id,
     required this.name,
@@ -18,6 +19,7 @@ class User {
     required this.type,
     required this.token,
     required this.cart,
+    required this.viewed,
   });
 
   Map<String, dynamic> toMap() {
@@ -30,6 +32,7 @@ class User {
       'type': type,
       'token': token,
       'cart': cart,
+      'viewed': viewed,
     };
   }
 
@@ -44,6 +47,11 @@ class User {
       token: map['token'] ?? '',
       cart: List<Map<String, dynamic>>.from(
         map['cart']?.map(
+          (x) => Map<String, dynamic>.from(x),
+        ),
+      ),
+      viewed: List<Map<String, dynamic>>.from(
+        map['viewed']?.map(
           (x) => Map<String, dynamic>.from(x),
         ),
       ),
@@ -63,6 +71,7 @@ class User {
     String? type,
     String? token,
     List<dynamic>? cart,
+    List<dynamic>? viewed,
   }) {
     return User(
       id: id ?? this.id,
@@ -73,6 +82,7 @@ class User {
       type: type ?? this.type,
       token: token ?? this.token,
       cart: cart ?? this.cart,
+      viewed: viewed ?? this.viewed,
     );
   }
 }

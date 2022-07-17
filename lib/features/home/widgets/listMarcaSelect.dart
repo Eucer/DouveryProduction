@@ -72,22 +72,12 @@ class _ListMarcaState extends State<ListMarca> {
                           child: Container(
                             width: 150,
                             decoration: const BoxDecoration(
-                              border: Border(
-                                  left: BorderSide(
-                                color: GlobalVariables.colorTextGreylv10,
-                                width: 1,
-                              )),
                               color: Colors.white,
                             ),
                             child: Column(
                               children: [
                                 Container(
                                   decoration: const BoxDecoration(
-                                    border: Border(
-                                        top: BorderSide(
-                                      color: GlobalVariables.colorTextGreylv10,
-                                      width: 1,
-                                    )),
                                     color: Colors.white,
                                   ),
                                   width: 200,

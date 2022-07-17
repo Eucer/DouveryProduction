@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -70,13 +72,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
+  void viewed() {
+    productDetailsServices.viewed(
+      context: context,
+      product: widget.product,
+    );
+  }
+
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
     final userCartLen = context.watch<UserProvider>().user.cart.length;
-
+    Future _delayedFuture = Future.delayed(
+      const Duration(milliseconds: 100),
+      () {
+        viewed();
+      },
+    );
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(45),
