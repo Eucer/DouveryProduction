@@ -79,6 +79,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
+  void viewed2() {
+    productDetailsServices.viewedProduct(
+      context: context,
+      product: widget.product,
+      viewed: 1,
+    );
+  }
+
   int _current = 0;
   final CarouselController _controller = CarouselController();
 

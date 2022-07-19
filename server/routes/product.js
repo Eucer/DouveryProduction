@@ -76,6 +76,33 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
 });
 
 
+// create a post request route to rate the product.
+productRouter.post("/api/productviewd", auth, async (req, res) => {
+  try {
+    const { id, viewed } = req.body;
+    let product = await Product.findById(id);
+
+    for (let i = 0; i < product.viewed.length; i++) {
+      if (product.viewed[i].userId == req.user) {
+        product.viewed.splice(i, 1);
+        break;
+      }
+    }
+
+    const viewedSchema = {
+      userId: req.user,
+      viewed,
+    };
+
+    product.viewed.push(viewedSchema);
+    product = await product.save();
+    res.json(product);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
 
 // c
 productRouter.get("/api/deal-of-day", auth, async (req, res) => {
@@ -107,11 +134,11 @@ productRouter.get("/api/deal-of-day", auth, async (req, res) => {
 // c
 productRouter.get("/api/list-product-deal", auth, async (req, res) => {
   try {
-    let products = await Product.find({}).limit(20);
+    let products = await Product.find({}).limit(10);
 
     products = products.sort((a, b) => {
-      let aSum = 0;
-      let bSum = 0;
+      let aSum = -1;
+      let bSum = -1;
 
       for (let i = 0; i < a.ratings.length; i++) {
         aSum += a.ratings[i].rating;
@@ -153,6 +180,36 @@ productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+
+
+
+// c
+productRouter.get("/api/products/populate", auth, async (req, res) => {
+  try {
+    let products = await Product.find({}).limit(20).sort({_id: -1});
+
+    products = products.sort((a, b) => {
+      let aSum = 0;
+      let bSum = 0;
+
+      for (let i = 0; i < a.viewed.length; i++) {
+        aSum += a.viewed[i].viewe;
+      }
+
+      for (let i = 0; i < b.viewed.length; i++) {
+        bSum += b.viewed[i].viewe;
+      }
+      return aSum < bSum ? 1 : -1;
+    },);
+
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 
 
 

@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
       body: ListView(
         children: const [
           SearchWidget(),
-          carouselRecentSearch(),
+          CarouselRecentSearch(),
         ],
       ),
     );

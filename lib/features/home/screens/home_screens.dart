@@ -17,6 +17,7 @@ import 'package:v1douvery/features/home/widgets/deal-of-day.dart';
 import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
 
 import 'package:v1douvery/features/home/widgets/listRandom.dart';
+import 'package:v1douvery/features/home/widgets/testing.dart';
 import 'package:v1douvery/features/home/widgets/vertRecomd.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const ratingSchema = require("./rating");
+const viewedSchema = require("./viewed");
 
 
 
@@ -38,7 +39,7 @@ const productSchema = mongoose.Schema({
     required: true,
   },
   ratings: [ratingSchema],
-  
+  viewed: [viewedSchema],
 });
 
 

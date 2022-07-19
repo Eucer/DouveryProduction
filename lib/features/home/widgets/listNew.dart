@@ -105,7 +105,6 @@ class _SliderCardsState extends State<SliderCards> {
   fetchNewProducts() async {
     productList = await homeServices.fetchNewProducts(
       context: context,
-      category: 'Electronics',
     );
     setState(() {});
   }
