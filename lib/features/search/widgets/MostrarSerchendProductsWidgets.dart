@@ -33,11 +33,12 @@ class SerchendWidgetsProducts extends StatelessWidget {
             ),
           ),
           child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: const BoxDecoration(
               color: GlobalVariables.backgroundColor,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(15, 0, 0, 0),
+                  color: Color.fromARGB(10, 0, 0, 0),
                   blurRadius: 01.0, // soften the shadow
                   spreadRadius: 1.0, //extend the shadow
                   offset: Offset(
@@ -55,18 +56,19 @@ class SerchendWidgetsProducts extends StatelessWidget {
                 CachedNetworkImage(
                   imageUrl: product.images[0],
                   fit: BoxFit.contain,
-                  height: 135,
+                  height: 105,
                   width: 135,
                 ),
                 Column(
                   children: [
                     Container(
                       width: 235,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
                       child: Text(
                         product.name,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 15,
                         ),
                         maxLines: 2,
                       ),
@@ -82,7 +84,7 @@ class SerchendWidgetsProducts extends StatelessWidget {
                       child: Text(
                         '\$${product.price}',
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                         maxLines: 2,
@@ -91,18 +93,7 @@ class SerchendWidgetsProducts extends StatelessWidget {
                     Container(
                       width: 235,
                       padding: const EdgeInsets.only(left: 10),
-                      child: const Text('Eligible for FREE Shipping'),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: const Text(
-                        'In Stock',
-                        style: TextStyle(
-                          color: Colors.teal,
-                        ),
-                        maxLines: 2,
-                      ),
+                      child: const Text('Envio Gratis'),
                     ),
                   ],
                 ),

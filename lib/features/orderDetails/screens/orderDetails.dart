@@ -6,7 +6,10 @@ import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';
+import 'package:v1douvery/features/home/services/homeServices.dart';
+import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/models/order.dart';
+import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class OrderDetailScreen extends StatefulWidget {
@@ -20,6 +23,9 @@ class OrderDetailScreen extends StatefulWidget {
   @override
   State<OrderDetailScreen> createState() => _OrderDetailScreenState();
 }
+
+List<Product>? productList;
+final HomeServices homeServices = HomeServices();
 
 class _OrderDetailScreenState extends State<OrderDetailScreen> {
   int currentStep = 0;
@@ -185,77 +191,80 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black12,
-                            ),
-                            color: GlobalVariables.backgroundColor),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            for (int i = 0;
-                                i < widget.order.products.length;
-                                i++)
-                              Row(
-                                children: [
-                                  CachedNetworkImage(
-                                    imageUrl:
-                                        widget.order.products[i].images[0],
-                                    height: 120,
-                                    width: 120,
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          widget.order.products[i].name,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          '${widget.order.products[i].marca}',
-                                        ),
-                                        Text(
-                                          'Qty: ${widget.order.quantity[i]}',
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                      GestureDetector(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black12,
                               ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    border: Border(
-                                      top: BorderSide(
-                                        color: Colors.black12,
-                                        width: 1,
+                              color: GlobalVariables.backgroundColor),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              for (int i = 0;
+                                  i < widget.order.products.length;
+                                  i++)
+                                Row(
+                                  children: [
+                                    CachedNetworkImage(
+                                      imageUrl:
+                                          widget.order.products[i].images[0],
+                                      height: 120,
+                                      width: 120,
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.order.products[i].name,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Text(
+                                            '${widget.order.products[i].marca}',
+                                          ),
+                                          Text(
+                                            'Qty: ${widget.order.quantity[i]}',
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    color: GlobalVariables.backgroundColor),
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        'Order ID:          ${widget.order.id}'),
-                                    Text(
-                                        'Order Total:      \$${widget.order.totalPrice}'),
                                   ],
                                 ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                        top: BorderSide(
+                                          color: Colors.black12,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      color: GlobalVariables.backgroundColor),
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          'Order ID:          ${widget.order.id}'),
+                                      Text(
+                                          'Order Total:      \$${widget.order.totalPrice}'),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),

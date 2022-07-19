@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/cart/services/cardServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
@@ -55,6 +56,7 @@ class _CartProductState extends State<CartProduct> {
             ),
           ),
           child: Container(
+            color: GlobalVariables.backgroundColor,
             margin: const EdgeInsets.only(
               left: 10,
             ),
@@ -115,6 +117,7 @@ class _CartProductState extends State<CartProduct> {
         ),
         Container(
           margin: const EdgeInsets.all(10),
+          color: GlobalVariables.backgroundNavBarColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

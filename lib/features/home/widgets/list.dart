@@ -15,7 +15,7 @@ class Import extends StatelessWidget {
     return Column(
       children: [
         Container(
-            margin: EdgeInsets.only(top: 10, right: 8, bottom: 0, left: 8),
+            margin: EdgeInsets.only(top: 10, right: 8, bottom: 0, left: 10),
             child: Column(
               children: [
                 Container(
@@ -27,12 +27,14 @@ class Import extends StatelessWidget {
                   height: 380,
                   color: GlobalVariables.backgroundColor,
                   child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: user.viewed.length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Container(
-                        child: RecomendProduct(
-                          index: index,
+                      return GestureDetector(
+                        child: Container(
+                          child: RecomendProduct(
+                            index: index,
+                          ),
                         ),
                       );
                     },

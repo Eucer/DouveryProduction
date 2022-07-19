@@ -38,6 +38,7 @@ const productSchema = mongoose.Schema({
     required: true,
   },
   ratings: [ratingSchema],
+  
 });
 
 

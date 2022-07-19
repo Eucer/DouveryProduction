@@ -112,7 +112,7 @@ userRouter.post("/api/order", auth, async (req, res) => {
 
 userRouter.get("/api/orders/me", auth, async (req, res) => {
   try {
-    const orders = await Order.find({ userId: req.user });
+    const orders = await Order.find({ userId: req.user  });
     res.json(orders);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -124,6 +124,7 @@ userRouter.post("/api/viewed", auth, async (req, res) => {
   try {
     const { id } = req.body;
     const product = await Product.findById(id);
+
     let user = await User.findById(req.user);
 
     if (user.viewed.length == 0) {
@@ -138,7 +139,7 @@ userRouter.post("/api/viewed", auth, async (req, res) => {
 
       if (isProductFound) {
         let producttt = user.viewed.find((productt) =>
-          productt.product._id.equals(product._id)
+          product._id
         );
         producttt.quantity += 1;
       } else {
