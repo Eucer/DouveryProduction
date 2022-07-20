@@ -220,7 +220,7 @@ class HomeServices {
     List<Product> productList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/api/products/populate'), headers: {
+          await http.get(Uri.parse('$uri/api/products/all'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });

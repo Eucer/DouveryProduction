@@ -42,7 +42,7 @@ productRouter.get("/api/products/new", auth, async (req, res) => {
 //*
 productRouter.get("/api/products/search/:name", auth, async (req, res) => {
   try {
-    const products = await Product.find({ name:{$regex: req.params.name, $options:'i'},});
+    const products = await Product.find({ name:{$regex: req.params.name, $options: 'si', $nin: [ 'acmebsmflkmXlahcorp' ] } });
     res.json(products);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -188,7 +188,11 @@ productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
 // c
 productRouter.get("/api/products/populate", auth, async (req, res) => {
   try {
-    let products = await Product.find({}).limit(20).sort({_id: -1});
+  let products = await Product.find({
+   
+  },);
+
+  
 
     products = products.sort((a, b) => {
       let aSum = 0;
@@ -211,6 +215,15 @@ productRouter.get("/api/products/populate", auth, async (req, res) => {
 });
 
 
-
+//*
+productRouter.get("/api/products/all", auth, async (req, res) => {
+  try {
+    rand = Math.random()
+    const products = await Product.find( { } ).sort({name: 1,price: -1,viewed: 1,} );
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 module.exports = productRouter;

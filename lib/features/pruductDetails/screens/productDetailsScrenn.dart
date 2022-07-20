@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:animated_snack_bar/animated_snack_bar.dart';
+
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -369,7 +371,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     primary: Color(0xff1a49ab), // background
                                     // foreground
                                   ),
-                                  onPressed: addToCart,
+                                  onPressed: () {
+                                    addToCart();
+                                    AnimatedSnackBar.material(
+                                      'Aggregado Correctamente,  ' +
+                                          '( ' +
+                                          userCartLen.toString() +
+                                          ' )' +
+                                          ' Carrito  ',
+                                      type: AnimatedSnackBarType.success,
+                                    ).show(context);
+                                  },
                                   icon: Icon(IconlyLight.buy, size: 16),
                                   label: Text("Añadir al Carrito"),
                                 ),

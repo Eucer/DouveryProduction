@@ -52,7 +52,7 @@ class _TestState extends State<Test> {
               : Container(
                   color: GlobalVariables.backgroundColor,
                   child: SizedBox(
-                    height: 200,
+                    height: 170,
                     width: double.infinity,
                     child: ListView.builder(
                       itemCount: productList!.length,
@@ -72,13 +72,6 @@ class _TestState extends State<Test> {
                             width: 150,
                             child: Column(
                               children: [
-                                Align(
-                                  child: Container(
-                                      child: Icon(
-                                    Icons.price_change,
-                                    color: Color.fromARGB(176, 255, 3, 100),
-                                  )),
-                                ),
                                 Container(
                                   width: 135.0,
                                   height: 110.0,

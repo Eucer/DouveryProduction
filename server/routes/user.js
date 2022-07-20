@@ -120,6 +120,7 @@ userRouter.get("/api/orders/me", auth, async (req, res) => {
 });
 
 
+
 userRouter.post("/api/viewed", auth, async (req, res) => {
   try {
     const { id } = req.body;

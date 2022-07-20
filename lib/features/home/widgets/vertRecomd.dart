@@ -33,7 +33,7 @@ class _RecomendProductState extends State<RecomendProduct> {
     final productViewed =
         context.watch<UserProvider>().user.viewed[widget.index];
     final product = Product.fromMap(productViewed['product']);
-
+    final visto = productViewed['quantity'];
     return product == null
         ? const Loader()
         : Column(
@@ -90,7 +90,7 @@ class _RecomendProductState extends State<RecomendProduct> {
                                   width: 150,
                                   child: Text(
                                     '(' +
-                                        product.rating!.length.toString() +
+                                        visto.toString() +
                                         ') ' +
                                         'calificaciones',
                                     style: TextStyle(

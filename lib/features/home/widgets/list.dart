@@ -22,7 +22,7 @@ class Import extends StatelessWidget {
                     color: GlobalVariables.backgroundColor,
                     padding: EdgeInsets.all(10),
                     child: headerDoubleText(
-                        textHeader: 'Para ti', textAction: 'Ver mas')),
+                        textHeader: 'Mas visto por ti', textAction: 'Ver mas')),
                 Container(
                   height: 380,
                   color: GlobalVariables.backgroundColor,

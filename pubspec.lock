@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  animated_snack_bar:
+    dependency: "direct main"
+    description:
+      name: animated_snack_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   async:
     dependency: transitive
     description:
@@ -120,6 +127,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
+  cross_scroll:
+    dependency: "direct main"
+    description:
+      name: cross_scroll
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.75"
   crypto:
     dependency: transitive
     description:
@@ -234,7 +248,7 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   flutter_rating_bar:
     dependency: "direct main"
     description:
@@ -524,7 +538,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.4"
+    version: "0.27.5"
   shared_preferences:
     dependency: "direct main"
     description:
