@@ -121,37 +121,6 @@ userRouter.get("/api/orders/me", auth, async (req, res) => {
 
 
 
-userRouter.post("/api/viewed", auth, async (req, res) => {
-  try {
-    const { id } = req.body;
-    const product = await Product.findById(id);
 
-    let user = await User.findById(req.user);
-
-    if (user.viewed.length == 0) {
-      user.viewed.push({ product, quantity: 1 });
-    } else {
-      let isProductFound = false;
-      for (let i = 0; i < user.viewed.length; i++) {
-        if (user.viewed[i].product._id.equals(product._id)) {
-          isProductFound = true;
-        }
-      }
-
-      if (isProductFound) {
-        let producttt = user.viewed.find((productt) =>
-          product._id
-        );
-        producttt.quantity += 1;
-      } else {
-        user.viewed.push({ product, quantity: 1 });
-      }
-    }
-    user = await user.save();
-    res.json(user);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
 
 module.exports = userRouter;

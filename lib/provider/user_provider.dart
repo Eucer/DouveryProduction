@@ -11,7 +11,6 @@ class UserProvider extends ChangeNotifier {
     type: '',
     token: '',
     cart: [],
-    viewed: [],
   );
   User get user => _user;
 
