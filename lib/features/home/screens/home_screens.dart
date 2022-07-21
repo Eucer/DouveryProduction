@@ -9,7 +9,7 @@ import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/home/widgets/list.dart';
+
 import 'package:v1douvery/features/home/widgets/listMarcaSelect.dart';
 import 'package:v1douvery/features/home/widgets/listNew.dart';
 import 'package:v1douvery/features/home/widgets/banner_widget.dart';
@@ -18,7 +18,7 @@ import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
 
 import 'package:v1douvery/features/home/widgets/listRandom.dart';
 import 'package:v1douvery/features/home/widgets/testing.dart';
-import 'package:v1douvery/features/home/widgets/vertRecomd.dart';
+
 import 'package:v1douvery/provider/user_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ListDealOfDay(),
             DealOfDay(),
             ListRandom(),
-            Import(),
             ListMarca(),
             DealOfDay(),
             DealOfDay(),

@@ -40,15 +40,7 @@ const userSchema = mongoose.Schema({
       }
     }
   ],
-  viewed: [
-    {
-      product : productSchema,
-      quantity: {
-        type: Number,
-        required: true,
-      }
-    }
-  ],
+  
 });
 
 

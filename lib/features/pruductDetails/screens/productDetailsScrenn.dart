@@ -74,21 +74,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  void viewed() {
-    productDetailsServices.viewed(
-      context: context,
-      product: widget.product,
-    );
-  }
-
-  void viewed2() {
-    productDetailsServices.viewedProduct(
-      context: context,
-      product: widget.product,
-      viewed: 1,
-    );
-  }
-
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
@@ -97,9 +82,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     final userCartLen = context.watch<UserProvider>().user.cart.length;
     Future _delayedFuture = Future.delayed(
       const Duration(milliseconds: 100),
-      () {
-        viewed();
-      },
+      () {},
     );
     return Scaffold(
       appBar: PreferredSize(
@@ -514,6 +497,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               alignment: Alignment.bottomLeft,
+                                              child: Text(
+                                                rating.userName,
+                                                style: TextStyle(fontSize: 16),
+                                              ),
+                                            ),
+                                            Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5),
+                                              alignment: Alignment.bottomLeft,
                                               child: Row(
                                                 children: [
                                                   Stars(rating: rating.rating),
@@ -524,6 +516,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                         widget.product.rating!
                                                             .length
                                                             .toString(),
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 13),
+                                                  ),
+                                                  Text(
+                                                    widget.product.name.length
+                                                        .toString(),
                                                     style: TextStyle(
                                                         color: Colors.grey,
                                                         fontSize: 13),
