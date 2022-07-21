@@ -9,6 +9,7 @@ import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/home/widgets/carAll.dart';
 
 import 'package:v1douvery/features/home/widgets/listMarcaSelect.dart';
 import 'package:v1douvery/features/home/widgets/listNew.dart';
@@ -50,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             DealOfDay(),
             ListRandom(),
             ListMarca(),
+            CarAll(),
             DealOfDay(),
             DealOfDay(),
             DealOfDay(),

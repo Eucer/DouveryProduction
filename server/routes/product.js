@@ -224,8 +224,10 @@ productRouter.get("/api/products/populate", auth, async (req, res) => {
 //*
 productRouter.get("/api/products/all", auth, async (req, res) => {
   try {
-    rand = Math.random()
-    const products = await Product.find( {__v: 9 } );
+    
+   
+    const products = await Product.aggregate([{ $sample: { size: 20 } }]);
+    
     res.json(products);
   } catch (e) {
     res.status(500).json({ error: e.message });
