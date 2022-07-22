@@ -18,6 +18,7 @@ import 'package:v1douvery/features/home/widgets/deal-of-day.dart';
 import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
 
 import 'package:v1douvery/features/home/widgets/listRandom.dart';
+import 'package:v1douvery/features/home/widgets/listRecomend.dart';
 import 'package:v1douvery/features/home/widgets/testing.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
@@ -35,27 +36,40 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(45),
-        child: TopTitleButtom(),
-      ),
 
       //SelectBody
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            BottomNavSearchTitle(),
-            BannerWidget(),
-            CardsOneWidget(),
-            ListDealOfDay(),
-            DealOfDay(),
-            ListRandom(),
-            ListMarca(),
-            CarAll(),
-            DealOfDay(),
-            DealOfDay(),
-            DealOfDay(),
-          ],
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            pinned: true,
+            flexibleSpace: SizedBox(child: TopTitleButtom()),
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(55),
+              child: SizedBox(child: CenterSearchNav()),
+            ),
+          ),
+        ],
+        body: Scrollbar(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                NavCategory(),
+                BannerWidget(),
+                CardsOneWidget(),
+                ListDealOfDay(),
+                DealOfDay(),
+                ListRandom(),
+                RecomendProduct(),
+                ListMarca(),
+                CarAll(),
+                DealOfDay(),
+                DealOfDay(),
+                DealOfDay(),
+              ],
+            ),
+          ),
         ),
       ),
     );
