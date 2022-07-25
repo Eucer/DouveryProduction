@@ -32,11 +32,11 @@ class _RecomendProductState extends State<RecomendProduct> {
   @override
   void initState() {
     super.initState();
-    fetchCategoryProducts();
+    fetchCategoryLimitProducts();
   }
 
-  fetchCategoryProducts() async {
-    productList = await homeServices.fetchCategoryProducts(
+  fetchCategoryLimitProducts() async {
+    productList = await homeServices.fetchCategoryLimitProducts(
       context: context,
       category: 'Electronics',
     );
@@ -70,7 +70,6 @@ class _RecomendProductState extends State<RecomendProduct> {
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: productList!.length,
-                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: ((context, index) {
                             final product = productList![index];
                             double totalRating = 0;

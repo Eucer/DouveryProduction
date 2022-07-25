@@ -13,6 +13,17 @@ productRouter.get("/api/products/", auth, async (req, res) => {
       res.status(500).json({ error: e.message });
     }
   });
+
+
+  //*
+productRouter.get("/api/productsLimit/", auth, async (req, res) => {
+  try {
+    const products = await Product.find({ category: req.query.category }).limit(4);
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
   
 
   productRouter.get("/api/marca/products/", auth, async (req, res) => {
