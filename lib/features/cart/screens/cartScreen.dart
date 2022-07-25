@@ -1,4 +1,7 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
@@ -26,9 +29,34 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: GlobalVariables.backgroundColor,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(55),
-        child: TopTitleButtom(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(105),
+        child: Center(
+          child: AppBar(
+            elevation: 0,
+            title: Row(
+              children: [
+                Text(
+                  'Douvery ',
+                  style: GoogleFonts.lato(
+                      color: Color(0xffFCFCFC), fontWeight: FontWeight.bold),
+                ),
+                Icon(Icons.wifi_2_bar_sharp),
+              ],
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(IconlyLight.addUser),
+                onPressed: () {},
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(15),
+              child: CenterSearchNav(),
+            ),
+            backgroundColor: GlobalVariables.appBarbackgroundColor,
+          ),
+        ),
       ),
 
       //SelectBody
@@ -37,7 +65,6 @@ class CartScreen extends StatelessWidget {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  CenterSearchNav(),
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: ElevatedButton.icon(

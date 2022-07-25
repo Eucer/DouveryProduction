@@ -49,9 +49,10 @@ class CartSubtotal extends StatelessWidget {
               Text(
                 '\$$sum',
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
+                maxLines: 2,
               ),
             ],
           ),

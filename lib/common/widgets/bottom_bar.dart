@@ -91,14 +91,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: Color(0xffed174f),
+                        color: Color(0xff3CCF4E),
                         width: bottomBarBorderWidth,
                       ),
                     ),
                   ),
                   height: 40,
-                  child: Icon(
-                    IconlyLight.buy,
+                  child: Container(
+                    child: Badge(
+                      toAnimate: false,
+                      badgeContent: Text(
+                        userCartLen.toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      badgeColor: Color(0xff3CCF4E),
+                      child: Icon(
+                        IconlyLight.buy,
+                      ),
+                    ),
                   ),
                 ),
               ),
