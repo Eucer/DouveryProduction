@@ -10,6 +10,7 @@ import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/widgets/carAll.dart';
+import 'package:v1douvery/features/home/widgets/carKits.dart';
 
 import 'package:v1douvery/features/home/widgets/listMarcaSelect.dart';
 import 'package:v1douvery/features/home/widgets/listNew.dart';
@@ -37,38 +38,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
 
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(55),
+        child: TopTitleButtom(),
+      ),
+
       //SelectBody
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            pinned: true,
-            flexibleSpace: SizedBox(child: TopTitleButtom()),
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(55),
-              child: SizedBox(child: CenterSearchNav()),
-            ),
-          ),
-        ],
-        body: Scrollbar(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                NavCategory(),
-                BannerWidget(),
-                CardsOneWidget(),
-                ListDealOfDay(),
-                DealOfDay(),
-                ListRandom(),
-                RecomendProduct(),
-                ListMarca(),
-                CarAll(),
-                DealOfDay(),
-                DealOfDay(),
-                DealOfDay(),
-              ],
-            ),
+      body: Scrollbar(
+        child: SingleChildScrollView(
+          child: Column(
+            children: const [
+              BottomNavSearchTitle(),
+              BannerWidget(),
+              CardsOneWidget(),
+              ListDealOfDay(),
+              DealOfDay(),
+              ListRandom(),
+              RecomendProduct(),
+              ListMarca(),
+              CarKitsProductOne(),
+              DealOfDay(),
+              DealOfDay(),
+              DealOfDay(),
+            ],
           ),
         ),
       ),

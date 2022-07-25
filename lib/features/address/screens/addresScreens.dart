@@ -114,7 +114,7 @@ class _AddressScreenState extends State<AddressScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45),
+        preferredSize: const Size.fromHeight(55),
         child: AppBar(
           elevation: 0,
           flexibleSpace: Container(

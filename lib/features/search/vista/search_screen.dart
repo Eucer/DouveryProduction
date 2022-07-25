@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45),
+        preferredSize: const Size.fromHeight(105),
         child: AppBar(
           elevation: 0,
           title: FadeInLeft(
@@ -39,12 +39,15 @@ class _SearchPageState extends State<SearchPage> {
               onPressed: () {},
             ),
           ],
-          backgroundColor: Colors.blue[900],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(15),
+            child: SearchWidget(),
+          ),
+          backgroundColor: GlobalVariables.appBarbackgroundColor,
         ),
       ),
       body: ListView(
         children: const [
-          SearchWidget(),
           CarouselRecentSearch(),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/services/seachServices.dart';
+import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/features/search/widgets/MostrarSerchendProductsWidgets.dart';
 
 import 'package:v1douvery/models/product.dart';
@@ -48,14 +49,16 @@ class _SearchingPageState extends State<SearchingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45),
+        preferredSize: const Size.fromHeight(105),
         child: AppBar(
+          elevation: 0,
           title: FadeInLeft(
+            duration: const Duration(milliseconds: 300),
+            from: 10,
             child: Text(
-              'Volver',
+              'Buscador',
             ),
           ),
-          elevation: 0,
           actions: [
             IconButton(
               icon: const Icon(IconlyLight.activity),
@@ -64,43 +67,17 @@ class _SearchingPageState extends State<SearchingPage> {
             IconButton(
               icon: const Icon(IconlyLight.category),
               onPressed: () {},
-            )
+            ),
           ],
-          backgroundColor: Colors.blue[900],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(15),
+            child: SearchingWidget(),
+          ),
+          backgroundColor: GlobalVariables.appBarbackgroundColor,
         ),
       ),
       body: Column(
         children: [
-          SizedBox(
-            child: Container(
-              height: 55,
-              width: double.infinity,
-              color: GlobalVariables.primaryColor,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Material(
-                    child: TextFormField(
-                      onFieldSubmitted: navigateToSearchingScreen,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.fromLTRB(8, 5, 8, 0),
-                        hintText: 'Buscar articulos...',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
           Container(
             margin: const EdgeInsets.only(left: 10),
             height: 30,
@@ -155,6 +132,61 @@ class _SearchingPageState extends State<SearchingPage> {
                   ),
                 ),
         ],
+      ),
+    );
+  }
+}
+
+class SearchingWidget extends StatefulWidget {
+  const SearchingWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<SearchingWidget> createState() => _SearchingWidgetState();
+}
+
+class _SearchingWidgetState extends State<SearchingWidget> {
+  void navigateToSearchingScreen(String query) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SearchingPage(
+                searchQuery: query,
+              )),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Container(
+        height: 55,
+        width: double.infinity,
+        color: GlobalVariables.appBarbackgroundColor,
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Material(
+              child: TextFormField(
+                onFieldSubmitted: navigateToSearchingScreen,
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.fromLTRB(8, 5, 8, 0),
+                  hintText: 'Buscar articulos...',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

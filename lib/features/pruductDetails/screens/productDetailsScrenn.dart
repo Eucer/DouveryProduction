@@ -86,7 +86,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(45),
+        preferredSize: Size.fromHeight(105),
         child: AppBar(
           elevation: 0,
           title: FadeInLeft(
@@ -114,6 +114,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
             ),
           ],
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(15),
+            child: CenterSearchNav(),
+          ),
           backgroundColor: Colors.blue[900],
         ),
       ),
@@ -122,7 +126,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CenterSearchNav(),
             Product == null
                 ? const Loader()
                 : Column(
@@ -197,22 +200,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         items: widget.product.images.map(
                           (i) {
                             return Builder(
-                              builder: (BuildContext context) => PinchZoom(
-                                child: CachedNetworkImage(
-                                  imageUrl: i,
-                                  height: 1500,
-                                  fit: BoxFit.contain,
-                                  width: double.infinity,
-                                ),
-                                resetDuration:
-                                    const Duration(milliseconds: 1500),
-                                maxScale: 3.5,
-                                onZoomStart: () {
-                                  print('Start zooming');
-                                },
-                                onZoomEnd: () {
-                                  print('Stop zooming');
-                                },
+                              builder: (BuildContext context) =>
+                                  CachedNetworkImage(
+                                imageUrl: i,
+                                height: 1500,
+                                fit: BoxFit.contain,
+                                width: double.infinity,
                               ),
                             );
                           },
@@ -220,7 +213,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         options: CarouselOptions(
                           viewportFraction: 1,
                           height: 400,
-                          aspectRatio: 2.0,
+                          aspectRatio: 0.0,
                           onPageChanged: (index, reason) {
                             setState(
                               () {
@@ -356,7 +349,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   ),
                                   onPressed: () {
                                     addToCart();
-                                    AnimatedSnackBar.material(
+                                    var show = AnimatedSnackBar.material(
                                       'Aggregado Correctamente,  ' +
                                           '( ' +
                                           userCartLen.toString() +

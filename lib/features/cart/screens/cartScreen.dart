@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: GlobalVariables.backgroundColor,
       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(45),
+        preferredSize: Size.fromHeight(55),
         child: TopTitleButtom(),
       ),
 

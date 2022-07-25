@@ -27,7 +27,7 @@ class AccountScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(45),
+        preferredSize: Size.fromHeight(55),
         child: TopTitleButtom(),
       ),
 
