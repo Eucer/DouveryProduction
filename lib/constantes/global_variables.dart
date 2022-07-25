@@ -31,6 +31,13 @@ class GlobalVariables {
   static const colorViolet = Color.fromARGB(234, 93, 2, 238);
   static const colorstarsrating = Color(0xffe67E22);
 
+  static const loaderColor = LinearGradient(
+    colors: [
+      Color.fromARGB(255, 29, 201, 192),
+      Color.fromARGB(255, 125, 221, 216),
+    ],
+    stops: [0.5, 1.0],
+  );
 // STATIC IMAGES
   static List<String> carouselImages = [
     'https://res.cloudinary.com/douvery/image/upload/v1656633027/agsubxxt7iwp654lpvcr.png',
