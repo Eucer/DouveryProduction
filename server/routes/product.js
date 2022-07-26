@@ -63,24 +63,18 @@ productRouter.get("/api/products/search/:name", auth, async (req, res) => {
 // create a post request route to rate the product.
 productRouter.post("/api/rate-product", auth, async (req, res) => {
   try {
-    const { id,name, rating } = req.body;
+    const { id, rating } = req.body;
     let product = await Product.findById(id);
-    let products = await Product.find({name:name});
 
     for (let i = 0; i < product.ratings.length; i++) {
       if (product.ratings[i].userId == req.user) {
         product.ratings.splice(i, 1);
         break;
       }
-      if (products.ratings[i].userName == req.user) {
-        products.ratings.splice(i, 1);
-        break;
-      }
     }
 
     const ratingSchema = {
       userId: req.user,
-      userName: req.user,
       rating,
     };
 
@@ -91,6 +85,7 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
 
 
 // create a post request route to rate the product.

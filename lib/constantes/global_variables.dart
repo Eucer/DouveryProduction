@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://10.0.0.9:3000';
+String uri = 'http://10.0.0.7:3000';
 
 class GlobalVariables {
   //* COLORES
@@ -33,8 +33,8 @@ class GlobalVariables {
 
   static const loaderColor = LinearGradient(
     colors: [
-      Color.fromARGB(255, 29, 201, 192),
-      Color.fromARGB(255, 125, 221, 216),
+      Color.fromARGB(255, 6, 194, 122),
+      Color.fromARGB(255, 255, 255, 255),
     ],
     stops: [0.5, 1.0],
   );

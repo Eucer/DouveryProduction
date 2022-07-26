@@ -37,117 +37,122 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-            color: Colors.white,
-            child: headerDoubleText(
-              textHeader: 'Popular',
-              textAction: 'Ver mas',
+      child: Container(
+        color: GlobalVariables.backgroundColor,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              child: headerDoubleText(
+                textHeader: 'Popular',
+                textAction: '',
+              ),
             ),
-          ),
-          productList == null
-              ? const Loader()
-              : Container(
-                  color: GlobalVariables.backgroundColor,
-                  child: SizedBox(
-                    height: 190,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      itemCount: productList!.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        final product = productList![index];
-                        return GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProductDetailsScreen(
-                                product: product,
+            productList == null
+                ? const Loader()
+                : Container(
+                    color: GlobalVariables.backgroundColor,
+                    child: SizedBox(
+                      height: 190,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        itemCount: productList!.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          final product = productList![index];
+                          return GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailsScreen(
+                                  product: product,
+                                ),
                               ),
                             ),
-                          ),
-                          child: Container(
-                            width: 150,
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: 135.0,
-                                  height: 110.0,
-                                  child: productList == null
-                                      ? const Loader()
-                                      : SingleProduct(
-                                          imagen: product.images[0],
+                            child: Container(
+                              width: 150,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 135.0,
+                                    height: 110.0,
+                                    child: productList == null
+                                        ? const Loader()
+                                        : SingleProduct(
+                                            imagen: product.images[0],
+                                          ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.0),
+                                          child: Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 5.0),
+                                            child: Text(
+                                              product.name,
+                                              style: const TextStyle(
+                                                color: Color(0xff1C2833),
+                                                fontWeight: FontWeight.w400,
+                                                letterSpacing: 0.4,
+                                                fontSize: 11.0,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
                                         ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 5.0),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 68.0),
+                                          child: Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 2.0),
+                                            child: Text(
+                                              'Envio ' + 'Gratis',
+                                              style: GoogleFonts.roboto(
+                                                color: Color.fromARGB(
+                                                    255, 4, 161, 17),
+                                                fontWeight: FontWeight.w500,
+                                                letterSpacing: 1,
+                                                fontSize: 10.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 60.0, bottom: 0.0),
                                           child: Text(
-                                            product.name,
-                                            style: const TextStyle(
+                                            r'$' + product.price.toString(),
+                                            style: GoogleFonts.roboto(
                                               color: Color(0xff1C2833),
                                               fontWeight: FontWeight.w400,
                                               letterSpacing: 0.4,
-                                              fontSize: 11.0,
-                                            ),
-                                            textAlign: TextAlign.start,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 68.0),
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 2.0),
-                                          child: Text(
-                                            'Envio ' + 'Gratis',
-                                            style: GoogleFonts.roboto(
-                                              color: Color.fromARGB(
-                                                  255, 4, 161, 17),
-                                              fontWeight: FontWeight.w500,
-                                              letterSpacing: 1,
-                                              fontSize: 10.0,
+                                              fontSize: 15.0,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 60.0, bottom: 0.0),
-                                        child: Text(
-                                          r'$' + product.price.toString(),
-                                          style: GoogleFonts.roboto(
-                                            color: Color(0xff1C2833),
-                                            fontWeight: FontWeight.w400,
-                                            letterSpacing: 0.4,
-                                            fontSize: 15.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }
