@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/AdmintopTitleButtom.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/centerSearchNav.dart';
+import 'package:v1douvery/provider/user_provider.dart';
 
 import '../widgests/postsScreens.dart';
 
@@ -33,6 +35,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
@@ -52,7 +55,7 @@ class _AdminScreenState extends State<AdminScreen> {
                       children: [
                         Icon(Icons.admin_panel_settings),
                         Text(
-                          'Douvery',
+                          user.name,
                           style: GoogleFonts.lato(
                             color: Color(0xffFCFCFC),
                             fontWeight: FontWeight.bold,
@@ -62,7 +65,7 @@ class _AdminScreenState extends State<AdminScreen> {
                     ),
                   ),
                   Text(
-                    'Admin',
+                    user.type,
                     style: GoogleFonts.lato(
                       color: Color(0xffFCFCFC),
                       fontWeight: FontWeight.bold,

@@ -57,10 +57,13 @@ class _DealOfDayState extends State<DealOfDay> {
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
-                        CachedNetworkImage(
-                          imageUrl: product!.images[0],
-                          height: 235,
-                          fit: BoxFit.fitHeight,
+                        Container(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: CachedNetworkImage(
+                            imageUrl: product!.images[0],
+                            height: 235,
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                         Container(
                           padding: const EdgeInsets.only(left: 15),

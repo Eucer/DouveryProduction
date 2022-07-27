@@ -3,7 +3,7 @@ const adminRouter = express.Router();
 const admin = require("../middlewares/admin");
 const Order = require("../modelos/order");
 const { Product } = require("../modelos/product");
-
+const User = require("../modelos/user");
 
 //* Add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
@@ -48,6 +48,9 @@ adminRouter.post("/admin/delete-product", admin, async (req,res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+
 
 //* View Order the products
 adminRouter.get("/admin/get-orders", admin, async (req, res) => {

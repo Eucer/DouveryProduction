@@ -52,127 +52,7 @@ class _PostsScreenState extends State<PostsScreen> {
     return products == null
         ? Loader()
         : Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Container(
-                child: GridView.builder(
-                  itemCount: products!.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisExtent: 220,
-                    mainAxisSpacing: 0.0,
-                  ),
-                  itemBuilder: (context, index) {
-                    final productData = products![index];
-                    return Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Container(
-                        width: 110,
-                        color: GlobalVariables.backgroundColor,
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  IconButton(
-                                      onPressed: () =>
-                                          deleteProduct(productData, index),
-                                      icon: Icon(
-                                        Icons.delete_forever,
-                                        color: Color(0xff19323C),
-                                      ))
-                                ],
-                              ),
-                            ),
-                            Container(
-                              child: SingleProduct(
-                                imagen: productData.images[0],
-                              ),
-                            ),
-                            Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    color: Colors.white,
-                                    margin: EdgeInsets.only(left: 3),
-                                    child: Text(
-                                      productData.name,
-                                      style: TextStyle(
-                                        color: Color(0xff1C2833),
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 0.4,
-                                        fontSize: 12.0,
-                                      ),
-                                      textAlign: TextAlign.start,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.bottomLeft,
-                                        margin: EdgeInsets.only(left: 3),
-                                        child: Text(
-                                          productData.category,
-                                          style: TextStyle(
-                                            color: GlobalVariables
-                                                .appBarbackgroundColor,
-                                            fontWeight: FontWeight.w400,
-                                            letterSpacing: 0.4,
-                                            fontSize: 12.0,
-                                          ),
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            color: Colors.white,
-                                            child: Text(
-                                              'C : ' +
-                                                  productData.quantity
-                                                      .toString() +
-                                                  ' -',
-                                              style: TextStyle(
-                                                color: GlobalVariables
-                                                    .colorTextBlckLight,
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 0.5,
-                                                fontSize: 14.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            color: Colors.white,
-                                            child: Text(
-                                              ' \$${productData.price}',
-                                              style: TextStyle(
-                                                color: GlobalVariables
-                                                    .colorPriceDetailsPrin,
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 0.5,
-                                                fontSize: 14.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
+            body: Widgets(),
             floatingActionButton: FloatingActionButton(
               child: const Icon(
                 Icons.add,
@@ -185,5 +65,128 @@ class _PostsScreenState extends State<PostsScreen> {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
           );
+  }
+
+  Padding Widgets() {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Container(
+        child: GridView.builder(
+          itemCount: products!.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisExtent: 220,
+            mainAxisSpacing: 0.0,
+          ),
+          itemBuilder: (context, index) {
+            final productData = products![index];
+            return Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                width: 110,
+                color: GlobalVariables.backgroundColor,
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                              onPressed: () =>
+                                  deleteProduct(productData, index),
+                              icon: Icon(
+                                Icons.delete_forever,
+                                color: Color(0xff19323C),
+                              ))
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: SingleProduct(
+                        imagen: productData.images[0],
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            color: Colors.white,
+                            margin: EdgeInsets.only(left: 3),
+                            child: Text(
+                              productData.name,
+                              style: TextStyle(
+                                color: Color(0xff1C2833),
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 0.4,
+                                fontSize: 12.0,
+                              ),
+                              textAlign: TextAlign.start,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                alignment: Alignment.bottomLeft,
+                                margin: EdgeInsets.only(left: 3),
+                                child: Text(
+                                  productData.category,
+                                  style: TextStyle(
+                                    color:
+                                        GlobalVariables.appBarbackgroundColor,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 0.4,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    color: Colors.white,
+                                    child: Text(
+                                      'C : ' +
+                                          productData.quantity.toString() +
+                                          ' -',
+                                      style: TextStyle(
+                                        color:
+                                            GlobalVariables.colorTextBlckLight,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.5,
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    color: Colors.white,
+                                    child: Text(
+                                      ' \$${productData.price}',
+                                      style: TextStyle(
+                                        color: GlobalVariables
+                                            .colorPriceDetailsPrin,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.5,
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

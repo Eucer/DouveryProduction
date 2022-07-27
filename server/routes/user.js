@@ -59,6 +59,28 @@ userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
   }
 });
 
+//* Edit the user
+userRouter.put("/:id", auth, async (req,res) => {
+ 
+  try{
+    const user = await User.findByIdAndUpdate( req.user)
+   
+
+    user = await user.save();
+    res.json(user);
+  }
+    catch(e){
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
+
+
+
+
+
+
 // save user address
 userRouter.post("/api/save-user-address", auth, async (req, res) => {
   try {
@@ -71,6 +93,9 @@ userRouter.post("/api/save-user-address", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+
 
 // order product
 userRouter.post("/api/order", auth, async (req, res) => {

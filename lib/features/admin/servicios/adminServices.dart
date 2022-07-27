@@ -11,6 +11,7 @@ import 'package:v1douvery/features/admin/models/sales.dart';
 import 'package:v1douvery/models/order.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:http/http.dart' as http;
+import 'package:v1douvery/models/user.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class AdminServices {
@@ -228,5 +229,39 @@ class AdminServices {
       'sales': sales,
       'totalEarnings': totalEarning,
     };
+  }
+
+  Future<List<User>> editUser({
+    required BuildContext context,
+    required String id,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<User> user = [];
+    try {
+      http.Response res =
+          await http.get(Uri.parse('$uri/api/id=$id'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': userProvider.user.token,
+      });
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            user.add(
+              User.fromJson(
+                jsonEncode(
+                  jsonDecode(res.body)[i],
+                ),
+              ),
+            );
+          }
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return user;
   }
 }
