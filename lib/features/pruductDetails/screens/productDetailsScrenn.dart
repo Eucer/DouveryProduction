@@ -13,6 +13,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
@@ -141,7 +142,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    Stars(rating: avgRating),
+                                    Container(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          if (avgRating >= 5) ...[
+                                            Flash(
+                                                child:
+                                                    Stars(rating: avgRating)),
+                                          ] else ...[
+                                            Stars(rating: avgRating),
+                                          ],
+                                        ],
+                                      ),
+                                    ),
 
                                     Text(
                                       '(' +
@@ -453,8 +468,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       allowHalfRating: true,
                                       itemCount: 5,
                                       itemBuilder: (context, _) => Icon(
-                                        Icons.star,
-                                        color: GlobalVariables.colorstarsrating,
+                                        Iconsax.star_15,
+                                        color: Color(0xffFF2E4C),
                                       ),
                                       onRatingUpdate: (rating) {
                                         productDetailsServices.rateProduct(

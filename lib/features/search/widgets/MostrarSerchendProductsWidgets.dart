@@ -21,6 +21,7 @@ class SerchendWidgetsProducts extends StatelessWidget {
     if (totalRating != 0) {
       avgRating = totalRating / product.rating!.length;
     }
+
     return Column(
       children: [
         GestureDetector(

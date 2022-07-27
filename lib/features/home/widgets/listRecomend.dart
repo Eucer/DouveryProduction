@@ -86,15 +86,6 @@ class _RecomendProductState extends State<RecomendProduct> {
                                     child: Column(
                                       children: [
                                         GestureDetector(
-                                          onTap: () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ProductDetailsScreen(
-                                                product: product,
-                                              ),
-                                            ),
-                                          ),
                                           child: Container(
                                             margin: EdgeInsets.only(
                                                 top: 0,
@@ -134,17 +125,34 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Container(
-                                                        width: 200,
-                                                        margin: const EdgeInsets
-                                                                .symmetric(
-                                                            vertical: 5.0),
-                                                        child: headerText(
-                                                            texto: product.name,
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 12.0),
+                                                      GestureDetector(
+                                                        onTap: () =>
+                                                            Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                ProductDetailsScreen(
+                                                              product: product,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        child: Container(
+                                                          width: 200,
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      5.0),
+                                                          child: headerText(
+                                                              texto:
+                                                                  product.name,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 12.0),
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -160,29 +168,31 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                               Stars(
                                                                   rating:
                                                                       avgRating),
-                                                              Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              50),
-                                                                  color: Color(
-                                                                      0xffEE2B47),
-                                                                ),
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                width: 80.0,
-                                                                height: 20.0,
-                                                                child: Text(
-                                                                  'Recomend',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        13,
+                                                              GestureDetector(
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50),
+                                                                    color: Color(
+                                                                        0xff36506C),
+                                                                  ),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  width: 80.0,
+                                                                  height: 20.0,
+                                                                  child: Text(
+                                                                    'Recomend',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          13,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

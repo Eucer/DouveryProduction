@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
 import 'package:contained_tab_bar_view_with_custom_page_navigator/contained_tab_bar_view_with_custom_page_navigator.dart';
 import 'package:flutter/material.dart';
@@ -200,150 +201,150 @@ class _BrandsScreenState extends State<BrandsScreen> {
                                               itemBuilder: (context, index) {
                                                 final product =
                                                     productList![index];
-                                                return GestureDetector(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 12.0),
-                                                    child: Container(
-                                                      width: 150,
-                                                      decoration: BoxDecoration(
-                                                        border: Border(
-                                                            left: BorderSide(
-                                                          color: GlobalVariables
-                                                              .colorTextGreylv10,
-                                                          width: 1,
-                                                        )),
-                                                        color: Colors.white,
-                                                      ),
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              border: Border(
-                                                                  top:
-                                                                      BorderSide(
-                                                                color: GlobalVariables
-                                                                    .colorTextGreylv10,
-                                                                width: 1,
-                                                              )),
-                                                              color:
-                                                                  Colors.white,
+                                                return SlideInDown(
+                                                  child: GestureDetector(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 12.0),
+                                                      child: Container(
+                                                        width: 150,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          border: Border(
+                                                              left: BorderSide(
+                                                            color: GlobalVariables
+                                                                .colorTextGreylv10,
+                                                            width: 1,
+                                                          )),
+                                                          color: Colors.white,
+                                                        ),
+                                                        child: Column(
+                                                          children: [
+                                                            Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border(
+                                                                    top:
+                                                                        BorderSide(
+                                                                  color: GlobalVariables
+                                                                      .colorTextGreylv10,
+                                                                  width: 1,
+                                                                )),
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                              width: 200,
+                                                              height: 120,
+                                                              child: productList ==
+                                                                      null
+                                                                  ? const Loader()
+                                                                  : SingleProduct(
+                                                                      imagen: product
+                                                                          .images[0],
+                                                                    ),
                                                             ),
-                                                            width: 200,
-                                                            height: 120,
-                                                            child: productList ==
-                                                                    null
-                                                                ? const Loader()
-                                                                : SingleProduct(
-                                                                    imagen: product
-                                                                        .images[0],
-                                                                  ),
-                                                          ),
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    left: 10),
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    vertical:
-                                                                        5),
-                                                            child: Column(
-                                                              children: [
-                                                                Container(
-                                                                  margin: EdgeInsets
-                                                                      .only(
-                                                                          bottom:
-                                                                              2),
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  width: double
-                                                                      .infinity,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  child: Text(
-                                                                    product
-                                                                        .name,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Color(
-                                                                          0xff1C2833),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      letterSpacing:
-                                                                          0.4,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    maxLines: 2,
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  margin: EdgeInsets
-                                                                      .only(
-                                                                          bottom:
-                                                                              2),
-                                                                  width: double
-                                                                      .infinity,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  child: Text(
-                                                                    widget
-                                                                        .brands,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Color(
-                                                                          0xff1C2833),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      letterSpacing:
-                                                                          0.4,
-                                                                      fontSize:
-                                                                          11.0,
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    maxLines: 2,
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .topLeft,
-                                                                  child: Text(
-                                                                    '\$${product.price}',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: GlobalVariables
-                                                                          .colorPriceSecond,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      letterSpacing:
-                                                                          0.5,
-                                                                      fontSize:
-                                                                          14.0,
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 10),
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          5),
+                                                              child: Column(
+                                                                children: [
+                                                                  Container(
+                                                                    margin: EdgeInsets.only(
+                                                                        bottom:
+                                                                            2),
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    width: double
+                                                                        .infinity,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    child: Text(
+                                                                      product
+                                                                          .name,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xff1C2833),
+                                                                        fontWeight:
+                                                                            FontWeight.w400,
+                                                                        letterSpacing:
+                                                                            0.4,
+                                                                        fontSize:
+                                                                            12.0,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      maxLines:
+                                                                          2,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  Container(
+                                                                    margin: EdgeInsets.only(
+                                                                        bottom:
+                                                                            2),
+                                                                    width: double
+                                                                        .infinity,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    child: Text(
+                                                                      widget
+                                                                          .brands,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xff1C2833),
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        letterSpacing:
+                                                                            0.4,
+                                                                        fontSize:
+                                                                            11.0,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      maxLines:
+                                                                          2,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    ),
+                                                                  ),
+                                                                  Container(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .topLeft,
+                                                                    child: Text(
+                                                                      '\$${product.price}',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: GlobalVariables
+                                                                            .colorPriceSecond,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        letterSpacing:
+                                                                            0.5,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/services/seachServices.dart';
@@ -48,36 +49,35 @@ class _SearchingPageState extends State<SearchingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(105),
-        child: AppBar(
-          elevation: 0,
-          title: FadeInLeft(
-            duration: const Duration(milliseconds: 300),
-            from: 10,
-            child: Text(
-              'Buscador',
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(105),
+          child: AppBar(
+            elevation: 0,
+            title: FadeInLeft(
+              duration: const Duration(milliseconds: 300),
+              from: 10,
+              child: Text(
+                'Buscador',
+              ),
             ),
+            actions: [
+              IconButton(
+                icon: const Icon(IconlyLight.activity),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(IconlyLight.category),
+                onPressed: () {},
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(15),
+              child: SearchingWidget(),
+            ),
+            backgroundColor: GlobalVariables.appBarbackgroundColor,
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(IconlyLight.activity),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(IconlyLight.category),
-              onPressed: () {},
-            ),
-          ],
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(15),
-            child: SearchingWidget(),
-          ),
-          backgroundColor: GlobalVariables.appBarbackgroundColor,
         ),
-      ),
-      body: Column(
-        children: [
+        body: Column(children: [
           Container(
             margin: const EdgeInsets.only(left: 10),
             height: 30,
@@ -118,22 +118,31 @@ class _SearchingPageState extends State<SearchingPage> {
           products == null
               ? const Loader()
               : Expanded(
-                  child: ListView.builder(
-                    itemCount: products!.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        child: products == null
-                            ? const Loader()
-                            : SerchendWidgetsProducts(
-                                product: products![index],
+                  child: AnimationLimiter(
+                    child: ListView.builder(
+                      itemCount: products!.length,
+                      itemBuilder: (context, index) {
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: GestureDetector(
+                                child: products == null
+                                    ? const Loader()
+                                    : SerchendWidgetsProducts(
+                                        product: products![index],
+                                      ),
                               ),
-                      );
-                    },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-        ],
-      ),
-    );
+                )
+        ]));
   }
 }
 
