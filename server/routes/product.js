@@ -41,7 +41,7 @@ productRouter.get("/api/productsLimit/", auth, async (req, res) => {
 productRouter.get("/api/products/new", auth, async (req, res) => {
   try {
     
-    const products = await Product.find().sort({_id: -1});
+    const products = await Product.find().sort({_id: -1}).limit(10);
     res.json(products);
   } catch (e) {
     res.status(500).json({ error: e.message });

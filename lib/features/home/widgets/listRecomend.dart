@@ -66,7 +66,8 @@ class _RecomendProductState extends State<RecomendProduct> {
                     child: Container(
                       color: GlobalVariables.backgroundColor,
                       height: 360,
-                      width: 600,
+                      width: double.infinity,
+                      padding: EdgeInsets.only(top: 8),
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: productList!.length,
@@ -82,48 +83,46 @@ class _RecomendProductState extends State<RecomendProduct> {
                             }
                             return product == null
                                 ? const Loader()
-                                : Container(
-                                    child: Column(
-                                      children: [
-                                        GestureDetector(
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                                top: 0,
-                                                right: 8,
-                                                bottom: 0,
-                                                left: 0),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10.0,
-                                                horizontal: 3.0),
-                                            child: Row(
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8.0),
-                                                    child: CachedNetworkImage(
-                                                      imageUrl:
-                                                          product.images[0],
-                                                      width: 100,
-                                                      height: 100,
-                                                      fit: BoxFit.contain,
+                                : Center(
+                                    child: GestureDetector(
+                                      onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProductDetailsScreen(
+                                            product: product,
+                                          ),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                padding:
+                                                    EdgeInsets.only(top: 10),
+                                                child: CachedNetworkImage(
+                                                  imageUrl: product.images[0],
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () => Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ProductDetailsScreen(
+                                                      product: product,
                                                     ),
                                                   ),
                                                 ),
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10.0),
+                                                child: SizedBox(
                                                   child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
                                                     children: [
                                                       GestureDetector(
                                                         onTap: () =>
@@ -137,129 +136,81 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                           ),
                                                         ),
                                                         child: Container(
-                                                          width: 200,
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical:
-                                                                      5.0),
-                                                          child: headerText(
-                                                              texto:
-                                                                  product.name,
-                                                              color:
-                                                                  Colors.black,
+                                                          width: 230,
+                                                          child: Text(
+                                                            product.name,
+                                                            style:
+                                                                const TextStyle(
+                                                              color: Color(
+                                                                  0xff1C2833),
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400,
-                                                              fontSize: 12.0),
+                                                              letterSpacing:
+                                                                  0.4,
+                                                              fontSize: 13.0,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            maxLines: 2,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                          ),
                                                         ),
                                                       ),
                                                       Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: SizedBox(
-                                                          width: 200,
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Stars(
-                                                                  rating:
-                                                                      avgRating),
-                                                              GestureDetector(
-                                                                child:
-                                                                    Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            50),
-                                                                    color: Color(
-                                                                        0xff36506C),
-                                                                  ),
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  width: 80.0,
-                                                                  height: 20.0,
-                                                                  child: Text(
-                                                                    'Recomend',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          13,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: SizedBox(
+                                                              width: 200,
+                                                              child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Stars(
+                                                                        rating:
+                                                                            avgRating),
+                                                                    GestureDetector(
+                                                                      child:
+                                                                          Container(
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(50),
+                                                                          color:
+                                                                              Color(0xff36506C),
+                                                                        ),
+                                                                        alignment:
+                                                                            Alignment.center,
+                                                                        width:
+                                                                            80.0,
+                                                                        height:
+                                                                            20.0,
+                                                                        child:
+                                                                            Text(
+                                                                          'Recomend',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                13,
+                                                                          ),
+                                                                        ),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Container(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    bottom:
-                                                                        15.0),
-                                                            child: Text(
-                                                              'Envio Gratis',
-                                                              style: GoogleFonts
-                                                                  .roboto(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        4,
-                                                                        161,
-                                                                        17),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                letterSpacing:
-                                                                    1,
-                                                                fontSize: 10.0,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            margin: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        7.0),
-                                                            child: Text(
-                                                              r'$' +
-                                                                  product.price
-                                                                      .toString(),
-                                                              style: GoogleFonts
-                                                                  .roboto(
-                                                                color: Color(
-                                                                    0xff1C2833),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                letterSpacing:
-                                                                    0.4,
-                                                                fontSize: 15.0,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                                  ])))
                                                     ],
                                                   ),
-                                                ) // ClipRRect
-                                              ],
-                                            ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        )
-                                      ],
+                                        ),
+                                      ),
                                     ),
                                   );
                           })),

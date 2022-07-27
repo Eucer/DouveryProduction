@@ -86,7 +86,7 @@ class SingleProduct extends StatelessWidget {
       color: GlobalVariables.backgroundColor,
       child: GestureDetector(
         child: Padding(
-          padding: const EdgeInsets.only(left: 10.0, top: 0.0),
+          padding: const EdgeInsets.only(left: 0.0, top: 0.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(0),
             child: CachedNetworkImage(

@@ -215,12 +215,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         items: widget.product.images.map(
                           (i) {
                             return Builder(
-                              builder: (BuildContext context) =>
-                                  CachedNetworkImage(
-                                imageUrl: i,
-                                height: 1500,
-                                fit: BoxFit.contain,
-                                width: double.infinity,
+                              builder: (BuildContext context) => Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: i,
+                                  height: 1500,
+                                  fit: BoxFit.contain,
+                                  width: double.infinity,
+                                ),
                               ),
                             );
                           },

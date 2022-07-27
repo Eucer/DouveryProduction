@@ -143,7 +143,7 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final product = productList![index];
-
+                  //* MOballlll ********************************
                   void _modalInteriorFerce(BuildContext context) {
                     showModalBottomSheet(
                       context: context,
@@ -162,7 +162,7 @@ class CarouselProductToNamedCategory extends StatelessWidget {
                               Container(
                                 margin:
                                     const EdgeInsets.only(top: 14.0, bottom: 5),
-                                width: 120.0,
+                                width: 100.0,
                                 height: 30,
                                 child: Text(
                                   'Descrop',

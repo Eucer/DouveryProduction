@@ -1,7 +1,12 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -10,6 +15,7 @@ import 'package:v1douvery/features/home/screens/home_screens.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
+import 'package:v1douvery/provider/user_provider.dart';
 
 class CategoryDealsScreen extends StatefulWidget {
   static const String routeName = '/category-deals';
@@ -43,33 +49,55 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userCartLen = context.watch<UserProvider>().user.cart.length;
+
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45),
-        child: AppBar(
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              color: GlobalVariables.appBarbackgroundColor,
+        preferredSize: Size.fromHeight(105),
+        child: Center(
+          child: AppBar(
+            elevation: 0,
+            title: Row(
+              children: [
+                Text(
+                  'Douvery ',
+                  style: GoogleFonts.lato(
+                      color: Color(0xffFCFCFC), fontWeight: FontWeight.bold),
+                ),
+                Icon(Icons.wifi_2_bar_sharp),
+              ],
             ),
-          ),
-          title: FadeInLeft(
-            duration: const Duration(milliseconds: 300),
-            from: 10,
-            child: Text(
-              'Volver',
-              style: const TextStyle(
-                fontSize: 19,
-                color: Colors.white,
+            actions: [
+              IconButton(
+                icon: const Icon(IconlyLight.addUser),
+                onPressed: () {},
               ),
+              Badge(
+                toAnimate: false,
+                position: BadgePosition.topEnd(top: 2, end: 3),
+                animationDuration: Duration(milliseconds: 300),
+                badgeColor: Color(0xffe84118),
+                badgeContent: Text(
+                  userCartLen.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 13),
+                ),
+                child: IconButton(
+                  icon: const Icon(IconlyLight.buy),
+                  onPressed: () {},
+                ),
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(15),
+              child: CenterSearchNav(),
             ),
+            backgroundColor: GlobalVariables.appBarbackgroundColor,
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            BottomNavSearchTitle(),
             Column(
               children: [
                 Padding(
