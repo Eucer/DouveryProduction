@@ -49,15 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: AppBar(
             elevation: 0,
-            title: Row(
-              children: [
-                Text(
-                  'Douvery ',
-                  style: GoogleFonts.lato(
-                      color: Color(0xffFCFCFC), fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.wifi_2_bar_sharp),
-              ],
+            title: Container(
+              alignment: Alignment.topLeft,
+              width: 150,
+              height: 60,
+              child: Image(
+                image: AssetImage("assets/images/logo.png"),
+                // picked file
+                fit: BoxFit.contain,
+              ),
             ),
             actions: [
               IconButton(

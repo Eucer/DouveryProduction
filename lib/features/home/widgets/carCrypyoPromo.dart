@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/SeveryCrypto/Screens/SeveryScreen.dart';
 
 class CartCrypto extends StatelessWidget {
   const CartCrypto({Key? key}) : super(key: key);
@@ -78,6 +79,12 @@ class CartCrypto extends StatelessWidget {
                           ),
                           const SizedBox(width: 00),
                           GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SeveryScrenn(),
+                              ),
+                            ),
                             child: Center(
                               child: Container(
                                 alignment: Alignment.center,

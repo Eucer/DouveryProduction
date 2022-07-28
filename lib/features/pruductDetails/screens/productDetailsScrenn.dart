@@ -300,7 +300,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                           ),
                           child: Container(
-                            alignment: Alignment.bottomLeft,
+                            height: 30,
+                            alignment: Alignment.centerLeft,
                             margin: EdgeInsets.only(
                               top: 20,
                               left: 10,

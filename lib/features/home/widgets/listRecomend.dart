@@ -140,7 +140,7 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                                       context)
                                                                   .size
                                                                   .width /
-                                                              2,
+                                                              1.6,
                                                           child: Text(
                                                             product.name,
                                                             style:

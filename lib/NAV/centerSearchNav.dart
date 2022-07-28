@@ -30,7 +30,7 @@ class SearchStactic extends StatelessWidget {
               child: Container(
                 height: 55,
                 width: double.infinity,
-                color: GlobalVariables.appBarbackgroundColor,
+                color: Colors.transparent,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ClipRRect(

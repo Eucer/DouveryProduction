@@ -40,18 +40,11 @@ class NavCategory extends StatelessWidget {
       height: 30,
       width: MediaQuery.of(context).size.width,
       child: Container(
-        padding: EdgeInsets.only(left: 5),
+        padding: EdgeInsets.only(right: 0),
         color: GlobalVariables.secondaryColor,
-        child: GridView.builder(
+        child: ListView.builder(
           itemCount: GlobalVariables.categoryTitle.length,
           scrollDirection: Axis.horizontal,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-
-            crossAxisSpacing: 80,
-            // width / height: fixed for *all* items
-            childAspectRatio: 0.80, mainAxisExtent: 70,
-          ),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () => Navigator.push(
@@ -71,6 +64,9 @@ class NavCategory extends StatelessWidget {
                   Container(
                     height: 30,
                     alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 15,
+                    ),
                     child: Text(
                       GlobalVariables.categoryTitle[index]['title']!,
                       style: TextStyle(color: Colors.white, fontSize: 13),
