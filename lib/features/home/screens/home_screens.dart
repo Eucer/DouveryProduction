@@ -12,6 +12,8 @@ import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/widgets/carAll.dart';
+import 'package:v1douvery/features/home/widgets/carAnimations.dart';
+import 'package:v1douvery/features/home/widgets/carCrypyoPromo.dart';
 import 'package:v1douvery/features/home/widgets/carKits.dart';
 
 import 'package:v1douvery/features/home/widgets/listMarcaSelect.dart';
@@ -99,7 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ListRandom(),
               RecomendProduct(),
               ListMarca(),
-              CarKitsProductOne(),
+              CartCrypto(),
+              CarAnimationsTesting(),
               DealOfDay(),
               DealOfDay(),
               DealOfDay(),

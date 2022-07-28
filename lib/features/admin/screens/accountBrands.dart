@@ -8,6 +8,7 @@ import 'package:v1douvery/common/widgets/custom.button.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/account/services/accountServices.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';
 import 'package:v1douvery/provider/user_provider.dart';
@@ -86,6 +87,18 @@ class _AccountsBrandsState extends State<AccountsBrands> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      icon: GestureDetector(
+                        child: Icon(
+                          IconlyLight.logout,
+                          color: GlobalVariables.colorTextWhiteLight,
+                        ),
+                        onTap: () => AccountServices().logOut(context),
+                      ),
+                      onPressed: () {},
                     ),
                   ),
                   Text(

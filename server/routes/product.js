@@ -116,7 +116,6 @@ productRouter.post("/api/productviewd", auth, async (req, res) => {
 
 
 
-// c
 productRouter.get("/api/deal-of-day", auth, async (req, res) => {
   try {
     let products = await Product.find({});
@@ -146,7 +145,7 @@ productRouter.get("/api/deal-of-day", auth, async (req, res) => {
 // c
 productRouter.get("/api/list-product-deal", auth, async (req, res) => {
   try {
-    let products = await Product.find({}).limit(10);
+    let products = await Product.find({});
 
     products = products.sort((a, b) => {
       let aSum = -1;
@@ -159,7 +158,7 @@ productRouter.get("/api/list-product-deal", auth, async (req, res) => {
       for (let i = 0; i < b.ratings.length; i++) {
         bSum += b.ratings[i].rating;
       }
-      return aSum < bSum ? 1 : -1;
+      return aSum <= bSum ? 1 : -1;
     },);
 
     res.json(products);

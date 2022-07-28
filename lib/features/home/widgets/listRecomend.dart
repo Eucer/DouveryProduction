@@ -136,7 +136,11 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                           ),
                                                         ),
                                                         child: Container(
-                                                          width: 230,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              2,
                                                           child: Text(
                                                             product.name,
                                                             style:

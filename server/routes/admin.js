@@ -28,7 +28,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
 //* Get ALL products
   adminRouter.get("/admin/get-products", admin, async (_req,res) => {
     try{
-      const products  = await Product.find({});
+      const products  = await Product.find({}).sort({_id: -1});
       res.json(products );
     }catch(e){
       res.status(500).json({ error: e.message });

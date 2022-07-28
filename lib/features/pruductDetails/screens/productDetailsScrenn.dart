@@ -158,14 +158,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       ),
                                     ),
 
-                                    Text(
-                                      '(' +
-                                          avgRating.toString() +
-                                          ') ' +
-                                          widget.product.rating!.length
-                                              .toString(),
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 13),
+                                    Container(
+                                      width: 50,
+                                      child: Text(
+                                        '(' +
+                                            avgRating.toString() +
+                                            ') ' +
+                                            widget.product.rating!.length
+                                                .toString(),
+                                        style: TextStyle(
+                                            color: Colors.grey, fontSize: 13),
+                                        textAlign: TextAlign.start,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                     ),
                                     SizedBox(width: 10),
                                     Text(

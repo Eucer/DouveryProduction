@@ -45,6 +45,11 @@ class GlobalVariables {
     'https://images-na.ssl-images-amazon.com/images/G/31/img21/shoes/September/SSW/pc-header._CB641971330_.jpg',
   ];
 
+  static List<String> cryptoLogo = [
+    'https://res.cloudinary.com/douvery/image/upload/v1659002119/CryptosLogos/fsiudupkd2zjj0a175r5.png',
+    'https://res.cloudinary.com/douvery/image/upload/v1659002119/CryptosLogos/bbrhtrtufbam7litta9m.png',
+  ];
+
   static const List<Map<String, String>> categoryTitle = [
     {
       'title': 'Mobiles',

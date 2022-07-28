@@ -43,7 +43,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   List<String> productCategories = [
     'Mobiles',
+    'Hogar',
     'Electronics',
+    'Ropas',
     'Estufa',
     'Books',
     'Tenis',

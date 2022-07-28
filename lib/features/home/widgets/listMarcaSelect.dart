@@ -37,7 +37,7 @@ class _ListMarcaState extends State<ListMarca> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 8.0),
+      padding: const EdgeInsets.only(top: 0, left: 8.0),
       child: Column(
         children: [
           Container(
