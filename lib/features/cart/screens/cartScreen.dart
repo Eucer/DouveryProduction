@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,15 +35,14 @@ class CartScreen extends StatelessWidget {
         child: Center(
           child: AppBar(
             elevation: 0,
-            title: Row(
-              children: [
-                Text(
-                  'Douvery ',
-                  style: GoogleFonts.lato(
-                      color: Color(0xffFCFCFC), fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.wifi_2_bar_sharp),
-              ],
+            title: Container(
+              alignment: Alignment.topLeft,
+              width: 150,
+              height: 60,
+              child: CachedNetworkImage(
+                imageUrl:
+                    'https://res.cloudinary.com/douvery/image/upload/v1659091398/LOGO/wxw574oa5edr0ucoy2uu.png',
+              ),
             ),
             actions: [
               IconButton(

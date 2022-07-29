@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,10 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.topLeft,
               width: 150,
               height: 60,
-              child: Image(
-                image: AssetImage("assets/images/logo.png"),
-                // picked file
-                fit: BoxFit.contain,
+              child: CachedNetworkImage(
+                imageUrl:
+                    'https://res.cloudinary.com/douvery/image/upload/v1659091398/LOGO/wxw574oa5edr0ucoy2uu.png',
               ),
             ),
             actions: [

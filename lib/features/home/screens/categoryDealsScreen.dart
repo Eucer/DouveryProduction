@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -57,15 +58,14 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
         child: Center(
           child: AppBar(
             elevation: 0,
-            title: Row(
-              children: [
-                Text(
-                  'Douvery ',
-                  style: GoogleFonts.lato(
-                      color: Color(0xffFCFCFC), fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.wifi_2_bar_sharp),
-              ],
+            title: Container(
+              alignment: Alignment.topLeft,
+              width: 150,
+              height: 60,
+              child: CachedNetworkImage(
+                imageUrl:
+                    'https://res.cloudinary.com/douvery/image/upload/v1659091398/LOGO/wxw574oa5edr0ucoy2uu.png',
+              ),
             ),
             actions: [
               IconButton(
@@ -91,7 +91,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
               preferredSize: Size.fromHeight(15),
               child: CenterSearchNav(),
             ),
-            backgroundColor: GlobalVariables.appBarbackgroundColor,
+            backgroundColor: Color(0xFF0D47A1),
           ),
         ),
       ),
