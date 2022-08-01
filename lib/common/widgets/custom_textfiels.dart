@@ -18,10 +18,14 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: Colors.black45),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black38),
+          borderRadius: BorderRadius.circular(7),
+          borderSide: BorderSide(
+            color: Colors.black38,
+          ),
         ),
       ),
       validator: (val) {

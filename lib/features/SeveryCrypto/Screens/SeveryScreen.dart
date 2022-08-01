@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/SeveryCrypto/widgets/present.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class SeveryScrenn extends StatefulWidget {
@@ -70,7 +71,9 @@ class _SeveryScrennState extends State<SeveryScrenn> {
       body: Scrollbar(
         child: SingleChildScrollView(
           child: Column(
-            children: const [],
+            children: const [
+              PrensetCrypto(),
+            ],
           ),
         ),
       ),

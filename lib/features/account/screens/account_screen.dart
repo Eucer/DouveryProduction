@@ -32,13 +32,16 @@ class AccountScreen extends StatelessWidget {
         child: Center(
           child: AppBar(
             elevation: 0,
-            title: Container(
-              alignment: Alignment.topLeft,
-              width: 150,
-              height: 60,
-              child: CachedNetworkImage(
-                imageUrl:
-                    'https://res.cloudinary.com/douvery/image/upload/v1659091398/LOGO/wxw574oa5edr0ucoy2uu.png',
+            title: Padding(
+              padding: const EdgeInsets.only(top: 25.0, right: 40),
+              child: Container(
+                alignment: Alignment.center,
+                width: 150,
+                height: 100,
+                child: CachedNetworkImage(
+                  imageUrl:
+                      'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                ),
               ),
             ),
             actions: [

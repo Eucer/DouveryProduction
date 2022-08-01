@@ -58,13 +58,11 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
         child: Center(
           child: AppBar(
             elevation: 0,
-            title: Container(
-              alignment: Alignment.topLeft,
-              width: 150,
-              height: 60,
-              child: CachedNetworkImage(
-                imageUrl:
-                    'https://res.cloudinary.com/douvery/image/upload/v1659091398/LOGO/wxw574oa5edr0ucoy2uu.png',
+            title: FadeInLeft(
+              duration: const Duration(milliseconds: 300),
+              from: 10,
+              child: Text(
+                'Buscador',
               ),
             ),
             actions: [

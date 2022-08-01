@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         hoverColor: Colors.transparent,
         scaffoldBackgroundColor: GlobalVariables.backgroundColor,
         colorScheme: const ColorScheme.light(
-          primary: GlobalVariables.buttomColor,
+          primary: GlobalVariables.appBarbackgroundColor,
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,

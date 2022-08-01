@@ -1,6 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:contained_tab_bar_view_with_custom_page_navigator/contained_tab_bar_view_with_custom_page_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:v1douvery/common/widgets/custom.button.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
+import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/auth/services/auth_service.dart';
 
@@ -56,7 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      backgroundColor: GlobalVariables.appBarbackgroundColor,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -64,131 +68,143 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Bienvenido!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
+                padding: const EdgeInsets.only(top: 25.0, right: 0, left: 30),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 250,
+                  height: 100,
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
                   ),
                 ),
               ),
-              ListTile(
-                tileColor: _auth == Auth.signup
-                    ? GlobalVariables.backgroundColor
-                    : GlobalVariables.greyBackgroundCOlor,
-                title: Text(
-                  'Crear Cuenta',
-                  style: TextStyle(
-                    fontSize: 18,
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        padding: const EdgeInsets.all(8.0),
+                        height: 400,
+                        child: ContainedTabBarView(
+                          initialIndex: 0,
+                          tabs: const [
+                            Text(
+                              'Iniciar Session',
+                              style: TextStyle(
+                                color: Color.fromARGB(250, 0, 0, 0),
+                              ),
+                            ),
+                            Text(
+                              'Crear Cuenta',
+                              style: TextStyle(
+                                color: Color.fromARGB(250, 0, 0, 0),
+                              ),
+                            ),
+                          ],
+                          views: [
+                            Container(
+                              padding:
+                                  EdgeInsets.only(left: 8, right: 8, top: 20),
+                              color: GlobalVariables.backgroundColor,
+                              child: Form(
+                                key: _signInFormKey,
+                                child: Column(
+                                  children: [
+                                    CustomTextField(
+                                      controller: _emailController,
+                                      hintText: 'Email',
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    CustomTextField(
+                                      controller: _passwordController,
+                                      hintText: 'Password',
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    CustomnButton(
+                                      text: 'Sign Up',
+                                      color: GlobalVariables.secondaryColor,
+                                      onTap: () {
+                                        if (_signInFormKey.currentState!
+                                            .validate()) {
+                                          signInUser();
+                                        }
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      '',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(150, 0, 0, 0),
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(left: 8, right: 8, top: 20),
+                              color: GlobalVariables.backgroundColor,
+                              child: Form(
+                                key: _signUpFormKey,
+                                child: Column(
+                                  children: [
+                                    CustomTextField(
+                                      controller: _nameController,
+                                      hintText: 'Name',
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    CustomTextField(
+                                      controller: _emailController,
+                                      hintText: 'Email',
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    CustomTextField(
+                                      controller: _passwordController,
+                                      hintText: 'Password',
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    CustomnButton(
+                                      text: 'Sign Up',
+                                      color: GlobalVariables.secondaryColor,
+                                      onTap: () {
+                                        if (_signUpFormKey.currentState!
+                                            .validate()) {
+                                          signUpUser();
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                          // ignore: avoid_print
+                          onChange: (index) => print(index),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVariables.buttomColor,
-                  value: Auth.signup,
-                  groupValue: _auth,
-                  onChanged: (Auth? val) {
-                    setState(() {
-                      _auth = val!;
-                    });
-                  },
-                ),
+                ],
               ),
-              if (_auth == Auth.signup)
-                Container(
-                  padding: EdgeInsets.all(8),
-                  color: GlobalVariables.backgroundColor,
-                  child: Form(
-                    key: _signUpFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _nameController,
-                          hintText: 'Name',
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomTextField(
-                          controller: _emailController,
-                          hintText: 'Email',
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomTextField(
-                          controller: _passwordController,
-                          hintText: 'Password',
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomnButton(
-                          text: 'Sign Up',
-                          onTap: () {
-                            if (_signUpFormKey.currentState!.validate()) {
-                              signUpUser();
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ListTile(
-                tileColor: _auth == Auth.signin
-                    ? GlobalVariables.backgroundColor
-                    : GlobalVariables.greyBackgroundCOlor,
-                title: Text(
-                  'Iniciar Session',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVariables.buttomColor,
-                  value: Auth.signin,
-                  groupValue: _auth,
-                  onChanged: (Auth? val) {
-                    setState(() {
-                      _auth = val!;
-                    });
-                  },
-                ),
-              ),
-              if (_auth == Auth.signin)
-                Container(
-                  padding: EdgeInsets.all(8),
-                  color: GlobalVariables.backgroundColor,
-                  child: Form(
-                    key: _signInFormKey,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _emailController,
-                          hintText: 'Email',
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomTextField(
-                          controller: _passwordController,
-                          hintText: 'Password',
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomnButton(
-                            text: 'Sign In',
-                            onTap: () {
-                              if (_signInFormKey.currentState!.validate()) {
-                                signInUser();
-                              }
-                            })
-                      ],
-                    ),
-                  ),
-                ),
             ],
           ),
         ),
