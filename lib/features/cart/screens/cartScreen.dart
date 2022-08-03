@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/NAV/appBarIcons.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
@@ -33,32 +34,7 @@ class CartScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: Center(
-          child: AppBar(
-            elevation: 0,
-            title: Padding(
-              padding: const EdgeInsets.only(top: 25.0, right: 40),
-              child: Container(
-                alignment: Alignment.center,
-                width: 150,
-                height: 100,
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(IconlyLight.addUser),
-                onPressed: () {},
-              ),
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(15),
-              child: CenterSearchNav(),
-            ),
-            backgroundColor: GlobalVariables.appBarbackgroundColor,
-          ),
+          child: AppBarIcons(),
         ),
       ),
 
@@ -87,7 +63,7 @@ class CartScreen extends StatelessWidget {
                       ),
                       icon: Icon(Icons.payments, size: 36),
                       label: Text(
-                        "Proceed to Buy (${user.cart.length} items)",
+                        "Proceder a pagar (${user.cart.length} items)",
                       ),
                     ),
                   ),

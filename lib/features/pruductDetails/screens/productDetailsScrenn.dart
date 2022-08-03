@@ -236,14 +236,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         options: CarouselOptions(
                           viewportFraction: 1,
                           height: 400,
-                          aspectRatio: 0.0,
-                          onPageChanged: (index, reason) {
-                            setState(
-                              () {
-                                _current = index;
-                              },
-                            );
-                          },
+                          aspectRatio: 16 / 9,
+                          initialPage: 0,
+                          enableInfiniteScroll: false,
+                          reverse: false,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enlargeCenterPage: true,
+                          scrollDirection: Axis.horizontal,
                         ),
                       ),
                     ),

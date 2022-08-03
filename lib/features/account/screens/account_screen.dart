@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/NAV/appBarIcons.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
@@ -30,46 +31,7 @@ class AccountScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: Center(
-          child: AppBar(
-            elevation: 0,
-            title: Padding(
-              padding: const EdgeInsets.only(top: 25.0, right: 40),
-              child: Container(
-                alignment: Alignment.center,
-                width: 150,
-                height: 100,
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(IconlyLight.addUser),
-                onPressed: () {},
-              ),
-              Badge(
-                toAnimate: false,
-                position: BadgePosition.topEnd(top: 2, end: 3),
-                animationDuration: Duration(milliseconds: 300),
-                badgeColor: Color(0xffe84118),
-                badgeContent: Text(
-                  userCartLen.toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 13),
-                ),
-                child: IconButton(
-                  icon: const Icon(IconlyLight.buy),
-                  onPressed: () {},
-                ),
-              ),
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(15),
-              child: CenterSearchNav(),
-            ),
-            backgroundColor: GlobalVariables.appBarbackgroundColor,
-          ),
+          child: AppBarIcons(),
         ),
       ),
 

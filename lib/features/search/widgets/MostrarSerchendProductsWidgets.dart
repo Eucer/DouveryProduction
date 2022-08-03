@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
@@ -54,11 +55,38 @@ class SerchendWidgetsProducts extends StatelessWidget {
             ),
             child: Row(
               children: [
-                CachedNetworkImage(
-                  imageUrl: product.images[0],
-                  fit: BoxFit.contain,
+                Container(
                   height: 105,
                   width: 135,
+                  color: Colors.white,
+                  child: CarouselSlider(
+                    items: product.images.map(
+                      (i) {
+                        return Builder(
+                          builder: (BuildContext context) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CachedNetworkImage(
+                              imageUrl: i,
+                              height: 105,
+                              fit: BoxFit.contain,
+                              width: 135,
+                            ),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      height: 105,
+                      aspectRatio: 16 / 10,
+                      initialPage: 0,
+                      enableInfiniteScroll: false,
+                      reverse: false,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
                 ),
                 Column(
                   children: [

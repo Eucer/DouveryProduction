@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/services/accountServices.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
@@ -61,49 +62,46 @@ class WelcomeUser extends StatelessWidget {
               ),
             ),
             Container(
-              child: IconButton(
-                icon: GestureDetector(
-                  child: Icon(
-                    IconlyLight.setting,
-                    color: GlobalVariables.colorTextWhiteLight,
-                  ),
-                  onTap: () => Navigator.push(
+              child: CustomnIconsButton(
+                icon: Icon(
+                  IconlyLight.setting,
+                  color: GlobalVariables.colorTextWhiteLight,
+                ),
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => SearchPage(),
                     ),
-                  ),
-                ),
-                onPressed: () {},
+                  );
+                },
               ),
             ),
             Container(
-              child: IconButton(
-                icon: GestureDetector(
-                  child: Icon(
-                    IconlyLight.bag,
-                    color: GlobalVariables.colorTextWhiteLight,
-                  ),
-                  onTap: () => Navigator.push(
+              child: CustomnIconsButton(
+                icon: Icon(
+                  IconlyLight.bag,
+                  color: GlobalVariables.colorTextWhiteLight,
+                ),
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => SearchPage(),
                     ),
-                  ),
-                ),
-                onPressed: () {},
+                  );
+                },
               ),
             ),
             Container(
-              child: IconButton(
-                icon: GestureDetector(
-                  child: Icon(
-                    IconlyLight.logout,
-                    color: GlobalVariables.colorTextWhiteLight,
-                  ),
-                  onTap: () => AccountServices().logOut(context),
+              child: CustomnIconsButton(
+                icon: Icon(
+                  IconlyLight.logout,
+                  color: GlobalVariables.colorTextWhiteLight,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  AccountServices().logOut(context);
+                },
               ),
             ),
           ],

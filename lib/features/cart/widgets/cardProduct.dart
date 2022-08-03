@@ -44,140 +44,141 @@ class _CartProductState extends State<CartProduct> {
     final product = Product.fromMap(productCart['product']);
     final quantity = productCart['quantity'];
 
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProductDetailsScreen(
-                product: product,
+    return Container(
+      child: Column(
+        children: [
+          GestureDetector(
+            child: Container(
+              margin: const EdgeInsets.only(
+                left: 0,
               ),
-            ),
-          ),
-          child: Container(
-            color: GlobalVariables.backgroundColor,
-            margin: const EdgeInsets.only(
-              left: 10,
-            ),
-            child: Row(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: product.images[0],
-                  fit: BoxFit.contain,
-                  height: 135,
-                  width: 135,
-                ),
-                Column(
-                  children: [
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        product.name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        maxLines: 2,
-                      ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: Text(
-                        '\$${product.price}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 2,
-                      ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10),
-                      child: const Text('Eligible for FREE Shipping'),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: const Text(
-                        'In Stock',
-                        style: TextStyle(
-                          color: Colors.teal,
-                        ),
-                        maxLines: 2,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.all(10),
-          color: GlobalVariables.backgroundNavBarColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black12,
-                    width: 1.5,
+              decoration: BoxDecoration(
+                  color: GlobalVariables.backgroundColor,
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Color.fromARGB(8, 0, 0, 0), width: 1))),
+              child: Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: product.images[0],
+                    fit: BoxFit.contain,
+                    height: 120,
+                    width: 130,
                   ),
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.black12,
-                ),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () => decreaseQuantity(product),
-                      child: Container(
-                        width: 35,
-                        height: 32,
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.remove,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12, width: 1.5),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      child: Container(
-                        width: 35,
-                        height: 32,
-                        alignment: Alignment.center,
+                  Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.8,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 0, vertical: 5),
                         child: Text(
-                          quantity.toString(),
+                          product.name,
+                          style: const TextStyle(
+                            fontSize: 15,
+                          ),
+                          maxLines: 2,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () => increaseQuantity(product),
-                      child: Container(
-                        width: 35,
-                        height: 32,
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.add,
-                          size: 18,
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Text(
+                          '\$${product.price}',
+                          style: const TextStyle(
+                            color: GlobalVariables.colorPriceSecond,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.5,
+                            fontSize: 18.0,
+                          ),
+                          maxLines: 2,
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: const Text(
+                          'Disponible',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xff212121),
+                          ),
+                          maxLines: 2,
+                        ),
+                      ),
+                      Container(
+                        margin:
+                            const EdgeInsets.only(left: 15, top: 8, bottom: 8),
+                        color: GlobalVariables.backgroundNavBarColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black12,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.black12,
+                              ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () => decreaseQuantity(product),
+                                    child: Container(
+                                      width: 32,
+                                      height: 22,
+                                      alignment: Alignment.center,
+                                      child: const Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black12, width: 1.5),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    child: Container(
+                                      width: 25,
+                                      height: 22,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        quantity.toString(),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () => increaseQuantity(product),
+                                    child: Container(
+                                      width: 32,
+                                      height: 22,
+                                      alignment: Alignment.center,
+                                      child: const Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

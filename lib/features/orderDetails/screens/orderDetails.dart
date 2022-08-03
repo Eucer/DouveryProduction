@@ -59,7 +59,9 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(45),
-        child: TopTitleButtom(),
+        child: TopTitleButtom(
+          title: 'volver',
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

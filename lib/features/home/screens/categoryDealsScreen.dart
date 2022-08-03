@@ -1,15 +1,20 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
+import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/screens/home_screens.dart';
@@ -55,42 +60,8 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
-        child: Center(
-          child: AppBar(
-            elevation: 0,
-            title: FadeInLeft(
-              duration: const Duration(milliseconds: 300),
-              from: 10,
-              child: Text(
-                'Buscador',
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(IconlyLight.addUser),
-                onPressed: () {},
-              ),
-              Badge(
-                toAnimate: false,
-                position: BadgePosition.topEnd(top: 2, end: 3),
-                animationDuration: Duration(milliseconds: 300),
-                badgeColor: Color(0xffe84118),
-                badgeContent: Text(
-                  userCartLen.toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 13),
-                ),
-                child: IconButton(
-                  icon: const Icon(IconlyLight.buy),
-                  onPressed: () {},
-                ),
-              ),
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(15),
-              child: CenterSearchNav(),
-            ),
-            backgroundColor: Color(0xFF0D47A1),
-          ),
+        child: TopTitleButtom(
+          title: 'Volver',
         ),
       ),
       body: SingleChildScrollView(
@@ -98,6 +69,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
           children: [
             Column(
               children: [
+                NavCategory(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -106,8 +78,8 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                         borderRadius: BorderRadius.circular(10),
                         color: Color(0xff05595B)),
                     alignment: Alignment.center,
-                    child: const Text(
-                      'Puede que te interesen',
+                    child: Text(
+                      '${widget.category}',
                       style: TextStyle(
                           fontSize: 17,
                           color: GlobalVariables.colorTextWhiteLight),
@@ -115,16 +87,16 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Column(
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 5),
+                            horizontal: 5, vertical: 5),
                         color: Colors.white,
                         child: headerDoubleText(
-                          textHeader: '${widget.category}',
-                          textAction: 'Ver mas',
+                          textHeader: 'Productos en  ${widget.category}',
+                          textAction: '',
                         ),
                       ),
                       productList == null
@@ -143,7 +115,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
 }
 
 class CategoriNamed extends StatelessWidget {
-  const CategoriNamed({
+  CategoriNamed({
     Key? key,
     required this.productList,
   }) : super(key: key);
@@ -155,13 +127,28 @@ class CategoriNamed extends StatelessWidget {
     return Container(
       color: GlobalVariables.backgroundColor,
       child: SizedBox(
-        height: 200,
+        height: 500,
         width: double.infinity,
-        child: ListView.builder(
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1,
+              mainAxisExtent: MediaQuery.of(context).size.width / 1.8),
           itemCount: productList!.length,
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             final product = productList![index];
+
+            double totalRating = 0;
+            for (int i = 0; i < product.rating!.length; i++) {
+              totalRating += product.rating![i].rating;
+            }
+            double avgRating = 0;
+            if (totalRating != 0) {
+              avgRating = totalRating / product.rating!.length;
+            }
+
             return GestureDetector(
               onTap: () => Navigator.push(
                 context,
@@ -172,11 +159,10 @@ class CategoriNamed extends StatelessWidget {
                 ),
               ),
               child: Container(
-                width: 150,
                 decoration: const BoxDecoration(
                   border: Border(
                       left: BorderSide(
-                    color: GlobalVariables.colorTextGreylv10,
+                    color: Color.fromARGB(8, 0, 0, 0),
                     width: 1,
                   )),
                   color: Colors.white,
@@ -196,18 +182,47 @@ class CategoriNamed extends StatelessWidget {
                       height: 120,
                       child: productList == null
                           ? const Loader()
-                          : SingleProduct(
-                              imagen: product.images[0],
+                          : Container(
+                              color: Colors.white,
+                              child: CarouselSlider(
+                                items: product.images.map(
+                                  (i) {
+                                    return Builder(
+                                      builder: (BuildContext context) =>
+                                          Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CachedNetworkImage(
+                                          imageUrl: i,
+                                          height: 100,
+                                          fit: BoxFit.contain,
+                                          width: double.infinity,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).toList(),
+                                options: CarouselOptions(
+                                  viewportFraction: 1,
+                                  height: 400,
+                                  aspectRatio: 16 / 10,
+                                  initialPage: 0,
+                                  enableInfiniteScroll: false,
+                                  reverse: false,
+                                  autoPlayCurve: Curves.fastOutSlowIn,
+                                  enlargeCenterPage: true,
+                                  scrollDirection: Axis.horizontal,
+                                ),
+                              ),
                             ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: EdgeInsets.only(left: 8, top: 5),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
                             margin: const EdgeInsets.only(bottom: 2),
-                            alignment: Alignment.center,
+                            alignment: Alignment.bottomLeft,
                             width: double.infinity,
                             color: Colors.white,
                             child: Text(
@@ -219,12 +234,16 @@ class CategoriNamed extends StatelessWidget {
                                 fontSize: 12.0,
                               ),
                               textAlign: TextAlign.start,
-                              maxLines: 2,
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(bottom: 2),
+                            alignment: Alignment.bottomLeft,
+                            width: double.infinity,
+                            child: Stars(rating: avgRating),
+                          ),
+                          Container(
                             width: double.infinity,
                             color: Colors.white,
                             child: Text(
@@ -241,7 +260,8 @@ class CategoriNamed extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            alignment: Alignment.topLeft,
+                            alignment: Alignment.bottomRight,
+                            padding: EdgeInsets.only(right: 10),
                             child: Text(
                               '\$${product.price}',
                               style: const TextStyle(
