@@ -67,45 +67,48 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Column(
-              children: [
-                NavCategory(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff05595B)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      '${widget.category}',
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: GlobalVariables.colorTextWhiteLight),
+            Container(
+              color: Color(0xfff9f9f9),
+              child: Column(
+                children: [
+                  NavCategory(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xff05595B)),
+                      alignment: Alignment.center,
+                      child: Text(
+                        '${widget.category}',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: GlobalVariables.colorTextWhiteLight),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 5),
-                        color: Colors.white,
-                        child: headerDoubleText(
-                          textHeader: 'Productos en  ${widget.category}',
-                          textAction: '',
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 5),
+                          color: Colors.white,
+                          child: headerDoubleText(
+                            textHeader: 'Productos en  ${widget.category}',
+                            textAction: '',
+                          ),
                         ),
-                      ),
-                      productList == null
-                          ? const Loader()
-                          : CategoriNamed(productList: productList),
-                    ],
+                        productList == null
+                            ? const Loader()
+                            : CategoriNamed(productList: productList),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
@@ -125,7 +128,7 @@ class CategoriNamed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: GlobalVariables.backgroundColor,
+      color: Color(0xfff9f9f9),
       child: SizedBox(
         height: 500,
         width: double.infinity,

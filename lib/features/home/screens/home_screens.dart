@@ -16,6 +16,7 @@ import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/widgets/carAll.dart';
 import 'package:v1douvery/features/home/widgets/carAnimations.dart';
+import 'package:v1douvery/features/home/widgets/carBrands.dart';
 import 'package:v1douvery/features/home/widgets/carCrypyoPromo.dart';
 import 'package:v1douvery/features/home/widgets/carKits.dart';
 
@@ -69,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ListMarca(),
               CartCrypto(),
               CarAnimationsTesting(),
+              CardBrands(),
               DealOfDay(),
               DealOfDay(),
               DealOfDay(),
