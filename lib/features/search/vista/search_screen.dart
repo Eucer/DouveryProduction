@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/widgets/carousel_recent_search_widgets.dart';
 import 'package:v1douvery/features/search/widgets/recomendYou.dart';
@@ -30,11 +31,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           actions: [
-            IconButton(
-              icon: const Icon(IconlyLight.activity),
-              onPressed: () {},
-            ),
-            IconButton(
+            CustomnIconsButton(
               icon: const Icon(IconlyLight.category),
               onPressed: () {},
             ),

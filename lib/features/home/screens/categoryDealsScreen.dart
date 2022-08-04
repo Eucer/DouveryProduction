@@ -182,7 +182,7 @@ class CategoriNamed extends StatelessWidget {
                         color: Colors.white,
                       ),
                       width: 200,
-                      height: 120,
+                      height: 150,
                       child: productList == null
                           ? const Loader()
                           : Container(
@@ -196,7 +196,7 @@ class CategoriNamed extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CachedNetworkImage(
                                           imageUrl: i,
-                                          height: 100,
+                                          height: 300,
                                           fit: BoxFit.contain,
                                           width: double.infinity,
                                         ),
@@ -206,7 +206,7 @@ class CategoriNamed extends StatelessWidget {
                                 ).toList(),
                                 options: CarouselOptions(
                                   viewportFraction: 1,
-                                  height: 400,
+                                  height: 600,
                                   aspectRatio: 16 / 10,
                                   initialPage: 0,
                                   enableInfiniteScroll: false,

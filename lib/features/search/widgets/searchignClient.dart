@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/services/seachServices.dart';
@@ -61,11 +62,7 @@ class _SearchingPageState extends State<SearchingPage> {
               ),
             ),
             actions: [
-              IconButton(
-                icon: const Icon(IconlyLight.activity),
-                onPressed: () {},
-              ),
-              IconButton(
+              CustomnIconsButton(
                 icon: const Icon(IconlyLight.category),
                 onPressed: () {},
               ),
