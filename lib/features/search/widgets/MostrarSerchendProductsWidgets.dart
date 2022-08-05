@@ -61,7 +61,7 @@ class SerchendWidgetsProducts extends StatelessWidget {
                               imageUrl: i,
                               height: 105,
                               fit: BoxFit.contain,
-                              width: 135,
+                              width: 185,
                             ),
                           ),
                         );

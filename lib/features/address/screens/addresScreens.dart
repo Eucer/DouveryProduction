@@ -138,7 +138,6 @@ class _AddressScreenState extends State<AddressScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CenterSearchNav(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -206,10 +205,14 @@ class _AddressScreenState extends State<AddressScreen> {
                         Row(
                           children: [
                             Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
                               child: Text(
                                 widget.cantid + ' items',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w300),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                maxLines: 2,
                               ),
                             ),
                           ],

@@ -165,7 +165,7 @@ class CategoriNamed extends StatelessWidget {
                 decoration: const BoxDecoration(
                   border: Border(
                       left: BorderSide(
-                    color: Color.fromARGB(8, 0, 0, 0),
+                    color: Color.fromARGB(1, 0, 0, 0),
                     width: 1,
                   )),
                   color: Colors.white,
@@ -176,13 +176,13 @@ class CategoriNamed extends StatelessWidget {
                       decoration: const BoxDecoration(
                         border: Border(
                             top: BorderSide(
-                          color: GlobalVariables.colorTextGreylv10,
+                          color: Color.fromARGB(1, 0, 0, 0),
                           width: 1,
                         )),
                         color: Colors.white,
                       ),
                       width: 200,
-                      height: 150,
+                      height: 130,
                       child: productList == null
                           ? const Loader()
                           : Container(
@@ -196,9 +196,9 @@ class CategoriNamed extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CachedNetworkImage(
                                           imageUrl: i,
-                                          height: 300,
+                                          height: 250,
                                           fit: BoxFit.contain,
-                                          width: double.infinity,
+                                          width: 100,
                                         ),
                                       ),
                                     );
@@ -206,7 +206,7 @@ class CategoriNamed extends StatelessWidget {
                                 ).toList(),
                                 options: CarouselOptions(
                                   viewportFraction: 1,
-                                  height: 600,
+                                  height: 500,
                                   aspectRatio: 16 / 10,
                                   initialPage: 0,
                                   enableInfiniteScroll: false,
@@ -230,11 +230,9 @@ class CategoriNamed extends StatelessWidget {
                             color: Colors.white,
                             child: Text(
                               product.name,
-                              style: const TextStyle(
-                                color: Color(0xff1C2833),
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 0.4,
-                                fontSize: 12.0,
+                              style: GoogleFonts.roboto(
+                                fontSize: 12,
+                                color: Color(0xff212121),
                               ),
                               textAlign: TextAlign.start,
                               maxLines: 1,
@@ -242,18 +240,14 @@ class CategoriNamed extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            alignment: Alignment.bottomLeft,
-                            width: double.infinity,
-                            child: Stars(rating: avgRating),
-                          ),
-                          Container(
+                            padding: EdgeInsets.only(top: 5),
                             width: double.infinity,
                             color: Colors.white,
                             child: Text(
                               product.marca,
-                              style: const TextStyle(
-                                color: Color(0xff1C2833),
-                                fontWeight: FontWeight.w500,
+                              style: GoogleFonts.roboto(
+                                color: Color(0xff383838),
+                                fontWeight: FontWeight.w400,
                                 letterSpacing: 0.4,
                                 fontSize: 11.0,
                               ),
@@ -261,6 +255,11 @@ class CategoriNamed extends StatelessWidget {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomLeft,
+                            width: double.infinity,
+                            child: Stars(rating: avgRating),
                           ),
                           Container(
                             alignment: Alignment.bottomRight,

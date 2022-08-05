@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double bottomBarBorderWidth = 2;
     List<Widget> data = [
       HomeScreen(),
-      CartScreen(),
+      const CartScreen(),
       HomeScreen(),
       AccountScreen(),
     ];
@@ -53,12 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
           tabBar: CupertinoTabBar(
             items: [
               BottomNavigationBarItem(
-                icon: Container(
-                  child: Icon(Iconsax.home4),
-                ),
+                icon: const Icon(Iconsax.home4),
                 activeIcon: Container(
                   width: bottomBarWidth,
-                  margin: EdgeInsets.only(),
+                  margin: const EdgeInsets.only(),
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(

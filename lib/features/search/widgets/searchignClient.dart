@@ -115,30 +115,23 @@ class _SearchingPageState extends State<SearchingPage> {
           products == null
               ? const Loader()
               : Expanded(
-                  child: AnimationLimiter(
-                    child: ListView.builder(
-                      itemCount: products!.length,
-                      itemBuilder: (context, index) {
-                        return AnimationConfiguration.staggeredList(
-                          position: index,
-                          duration: const Duration(milliseconds: 375),
-                          child: SlideAnimation(
-                            verticalOffset: 50.0,
-                            child: FadeInAnimation(
-                              child: GestureDetector(
-                                child: products == null
-                                    ? const Loader()
-                                    : SerchendWidgetsProducts(
-                                        product: products![index],
-                                      ),
+                  flex: 2,
+                  child: ListView.builder(
+                    addAutomaticKeepAlives: false,
+                    addRepaintBoundaries: false,
+                    addSemanticIndexes: false,
+                    itemCount: products!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        child: products == null
+                            ? const Loader()
+                            : SerchendWidgetsProducts(
+                                product: products![index],
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                      );
+                    },
                   ),
-                )
+                ),
         ]));
   }
 }
