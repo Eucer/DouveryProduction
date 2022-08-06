@@ -25,10 +25,16 @@ app.use(userRouter);
 
 //* CONEXION
 
-mongoose.connect(DB).then(() => {
-  console.log("Connect great!");
-});
+// Connections
+mongoose
+  .connect(DB)
+  .then(() => {
+    console.log("Conexion exitosaa!!!!!!!!");
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
-app.listen(PORT, () => {
+app.listen(PORT,  "0.0.0.0",() => {
   console.log(`connected at port ${PORT}`);
 });
