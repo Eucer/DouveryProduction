@@ -1,6 +1,6 @@
 //* IMPORTAR OTROS PACKAGES
 const express = require("express");
-  const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 //* IMPORTAR DE OTROS ARCHIVOS
 const authRouter = require("./routes/auth");
