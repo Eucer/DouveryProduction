@@ -61,7 +61,7 @@ class AdminServices {
         response: res,
         context: context,
         onSuccess: () {
-          Navigator.pop(context);
+          Navigator.pop(context, true);
         },
       );
     } catch (e) {

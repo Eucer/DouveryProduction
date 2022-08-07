@@ -19,6 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_text.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
@@ -26,6 +27,7 @@ import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
+import 'package:v1douvery/features/home/screens/home_screens.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
@@ -140,6 +142,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               children: [
                                 Row(
                                   children: [
+                                    CustomnIconsButton(
+                                        onPressed: () =>
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomeScreen()),
+                                            ).then((_) => setState(() {})),
+                                        icon: Icon(Icons.abc)),
                                     Container(
                                       child: Column(
                                         mainAxisAlignment:

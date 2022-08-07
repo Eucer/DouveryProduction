@@ -29,6 +29,7 @@ import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
 import 'package:v1douvery/features/home/widgets/listRandom.dart';
 import 'package:v1douvery/features/home/widgets/listRecomend.dart';
 import 'package:v1douvery/features/home/widgets/testing.dart';
+import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
 
@@ -41,6 +42,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
+
+  final _words = <Product>[];
+
+  @override
+  void initState() {
+    super.initState(); //initializing list
+  }
+
   @override
   Widget build(BuildContext context) {
     final userCartLen = context.watch<UserProvider>().user.cart.length;
