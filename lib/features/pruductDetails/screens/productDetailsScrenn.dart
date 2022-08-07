@@ -89,9 +89,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
 
     //*ModalCart
-    final productCart = context.watch<UserProvider>().user.cart[1];
-    final product = Product.fromMap(productCart['product']);
-    final quantity = productCart['quantity'];
+
     _modalIconsCart(BuildContext context) async {
       showModalBottomSheet(
           context: context,

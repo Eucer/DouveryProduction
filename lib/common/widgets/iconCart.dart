@@ -80,10 +80,8 @@ class _ModalIconsState extends State<ModalIcons> {
               itemCount: user.cart.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return Container(
-                  child: ContainerCart(
-                    index: index,
-                  ),
+                return ContainerCart(
+                  index: index,
                 );
               },
             ),
@@ -295,9 +293,7 @@ class _IconCartState extends State<IconCart> {
   @override
   Widget build(BuildContext context) {
     final userCartLen = context.watch<UserProvider>().user.cart.length;
-    final productCart = context.watch<UserProvider>().user.cart[1];
-    final product = Product.fromMap(productCart['product']);
-    final quantity = productCart['quantity'];
+
     _modalIconsCart(BuildContext context) async {
       showModalBottomSheet(
           context: context,

@@ -62,7 +62,7 @@ class _DealOfDayState extends State<DealOfDay> {
                           child: CachedNetworkImage(
                             imageUrl: product!.images[0],
                             height: 235,
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.contain,
                           ),
                         ),
                         Container(

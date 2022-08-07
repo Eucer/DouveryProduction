@@ -68,13 +68,13 @@ class _CartProductState extends State<CartProduct> {
                   Column(
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width / 1.8,
+                        width: MediaQuery.of(context).size.width / 1.6,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 0, vertical: 5),
                         child: Text(
                           product.name,
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 12,
                           ),
                           maxLines: 2,
                         ),
@@ -99,7 +99,7 @@ class _CartProductState extends State<CartProduct> {
                         child: const Text(
                           'Disponible',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 10,
                             color: Color(0xff212121),
                           ),
                           maxLines: 2,
