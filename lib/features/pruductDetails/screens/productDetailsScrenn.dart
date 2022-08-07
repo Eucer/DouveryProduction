@@ -20,12 +20,14 @@ import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/header_text.dart';
+import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
+import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/ratings.dart';
@@ -85,7 +87,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       const Duration(milliseconds: 100),
       () {},
     );
+
+    //*ModalCart
+    final productCart = context.watch<UserProvider>().user.cart[1];
+    final product = Product.fromMap(productCart['product']);
+    final quantity = productCart['quantity'];
+    _modalIconsCart(BuildContext context) async {
+      showModalBottomSheet(
+          context: context,
+          builder: (BuildContext bc) {
+            return ModalCartProductDetails();
+          });
+    }
+
     return Scaffold(
+      backgroundColor: GlobalVariables.greyBackgroundCOlor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: AppBar(
@@ -97,23 +113,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
           ),
           actions: [
-            IconButton(
-              icon: const Icon(IconlyLight.addUser),
-              onPressed: () {},
-            ),
-            Badge(
-              position: BadgePosition.topEnd(top: 2, end: 3),
-              animationDuration: Duration(milliseconds: 300),
-              badgeColor: Color(0xffe84118),
-              badgeContent: Text(
-                userCartLen.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 13),
-              ),
-              child: IconButton(
-                icon: const Icon(IconlyLight.buy),
-                onPressed: () {},
-              ),
-            ),
+            IconCart(),
           ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(15),
@@ -173,7 +173,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+
                                     Text(
                                       'Precio: ',
                                       style: TextStyle(
@@ -189,16 +189,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         fontSize: 15.0,
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+                                    SizedBox(width: 20),
                                     //
-                                    Text(
-                                      'Envio: ',
-                                      style: TextStyle(
-                                          color: Colors.black54, fontSize: 15),
-                                    ),
 
                                     Text(
-                                      'Gratis',
+                                      'Envio Gratis',
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 4, 161, 17),
@@ -372,14 +367,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   ),
                                   onPressed: () {
                                     addToCart();
-                                    var show = AnimatedSnackBar.material(
-                                      'Aggregado Correctamente,  ' +
-                                          '( ' +
-                                          userCartLen.toString() +
-                                          ' )' +
-                                          ' Carrito  ',
-                                      type: AnimatedSnackBarType.success,
-                                    ).show(context);
+
+                                    _modalIconsCart(context);
                                   },
                                   icon: Icon(IconlyLight.buy, size: 16),
                                   label: Text("Añadir al Carrito"),

@@ -46,7 +46,8 @@ dependencies:
   flutter_staggered_animations: "^1.0.0"
   flutter_native_splash: ^2.2.6
   focused_menu: ^1.0.5
-
+  elegant_notification: ^1.6.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

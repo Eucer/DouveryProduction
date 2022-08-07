@@ -1,5 +1,7 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
@@ -11,14 +13,15 @@ import 'package:v1douvery/features/pruductDetails/services/pruductDetailsService
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
-class ModalIcons extends StatefulWidget {
-  ModalIcons({Key? key}) : super(key: key);
+class ModalCartProductDetails extends StatefulWidget {
+  ModalCartProductDetails({Key? key}) : super(key: key);
 
   @override
-  State<ModalIcons> createState() => _ModalIconsState();
+  State<ModalCartProductDetails> createState() =>
+      _ModalCartProductDetailsState();
 }
 
-class _ModalIconsState extends State<ModalIcons> {
+class _ModalCartProductDetailsState extends State<ModalCartProductDetails> {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>().user;
@@ -27,9 +30,15 @@ class _ModalIconsState extends State<ModalIcons> {
     user.cart
         .map((e) => sum += e['quantity'] * e['product']['price'] as int)
         .toList();
+
     return SingleChildScrollView(
       child: Column(
         children: [
+          ElegantNotification.success(
+              showProgressIndicator: false,
+              width: MediaQuery.of(context).size.width / 1,
+              title: Text("Agregado"),
+              description: Text("Tu carrito se actualizo correctamente")),
           Container(
             alignment: Alignment.topLeft,
             padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
@@ -81,7 +90,7 @@ class _ModalIconsState extends State<ModalIcons> {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Container(
-                  child: ContainerCart(
+                  child: ContenedorProductCart(
                     index: index,
                   ),
                 );
@@ -94,15 +103,15 @@ class _ModalIconsState extends State<ModalIcons> {
   }
 }
 
-class ContainerCart extends StatefulWidget {
+class ContenedorProductCart extends StatefulWidget {
   final int index;
-  ContainerCart({Key? key, required this.index}) : super(key: key);
+  ContenedorProductCart({Key? key, required this.index}) : super(key: key);
 
   @override
-  State<ContainerCart> createState() => _ContainerCartState();
+  State<ContenedorProductCart> createState() => _ContenedorProductCartState();
 }
 
-class _ContainerCartState extends State<ContainerCart> {
+class _ContenedorProductCartState extends State<ContenedorProductCart> {
   final ProductDetailsServices productDetailsServices =
       ProductDetailsServices();
 
@@ -260,69 +269,6 @@ class _ContainerCartState extends State<ContainerCart> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class IconCart extends StatefulWidget {
-  IconCart({Key? key}) : super(key: key);
-
-  @override
-  State<IconCart> createState() => _IconCartState();
-}
-
-class _IconCartState extends State<IconCart> {
-  final ProductDetailsServices productDetailsServices =
-      ProductDetailsServices();
-
-  final CartServices cartServices = CartServices();
-
-  void increaseQuantity(Product product) {
-    productDetailsServices.addToCart(
-      context: context,
-      product: product,
-    );
-  }
-
-  void decreaseQuantity(Product product) {
-    cartServices.removeFromCart(
-      context: context,
-      product: product,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final userCartLen = context.watch<UserProvider>().user.cart.length;
-    final productCart = context.watch<UserProvider>().user.cart[1];
-    final product = Product.fromMap(productCart['product']);
-    final quantity = productCart['quantity'];
-    _modalIconsCart(BuildContext context) async {
-      showModalBottomSheet(
-          context: context,
-          builder: (BuildContext bc) {
-            return ModalIcons();
-          });
-    }
-
-    return Badge(
-      toAnimate: false,
-      position: BadgePosition.topEnd(top: 2, end: 3),
-      animationDuration: Duration(milliseconds: 300),
-      badgeColor: Color(0xffe84118),
-      badgeContent: Text(
-        userCartLen.toString(),
-        style: TextStyle(color: Colors.white, fontSize: 11),
-      ),
-      child: IconButton(
-        enableFeedback: false,
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        icon: const Icon(IconlyLight.buy),
-        onPressed: () {
-          _modalIconsCart(context);
-        },
       ),
     );
   }

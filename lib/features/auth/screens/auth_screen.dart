@@ -65,147 +65,157 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0, right: 0, left: 30),
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 250,
-                  height: 100,
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 25.0, right: 0, left: 30),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 250,
+                    height: 100,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                    ),
                   ),
                 ),
-              ),
-              Stack(
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        padding: const EdgeInsets.all(8.0),
-                        height: 400,
-                        child: ContainedTabBarView(
-                          initialIndex: 0,
-                          tabs: const [
-                            Text(
-                              'Iniciar Session',
-                              style: TextStyle(
-                                color: Color.fromARGB(250, 0, 0, 0),
-                              ),
+                Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
                             ),
-                            Text(
-                              'Crear Cuenta',
-                              style: TextStyle(
-                                color: Color.fromARGB(250, 0, 0, 0),
-                              ),
-                            ),
-                          ],
-                          views: [
-                            Container(
-                              padding:
-                                  EdgeInsets.only(left: 8, right: 8, top: 20),
-                              color: GlobalVariables.backgroundColor,
-                              child: Form(
-                                key: _signInFormKey,
-                                child: Column(
-                                  children: [
-                                    CustomTextField(
-                                      controller: _emailController,
-                                      hintText: 'Email',
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    CustomTextField(
-                                      controller: _passwordController,
-                                      hintText: 'Password',
-                                    ),
-                                    SizedBox(
-                                      height: 30,
-                                    ),
-                                    CustomnButton(
-                                      text: 'Sign Up',
-                                      color: GlobalVariables.secondaryColor,
-                                      onTap: () {
-                                        if (_signInFormKey.currentState!
-                                            .validate()) {
-                                          signInUser();
-                                        }
-                                      },
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      '',
-                                      style: TextStyle(
-                                        color: Color.fromARGB(150, 0, 0, 0),
-                                        fontSize: 20,
+                            padding: const EdgeInsets.all(8.0),
+                            height: 400,
+                            child: ContainedTabBarView(
+                              initialIndex: 0,
+                              tabs: const [
+                                Text(
+                                  'Iniciar Session',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(250, 0, 0, 0),
+                                  ),
+                                ),
+                                Text(
+                                  'Crear Cuenta',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(250, 0, 0, 0),
+                                  ),
+                                ),
+                              ],
+                              views: [
+                                SingleChildScrollView(
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        left: 8, right: 8, top: 20),
+                                    color: GlobalVariables.backgroundColor,
+                                    child: Form(
+                                      key: _signInFormKey,
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          children: [
+                                            CustomTextField(
+                                              controller: _emailController,
+                                              hintText: 'Email',
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            CustomTextField(
+                                              controller: _passwordController,
+                                              hintText: 'Password',
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                            ),
+                                            CustomnButton(
+                                              text: 'Sign Up',
+                                              color: GlobalVariables
+                                                  .secondaryColor,
+                                              onTap: () {
+                                                if (_signInFormKey.currentState!
+                                                    .validate()) {
+                                                  signInUser();
+                                                }
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              '',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    150, 0, 0, 0),
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Container(
-                              padding:
-                                  EdgeInsets.only(left: 8, right: 8, top: 20),
-                              color: GlobalVariables.backgroundColor,
-                              child: Form(
-                                key: _signUpFormKey,
-                                child: Column(
-                                  children: [
-                                    CustomTextField(
-                                      controller: _nameController,
-                                      hintText: 'Name',
+                                Container(
+                                  padding: EdgeInsets.only(
+                                      left: 8, right: 8, top: 20),
+                                  color: GlobalVariables.backgroundColor,
+                                  child: Form(
+                                    key: _signUpFormKey,
+                                    child: Column(
+                                      children: [
+                                        CustomTextField(
+                                          controller: _nameController,
+                                          hintText: 'Name',
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        CustomTextField(
+                                          controller: _emailController,
+                                          hintText: 'Email',
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        CustomTextField(
+                                          controller: _passwordController,
+                                          hintText: 'Password',
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        CustomnButton(
+                                          text: 'Sign Up',
+                                          color: GlobalVariables.secondaryColor,
+                                          onTap: () {
+                                            if (_signUpFormKey.currentState!
+                                                .validate()) {
+                                              signUpUser();
+                                            }
+                                          },
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    CustomTextField(
-                                      controller: _emailController,
-                                      hintText: 'Email',
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    CustomTextField(
-                                      controller: _passwordController,
-                                      hintText: 'Password',
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    CustomnButton(
-                                      text: 'Sign Up',
-                                      color: GlobalVariables.secondaryColor,
-                                      onTap: () {
-                                        if (_signUpFormKey.currentState!
-                                            .validate()) {
-                                          signUpUser();
-                                        }
-                                      },
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
+                              // ignore: avoid_print
+                              onChange: (index) => print(index),
                             ),
-                          ],
-                          // ignore: avoid_print
-                          onChange: (index) => print(index),
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       )),

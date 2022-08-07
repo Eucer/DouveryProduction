@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -160,26 +161,13 @@ class _CarouselProductToNamedCategoryState
                 itemBuilder: (context, index) {
                   final product = widget.productList![index];
 
-                  double avgRating = 0;
-                  double myRating = 0;
                   double totalRating = 0;
-                  @override
-                  void initState() {
-                    super.initState();
-                    double totalRating = 0;
-                    for (int i = 0; i < product.rating!.length; i++) {
-                      totalRating += product.rating![i].rating;
-                      if (product.rating![i].userId ==
-                          Provider.of<UserProvider>(context, listen: false)
-                              .user
-                              .id) {
-                        myRating = product.rating![i].rating;
-                      }
-                    }
-
-                    if (totalRating != 0) {
-                      avgRating = totalRating / product.rating!.length;
-                    }
+                  for (int i = 0; i < product.rating!.length; i++) {
+                    totalRating += product.rating![i].rating;
+                  }
+                  double avgRating = 0;
+                  if (totalRating != 0) {
+                    avgRating = totalRating / product.rating!.length;
                   }
 
                   void addToCart() {
@@ -198,7 +186,7 @@ class _CarouselProductToNamedCategoryState
                         final product = widget.productList![index];
                         return Container(
                           height: 700,
-                          color: Colors.white,
+                          color: GlobalVariables.greyBackgroundCOlor,
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -206,10 +194,10 @@ class _CarouselProductToNamedCategoryState
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 8,
-                                          right: 8,
-                                          top: 1.0,
-                                          bottom: 10.0),
+                                          left: 0,
+                                          right: 0,
+                                          top: 0.0,
+                                          bottom: 1.0),
                                       child: Container(
                                         height: 33,
                                         width:
@@ -304,159 +292,192 @@ class _CarouselProductToNamedCategoryState
                                             ]),
                                       ),
                                     ),
-                                    CarouselSlider(
-                                      options: CarouselOptions(
-                                        viewportFraction: 1,
-                                        height: 250,
-                                        aspectRatio: 16 / 9,
-                                        initialPage: 0,
-                                        enableInfiniteScroll: false,
-                                        reverse: false,
-                                        autoPlayCurve: Curves.fastOutSlowIn,
-                                        enlargeCenterPage: true,
-                                        scrollDirection: Axis.horizontal,
-                                      ),
-                                      items: product.images.map((i) {
-                                        return Builder(
-                                          builder: (BuildContext context) {
-                                            return Container(
-                                              height: 200,
-                                              child: CachedNetworkImage(
-                                                  imageUrl: i),
-                                            );
-                                          },
-                                        );
-                                      }).toList(),
-                                    ),
                                     Container(
-                                      margin: const EdgeInsets.only(
-                                          top: 5, left: 10),
-                                      width: double.infinity,
-                                      height: 50,
-                                      child: Text(
-                                        product.name,
-                                        style: TextStyle(
-                                          color: Color(0xff1C2833),
-                                          fontWeight: FontWeight.w400,
-                                          letterSpacing: 0.4,
-                                          fontSize: 15.0,
+                                      color: Colors.white,
+                                      child: CarouselSlider(
+                                        options: CarouselOptions(
+                                          height: 250,
+                                          viewportFraction: 1,
+                                          aspectRatio: 16 / 9,
+                                          initialPage: 0,
+                                          enableInfiniteScroll: false,
+                                          reverse: false,
+                                          autoPlayCurve: Curves.fastOutSlowIn,
+                                          enlargeCenterPage: true,
+                                          scrollDirection: Axis.horizontal,
                                         ),
-                                        textAlign: TextAlign.start,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 30,
-                                      alignment: Alignment.centerLeft,
-                                      margin: EdgeInsets.only(
-                                        left: 10,
-                                      ),
-                                      child: RichText(
-                                        text: TextSpan(
-                                          children: [
-                                            WidgetSpan(
-                                              child: Icon(
-                                                Icons.house_outlined,
-                                                size: 16,
-                                                color: Color(0xff10375C),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: product.marca,
-                                              style: TextStyle(
-                                                color: Color(0xff10375C),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                        items: product.images.map((i) {
+                                          return Builder(
+                                            builder: (BuildContext context) {
+                                              return Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Container(
+                                                  height: 40,
+                                                  child: CachedNetworkImage(
+                                                      height: 100,
+                                                      fit: BoxFit.contain,
+                                                      width: double.infinity,
+                                                      imageUrl: i),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        }).toList(),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 1.0,
-                                          bottom: 1.0,
-                                          left: 8,
-                                          right: 8),
+                                      padding: const EdgeInsets.only(top: 3.0),
                                       child: Container(
-                                        height: 50,
-                                        width: double.infinity,
-                                        padding: EdgeInsets.all(0),
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border(
-                                                top: BorderSide(
-                                                    width: 1,
-                                                    color: GlobalVariables
-                                                        .colorTextGreylv10))),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(4.0),
-                                                child: Row(
+                                        color: GlobalVariables.backgroundColor,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              color: Colors.white,
+                                              height: 30,
+                                              alignment: Alignment.centerLeft,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                                top: 10,
+                                              ),
+                                              child: RichText(
+                                                text: TextSpan(
                                                   children: [
-                                                    const SizedBox(width: 10),
-                                                    ElevatedButton.icon(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        primary: Color(
-                                                            0xff1a49ab), // background
-                                                        // foreground
+                                                    WidgetSpan(
+                                                      child: Icon(
+                                                        Icons.house_outlined,
+                                                        size: 16,
+                                                        color:
+                                                            Color(0xff10375C),
                                                       ),
-                                                      onPressed: () {
-                                                        addToCart();
-                                                        var show =
-                                                            AnimatedSnackBar
-                                                                .material(
-                                                          'Aggregado Correctamente,  ' +
-                                                              '( ' +
-                                                              userCartLen
-                                                                  .toString() +
-                                                              ' )' +
-                                                              ' Carrito  ',
-                                                          type:
-                                                              AnimatedSnackBarType
-                                                                  .success,
-                                                        ).show(context);
-                                                      },
-                                                      icon: Icon(
-                                                          IconlyLight.buy,
-                                                          size: 16),
-                                                      label: Text(
-                                                          "Añadir al Carrito"),
                                                     ),
-                                                    SizedBox(width: 10),
-                                                    ElevatedButton.icon(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        primary: Color(
-                                                            0xff3A4750), // background
-                                                        // foreground
+                                                    TextSpan(
+                                                      text: product.marca,
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xff10375C),
                                                       ),
-                                                      onPressed: () =>
-                                                          Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ProductDetailsScreen(
-                                                            product: product,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      icon: Icon(
-                                                          Icons
-                                                              .preview_outlined,
-                                                          size: 16),
-                                                      label:
-                                                          Text("Ver details"),
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                            ]),
+                                            ),
+                                            Container(
+                                              color: Colors.white,
+                                              margin: const EdgeInsets.only(
+                                                  top: 5, left: 10),
+                                              width: double.infinity,
+                                              height: 50,
+                                              child: Text(
+                                                product.name,
+                                                style: TextStyle(
+                                                  color: Color(0xff1C2833),
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.4,
+                                                  fontSize: 15.0,
+                                                ),
+                                                textAlign: TextAlign.start,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 1.0,
+                                                  bottom: 1.0,
+                                                  left: 8,
+                                                  right: 8),
+                                              child: Container(
+                                                height: 50,
+                                                width: double.infinity,
+                                                padding: EdgeInsets.all(0),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    border: Border(
+                                                        top: BorderSide(
+                                                            width: 1,
+                                                            color: GlobalVariables
+                                                                .colorTextGreylv10))),
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          children: [
+                                                            const SizedBox(
+                                                                width: 10),
+                                                            ElevatedButton.icon(
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
+                                                                primary: Color(
+                                                                    0xff1a49ab), // background
+                                                                // foreground
+                                                              ),
+                                                              onPressed: () {
+                                                                addToCart();
+                                                                ElegantNotification.success(
+                                                                        showProgressIndicator:
+                                                                            false,
+                                                                        width: MediaQuery.of(context).size.width /
+                                                                            1.1,
+                                                                        title: Text(
+                                                                            "Agregado"),
+                                                                        description:
+                                                                            Text(
+                                                                                "Tu carrito se actualizo correctamente"))
+                                                                    .show(
+                                                                        context);
+                                                              },
+                                                              icon: Icon(
+                                                                  IconlyLight
+                                                                      .buy,
+                                                                  size: 16),
+                                                              label: Text(
+                                                                  "Añadir al Carrito"),
+                                                            ),
+                                                            SizedBox(width: 10),
+                                                            ElevatedButton.icon(
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
+                                                                primary: Color(
+                                                                    0xff3A4750), // background
+                                                                // foreground
+                                                              ),
+                                                              onPressed: () =>
+                                                                  Navigator
+                                                                      .push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          ProductDetailsScreen(
+                                                                    product:
+                                                                        product,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              icon: Icon(
+                                                                  Icons
+                                                                      .preview_outlined,
+                                                                  size: 16),
+                                                              label: Text(
+                                                                  "Ver details"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ]),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

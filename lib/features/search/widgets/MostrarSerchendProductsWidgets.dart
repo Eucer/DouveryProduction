@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -120,7 +121,35 @@ class SerchendWidgetsProducts extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width / 1.6,
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Stars(rating: avgRating),
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            if (avgRating >= 5) ...[
+                              Flash(child: Stars(rating: avgRating)),
+                            ] else ...[
+                              Stars(rating: avgRating),
+                            ],
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2.7,
+                              child: Text(
+                                '( ' +
+                                    avgRating.toString() +
+                                    ' ) ' +
+                                    product.rating!.length.toString(),
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 9,
+                                ),
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.6,
