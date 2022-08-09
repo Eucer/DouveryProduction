@@ -293,7 +293,7 @@ class _CarouselProductToNamedCategoryState
                                       ),
                                     ),
                                     Container(
-                                      color: Colors.white,
+                                      color: GlobalVariables.backgroundColor,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
                                           height: 250,

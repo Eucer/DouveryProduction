@@ -22,7 +22,7 @@ class _BannerWidgetState extends State<BannerWidget> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 0.0),
+          padding: const EdgeInsets.only(top: 0.0, bottom: 2),
           child: ClipRRect(
             child: Container(
                 height: 180,

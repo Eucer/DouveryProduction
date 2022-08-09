@@ -78,4 +78,6 @@ class Product {
       Product.fromMap(json.decode(source));
 
   static find(Map<dynamic, Map<dynamic, String>> map) {}
+
+  fetchNewProducts() {}
 }

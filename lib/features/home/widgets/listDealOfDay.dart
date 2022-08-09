@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -42,21 +44,36 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              child: headerDoubleText(
-                textHeader: 'Popular',
-                textAction: '',
-              ),
-            ),
+                alignment: Alignment.bottomLeft,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                    decoration: BoxDecoration(
+                      color: GlobalVariables.backgroundColor,
+                    ),
+                    child: Container(
+                      width: 100,
+                      height: 30,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Popular',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ))),
             productList == null
                 ? const Loader()
                 : Container(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     color: GlobalVariables.backgroundColor,
                     child: SizedBox(
-                      height: 190,
+                      height: 180,
                       width: double.infinity,
                       child: ListView.builder(
                         itemCount: productList!.length,

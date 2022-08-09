@@ -47,6 +47,10 @@ dependencies:
   flutter_native_splash: ^2.2.6
   focused_menu: ^1.0.5
   elegant_notification: ^1.6.1
+  swipe_refresh: ^1.0.2
+  pull_to_refresh_flutter3: ^2.0.1
+
+
   
 dev_dependencies:
   flutter_test:

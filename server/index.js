@@ -1,6 +1,9 @@
 //* IMPORTAR OTROS PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
+
 
 //* IMPORTAR DE OTROS ARCHIVOS
 const authRouter = require("./routes/auth");
@@ -22,6 +25,7 @@ app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
 app.use(userRouter);
+app.use(cors());
 
 //* CONEXION
 
