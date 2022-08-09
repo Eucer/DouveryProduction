@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
