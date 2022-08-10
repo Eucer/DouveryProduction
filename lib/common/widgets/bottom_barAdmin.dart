@@ -11,7 +11,7 @@ import 'package:v1douvery/features/admin/screens/accountBrands.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/features/admin/screens/analtyScreen.dart';
 import 'package:v1douvery/features/admin/screens/ordersScreen.dart';
-import 'package:v1douvery/features/home/screens/home_screens.dart';
+import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 
 class MainScreenAdmin extends StatelessWidget {
   static const String routeName = '/actual-home';

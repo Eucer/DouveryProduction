@@ -315,7 +315,7 @@ class _IconCartState extends State<IconCart> {
         enableFeedback: false,
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
-        icon: const Icon(IconlyLight.buy),
+        icon: const Icon(IconlyLight.buy, color: Colors.white),
         onPressed: () {
           _modalIconsCart(context);
         },

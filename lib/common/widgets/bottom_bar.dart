@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/screens/account_screen.dart';
 import 'package:v1douvery/features/cart/screens/cartScreen.dart';
-import 'package:v1douvery/features/home/screens/home_screens.dart';
+import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class MainScreen extends StatelessWidget {

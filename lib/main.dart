@@ -10,6 +10,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/auth/services/auth_service.dart';
+import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 
 import 'package:v1douvery/models/user.dart';
 import 'package:v1douvery/provider/user_provider.dart';
@@ -69,9 +70,9 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
           ? Provider.of<UserProvider>(context).user.type == 'user'
-              ? MainScreen()
+              ? ResponsiveLayaout()
               : MainScreenAdmin()
-          : MainScreen(),
+          : AuthScreen(),
     );
   }
 }

@@ -64,46 +64,36 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(105),
-        child: Center(
-          child: AppBarIcons(),
+        backgroundColor: Color(0xffEFEFEF),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(105),
+          child: Center(
+            child: AppBarIcons(),
+          ),
         ),
-      ),
 
-      //SelectBody
-      body: SwipeRefresh.adaptive(
-        refreshTriggerPullDistance: 20,
-        refreshIndicatorExtent: 20,
-        shrinkWrap: true,
-        stateStream: _stream,
-        onRefresh: _reset,
-        children: [
-          Scrollbar(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  NavCategory(),
-                  BannerWidget(),
-                  CardsOneWidget(),
-                  ListDealOfDay(),
-                  DealOfDay(),
-                  ListRandom(),
-                  RecomendProduct(),
-                  ListMarca(),
-                  CartCrypto(),
-                  CarAnimationsTesting(),
-                  CardBrands(),
-                  DealOfDay(),
-                  DealOfDay(),
-                  DealOfDay(),
-                ],
-              ),
+        //SelectBody
+        body: Scrollbar(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                NavCategory(),
+                BannerWidget(),
+                CardsOneWidget(),
+                ListDealOfDay(),
+                DealOfDay(),
+                ListRandom(),
+                RecomendProduct(),
+                ListMarca(),
+                CartCrypto(),
+                CarAnimationsTesting(),
+                CardBrands(),
+                DealOfDay(),
+                DealOfDay(),
+                DealOfDay(),
+              ],
             ),
-          )
-        ],
-      ),
-    );
+          ),
+        ));
   }
 }
