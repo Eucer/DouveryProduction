@@ -29,7 +29,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                 width: MediaQuery.of(context).size.width,
                 color: Colors.white,
                 child: CarouselSlider(
-                  items: GlobalVariables.carouselImages.map((i) {
+                  items: GlobalVariables.carouselImagesMobil.map((i) {
                     return Builder(
                       builder: (BuildContext context) => CachedNetworkImage(
                         imageUrl: i,
@@ -82,8 +82,10 @@ class IdicatorBanner extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:
-                  GlobalVariables.carouselImages.asMap().entries.map((entry) {
+              children: GlobalVariables.carouselImagesMobil
+                  .asMap()
+                  .entries
+                  .map((entry) {
                 return GestureDetector(
                   onTap: () => _controller.animateToPage(entry.key),
                   child: Container(

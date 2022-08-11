@@ -6,14 +6,14 @@ import 'package:dots_indicator/dots_indicator.dart'
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 
-class Web_BannerWidget extends StatefulWidget {
-  const Web_BannerWidget({Key? key}) : super(key: key);
+class WebFull_BannerWidget extends StatefulWidget {
+  const WebFull_BannerWidget({Key? key}) : super(key: key);
 
   @override
-  State<Web_BannerWidget> createState() => _Web_BannerWidgetState();
+  State<WebFull_BannerWidget> createState() => _WebFull_BannerWidgetState();
 }
 
-class _Web_BannerWidgetState extends State<Web_BannerWidget> {
+class _WebFull_BannerWidgetState extends State<WebFull_BannerWidget> {
   double scrollPosition = 0;
   int _current = 0;
   final CarouselController _controller = CarouselController();

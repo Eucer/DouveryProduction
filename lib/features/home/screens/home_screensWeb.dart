@@ -37,6 +37,11 @@ import 'package:v1douvery/features/home/widgets/mobiles/listDealOfDay.dart';
 import 'package:v1douvery/features/home/widgets/mobiles/listRandom.dart';
 import 'package:v1douvery/features/home/widgets/mobiles/listRecomend.dart';
 import 'package:v1douvery/features/home/widgets/mobiles/testing.dart';
+import 'package:v1douvery/features/home/widgets/web/web_banner.dart';
+import 'package:v1douvery/features/home/widgets/web/web_carNew.dart';
+import 'package:v1douvery/features/home/widgets/web/web_carRand.dart';
+import 'package:v1douvery/features/home/widgets/web/web_vertUser.dart';
+
 import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
@@ -78,8 +83,42 @@ class _HomeScreenWebState extends State<HomeScreenWeb> {
         body: Scrollbar(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Web_NavCategory(),
+                Container(
+                  width: MediaQuery.of(context).size.width / 1,
+                  height: 600,
+                  child: Stack(
+                    children: [
+                      Web_BannerWidget(),
+                      Positioned(
+                        width: MediaQuery.of(context).size.width / 1,
+                        top: 200,
+                        child: Container(
+                          alignment: Alignment.bottomCenter,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  Positioned(
+                                    child: Web_CarRandom(),
+                                  ),
+                                  Positioned(
+                                    child: Web_carNew(),
+                                  ),
+                                ],
+                              ),
+                              Web_vertUser()
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

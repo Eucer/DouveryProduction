@@ -39,10 +39,16 @@ class GlobalVariables {
     stops: [0.5, 1.0],
   );
 // STATIC IMAGES
-  static List<String> carouselImages = [
+  static List<String> carouselImagesMobil = [
     'https://res.cloudinary.com/douvery/image/upload/v1656633027/agsubxxt7iwp654lpvcr.png',
     'https://images-na.ssl-images-amazon.com/images/G/31/Symbol/2020/00NEW/1242_450Banners/PL31_copy._CB432483346_.jpg',
     'https://images-na.ssl-images-amazon.com/images/G/31/img21/shoes/September/SSW/pc-header._CB641971330_.jpg',
+  ];
+
+  static List<String> carouselImagesWeb = [
+    'https://res.cloudinary.com/douvery/image/upload/v1660209142/banner/o1zskktmuzkbq5lsuqyf.png',
+    'https://m.media-amazon.com/images/I/7174eQSxuFL._SX3000_.jpg',
+    'https://m.media-amazon.com/images/I/61tX6L542kL._SX3000_.jpg',
   ];
 
   static List<String> cryptoLogo = [

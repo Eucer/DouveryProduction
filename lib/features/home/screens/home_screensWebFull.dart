@@ -17,8 +17,11 @@ import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
-import 'package:v1douvery/features/home/widgets/web/carouselRandom.dart';
-import 'package:v1douvery/features/home/widgets/web/web_banner.dart';
+
+import 'package:v1douvery/features/home/widgets/webFull/web_banner.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_carNew.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_carRand.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_vertUser.dart';
 
 import 'package:v1douvery/models/product.dart';
 
@@ -63,8 +66,35 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
             child: Column(
               children: [
                 WebFull_NavCategory(),
-                Web_BannerWidget(),
-                Web_CarRandom()
+                Container(
+                  height: 600,
+                  child: Stack(
+                    children: [
+                      WebFull_BannerWidget(),
+                      Positioned(
+                        top: 200,
+                        left: 110,
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Positioned(
+                                    child: WebFull_CarRandom(),
+                                  ),
+                                  Positioned(
+                                    child: WebFull_carNew(),
+                                  ),
+                                ],
+                              ),
+                              WebFull_vertUser()
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
