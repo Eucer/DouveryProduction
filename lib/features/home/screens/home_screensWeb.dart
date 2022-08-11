@@ -16,26 +16,27 @@ import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
+import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
-import 'package:v1douvery/features/home/widgets/carAll.dart';
-import 'package:v1douvery/features/home/widgets/carAnimations.dart';
-import 'package:v1douvery/features/home/widgets/carBrands.dart';
-import 'package:v1douvery/features/home/widgets/carCrypyoPromo.dart';
-import 'package:v1douvery/features/home/widgets/carKits.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/carAll.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/carAnimations.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/carBrands.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/carCrypyoPromo.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/carKits.dart';
 
-import 'package:v1douvery/features/home/widgets/listMarcaSelect.dart';
-import 'package:v1douvery/features/home/widgets/listNew.dart';
-import 'package:v1douvery/features/home/widgets/banner_widget.dart';
-import 'package:v1douvery/features/home/widgets/deal-of-day.dart';
-import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/listMarcaSelect.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/listNew.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/banner_widget.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/deal-of-day.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/listDealOfDay.dart';
 
-import 'package:v1douvery/features/home/widgets/listRandom.dart';
-import 'package:v1douvery/features/home/widgets/listRecomend.dart';
-import 'package:v1douvery/features/home/widgets/testing.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/listRandom.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/listRecomend.dart';
+import 'package:v1douvery/features/home/widgets/mobiles/testing.dart';
 import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
@@ -78,7 +79,7 @@ class _HomeScreenWebState extends State<HomeScreenWeb> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                NavCategory(),
+                Web_NavCategory(),
               ],
             ),
           ),

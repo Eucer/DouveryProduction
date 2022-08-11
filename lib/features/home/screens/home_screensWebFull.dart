@@ -16,26 +16,10 @@ import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
-import 'package:v1douvery/common/widgets/bottom_bar.dart';
-import 'package:v1douvery/common/widgets/custon_button.dart';
-import 'package:v1douvery/common/widgets/iconCart.dart';
-import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/home/services/homeServices.dart';
-import 'package:v1douvery/features/home/widgets/carAll.dart';
-import 'package:v1douvery/features/home/widgets/carAnimations.dart';
-import 'package:v1douvery/features/home/widgets/carBrands.dart';
-import 'package:v1douvery/features/home/widgets/carCrypyoPromo.dart';
-import 'package:v1douvery/features/home/widgets/carKits.dart';
+import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
+import 'package:v1douvery/features/home/widgets/web/carouselRandom.dart';
+import 'package:v1douvery/features/home/widgets/web/web_banner.dart';
 
-import 'package:v1douvery/features/home/widgets/listMarcaSelect.dart';
-import 'package:v1douvery/features/home/widgets/listNew.dart';
-import 'package:v1douvery/features/home/widgets/banner_widget.dart';
-import 'package:v1douvery/features/home/widgets/deal-of-day.dart';
-import 'package:v1douvery/features/home/widgets/listDealOfDay.dart';
-
-import 'package:v1douvery/features/home/widgets/listRandom.dart';
-import 'package:v1douvery/features/home/widgets/listRecomend.dart';
-import 'package:v1douvery/features/home/widgets/testing.dart';
 import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
@@ -65,7 +49,7 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
     }
 
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 33, 18, 173),
+        backgroundColor: Color(0xffEFEFEF),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(75),
           child: Center(
@@ -78,7 +62,9 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                NavCategory(),
+                WebFull_NavCategory(),
+                Web_BannerWidget(),
+                Web_CarRandom()
               ],
             ),
           ),

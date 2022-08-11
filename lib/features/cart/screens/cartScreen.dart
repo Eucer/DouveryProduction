@@ -14,7 +14,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/cart/widgets/cardProduct.dart';
 import 'package:v1douvery/features/cart/widgets/cartSubTotal.dart';
-import 'package:v1douvery/features/home/widgets/deal-of-day.dart';
+
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 

@@ -244,6 +244,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
+  flutter_carousel_widget:
+    dependency: "direct main"
+    description:
+      name: flutter_carousel_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_iconly:
     dependency: "direct main"
     description:
