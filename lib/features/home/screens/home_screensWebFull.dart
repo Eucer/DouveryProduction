@@ -19,13 +19,18 @@ import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
 
 import 'package:v1douvery/features/home/widgets/webFull/web_banner.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_carMenosPrice.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_carNew.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_carPopular.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_carRand.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_conCate.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_vertUser.dart';
 
 import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
+
+import '../widgets/webFull/web_conMarca.dart';
 
 class HomeScreenWebFull extends StatefulWidget {
   static const String routeName = '/home';
@@ -95,6 +100,10 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
                     ],
                   ),
                 ),
+                WebFull_carPopular(),
+                WebFull_conCategory(),
+                WebFull_carMenosPrice(),
+                WebFull_conMarca()
               ],
             ),
           ),

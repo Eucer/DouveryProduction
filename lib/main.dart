@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
           primary: GlobalVariables.appBarbackgroundColor,
         ),
         scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.all(Colors.black)),
+            thumbColor: MaterialStateProperty.all(Color.fromARGB(36, 0, 0, 0))),
         appBarTheme: const AppBarTheme(
           elevation: 0,
           iconTheme: IconThemeData(

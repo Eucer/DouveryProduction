@@ -39,7 +39,7 @@ class _Web_vertUserState extends State<Web_vertUser> {
                   ),
                 ),
                 Container(
-                  width: 150,
+                  width: MediaQuery.of(context).size.width / 9,
                   margin: EdgeInsets.only(left: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

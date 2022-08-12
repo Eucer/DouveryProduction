@@ -38,6 +38,15 @@ class GlobalVariables {
     ],
     stops: [0.5, 1.0],
   );
+
+  static const gradientColorsBrands = LinearGradient(
+    colors: [
+      Color.fromARGB(50, 0, 0, 0),
+      Color.fromARGB(50, 0, 0, 0),
+    ],
+    stops: [0.5, 1.0],
+  );
+
 // STATIC IMAGES
   static List<String> carouselImagesMobil = [
     'https://res.cloudinary.com/douvery/image/upload/v1656633027/agsubxxt7iwp654lpvcr.png',

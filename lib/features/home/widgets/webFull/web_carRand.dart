@@ -53,9 +53,9 @@ class _WebFull_CarRandomState extends State<WebFull_CarRandom> {
                 color: Colors.white,
                 border: Border(
                     bottom: BorderSide(
-                        width: 1, color: Color.fromARGB(12, 0, 0, 0)))),
+                        width: 1, color: Color.fromARGB(7, 0, 0, 0)))),
             child: headerDoubleText(
-              textHeader: 'Historial Click',
+              textHeader: 'Productos',
               textAction: 'Ver mas',
             ),
           ),

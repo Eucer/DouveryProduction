@@ -40,7 +40,9 @@ import 'package:v1douvery/features/home/widgets/mobiles/testing.dart';
 import 'package:v1douvery/features/home/widgets/web/web_banner.dart';
 import 'package:v1douvery/features/home/widgets/web/web_carNew.dart';
 import 'package:v1douvery/features/home/widgets/web/web_carRand.dart';
+import 'package:v1douvery/features/home/widgets/web/web_conCate.dart';
 import 'package:v1douvery/features/home/widgets/web/web_vertUser.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_conCate.dart';
 
 import 'package:v1douvery/models/product.dart';
 
