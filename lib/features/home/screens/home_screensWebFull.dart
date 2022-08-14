@@ -17,6 +17,7 @@ import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/NAV/topTitleButtom.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
+import 'package:v1douvery/features/home/widgets/webFull/Web_carRating.dart';
 
 import 'package:v1douvery/features/home/widgets/webFull/web_banner.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_carMenosPrice.dart';
@@ -24,6 +25,7 @@ import 'package:v1douvery/features/home/widgets/webFull/web_carNew.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_carPopular.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_carRand.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_conCate.dart';
+import 'package:v1douvery/features/home/widgets/webFull/web_conProductEjem.dart';
 import 'package:v1douvery/features/home/widgets/webFull/web_vertUser.dart';
 
 import 'package:v1douvery/models/product.dart';
@@ -31,6 +33,42 @@ import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 import '../widgets/webFull/web_conMarca.dart';
+
+class MainScreenHomeScreenWebFull extends StatelessWidget {
+  static const String routeName = '/actual-home';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Screens(),
+    );
+  }
+}
+
+class Screens extends StatelessWidget {
+  const Screens({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xffEFEFEF),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(75),
+        child: Center(
+          child: Web_AppBarIcons(),
+        ),
+      ),
+      body: PageView(
+        children: <Widget>[
+          HomeScreenWebFull(),
+        ],
+      ),
+    );
+  }
+}
 
 class HomeScreenWebFull extends StatefulWidget {
   static const String routeName = '/home';
@@ -58,12 +96,6 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
 
     return Scaffold(
         backgroundColor: Color(0xffEFEFEF),
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(75),
-          child: Center(
-            child: Web_AppBarIcons(),
-          ),
-        ),
 
         //SelectBody
         body: Scrollbar(
@@ -103,7 +135,9 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
                 WebFull_carPopular(),
                 WebFull_conCategory(),
                 WebFull_carMenosPrice(),
-                WebFull_conMarca()
+                WebFull_conMarca(),
+                WebFull_conName(),
+                WebFull_carRating(),
               ],
             ),
           ),

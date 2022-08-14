@@ -2,8 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -12,25 +10,25 @@ import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
 
-class WebFull_carMenosPrice extends StatefulWidget {
-  const WebFull_carMenosPrice({Key? key}) : super(key: key);
+class WebFull_carRating extends StatefulWidget {
+  const WebFull_carRating({Key? key}) : super(key: key);
 
   @override
-  State<WebFull_carMenosPrice> createState() => _WebFull_carMenosPriceState();
+  State<WebFull_carRating> createState() => _WebFull_carRatingState();
 }
 
-class _WebFull_carMenosPriceState extends State<WebFull_carMenosPrice> {
+class _WebFull_carRatingState extends State<WebFull_carRating> {
   List<Product>? productList;
   final HomeServices homeServices = HomeServices();
 
   @override
   void initState() {
     super.initState();
-    fetchListradomn();
+    fetchProductRating();
   }
 
-  fetchListradomn() async {
-    productList = await homeServices.fetchListradomn(
+  fetchProductRating() async {
+    productList = await homeServices.fetchProductRating(
       context: context,
     );
     setState(() {});
@@ -63,7 +61,7 @@ class _WebFull_carMenosPriceState extends State<WebFull_carMenosPrice> {
                 ),
               ),
               child: headerDoubleText(
-                textHeader: r'Productos menos de $100',
+                textHeader: 'Productos populares',
                 textAction: 'Ver mas',
               ),
             ),
@@ -77,7 +75,7 @@ class _WebFull_carMenosPriceState extends State<WebFull_carMenosPrice> {
                       children: [
                         Positioned(
                           child: Container(
-                              height: 210,
+                              height: 185,
                               width: 1260,
                               child: CarouselSlider.builder(
                                 itemCount: productList!.length,
@@ -97,22 +95,14 @@ class _WebFull_carMenosPriceState extends State<WebFull_carMenosPrice> {
                                       width: 150,
                                       child: Column(
                                         children: [
-                                          Align(
-                                            child: Container(
-                                                child: Icon(
-                                              Icons.price_change,
-                                              color: Color.fromARGB(
-                                                  176, 255, 3, 100),
-                                            )),
-                                          ),
                                           Container(
                                             width: 155.0,
                                             height: 110.0,
                                             child: productList == null
                                                 ? const Loader()
-                                                : CachedNetworkImage(
-                                                    imageUrl:
-                                                        product.images[0]),
+                                                : SingleProduct(
+                                                    imagen: product.images[0],
+                                                  ),
                                           ),
                                           Align(
                                             alignment: Alignment.bottomLeft,

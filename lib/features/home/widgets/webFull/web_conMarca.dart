@@ -19,6 +19,8 @@ import 'package:v1douvery/main.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../mobiles/banner_widget.dart';
+
 class WebFull_conMarca extends StatefulWidget {
   WebFull_conMarca({Key? key}) : super(key: key);
 
@@ -106,142 +108,199 @@ class _WebFull_ContainerState extends State<WebFull_Container> {
                     child: Stack(
                       children: [
                         Positioned(
-                          child: Container(
-                              height: 185,
-                              width: 1260,
-                              child: CarouselSlider.builder(
-                                itemCount: productList!.length,
-                                itemBuilder: (context, index, realIndex) {
-                                  final product = productList![index];
-                                  return GestureDetector(
-                                    onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            ProductDetailsScreen(
-                                          product: product,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 205,
+                                width: MediaQuery.of(context).size.width,
+                                color: Colors.white,
+                                child: CarouselSlider(
+                                  items: GlobalVariables.marcaApple.map(
+                                    (i) {
+                                      return Builder(
+                                        builder: (BuildContext context) =>
+                                            Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: CachedNetworkImage(
+                                            imageUrl: i,
+                                            fit: BoxFit.cover,
+                                            width: 1260,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).toList(),
+                                  options: CarouselOptions(
+                                    autoPlayAnimationDuration:
+                                        const Duration(milliseconds: 1),
+                                    autoPlayInterval:
+                                        const Duration(seconds: 20),
+                                    autoPlay: true,
+                                    viewportFraction: 1,
+                                    height: 205,
+                                    aspectRatio: 16 / 10,
+                                    initialPage: 0,
+                                    enableInfiniteScroll: false,
+                                    reverse: false,
+                                    autoPlayCurve: Curves.fastOutSlowIn,
+                                    enlargeCenterPage: true,
+                                    scrollDirection: Axis.horizontal,
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Positioned(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Flexible(
+                                        child: ElevatedButton(
+                                          onPressed: () =>
+                                              _controller.previousPage(),
+                                          child: Text('←'),
                                         ),
                                       ),
-                                    ),
-                                    child: Container(
-                                      width: 150,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            width: 155.0,
-                                            height: 110.0,
-                                            child: productList == null
-                                                ? const Loader()
-                                                : CachedNetworkImage(
-                                                    imageUrl:
-                                                        product.images[0]),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.bottomLeft,
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  margin: const EdgeInsets.only(
-                                                      top: 2.0, left: 10),
-                                                  child: Text(
-                                                    product.name,
-                                                    style: const TextStyle(
-                                                      color: Color(0xff1C2833),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      letterSpacing: 0.4,
-                                                      fontSize: 11.0,
-                                                    ),
-                                                    textAlign: TextAlign.start,
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 0.0),
-                                                  child: Container(
-                                                    alignment:
-                                                        Alignment.bottomLeft,
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            top: 2.0, left: 10),
-                                                    child: Text(
-                                                      'Envio ' + 'Gratis',
-                                                      style: GoogleFonts.roboto(
-                                                        color: Color.fromARGB(
-                                                            255, 4, 161, 17),
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        letterSpacing: 1,
-                                                        fontSize: 10.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 60.0,
-                                                          bottom: 0.0),
-                                                  child: Text(
-                                                    r'$' +
-                                                        product.price
-                                                            .toString(),
-                                                    style: GoogleFonts.roboto(
-                                                      color: Color(0xff1C2833),
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      letterSpacing: 0.4,
-                                                      fontSize: 15.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                      Flexible(
+                                        child: ElevatedButton(
+                                          onPressed: () =>
+                                              _controller.nextPage(),
+                                          child: Text('→'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  height: 185,
+                                  width: 1260,
+                                  child: CarouselSlider.builder(
+                                    itemCount: productList!.length,
+                                    itemBuilder: (context, index, realIndex) {
+                                      final product = productList![index];
+                                      return GestureDetector(
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductDetailsScreen(
+                                              product: product,
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        child: Container(
+                                          width: 150,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                width: 155.0,
+                                                height: 110.0,
+                                                child: productList == null
+                                                    ? const Loader()
+                                                    : CachedNetworkImage(
+                                                        imageUrl:
+                                                            product.images[0]),
+                                              ),
+                                              Align(
+                                                alignment: Alignment.bottomLeft,
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      alignment:
+                                                          Alignment.bottomLeft,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              top: 2.0,
+                                                              left: 10),
+                                                      child: Text(
+                                                        product.name,
+                                                        style: const TextStyle(
+                                                          color:
+                                                              Color(0xff1C2833),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          letterSpacing: 0.4,
+                                                          fontSize: 11.0,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 0.0),
+                                                      child: Container(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        margin: const EdgeInsets
+                                                                .only(
+                                                            top: 2.0, left: 10),
+                                                        child: Text(
+                                                          'Envio ' + 'Gratis',
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    4,
+                                                                    161,
+                                                                    17),
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            letterSpacing: 1,
+                                                            fontSize: 10.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 60.0,
+                                                              bottom: 0.0),
+                                                      child: Text(
+                                                        r'$' +
+                                                            product.price
+                                                                .toString(),
+                                                        style:
+                                                            GoogleFonts.roboto(
+                                                          color:
+                                                              Color(0xff1C2833),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          letterSpacing: 0.4,
+                                                          fontSize: 15.0,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    options: CarouselOptions(
+                                      enableInfiniteScroll: false,
+                                      viewportFraction: 0.2,
+                                      enlargeStrategy:
+                                          CenterPageEnlargeStrategy.height,
+                                      aspectRatio: 1 / 2,
+                                      disableCenter: true,
+                                      pageSnapping: false,
+                                      padEnds: false,
+                                      pauseAutoPlayOnTouch: false,
                                     ),
-                                  );
-                                },
-                                options: CarouselOptions(
-                                  enableInfiniteScroll: false,
-                                  viewportFraction: 0.2,
-                                  enlargeStrategy:
-                                      CenterPageEnlargeStrategy.height,
-                                  aspectRatio: 1 / 2,
-                                  disableCenter: true,
-                                  pageSnapping: false,
-                                  padEnds: false,
-                                  pauseAutoPlayOnTouch: false,
-                                ),
-                                carouselController: _controller,
-                              )),
-                        ),
-                        Center(
-                          child: Positioned(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Flexible(
-                                  child: ElevatedButton(
-                                    onPressed: () => _controller.previousPage(),
-                                    child: Text('←'),
-                                  ),
-                                ),
-                                Flexible(
-                                  child: ElevatedButton(
-                                    onPressed: () => _controller.nextPage(),
-                                    child: Text('→'),
-                                  ),
-                                ),
-                              ],
-                            ),
+                                    carouselController: _controller,
+                                  )),
+                            ],
                           ),
                         ),
                       ],

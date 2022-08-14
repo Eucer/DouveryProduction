@@ -24,6 +24,17 @@ productRouter.get("/api/productsLimit/", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+//*
+productRouter.get("/api/productsNameLimit/", auth, async (req, res) => {
+  try {
+    const products = await Product.find({ name: req.query.name });
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
   
 
   productRouter.get("/api/marca/products/", auth, async (req, res) => {
@@ -238,5 +249,25 @@ productRouter.get("/api/products/all", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+
+
+
+//*
+productRouter.get("/api/products/rating", auth, async (req, res) => {
+  try {
+    
+   
+    const products = await Product.aggregate([{ $sample: { size: 10 } }]);
+    
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
+
 
 module.exports = productRouter;

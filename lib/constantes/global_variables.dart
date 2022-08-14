@@ -65,6 +65,11 @@ class GlobalVariables {
     'https://res.cloudinary.com/douvery/image/upload/v1659002119/CryptosLogos/bbrhtrtufbam7litta9m.png',
   ];
 
+  static List<String> marcaApple = [
+    'https://res.cloudinary.com/douvery/image/upload/v1660326424/s/ozgiqc4id6tpuqb9d5jo.png',
+    'https://res.cloudinary.com/douvery/image/upload/v1660326909/s/tylsuiylapczqat0yhkw.png',
+  ];
+
   static const List<Map<String, String>> categoryTitle = [
     {
       'title': 'Mobiles',

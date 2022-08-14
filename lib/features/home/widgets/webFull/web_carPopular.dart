@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
@@ -10,6 +11,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/models/product.dart';
 
 class WebFull_carPopular extends StatefulWidget {
@@ -87,10 +89,9 @@ class _WebFull_carPopularState extends State<WebFull_carPopular> {
                                     onTap: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
+                                        maintainState: false,
                                         builder: (context) =>
-                                            ProductDetailsScreen(
-                                          product: product,
-                                        ),
+                                            WebFull_productDetails(),
                                       ),
                                     ),
                                     child: Container(

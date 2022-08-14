@@ -122,6 +122,7 @@ class _SearchingPageState extends State<SearchingPage> {
                     addSemanticIndexes: false,
                     itemCount: products!.length,
                     itemBuilder: (context, index) {
+                      print('object : $index');
                       return GestureDetector(
                         child: products == null
                             ? const Loader()

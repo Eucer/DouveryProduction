@@ -28,7 +28,7 @@ class ResponsiveLayaout extends StatelessWidget {
         if (constraints.maxWidth < webWidth) {
           return ResponsiveMobiles();
         } else {
-          return HomeScreenWebFull();
+          return MainScreenHomeScreenWebFull();
         }
       },
     );
