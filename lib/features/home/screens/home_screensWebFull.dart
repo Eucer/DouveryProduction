@@ -40,32 +40,21 @@ class MainScreenHomeScreenWebFull extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.grey,
       ),
+      builder: (context, child) {
+        return Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(75),
+            child: Center(
+              child: Web_AppBarIcons(),
+            ),
+          ),
+          body: child,
+        );
+      },
       debugShowCheckedModeBanner: false,
-      home: Screens(),
-    );
-  }
-}
-
-class Screens extends StatelessWidget {
-  const Screens({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(75),
-        child: Center(
-          child: Web_AppBarIcons(),
-        ),
-      ),
-      body: PageView(
-        children: <Widget>[
-          HomeScreenWebFull(),
-        ],
-      ),
+      home: HomeScreenWebFull(),
     );
   }
 }

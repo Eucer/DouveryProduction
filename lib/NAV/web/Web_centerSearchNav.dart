@@ -5,6 +5,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
+import 'package:v1douvery/common/widgets/webFull_iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/features/search/widgets/searchignClient.dart';
@@ -87,7 +88,7 @@ class SearchStactic extends StatelessWidget {
               ),
             ],
           ),
-          IconCart(),
+          WebFull_IconCart(),
           Row(
             children: [
               CustomnIconsButton(

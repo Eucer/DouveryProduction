@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/centerSearchNav.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
+import 'package:v1douvery/common/widgets/webFull_iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
@@ -27,7 +28,7 @@ class TopTitleButtom extends StatelessWidget {
           ],
         ),
         actions: [
-          IconCart(),
+          WebFull_IconCart(),
         ],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(15),

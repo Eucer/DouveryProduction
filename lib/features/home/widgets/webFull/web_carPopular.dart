@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -88,10 +89,11 @@ class _WebFull_carPopularState extends State<WebFull_carPopular> {
                                   return GestureDetector(
                                     onTap: () => Navigator.push(
                                       context,
-                                      MaterialPageRoute(
-                                        maintainState: false,
-                                        builder: (context) =>
-                                            WebFull_productDetails(),
+                                      PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            WebFull_productDetails(
+                                          product: product,
+                                        ),
                                       ),
                                     ),
                                     child: Container(

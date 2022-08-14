@@ -15,6 +15,7 @@ import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/ratings.dart';
@@ -454,10 +455,11 @@ class _CarouselProductToNamedCategoryState
                                                                   Navigator
                                                                       .push(
                                                                 context,
-                                                                MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          ProductDetailsScreen(
+                                                                PageRouteBuilder(
+                                                                  pageBuilder: (_,
+                                                                          __,
+                                                                          ___) =>
+                                                                      WebFull_productDetails(
                                                                     product:
                                                                         product,
                                                                   ),
@@ -502,8 +504,9 @@ class _CarouselProductToNamedCategoryState
                             child: GestureDetector(
                               onTap: () => Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProductDetailsScreen(
+                                PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      WebFull_productDetails(
                                     product: product,
                                   ),
                                 ),
@@ -516,9 +519,9 @@ class _CarouselProductToNamedCategoryState
                                     : GestureDetector(
                                         onTap: () => Navigator.push(
                                           context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductDetailsScreen(
+                                          PageRouteBuilder(
+                                            pageBuilder: (_, __, ___) =>
+                                                WebFull_productDetails(
                                               product: product,
                                             ),
                                           ),
