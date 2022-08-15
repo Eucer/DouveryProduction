@@ -7,8 +7,11 @@ import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/common/widgets/webFull_iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/account/screens/webFull_account_screen.dart';
+import 'package:v1douvery/features/home/screens/home_screensWebFull.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/features/search/widgets/searchignClient.dart';
+import 'package:v1douvery/features/search/widgets/webFull/webFull_searchignClient.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class Web_CenterSearchNav extends StatelessWidget {
@@ -32,8 +35,8 @@ class SearchStactic extends StatelessWidget {
     void navigateToSearchingScreen(String query) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => SearchingPage(
+        PageRouteBuilder(
+            pageBuilder: (_, __, ___) => WebFull_searchingPage(
                   searchQuery: query,
                 )),
       );
@@ -43,14 +46,22 @@ class SearchStactic extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            alignment: Alignment.topRight,
-            width: MediaQuery.of(context).size.width / 11.5,
-            height: 55,
-            child: CachedNetworkImage(
-              alignment: Alignment.centerRight,
-              imageUrl:
-                  'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => MainScreenHomeScreenWebFull(),
+              ),
+            ),
+            child: Container(
+              alignment: Alignment.topRight,
+              width: MediaQuery.of(context).size.width / 11.5,
+              height: 55,
+              child: CachedNetworkImage(
+                alignment: Alignment.centerRight,
+                imageUrl:
+                    'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+              ),
             ),
           ),
           Column(
@@ -89,32 +100,41 @@ class SearchStactic extends StatelessWidget {
             ],
           ),
           WebFull_IconCart(),
-          Row(
-            children: [
-              CustomnIconsButton(
-                icon: Icon(Iconsax.user, color: Colors.white),
-                onPressed: () {},
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 12),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      '¡Hola!',
-                      style: TextStyle(color: Color(0xffecf0f1), fontSize: 14),
+          GestureDetector(
+            child: Row(
+              children: [
+                CustomnIconsButton(
+                  icon: Icon(Iconsax.user, color: Colors.white),
+                  onPressed: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => WebFullAccountScreen(),
                     ),
                   ),
-                  Container(
-                    child: Text(
-                      user.name,
-                      style: TextStyle(color: Color(0xffecf0f1), fontSize: 14),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 12),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        '¡Hola!',
+                        style:
+                            TextStyle(color: Color(0xffecf0f1), fontSize: 14),
+                      ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                    Container(
+                      child: Text(
+                        user.name,
+                        style:
+                            TextStyle(color: Color(0xffecf0f1), fontSize: 14),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),

@@ -15,6 +15,7 @@ class Web_AppBarIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
+      automaticallyImplyLeading: false,
       title: Padding(
         padding: const EdgeInsets.only(top: 0.0, right: 0),
         child: Container(

@@ -13,6 +13,7 @@ import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
+import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
@@ -95,234 +96,270 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                     ConPricer(context),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 30.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Carousel(context),
-                                Container(
-                                  child: Column(children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 18.0),
-                                      child: Container(
-                                        width: 800,
-                                        height: 60,
-                                        child: Text(
-                                          widget.product.name,
-                                          style: const TextStyle(
-                                            color: Color(0xff1C2833),
-                                            fontWeight: FontWeight.w400,
-                                            letterSpacing: 0.4,
-                                            fontSize: 20.0,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ),
-                                    Stack(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border(
-                                                  bottom: BorderSide(
-                                                      width: 1,
-                                                      color: Color(0xfff1f5f9)),
-                                                ),
-                                                color: Colors.white,
+                      child: Column(
+                        children: [
+                          Container(
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Carousel(context),
+                                    Container(
+                                      child: Column(children: [
+                                        GestureDetector(
+                                          onTap: () => Navigator.push(
+                                            context,
+                                            PageRouteBuilder(
+                                              pageBuilder: (_, __, ___) =>
+                                                  BrandsScreen(
+                                                brands: widget.product.marca,
                                               ),
-                                              width: 800,
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              height: 500,
-                                              child: ContainedTabBarView(
-                                                tabBarProperties:
-                                                    const TabBarProperties(
-                                                  indicatorColor: Colors.red,
-                                                ),
-                                                tabs: const [
-                                                  Text(
-                                                    'Descripcion',
-                                                    style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          206, 0, 0, 0),
+                                              settings: RouteSettings(
+                                                arguments: widget.product.marca,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: 800,
+                                            height: 30,
+                                            alignment: Alignment.centerLeft,
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  WidgetSpan(
+                                                    child: Icon(
+                                                      Icons.house_outlined,
+                                                      size: 16,
+                                                      color: Color(0xff10375C),
                                                     ),
                                                   ),
-                                                  Text(
-                                                    'Servicio',
+                                                  TextSpan(
+                                                    text: widget.product.marca,
                                                     style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          206, 0, 0, 0),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    'Reseñas',
-                                                    style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          206, 0, 0, 0),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    'Similar',
-                                                    style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          206, 0, 0, 0),
+                                                      color: Color(0xff10375C),
                                                     ),
                                                   ),
                                                 ],
-                                                views: [
-                                                  Container(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        widget.product
-                                                            .description,
-                                                      ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 18.0),
+                                          child: Container(
+                                            width: 800,
+                                            height: 60,
+                                            child: Text(
+                                              widget.product.name,
+                                              style: const TextStyle(
+                                                color: Color(0xff1C2833),
+                                                fontWeight: FontWeight.w400,
+                                                letterSpacing: 0.4,
+                                                fontSize: 20.0,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border(
+                                                      bottom: BorderSide(
+                                                          width: 1,
+                                                          color: Color(
+                                                              0xfff1f5f9)),
                                                     ),
+                                                    color: Colors.white,
                                                   ),
-                                                  Container(
-                                                      child: Text('text')),
-                                                  Stack(
-                                                    children: [
-                                                      Row(
+                                                  width: 800,
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  height: 500,
+                                                  child: ContainedTabBarView(
+                                                    tabBarProperties:
+                                                        const TabBarProperties(
+                                                      indicatorColor:
+                                                          Colors.red,
+                                                    ),
+                                                    tabs: const [
+                                                      Text(
+                                                        'Descripcion',
+                                                        style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              206, 0, 0, 0),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'Servicio',
+                                                        style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              206, 0, 0, 0),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'Reseñas',
+                                                        style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              206, 0, 0, 0),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'Similar',
+                                                        style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              206, 0, 0, 0),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                    views: [
+                                                      Container(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Text(
+                                                            widget.product
+                                                                .description,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                          child: Text('text')),
+                                                      Stack(
                                                         children: [
-                                                          Container(
-                                                              child: Text(
-                                                                  'Tu rating :  ')),
-                                                          Container(
-                                                            color: Colors.white,
-                                                            child: RatingBar
-                                                                .builder(
-                                                              initialRating:
-                                                                  myRating,
-                                                              minRating: 1,
-                                                              direction: Axis
-                                                                  .horizontal,
-                                                              allowHalfRating:
-                                                                  true,
-                                                              itemCount: 5,
-                                                              itemBuilder:
-                                                                  (context,
-                                                                          _) =>
-                                                                      Icon(
-                                                                Iconsax.star_15,
-                                                                color: Color(
-                                                                    0xffFF2E4C),
+                                                          Row(
+                                                            children: [
+                                                              Container(
+                                                                  child: Text(
+                                                                      'Tu rating :  ')),
+                                                              Container(
+                                                                color: Colors
+                                                                    .white,
+                                                                child: RatingBar
+                                                                    .builder(
+                                                                  initialRating:
+                                                                      myRating,
+                                                                  minRating: 1,
+                                                                  direction: Axis
+                                                                      .horizontal,
+                                                                  allowHalfRating:
+                                                                      true,
+                                                                  itemCount: 5,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                              _) =>
+                                                                          Icon(
+                                                                    Iconsax
+                                                                        .star_15,
+                                                                    color: Color(
+                                                                        0xffFF2E4C),
+                                                                  ),
+                                                                  onRatingUpdate:
+                                                                      (rating) {
+                                                                    productDetailsServices.rateProduct(
+                                                                        context:
+                                                                            context,
+                                                                        product:
+                                                                            widget
+                                                                                .product,
+                                                                        rating:
+                                                                            rating);
+                                                                  },
+                                                                ),
                                                               ),
-                                                              onRatingUpdate:
-                                                                  (rating) {
-                                                                productDetailsServices.rateProduct(
-                                                                    context:
-                                                                        context,
-                                                                    product: widget
-                                                                        .product,
-                                                                    rating:
-                                                                        rating);
-                                                              },
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 60.0),
+                                                            child: Container(
+                                                              child: ListView
+                                                                  .builder(
+                                                                      scrollDirection:
+                                                                          Axis
+                                                                              .vertical,
+                                                                      itemCount: widget
+                                                                          .product
+                                                                          .rating!
+                                                                          .length,
+                                                                      itemBuilder:
+                                                                          ((context,
+                                                                              index) {
+                                                                        final rating = widget
+                                                                            .product
+                                                                            .rating![index];
+                                                                        return Column(
+                                                                          children: [
+                                                                            Container(
+                                                                              padding: EdgeInsets.only(bottom: 5),
+                                                                              alignment: Alignment.bottomLeft,
+                                                                              child: Text(
+                                                                                rating.userId,
+                                                                                style: TextStyle(fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              padding: EdgeInsets.only(bottom: 5),
+                                                                              alignment: Alignment.bottomLeft,
+                                                                              child: Text(
+                                                                                rating.userName,
+                                                                                style: TextStyle(fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              padding: EdgeInsets.only(bottom: 5),
+                                                                              alignment: Alignment.bottomLeft,
+                                                                              child: Row(
+                                                                                children: [
+                                                                                  Stars(rating: rating.rating),
+                                                                                  Text(
+                                                                                    '(' + avgRating.toString() + ') ' + widget.product.rating!.length.toString(),
+                                                                                    style: TextStyle(color: Colors.grey, fontSize: 13),
+                                                                                  ),
+                                                                                  Text(
+                                                                                    widget.product.name.length.toString(),
+                                                                                    style: TextStyle(color: Colors.grey, fontSize: 13),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      })),
                                                             ),
                                                           ),
                                                         ],
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                top: 60.0),
-                                                        child: Container(
-                                                          child:
-                                                              ListView.builder(
-                                                                  scrollDirection:
-                                                                      Axis
-                                                                          .vertical,
-                                                                  itemCount: widget
-                                                                      .product
-                                                                      .rating!
-                                                                      .length,
-                                                                  itemBuilder:
-                                                                      ((context,
-                                                                          index) {
-                                                                    final rating = widget
-                                                                        .product
-                                                                        .rating![index];
-                                                                    return Column(
-                                                                      children: [
-                                                                        Container(
-                                                                          padding:
-                                                                              EdgeInsets.only(bottom: 5),
-                                                                          alignment:
-                                                                              Alignment.bottomLeft,
-                                                                          child:
-                                                                              Text(
-                                                                            rating.userId,
-                                                                            style:
-                                                                                TextStyle(fontSize: 16),
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          padding:
-                                                                              EdgeInsets.only(bottom: 5),
-                                                                          alignment:
-                                                                              Alignment.bottomLeft,
-                                                                          child:
-                                                                              Text(
-                                                                            rating.userName,
-                                                                            style:
-                                                                                TextStyle(fontSize: 16),
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          padding:
-                                                                              EdgeInsets.only(bottom: 5),
-                                                                          alignment:
-                                                                              Alignment.bottomLeft,
-                                                                          child:
-                                                                              Row(
-                                                                            children: [
-                                                                              Stars(rating: rating.rating),
-                                                                              Text(
-                                                                                '(' + avgRating.toString() + ') ' + widget.product.rating!.length.toString(),
-                                                                                style: TextStyle(color: Colors.grey, fontSize: 13),
-                                                                              ),
-                                                                              Text(
-                                                                                widget.product.name.length.toString(),
-                                                                                style: TextStyle(color: Colors.grey, fontSize: 13),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  })),
-                                                        ),
-                                                      ),
+                                                      Container(
+                                                          child: Text('text')),
                                                     ],
+                                                    // ignore: avoid_print
+                                                    onChange: (index) =>
+                                                        print(index),
                                                   ),
-                                                  Container(
-                                                      child: Text('text')),
-                                                ],
-                                                // ignore: avoid_print
-                                                onChange: (index) =>
-                                                    print(index),
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ],
-                                        ),
-                                      ],
+                                        )
+                                      ]),
                                     )
-                                  ]),
-                                )
-                              ],
-                            ),
-                          )),
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ),
                     ),
                   ]),
           ]),
@@ -424,8 +461,9 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
       height: 53,
       width: MediaQuery.of(context).size.width,
       color: Colors.white,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               child: Column(
@@ -474,7 +512,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
             const Text(
               'Envio Gratis',
               style: TextStyle(
-                  color: Color.fromARGB(255, 4, 161, 17), fontSize: 17),
+                  color: Color.fromARGB(255, 4, 161, 17), fontSize: 15),
             ),
 
             Container(

@@ -51,7 +51,12 @@ dependencies:
   pull_to_refresh_flutter3: ^2.0.1
   flutter_carousel_widget: ^1.1.0
   like_button: ^2.0.4  
-  
+  custom_pop_up_menu: ^1.2.4
+
+
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

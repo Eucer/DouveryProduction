@@ -6,6 +6,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/models/product.dart';
 
 class WebFull_conCategory extends StatelessWidget {
@@ -106,12 +107,23 @@ class _Web_brands1State extends State<Web_brands1> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final product = productList![index];
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.white,
-                          child: CachedNetworkImage(
-                            fit: BoxFit.contain,
-                            imageUrl: product.images[0],
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (_, __, ___) =>
+                                  WebFull_productDetails(
+                                product: product,
+                              ),
+                            ),
+                          ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.white,
+                            child: CachedNetworkImage(
+                              fit: BoxFit.contain,
+                              imageUrl: product.images[0],
+                            ),
                           ),
                         );
                       },

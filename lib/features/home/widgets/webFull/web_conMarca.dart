@@ -14,6 +14,7 @@ import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/cart/services/cardServices.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/main.dart';
 import 'package:v1douvery/models/product.dart';
@@ -183,9 +184,9 @@ class _WebFull_ContainerState extends State<WebFull_Container> {
                                       return GestureDetector(
                                         onTap: () => Navigator.push(
                                           context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductDetailsScreen(
+                                          PageRouteBuilder(
+                                            pageBuilder: (_, __, ___) =>
+                                                WebFull_productDetails(
                                               product: product,
                                             ),
                                           ),

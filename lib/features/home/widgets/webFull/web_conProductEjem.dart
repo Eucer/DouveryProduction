@@ -13,6 +13,7 @@ import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/models/product.dart';
 
@@ -154,8 +155,8 @@ class _Web_brands1State extends State<Web_brands1> {
                                           GestureDetector(
                                             onTap: () => Navigator.push(
                                               context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
+                                              PageRouteBuilder(
+                                                pageBuilder: (_, __, ___) =>
                                                     BrandsScreen(
                                                   brands: product.marca,
                                                 ),
@@ -275,12 +276,23 @@ class _Web_brands1State extends State<Web_brands1> {
                                       builder: (BuildContext context) {
                                         return Padding(
                                           padding: const EdgeInsets.all(10.0),
-                                          child: Container(
-                                            color: Colors.white,
-                                            width: 400,
-                                            height: 500,
-                                            child:
-                                                CachedNetworkImage(imageUrl: i),
+                                          child: GestureDetector(
+                                            onTap: () => Navigator.push(
+                                              context,
+                                              PageRouteBuilder(
+                                                pageBuilder: (_, __, ___) =>
+                                                    WebFull_productDetails(
+                                                  product: product,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Container(
+                                              color: Colors.white,
+                                              width: 400,
+                                              height: 500,
+                                              child: CachedNetworkImage(
+                                                  imageUrl: i),
+                                            ),
                                           ),
                                         );
                                       },
