@@ -21,6 +21,7 @@ class ResponsiveMobiles extends StatelessWidget {
 }
 
 class ResponsiveLayaout extends StatelessWidget {
+  static const String routeName = '/responsive';
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

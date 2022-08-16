@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:contained_tab_bar_view_with_custom_page_navigator/contained_tab_bar_view_with_custom_page_navigator.dart';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -528,27 +529,32 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                       child: Row(
                         children: [
                           const SizedBox(width: 10),
-                          ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xff1a49ab), // background
-                              // foreground
-                            ),
-                            onPressed: () {
-                              addToCart();
-                              _modalIconsCart(context);
-                            },
-                            icon: Icon(
-                              IconlyLight.buy,
-                              size: 16,
-                              color: Colors.white,
-                            ),
-                            label: Text(
-                              "Añadir al Carrito",
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+                          Provider.of<UserProvider>(context)
+                                  .user
+                                  .token
+                                  .isNotEmpty
+                              ? ElevatedButton.icon(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xff1a49ab), // background
+                                    // foreground
+                                  ),
+                                  onPressed: () {
+                                    addToCart();
+                                    _modalIconsCart(context);
+                                  },
+                                  icon: Icon(
+                                    IconlyLight.buy,
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
+                                  label: Text(
+                                    "Añadir al Carrito",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              : ButtomAggCartNosessions(),
                           SizedBox(width: 10),
                           ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
@@ -582,6 +588,40 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
           ],
         ),
       ]),
+    );
+  }
+}
+
+class ButtomAggCartNosessions extends StatelessWidget {
+  const ButtomAggCartNosessions({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        primary: Color(0xff1a49ab), // background
+        // foreground
+      ),
+      onPressed: () {
+        ElegantNotification.error(
+          title: Text("Info"),
+          description: Text('Upps... parece que no has iniciado session '),
+          animationDuration: const Duration(milliseconds: 200),
+          toastDuration: const Duration(milliseconds: 3500),
+        ).show(context);
+        ;
+      },
+      icon: Icon(
+        IconlyLight.buy,
+        size: 16,
+        color: Colors.white,
+      ),
+      label: Text(
+        "Añadir al Carrito",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

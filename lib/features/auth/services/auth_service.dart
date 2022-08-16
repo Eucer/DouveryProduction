@@ -8,6 +8,7 @@ import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/constantes/error_handling.dart';
 import 'package:v1douvery/constantes/utils.dart';
+import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 
 import 'package:v1douvery/models/user.dart';
@@ -84,7 +85,7 @@ class AuthService {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => ResponsiveLayaout(),
             ),
           );
         },

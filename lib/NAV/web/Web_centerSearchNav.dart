@@ -124,13 +124,19 @@ class SearchStactic extends StatelessWidget {
                             TextStyle(color: Color(0xffecf0f1), fontSize: 14),
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        user.name,
-                        style:
-                            TextStyle(color: Color(0xffecf0f1), fontSize: 14),
-                      ),
-                    ),
+                    Provider.of<UserProvider>(context).user.token.isNotEmpty
+                        ? Container(
+                            child: Text(
+                              user.name,
+                              style: TextStyle(
+                                  color: Color(0xffecf0f1), fontSize: 14),
+                            ),
+                          )
+                        : Text(
+                            'Registrate',
+                            style: TextStyle(
+                                color: Color(0xffecf0f1), fontSize: 14),
+                          ),
                   ],
                 )
               ],

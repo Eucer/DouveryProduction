@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
           ? Provider.of<UserProvider>(context).user.type == 'user'
               ? ResponsiveLayaout()
               : AdminResponsiveLayaout()
-          : AuthScreen(),
+          : ResponsiveLayaout(),
     );
   }
 }

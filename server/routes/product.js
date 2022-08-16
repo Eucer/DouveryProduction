@@ -5,7 +5,7 @@ const auth = require("../middlewares/auth");
 const { Product } = require("../modelos/product");
 
 //*
-productRouter.get("/api/products/", auth, async (req, res) => {
+productRouter.get("/api/products/",  async (req, res) => {
     try {
       const products = await Product.find({ category: req.query.category });
       res.json(products);
@@ -16,7 +16,7 @@ productRouter.get("/api/products/", auth, async (req, res) => {
 
 
   //*
-productRouter.get("/api/productsLimit/", auth, async (req, res) => {
+productRouter.get("/api/productsLimit/",  async (req, res) => {
   try {
     const products = await Product.find({ category: req.query.category }).limit(4);
     res.json(products);
@@ -27,7 +27,7 @@ productRouter.get("/api/productsLimit/", auth, async (req, res) => {
 
 
 //*
-productRouter.get("/api/productsNameLimit/", auth, async (req, res) => {
+productRouter.get("/api/productsNameLimit/",  async (req, res) => {
   try {
     const products = await Product.find({ name: req.query.name });
     res.json(products);
@@ -37,7 +37,7 @@ productRouter.get("/api/productsNameLimit/", auth, async (req, res) => {
 });
   
 
-  productRouter.get("/api/marca/products/", auth, async (req, res) => {
+  productRouter.get("/api/marca/products/",  async (req, res) => {
     try {
      
       const products = await Product.find({ marca: req.query.marca });
@@ -49,7 +49,7 @@ productRouter.get("/api/productsNameLimit/", auth, async (req, res) => {
   
   
   //*
-productRouter.get("/api/products/new", auth, async (req, res) => {
+productRouter.get("/api/products/new",  async (req, res) => {
   try {
     
     const products = await Product.find().sort({_id: -1}).limit(10);
@@ -62,7 +62,7 @@ productRouter.get("/api/products/new", auth, async (req, res) => {
 
 
 //*
-productRouter.get("/api/products/search/:name", auth, async (req, res) => {
+productRouter.get("/api/products/search/:name",  async (req, res) => {
   try {
     const products = await Product.find({ name:{$regex: req.params.name, $options: 'si', $nin: [ 'acmebsmflkmXlahcorp' ] } });
     res.json(products);
@@ -72,7 +72,7 @@ productRouter.get("/api/products/search/:name", auth, async (req, res) => {
 });
 
 // create a post request route to rate the product.
-productRouter.post("/api/rate-product", auth, async (req, res) => {
+productRouter.post("/api/rate-product",  async (req, res) => {
   try {
     const { id, rating } = req.body;
     let product = await Product.findById(id);
@@ -100,7 +100,7 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
 
 
 // create a post request route to rate the product.
-productRouter.post("/api/productviewd", auth, async (req, res) => {
+productRouter.post("/api/productviewd",  async (req, res) => {
   try {
     const { id, viewed } = req.body;
     let product = await Product.findById(id);
@@ -127,7 +127,7 @@ productRouter.post("/api/productviewd", auth, async (req, res) => {
 
 
 
-productRouter.get("/api/deal-of-day", auth, async (req, res) => {
+productRouter.get("/api/deal-of-day",  async (req, res) => {
   try {
     let products = await Product.find({});
 
@@ -154,7 +154,7 @@ productRouter.get("/api/deal-of-day", auth, async (req, res) => {
 
 
 // c
-productRouter.get("/api/list-product-deal", auth, async (req, res) => {
+productRouter.get("/api/list-product-deal",  async (req, res) => {
   try {
     let products = await Product.find({});
 
@@ -179,7 +179,7 @@ productRouter.get("/api/list-product-deal", auth, async (req, res) => {
 });
 
 // c
-productRouter.get("/api/list-radomn", auth, async (req, res) => {
+productRouter.get("/api/list-radomn",  async (req, res) => {
   try {
     const products = await Product.find({price: {$lte: '100'}} );
    
@@ -191,7 +191,7 @@ productRouter.get("/api/list-radomn", auth, async (req, res) => {
 
 
 
-productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
+productRouter.get("/api/products/marca/brands",  async (req, res) => {
   try {
    
     const products = await Product.find({ category: req.query.category });
@@ -208,7 +208,7 @@ productRouter.get("/api/products/marca/brands", auth, async (req, res) => {
 
 
 // c
-productRouter.get("/api/products/populate", auth, async (req, res) => {
+productRouter.get("/api/products/populate",  async (req, res) => {
   try {
   let products = await Product.find({
    
@@ -238,7 +238,7 @@ productRouter.get("/api/products/populate", auth, async (req, res) => {
 
 
 //*
-productRouter.get("/api/products/all", auth, async (req, res) => {
+productRouter.get("/api/products/all",  async (req, res) => {
   try {
     
    
@@ -255,7 +255,7 @@ productRouter.get("/api/products/all", auth, async (req, res) => {
 
 
 //*
-productRouter.get("/api/products/rating", auth, async (req, res) => {
+productRouter.get("/api/products/rating",  async (req, res) => {
   try {
     
    

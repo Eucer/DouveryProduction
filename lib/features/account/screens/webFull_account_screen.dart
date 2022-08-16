@@ -20,6 +20,7 @@ import 'package:v1douvery/features/account/widgets/WelcomeUser.dart';
 import 'package:v1douvery/features/account/widgets/webFull/webFull_ordenesUser.dart';
 import 'package:v1douvery/features/account/widgets/webFull/webFull_categoriasUser.dart';
 import 'package:v1douvery/features/account/widgets/webFull/webFull_perfilUser.dart';
+import 'package:v1douvery/features/auth/responsive/authResponsivelayout.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
@@ -38,12 +39,6 @@ class WebFullAccountScreen extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           backgroundColor: GlobalVariables.greyBackgroundCOlor,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(75),
-            child: Center(
-              child: Web_AppBarIcons(),
-            ),
-          ),
           body: child,
         );
       },
@@ -64,34 +59,42 @@ class Session extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          WebFull_NavCategory(),
-          Container(
-            padding: EdgeInsets.only(top: 10),
-            width: MediaQuery.of(context).size.width / 1.3,
-            height: 800,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                WebFullPerfilUsuario(),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  color: Colors.white,
-                  width: 1000,
-                  height: 770,
-                  child: Column(
-                    children: [
-                      WebFullCategoriasUser(),
-                      WebFullOrdersUser(),
-                    ],
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(75),
+        child: Center(
+          child: Web_AppBarIcons(),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            WebFull_NavCategory(),
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              width: MediaQuery.of(context).size.width / 1.3,
+              height: 800,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  WebFullPerfilUsuario(),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    color: Colors.white,
+                    width: 1000,
+                    height: 770,
+                    child: Column(
+                      children: [
+                        WebFullCategoriasUser(),
+                        WebFullOrdersUser(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -102,28 +105,37 @@ class Nosession extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          NotSessions(),
-          Container(
-            child: IconButton(
-              icon: GestureDetector(
-                child: Icon(
-                  IconlyLight.login,
-                  color: GlobalVariables.colorRosaRojVivo,
-                ),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AuthScreen(),
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(75),
+        child: Center(
+          child: Web_AppBarIcons(),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            WebFull_NavCategory(),
+            NotSessions(),
+            Container(
+              child: IconButton(
+                icon: GestureDetector(
+                  child: Icon(
+                    IconlyLight.login,
+                    color: GlobalVariables.colorRosaRojVivo,
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WebFullResponsiveLayaout(),
+                    ),
                   ),
                 ),
+                onPressed: () {},
               ),
-              onPressed: () {},
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -13,15 +13,15 @@ enum Auth {
   signup,
 }
 
-class AuthScreen extends StatefulWidget {
+class WebFullAuthScreen extends StatefulWidget {
   static const String routeName = '/auth-screen';
-  AuthScreen({Key? key}) : super(key: key);
+  WebFullAuthScreen({Key? key}) : super(key: key);
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  State<WebFullAuthScreen> createState() => _WebFullAuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
   Auth _auth = Auth.signup;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
@@ -87,6 +87,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: Column(
                         children: [
                           Container(
+                            width: 500,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:v1douvery/features/admin/screens/Full/screens/adminScreens.dart';
 import 'package:vertical_tabs/vertical_tabs.dart';
 
 class WebFullAdminNavRail extends StatelessWidget {
@@ -23,7 +24,7 @@ class WebFullAdminNavRail extends StatelessWidget {
             Tab(child: Center(child: Text('Flutter')), icon: Icon(Icons.phone)),
           ],
           contents: <Widget>[
-            Container(child: Text('Flutter'), padding: EdgeInsets.all(20)),
+            AdminWebScreens(),
           ],
         ),
       ),
