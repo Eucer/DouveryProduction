@@ -11,12 +11,13 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_refresh/swipe_refresh.dart';
-import 'package:v1douvery/NAV/appBarIcons.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
-import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/NAV/mobiles/appBarIcons.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
+import 'package:v1douvery/features/home/footer/screens/footerHome.dart';
 import 'package:v1douvery/features/home/widgets/webFull/Web_carRating.dart';
 
 import 'package:v1douvery/features/home/widgets/webFull/web_banner.dart';
@@ -127,6 +128,7 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
                 WebFull_conMarca(),
                 WebFull_conName(),
                 WebFull_carRating(),
+                FooterHome()
               ],
             ),
           ),

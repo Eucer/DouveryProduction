@@ -28,7 +28,7 @@ class _WebFull_vertUserState extends State<WebFull_vertUser> {
                 Container(
                   width: 60,
                   height: 60,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage("assets/images/user.jpg"),

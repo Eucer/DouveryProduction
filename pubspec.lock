@@ -789,6 +789,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  vertical_tabs:
+    dependency: "direct main"
+    description:
+      name: vertical_tabs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   win32:
     dependency: transitive
     description:

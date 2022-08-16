@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/common/widgets/custom.button.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/constantes/global_variables.dart';

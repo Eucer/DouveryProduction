@@ -491,7 +491,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-
+            const SizedBox(width: 18),
             const Text(
               'Precio: ',
               style: TextStyle(color: Colors.black54, fontSize: 18),

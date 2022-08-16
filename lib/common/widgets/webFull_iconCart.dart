@@ -33,7 +33,20 @@ class _ModalIconsState extends State<ModalIcons> {
         child: Column(
           children: [
             Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: GlobalVariables.backgroundColor,
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(
+                      10,
+                      0,
+                      0,
+                      0,
+                    ),
+                  ),
+                ),
+              ),
               width: MediaQuery.of(context).size.width / 1.4,
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
@@ -83,7 +96,7 @@ class _ModalIconsState extends State<ModalIcons> {
               ),
             ),
             Container(
-              color: GlobalVariables.greyBackgroundCOlor,
+              color: GlobalVariables.backgroundColor,
               height: 1000,
               child: ListView.builder(
                 itemCount: user.cart.length,
@@ -147,10 +160,19 @@ class _ContainerCartState extends State<ContainerCart> {
               child: Container(
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
-                    color: GlobalVariables.backgroundColor,
-                    border: Border(
-                        bottom: BorderSide(
-                            width: 1, color: Color.fromARGB(10, 0, 0, 0)))),
+                  color: GlobalVariables.backgroundColor,
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(
+                        10,
+                        0,
+                        0,
+                        0,
+                      ),
+                    ),
+                  ),
+                ),
                 child: Row(
                   children: [
                     CachedNetworkImage(

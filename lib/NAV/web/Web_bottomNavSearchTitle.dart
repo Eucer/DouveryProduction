@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/home/screens/categoryDealsScreen.dart';
+
+import 'package:v1douvery/features/category/screens/webFull_categoryDealsScreen.dart';
 
 class BottomNavSearchTitle extends StatelessWidget {
   const BottomNavSearchTitle({Key? key}) : super(key: key);
 
   void navigateToCategoryPage(BuildContext context, String category) {
     MaterialPageRoute(
-      builder: (context) => CategoryDealsScreen(
+      builder: (context) => WebFullCategoryDealsScreen(
         category: category,
       ),
       settings: RouteSettings(
@@ -51,8 +52,8 @@ class Web_NavCategory extends StatelessWidget {
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => CategoryDealsScreen(
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => WebFullCategoryDealsScreen(
                       category: GlobalVariables.categoryTitle[index]['title']!,
                     ),
                     settings: RouteSettings(
@@ -108,8 +109,8 @@ class WebFull_NavCategory extends StatelessWidget {
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => CategoryDealsScreen(
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => WebFullCategoryDealsScreen(
                       category: GlobalVariables.categoryTitle[index]['title']!,
                     ),
                     settings: RouteSettings(

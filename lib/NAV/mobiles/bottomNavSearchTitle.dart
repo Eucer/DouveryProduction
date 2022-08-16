@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/home/screens/categoryDealsScreen.dart';
+
+import 'package:v1douvery/features/category/screens/categoryDealsScreen.dart';
 
 class BottomNavSearchTitle extends StatelessWidget {
   const BottomNavSearchTitle({Key? key}) : super(key: key);

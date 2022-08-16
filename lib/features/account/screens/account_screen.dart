@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/appBarIcons.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
-import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/NAV/mobiles/appBarIcons.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/Nosession.dart';

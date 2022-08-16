@@ -16,9 +16,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
-import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_text.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';

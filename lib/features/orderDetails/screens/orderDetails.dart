@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
-import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';

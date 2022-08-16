@@ -5,26 +5,25 @@ import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/admin/screens/Full/widgets/postsScreens.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/AdmintopTitleButtom.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/centerSearchNav.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
-import '../widgests/postsScreens.dart';
-
-class AdminScreen extends StatefulWidget {
-  const AdminScreen({Key? key}) : super(key: key);
+class AdminWebScreens extends StatefulWidget {
+  const AdminWebScreens({Key? key}) : super(key: key);
 
   @override
-  State<AdminScreen> createState() => _AdminScreenState();
+  State<AdminWebScreens> createState() => _AdminWebScreensState();
 }
 
-class _AdminScreenState extends State<AdminScreen> {
+class _AdminWebScreensState extends State<AdminWebScreens> {
   int _page = 0;
   double bottomBarWidth = 42;
   double bottomBarBorderWidth = 5;
 
   List<Widget> pages = [
-    PostsScreen(),
+    MostrarProductos_screens(),
   ];
 
   void updatePage(int page) {
@@ -55,7 +54,7 @@ class _AdminScreenState extends State<AdminScreen> {
                       children: [
                         Icon(Icons.admin_panel_settings),
                         Text(
-                          user.name,
+                          user.name + ' Web',
                           style: GoogleFonts.lato(
                             color: Color(0xffFCFCFC),
                             fontWeight: FontWeight.bold,

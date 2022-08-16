@@ -3,7 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:badges/badges.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/common/widgets/webFull_iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';

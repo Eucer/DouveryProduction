@@ -4,7 +4,7 @@ import 'package:contained_tab_bar_view_with_custom_page_navigator/contained_tab_
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/common/widgets/stars.dart';

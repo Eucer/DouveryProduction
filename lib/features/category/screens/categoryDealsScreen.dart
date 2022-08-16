@@ -8,9 +8,9 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
-import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
@@ -18,10 +18,12 @@ import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
-import 'package:v1douvery/features/home/services/homeServices.dart';
+
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
+
+import '../services/categoryServices.dart';
 
 class CategoryDealsScreen extends StatefulWidget {
   static const String routeName = '/category-deals';
@@ -37,7 +39,7 @@ class CategoryDealsScreen extends StatefulWidget {
 
 class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
   List<Product>? productList;
-  final HomeServices homeServices = HomeServices();
+  final CategoryServices homeServices = CategoryServices();
 
   @override
   void initState() {

@@ -7,6 +7,7 @@ import 'package:v1douvery/cargin.dart';
 import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/common/widgets/bottom_barAdmin.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+import 'package:v1douvery/features/admin/responsive/Admin_responsive_layaout.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/auth/services/auth_service.dart';
@@ -71,7 +72,7 @@ class _MyAppState extends State<MyApp> {
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
           ? Provider.of<UserProvider>(context).user.type == 'user'
               ? ResponsiveLayaout()
-              : MainScreenAdmin()
+              : AdminResponsiveLayaout()
           : AuthScreen(),
     );
   }
