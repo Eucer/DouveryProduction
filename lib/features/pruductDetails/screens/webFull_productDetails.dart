@@ -15,11 +15,13 @@ import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
+import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
+import 'package:v1douvery/features/orderDetails/screens/orderDetails.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
 import 'package:v1douvery/models/ratings.dart';
@@ -345,33 +347,85 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
   }
 
   Stack StackReviews(BuildContext context) {
+    final TextEditingController reviewClient = TextEditingController();
+    final user = Provider.of<UserProvider>(context).user;
+
     return Stack(
       children: [
         Provider.of<UserProvider>(context).user.token.isNotEmpty
-            ? Row(
-                children: [
-                  Container(child: Text('Tu rating :  ')),
-                  Container(
-                    color: Colors.white,
-                    child: RatingBar.builder(
-                      initialRating: myRating,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemBuilder: (context, _) => Icon(
-                        Iconsax.star_15,
-                        color: Color(0xffFF2E4C),
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 600,
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(top: 10, right: 10),
+                              child: Text(
+                                user.name,
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ),
+                            RatingBar.builder(
+                              initialRating: myRating,
+                              minRating: 1,
+                              direction: Axis.horizontal,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemBuilder: (context, _) => Icon(
+                                Iconsax.star_15,
+                                color: Color(0xffFF2E4C),
+                              ),
+                              onRatingUpdate: (rating) {
+                                productDetailsServices.rateProduct(
+                                  context: context,
+                                  product: widget.product,
+                                  rating: rating,
+                                );
+                                setState(() {});
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      onRatingUpdate: (rating) {
-                        productDetailsServices.rateProduct(
-                            context: context,
-                            product: widget.product,
-                            rating: rating);
-                      },
-                    ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 8.0, bottom: 8, right: 10),
+                            child: Container(child: Text('Tu rating :  ')),
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width / 7,
+                                height: 100,
+                                color: Colors.white,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      width: 600,
+                                      height: 90,
+                                      child: CustomTextField(
+                                        controller: reviewClient,
+                                        hintText: '',
+                                        maxLines: 2,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
+                ),
               )
             : Padding(
                 padding: const EdgeInsets.only(top: 10.0),
@@ -419,6 +473,10 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
         Padding(
           padding: const EdgeInsets.only(top: 90.0),
           child: Container(
+            
+            margin: Provider.of<UserProvider>(context).user.token.isNotEmpty
+                ? EdgeInsets.only(top: 90.0)
+                : EdgeInsets.only(top: 000.0),
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: widget.product.rating!.length,
@@ -431,14 +489,6 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           rating.userId,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 5),
-                        alignment: Alignment.bottomLeft,
-                        child: Text(
-                          rating.userName,
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
