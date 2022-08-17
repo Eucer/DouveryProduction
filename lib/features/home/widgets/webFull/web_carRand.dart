@@ -61,7 +61,15 @@ class _WebFull_CarRandomState extends State<WebFull_CarRandom> {
             ),
           ),
           productList == null
-              ? const Loader()
+              ? Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  color: Colors.white,
+                  height: 129,
+                  width: 1000,
+                  child: Center(
+                    child: Loader(),
+                  ),
+                )
               : Container(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   width: 1000,

@@ -33,20 +33,21 @@ class WebFullAccountScreen extends StatelessWidget {
     final userCartLen = context.watch<UserProvider>().user.cart.length;
 
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      builder: (context, child) {
-        return Scaffold(
-          backgroundColor: GlobalVariables.greyBackgroundCOlor,
-          body: child,
-        );
-      },
-      debugShowCheckedModeBanner: false,
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? Session()
-          : Nosession(),
-    );
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(75),
+            child: Center(
+              child: Web_AppBarIcons(),
+            ),
+          ),
+          body: Provider.of<UserProvider>(context).user.token.isNotEmpty
+              ? Session()
+              : Nosession(),
+        ));
 
     //SelectBody
   }
@@ -60,12 +61,6 @@ class Session extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(75),
-        child: Center(
-          child: Web_AppBarIcons(),
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -106,12 +101,6 @@ class Nosession extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(75),
-        child: Center(
-          child: Web_AppBarIcons(),
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

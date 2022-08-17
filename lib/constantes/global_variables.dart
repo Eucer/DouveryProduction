@@ -30,6 +30,8 @@ class GlobalVariables {
   static const colorPriceSecond = Color(0xff0B347B);
   static const colorViolet = Color.fromARGB(234, 93, 2, 238);
   static const colorstarsrating = Color(0xffe67E22);
+  static const colorgreen = Color.fromARGB(255, 6, 194, 122);
+  static const colorUser = Color.fromARGB(255, 207, 51, 3);
 
   static const loaderColor = LinearGradient(
     colors: [

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:contained_tab_bar_view_with_custom_page_navigator/contained_tab_bar_view_with_custom_page_navigator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:v1douvery/common/widgets/custom.button.dart';
@@ -7,6 +8,7 @@ import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/auth/services/auth_service.dart';
+import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 
 enum Auth {
   signin,
@@ -172,8 +174,14 @@ class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
                                                             right: 8.0),
                                                     child: TextButton(
                                                         onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
+                                                          Navigator
+                                                              .pushReplacement(
+                                                            context,
+                                                            CupertinoPageRoute(
+                                                              builder: (context) =>
+                                                                  ResponsiveLayaout(),
+                                                            ),
+                                                          );
                                                         },
                                                         child: const Text(
                                                             '← Regresar')),

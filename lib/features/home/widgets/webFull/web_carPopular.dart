@@ -71,7 +71,15 @@ class _WebFull_carPopularState extends State<WebFull_carPopular> {
               ),
             ),
             productList == null
-                ? const Loader()
+                ? Container(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    color: Colors.white,
+                    height: 209,
+                    width: 1400,
+                    child: Center(
+                      child: Loader(),
+                    ),
+                  )
                 : Container(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     width: 1260,

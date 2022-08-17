@@ -58,6 +58,8 @@ class SearchStactic extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 11.5,
               height: 55,
               child: CachedNetworkImage(
+                width: MediaQuery.of(context).size.width / 11.5,
+                height: 55,
                 alignment: Alignment.centerRight,
                 imageUrl:
                     'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',

@@ -84,7 +84,7 @@ class AuthService {
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           Navigator.push(
             context,
-            MaterialPageRoute(
+            CupertinoPageRoute(
               builder: (context) => ResponsiveLayaout(),
             ),
           );

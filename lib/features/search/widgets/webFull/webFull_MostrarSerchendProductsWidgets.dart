@@ -40,10 +40,14 @@ class WebFullSerchendWidgetsProducts extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: const BoxDecoration(
-                color: GlobalVariables.backgroundColor,
-                border: Border(
-                    top: BorderSide(
-                        width: 1, color: Color.fromARGB(5, 0, 0, 0)))),
+              color: GlobalVariables.backgroundColor,
+              border: Border(
+                top: BorderSide(
+                  width: 1,
+                  color: Color.fromARGB(5, 0, 0, 0),
+                ),
+              ),
+            ),
             margin: const EdgeInsets.symmetric(
               horizontal: 0,
             ),
