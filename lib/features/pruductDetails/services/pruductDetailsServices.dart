@@ -89,7 +89,7 @@ class ProductDetailsServices {
         },
         body: jsonEncode({
           'id': product.id!,
-          'user': userProvider.user.name!,
+          'user': userProvider.user.name,
           'rating': rating,
         }),
       );
