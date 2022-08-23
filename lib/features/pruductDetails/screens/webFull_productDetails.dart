@@ -25,6 +25,7 @@ import 'package:v1douvery/features/orderDetails/screens/orderDetails.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
 import 'package:v1douvery/models/ratings.dart';
+import 'package:v1douvery/models/user.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 import '../../../common/widgets/loader.dart';
@@ -92,6 +93,9 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
           });
     }
 
+    final TextEditingController reviewClient = TextEditingController();
+    final user = Provider.of<UserProvider>(context).user;
+
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       body: SingleChildScrollView(
@@ -123,7 +127,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
-                                                2,
+                                                1.8,
                                             child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -177,150 +181,190 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 18.0),
-                                                    child: Container(
-                                                      width: 800,
-                                                      height: 60,
-                                                      child: Text(
-                                                        widget.product.name,
-                                                        style: const TextStyle(
-                                                          color:
-                                                              Color(0xff1C2833),
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          letterSpacing: 0.4,
-                                                          fontSize: 20.0,
+                                                  Container(
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Container(
+                                                              width: 660,
+                                                              height: 60,
+                                                              child: Text(
+                                                                widget.product
+                                                                    .name,
+                                                                style:
+                                                                    const TextStyle(
+                                                                  color: Color(
+                                                                      0xff1C2833),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  letterSpacing:
+                                                                      0.4,
+                                                                  fontSize:
+                                                                      20.0,
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                maxLines: 3,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Row(
+                                                                    children: [
+                                                                      Container(
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border(
+                                                                            bottom:
+                                                                                BorderSide(width: 1, color: Color(0xfff1f5f9)),
+                                                                          ),
+                                                                          color:
+                                                                              GlobalVariables.backgroundColor,
+                                                                        ),
+                                                                        width:
+                                                                            600,
+                                                                        padding:
+                                                                            const EdgeInsets.all(8.0),
+                                                                        height:
+                                                                            500,
+                                                                        child:
+                                                                            ContainedTabBarView(
+                                                                          tabBarProperties:
+                                                                              const TabBarProperties(
+                                                                            indicatorColor:
+                                                                                Colors.red,
+                                                                          ),
+                                                                          tabs: const [
+                                                                            Text(
+                                                                              'Descripcion',
+                                                                              style: TextStyle(
+                                                                                color: Color.fromARGB(206, 0, 0, 0),
+                                                                              ),
+                                                                            ),
+                                                                            Text(
+                                                                              'Servicio',
+                                                                              style: TextStyle(
+                                                                                color: Color.fromARGB(206, 0, 0, 0),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                          views: [
+                                                                            ContainerDescription(),
+                                                                            Container(child: Text('text')),
+                                                                          ],
+                                                                          // ignore: avoid_print
+                                                                          onChange: (index) =>
+                                                                              print(index),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ],
                                                         ),
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            border: Border.all(
+                                                              width: 1,
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      31,
+                                                                      166,
+                                                                      176,
+                                                                      195),
+                                                            ),
+                                                            color:
+                                                                Color(0XFFeee),
+                                                          ),
+                                                          width: 400,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          height: 760,
+                                                          child:
+                                                              ContainedTabBarView(
+                                                            tabBarProperties:
+                                                                TabBarProperties(
+                                                              indicatorWeight:
+                                                                  1.0,
+                                                              indicatorColor: Provider.of<
+                                                                              UserProvider>(
+                                                                          context)
+                                                                      .user
+                                                                      .token
+                                                                      .isNotEmpty
+                                                                  ? Color
+                                                                      .fromARGB(
+                                                                          88,
+                                                                          221,
+                                                                          221,
+                                                                          221)
+                                                                  : GlobalVariables
+                                                                      .colorgreen,
+                                                            ),
+                                                            tabs: const [
+                                                              Text(
+                                                                'Reviews',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          206,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                            views: [
+                                                              Column(
+                                                                children: [
+                                                                  Container(
+                                                                    height: 500,
+                                                                    child: StackReviews(
+                                                                        context),
+                                                                  ),
+                                                                  ContaienrBoxStarsEndCoemnd(
+                                                                      context,
+                                                                      user,
+                                                                      reviewClient),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                            // ignore: avoid_print
+                                                            onChange: (index) =>
+                                                                print(index),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ]),
                                           ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        border: Border(
-                                                          bottom: BorderSide(
-                                                              width: 1,
-                                                              color: Color(
-                                                                  0xfff1f5f9)),
-                                                        ),
-                                                        color: Colors.white,
-                                                      ),
-                                                      width: 400,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      height: 500,
-                                                      child:
-                                                          ContainedTabBarView(
-                                                        tabBarProperties:
-                                                            const TabBarProperties(
-                                                          indicatorColor:
-                                                              Colors.red,
-                                                        ),
-                                                        tabs: const [
-                                                          Text(
-                                                            'Descripcion',
-                                                            style: TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(206,
-                                                                      0, 0, 0),
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            'Servicio',
-                                                            style: TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(206,
-                                                                      0, 0, 0),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                        views: [
-                                                          ContainerDescription(),
-                                                          Container(
-                                                              child:
-                                                                  Text('text')),
-                                                        ],
-                                                        // ignore: avoid_print
-                                                        onChange: (index) =>
-                                                            print(index),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        border: Border(
-                                                          bottom: BorderSide(
-                                                              width: 1,
-                                                              color: Color(
-                                                                  0xfff1f5f9)),
-                                                        ),
-                                                        color: Colors.white,
-                                                      ),
-                                                      width: 400,
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      height: 500,
-                                                      child:
-                                                          ContainedTabBarView(
-                                                        tabBarProperties:
-                                                            TabBarProperties(
-                                                          indicatorWeight: 1.0,
-                                                          indicatorColor: Provider
-                                                                      .of<UserProvider>(
-                                                                          context)
-                                                                  .user
-                                                                  .token
-                                                                  .isNotEmpty
-                                                              ? GlobalVariables
-                                                                  .colorUser
-                                                              : GlobalVariables
-                                                                  .colorgreen,
-                                                        ),
-                                                        tabs: const [
-                                                          Text(
-                                                            'Reviews',
-                                                            style: TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(206,
-                                                                      0, 0, 0),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                        views: [
-                                                          StackReviews(context),
-                                                        ],
-                                                        // ignore: avoid_print
-                                                        onChange: (index) =>
-                                                            print(index),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          )
                                         ]),
                                   )
                                 ],
@@ -332,6 +376,152 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
           ]),
         ),
       ),
+    );
+  }
+
+  Container ContaienrBoxStarsEndCoemnd(
+      BuildContext context, User user, TextEditingController reviewClient) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            width: 1,
+            color: Color.fromARGB(88, 221, 221, 221),
+          ),
+        ),
+        color: Color.fromARGB(20, 221, 221, 221),
+      ),
+      child: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      width: 600,
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(top: 10, right: 10),
+                            child: Text(
+                              user.name,
+                              style: TextStyle(fontSize: 13),
+                            ),
+                          ),
+                          RatingBar.builder(
+                            initialRating: myRating,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemBuilder: (context, _) => Icon(
+                              Iconsax.star_15,
+                              color: Color(0xffFF2E4C),
+                            ),
+                            onRatingUpdate: (rating) {
+                              productDetailsServices.rateProduct(
+                                context: context,
+                                product: widget.product,
+                                rating: rating,
+                              );
+                              setState(() {});
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 5.3,
+                              height: 100,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(top: 10),
+                                    height: 100,
+                                    child: CustomTextField(
+                                      controller: reviewClient,
+                                      hintText: '',
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff1a49ab), // background
+                        // foreground
+                      ),
+                      onPressed: () {
+                        addToCart();
+                      },
+                      icon: Icon(
+                        IconlyLight.buy,
+                        size: 10,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        "Enviar",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width / 1,
+                height: 80,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(5, 0, 0, 0),
+                    ),
+                  ),
+                ),
+                padding: const EdgeInsets.only(bottom: 0.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Inicia session para comentar ...  ',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => WebFullResponsiveLayaout(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Iniciar Session',
+                        style: TextStyle(color: GlobalVariables.colorgreen),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 
@@ -352,169 +542,138 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
 
     return Stack(
       children: [
-        Provider.of<UserProvider>(context).user.token.isNotEmpty
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 600,
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(top: 10, right: 10),
-                              child: Text(
-                                user.name,
-                                style: TextStyle(fontSize: 13),
-                              ),
-                            ),
-                            RatingBar.builder(
-                              initialRating: myRating,
-                              minRating: 1,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemBuilder: (context, _) => Icon(
-                                Iconsax.star_15,
-                                color: Color(0xffFF2E4C),
-                              ),
-                              onRatingUpdate: (rating) {
-                                productDetailsServices.rateProduct(
-                                  context: context,
-                                  product: widget.product,
-                                  rating: rating,
-                                );
-                                setState(() {});
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8.0, bottom: 8, right: 10),
-                            child: Container(child: Text('Tu rating :  ')),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width / 7,
-                                height: 100,
-                                color: Colors.white,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(top: 10),
-                                      width: 600,
-                                      height: 90,
-                                      child: CustomTextField(
-                                        controller: reviewClient,
-                                        hintText: '',
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            : Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 1,
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(5, 0, 0, 0),
-                      ),
-                    ),
-                  ),
-                  padding: const EdgeInsets.only(bottom: 0.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Inicia session para comentar ...  ',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => WebFullResponsiveLayaout(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          'Iniciar Session',
-                          style: TextStyle(color: GlobalVariables.colorgreen),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
         Padding(
-          padding: const EdgeInsets.only(top: 90.0),
+          padding: const EdgeInsets.only(top: 0.0),
           child: Container(
-            
             margin: Provider.of<UserProvider>(context).user.token.isNotEmpty
-                ? EdgeInsets.only(top: 90.0)
+                ? EdgeInsets.only(top: 0.0)
                 : EdgeInsets.only(top: 000.0),
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: widget.product.rating!.length,
                 itemBuilder: ((context, index) {
                   final rating = widget.product.rating![index];
-                  return Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(bottom: 5),
-                        alignment: Alignment.bottomLeft,
-                        child: Text(
-                          rating.userId,
-                          style: TextStyle(fontSize: 16),
-                        ),
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromARGB(20, 221, 221, 221),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 5),
-                        alignment: Alignment.bottomLeft,
-                        child: Row(
-                          children: [
-                            Stars(rating: rating.rating),
-                            Text(
-                              '(' +
-                                  avgRating.toString() +
-                                  ') ' +
-                                  widget.product.rating!.length.toString(),
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 13),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(bottom: 5),
+                            alignment: Alignment.bottomLeft,
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/images/user.jpg"),
+                                      // picked file
+                                      fit: BoxFit.cover,
+                                    ),
+                                    color: Colors.red,
+                                  ),
+                                ),
+                                Text(
+                                  rating.userName,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
                             ),
-                            Text(
-                              widget.product.name.length.toString(),
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 13),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(bottom: 5),
+                            alignment: Alignment.bottomLeft,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    //! Importante cuando se pueda agreagr imagen a
+                                    //! los comentarios.
+
+                                    //  Container(
+                                    //  margin: EdgeInsets.only(right: 5),
+                                    //  width: 150,
+                                    //   height: 100,
+                                    //  child: Image(
+                                    //   image: AssetImage(
+                                    //       ""),
+                                    //  ),
+                                    // ),
+                                  ],
+                                ),
+                                Text(
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit in length',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                alignment: Alignment.bottomLeft,
+                                child: Row(
+                                  children: [
+                                    Stars(rating: rating.rating),
+                                    Text(
+                                      '(' +
+                                          avgRating.toString() +
+                                          ') ' +
+                                          widget.product.rating!.length
+                                              .toString(),
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 13),
+                                    ),
+                                    Text(
+                                      widget.product.name.length.toString(),
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 13),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              CustomnIconsButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.share,
+                                  size: 15,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                              CustomnIconsButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.thumb_up_off_alt,
+                                  size: 15,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                              CustomnIconsButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.thumb_down_off_alt,
+                                  size: 15,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   );
                 })),
           ),

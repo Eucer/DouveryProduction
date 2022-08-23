@@ -64,7 +64,7 @@ class Product {
           : null,
       viewed: map['viewed'] != null
           ? List<Viewed>.from(
-              map['ratings']?.map(
+              map['viewed']?.map(
                 (x) => Viewed.fromMap(x),
               ),
             )

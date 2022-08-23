@@ -9,7 +9,7 @@ class GlobalVariables {
   static const primaryColor = Color.fromARGB(255, 13, 71, 161);
   static const secondaryColor = Color(0xff2c3e50);
   static const buttomColor = Color(0xff1a49ab);
-  static const backgroundColor = Colors.white;
+  static const backgroundColor = Color(0xffFDFEFE);
   static const Color greyBackgroundCOlor = Color(0xfff1f5f9);
   static const backgroundNavBarColor = Colors.white;
   static const selectedNavBarColor = Color(0xffebecee);

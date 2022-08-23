@@ -7,7 +7,10 @@ const ratingSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    
+    userName: {
+        type: String,
+        
+    },
     rating: {
         type:Number,
         required: true,

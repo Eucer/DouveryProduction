@@ -8,6 +8,8 @@ void showSnackBar(BuildContext context, String text) {
   ElegantNotification.info(title: Text("Info"), description: Text(text))
       .show(context);
   ;
+
+  print(text);
 }
 
 Future<List<File>> pickImages() async {
