@@ -74,7 +74,7 @@ productRouter.get("/api/products/search/:name",  async (req, res) => {
 // create a post request route to rate the product.
 productRouter.post("/api/rate-product",auth,  async (req, res) => {
   try {
-    const { id,user, rating } = req.body;
+    const { id,user,comment, rating } = req.body;
     let product = await Product.findById(id);
 
     for (let i = 0; i < product.ratings.length; i++) {
@@ -88,6 +88,7 @@ productRouter.post("/api/rate-product",auth,  async (req, res) => {
     const ratingSchema = {
       userId: req.user,
       userName:user,
+      userComment:comment,
       rating,
     };
 

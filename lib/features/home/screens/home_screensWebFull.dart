@@ -17,6 +17,7 @@ import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
+import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/footer/screens/footerHome.dart';
 import 'package:v1douvery/features/home/widgets/webFull/Web_carRating.dart';
 
@@ -85,7 +86,7 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
     }
 
     return Scaffold(
-        backgroundColor: Color(0xffEFEFEF),
+        backgroundColor: GlobalVariables.greyBackgroundCOlor,
 
         //SelectBody
         body: Scrollbar(

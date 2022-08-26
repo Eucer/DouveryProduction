@@ -42,9 +42,9 @@ class WebFullSerchendWidgetsProducts extends StatelessWidget {
             decoration: const BoxDecoration(
               color: GlobalVariables.backgroundColor,
               border: Border(
-                top: BorderSide(
+                bottom: BorderSide(
+                  color: Color.fromARGB(8, 0, 0, 0),
                   width: 1,
-                  color: Color.fromARGB(5, 0, 0, 0),
                 ),
               ),
             ),
@@ -98,8 +98,8 @@ class WebFullSerchendWidgetsProducts extends StatelessWidget {
                       child: Text(
                         product.name,
                         style: GoogleFonts.roboto(
-                          fontSize: 16,
-                          color: Color(0xff212121),
+                          fontSize: 15,
+                          color: Color.fromARGB(183, 33, 33, 33),
                         ),
                         maxLines: 2,
                       ),
@@ -140,7 +140,7 @@ class WebFullSerchendWidgetsProducts extends StatelessWidget {
                               width: MediaQuery.of(context).size.width / 2.7,
                               child: Text(
                                 '( ' +
-                                    avgRating.toString() +
+                                    avgRating.toStringAsPrecision(2) +
                                     ' ) ' +
                                     product.rating!.length.toString(),
                                 style: TextStyle(

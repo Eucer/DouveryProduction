@@ -13,7 +13,7 @@ class Stars extends StatelessWidget {
       direction: Axis.horizontal,
       itemCount: 5,
       rating: rating,
-      itemSize: 13,
+      itemSize: 14,
       itemBuilder: (context, _) => Icon(
         Iconsax.star_15,
         color: Color(0xffFF2E4C),

@@ -481,7 +481,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         productDetailsServices.rateProduct(
                                             context: context,
                                             product: widget.product,
-                                            rating: rating);
+                                            rating: rating,
+                                            comment: '');
                                       },
                                     ),
                                   ),

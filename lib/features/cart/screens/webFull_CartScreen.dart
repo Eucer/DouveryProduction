@@ -20,13 +20,19 @@ import 'package:v1douvery/features/account/widgets/WelcomeUser.dart';
 import 'package:v1douvery/features/account/widgets/webFull/webFull_ordenesUser.dart';
 import 'package:v1douvery/features/account/widgets/webFull/webFull_categoriasUser.dart';
 import 'package:v1douvery/features/account/widgets/webFull/webFull_perfilUser.dart';
+import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/auth/responsive/authResponsivelayout.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
+import 'package:v1douvery/features/cart/screens/cartScreen.dart';
+import 'package:v1douvery/features/cart/widgets/cardProduct.dart';
+import 'package:v1douvery/features/cart/widgets/cartSubTotal.dart';
+import 'package:v1douvery/features/cart/widgets/web/WebFull_cardProduct.dart';
+import 'package:v1douvery/features/cart/widgets/web/WebFull_cartSubTotal.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
-class WebFullAccountScreen extends StatelessWidget {
-  const WebFullAccountScreen({Key? key}) : super(key: key);
+class WebFull_CartScreen extends StatelessWidget {
+  const WebFull_CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,36 +66,81 @@ class Session extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>().user;
+    int sum = 0;
+    user.cart
+        .map((e) => sum += e['quantity'] * e['product']['price'] as int)
+        .toList();
+
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       body: SingleChildScrollView(
         child: Column(
           children: [
             WebFull_NavCategory(),
-            Container(
-              padding: EdgeInsets.only(top: 10),
-              width: MediaQuery.of(context).size.width / 1.3,
-              height: 800,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  WebFullPerfilUsuario(),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+            SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
                       color: GlobalVariables.backgroundColor,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Container(
+                              child: ElevatedButton.icon(
+                                autofocus: false,
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffed174f), // background
+                                  // foreground
+                                ),
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddressScreen(
+                                      totalAmount: sum.toString(),
+                                      cantid: user.cart.length.toString(),
+                                    ),
+                                  ),
+                                ),
+                                icon: Icon(Icons.payments, size: 36),
+                                label: Text(
+                                  "Proceder a pagar (${user.cart.length} items)",
+                                ),
+                              ),
+                            ),
+                          ),
+                          WebFull_CartSubtotal(),
+                          const SizedBox(height: 15),
+                          Container(
+                            color: Colors.black12.withOpacity(0.04),
+                            height: 1,
+                          )
+                        ],
+                      ),
                     ),
-                    margin: EdgeInsets.only(top: 10),
-                    width: 1000,
-                    height: 770,
-                    child: Column(
-                      children: [
-                        WebFullCategoriasUser(),
-                        WebFullOrdersUser(),
-                      ],
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: GlobalVariables.backgroundColor,
+                      ),
+                      width: MediaQuery.of(context).size.width / 1.7,
+                      height: 750,
+                      child: ListView.builder(
+                        itemCount: user.cart.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            child: WebFull_CartProduct(
+                              index: index,
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

@@ -5,6 +5,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
+import 'package:v1douvery/features/cart/screens/webFull_CartScreen.dart';
 import 'package:v1douvery/features/cart/services/cardServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
@@ -351,9 +352,12 @@ class _WebFull_IconCartState extends State<WebFull_IconCart> {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         icon: const Icon(IconlyLight.buy, color: Colors.white),
-        onPressed: () {
-          _modalIconsCart(context);
-        },
+        onPressed: () => Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (_, __, ___) => WebFull_CartScreen(),
+          ),
+        ),
       ),
     );
   }

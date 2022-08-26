@@ -3,10 +3,12 @@ import 'dart:convert';
 class Rating {
   final String userId;
   final String userName;
+  final String userComment;
   final double rating;
   Rating({
     required this.userId,
     required this.userName,
+    required this.userComment,
     required this.rating,
   });
 
@@ -14,6 +16,7 @@ class Rating {
     return {
       'userId': userId,
       'userName': userName,
+      'userComment': userComment,
       'rating': rating,
     };
   }
@@ -22,6 +25,8 @@ class Rating {
     return Rating(
       userId: map['userId'] ?? '',
       userName: map['userName'] ?? '',
+      userComment: map['userComment'] ??
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit in length',
       rating: map['rating']?.toDouble() ?? 0.0,
     );
   }

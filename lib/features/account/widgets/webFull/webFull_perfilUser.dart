@@ -122,9 +122,27 @@ class WebFullPerfilUsuario extends StatelessWidget {
                     child: ContainedTabBarView(
                       tabBarProperties: const TabBarProperties(),
                       tabs: [
-                        Text('Datos'),
-                        Text('Contacts'),
-                        Text('Report User'),
+                        Text(
+                          'Datos',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: GlobalVariables.colorTextGreylv180,
+                          ),
+                        ),
+                        Text(
+                          'Contacts',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: GlobalVariables.colorTextGreylv180,
+                          ),
+                        ),
+                        Text(
+                          'Report User',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: GlobalVariables.colorTextGreylv180,
+                          ),
+                        ),
                       ],
                       views: [
                         Container(
@@ -140,8 +158,9 @@ class WebFullPerfilUsuario extends StatelessWidget {
                                 child: Text(
                                   'Informacion',
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: GlobalVariables.colorTextBlckBold),
+                                    fontSize: 20,
+                                    color: GlobalVariables.colorTextBlckBold,
+                                  ),
                                 ),
                               ),
                               Container(

@@ -151,7 +151,9 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                                       ),
                                                     ),
                                                     child: Container(
-                                                      width: 800,
+                                                      margin: EdgeInsets.only(
+                                                          right: 10),
+                                                      width: 660,
                                                       height: 30,
                                                       alignment:
                                                           Alignment.centerLeft,
@@ -194,7 +196,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                                           children: [
                                                             Container(
                                                               width: 660,
-                                                              height: 60,
+                                                              height: 80,
                                                               child: Text(
                                                                 widget.product
                                                                     .name,
@@ -422,6 +424,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                               productDetailsServices.rateProduct(
                                 context: context,
                                 product: widget.product,
+                                comment: reviewClient.text,
                                 rating: rating,
                               );
                               setState(() {});
@@ -461,7 +464,13 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                         // foreground
                       ),
                       onPressed: () {
-                        addToCart();
+                        productDetailsServices.rateProduct(
+                          context: context,
+                          product: widget.product,
+                          comment: reviewClient.text,
+                          rating: totalRating,
+                        );
+                        setState(() {});
                       },
                       icon: Icon(
                         IconlyLight.buy,
@@ -557,8 +566,13 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromARGB(20, 221, 221, 221),
+                        border: Border(
+                          top: BorderSide(
+                            width: 1,
+                            color: Color.fromARGB(88, 221, 221, 221),
+                          ),
+                        ),
+                        color: Colors.white,
                       ),
                       padding: EdgeInsets.all(8),
                       child: Column(
@@ -586,8 +600,10 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                 Text(
                                   rating.userName,
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(106, 0, 0, 0),
+                                  ),
                                 ),
                               ],
                             ),
@@ -596,8 +612,10 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                             padding: EdgeInsets.only(bottom: 5),
                             alignment: Alignment.bottomLeft,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     //! Importante cuando se pueda agreagr imagen a
                                     //! los comentarios.
@@ -614,8 +632,15 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                   ],
                                 ),
                                 Text(
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit in length',
-                                  style: TextStyle(fontSize: 13),
+                                  rating.userComment,
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Color.fromARGB(
+                                        183,
+                                        33,
+                                        33,
+                                        33,
+                                      )),
                                 ),
                               ],
                             ),
@@ -630,17 +655,12 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                     Stars(rating: rating.rating),
                                     Text(
                                       '(' +
-                                          avgRating.toString() +
-                                          ') ' +
-                                          widget.product.rating!.length
-                                              .toString(),
+                                          rating.rating.toStringAsPrecision(2) +
+                                          ') ',
                                       style: TextStyle(
-                                          color: Colors.grey, fontSize: 13),
-                                    ),
-                                    Text(
-                                      widget.product.name.length.toString(),
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 13),
+                                        color: Colors.grey,
+                                        fontSize: 13,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -741,74 +761,97 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
               ),
             ),
             Container(
+              padding: EdgeInsets.only(top: 10, left: 30),
               width: 800,
               height: 700,
-              color: Color.fromARGB(180, 255, 255, 255),
               child: Padding(
                 padding: const EdgeInsets.all(1.0),
-                child: Column(
+                child: Row(
                   children: [
-                    Stack(
+                    Column(
                       children: [
-                        Container(
-                          color: Colors.white,
-                          child: CarouselSlider(
-                            items: widget.product.images.map(
-                              (i) {
-                                return Builder(
-                                  builder: (BuildContext context) => Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.network(
-                                      i,
-                                      height: 1500,
-                                      fit: BoxFit.contain,
-                                      width: 700,
+                        Stack(
+                          alignment: AlignmentDirectional.bottomEnd,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  width: 700,
+                                  height: 600,
+                                  decoration: BoxDecoration(
+                                    color: GlobalVariables.greyBackgroundCOlor,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: CarouselSlider(
+                                    items: widget.product.images.map(
+                                      (i) {
+                                        return Builder(
+                                          builder: (BuildContext context) =>
+                                              Padding(
+                                            padding: const EdgeInsets.all(1.0),
+                                            child: Container(
+                                              color: GlobalVariables
+                                                  .backgroundColor,
+                                              child: Image.network(
+                                                i,
+                                                height: 1500,
+                                                fit: BoxFit.contain,
+                                                width: 700,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).toList(),
+                                    options: CarouselOptions(
+                                      viewportFraction: 1,
+                                      height: 600,
+                                      aspectRatio: 16 / 9,
+                                      initialPage: 0,
+                                      enableInfiniteScroll: false,
+                                      reverse: false,
+                                      autoPlayCurve: Curves.fastOutSlowIn,
+                                      enlargeCenterPage: true,
+                                      scrollDirection: Axis.horizontal,
                                     ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Container(
+                          color: GlobalVariables.backgroundColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: widget.product.images.asMap().entries.map(
+                              (entry) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _controller.animateToPage(entry.key),
+                                  child: Container(
+                                    width: 9.0,
+                                    height: 9.0,
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 4.0),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: (Theme.of(context).brightness ==
+                                                    Brightness.dark
+                                                ? Color.fromARGB(
+                                                    255, 68, 62, 62)
+                                                : Colors.black)
+                                            .withOpacity(_current == entry.key
+                                                ? 0.5
+                                                : 0.1)),
                                   ),
                                 );
                               },
                             ).toList(),
-                            options: CarouselOptions(
-                              viewportFraction: 1,
-                              height: 600,
-                              aspectRatio: 16 / 9,
-                              initialPage: 0,
-                              enableInfiniteScroll: false,
-                              reverse: false,
-                              autoPlayCurve: Curves.fastOutSlowIn,
-                              enlargeCenterPage: true,
-                              scrollDirection: Axis.horizontal,
-                            ),
                           ),
                         ),
                       ],
-                    ),
-                    Container(
-                      color: GlobalVariables.backgroundColor,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: widget.product.images.asMap().entries.map(
-                          (entry) {
-                            return GestureDetector(
-                              onTap: () => _controller.animateToPage(entry.key),
-                              child: Container(
-                                width: 9.0,
-                                height: 9.0,
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 4.0),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: (Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Color.fromARGB(255, 68, 62, 62)
-                                            : Colors.black)
-                                        .withOpacity(
-                                            _current == entry.key ? 0.5 : 0.1)),
-                              ),
-                            );
-                          },
-                        ).toList(),
-                      ),
                     ),
                   ],
                 ),
@@ -854,7 +897,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
               width: 50,
               child: Text(
                 '(' +
-                    avgRating.toString() +
+                    avgRating.toStringAsPrecision(2) +
                     ') ' +
                     widget.product.rating!.length.toString(),
                 style: const TextStyle(color: Colors.grey, fontSize: 15),
