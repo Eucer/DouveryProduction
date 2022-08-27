@@ -602,7 +602,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
-                                    color: Color.fromARGB(106, 0, 0, 0),
+                                    color: Color.fromARGB(155, 0, 0, 0),
                                   ),
                                 ),
                               ],
@@ -793,11 +793,16 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                             child: Container(
                                               color: GlobalVariables
                                                   .backgroundColor,
-                                              child: Image.network(
-                                                i,
+                                              child: CachedNetworkImage(
+                                                imageUrl: i,
                                                 height: 1500,
                                                 fit: BoxFit.contain,
                                                 width: 700,
+                                                placeholder: (context, url) =>
+                                                    Loader(),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
                                               ),
                                             ),
                                           ),
