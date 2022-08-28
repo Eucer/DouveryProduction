@@ -22,6 +22,7 @@ import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/features/orderDetails/screens/orderDetails.dart';
+import 'package:v1douvery/features/pruductDetails/button/buttonNoSession.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
 import 'package:v1douvery/models/ratings.dart';
@@ -952,27 +953,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                   .user
                                   .token
                                   .isNotEmpty
-                              ? ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xff1a49ab), // background
-                                    // foreground
-                                  ),
-                                  onPressed: () {
-                                    addToCart();
-                                    _modalIconsCart(context);
-                                  },
-                                  icon: Icon(
-                                    IconlyLight.buy,
-                                    size: 16,
-                                    color: Colors.white,
-                                  ),
-                                  label: Text(
-                                    "Añadir al Carrito",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
+                              ? ButtomAggCartSessions(_modalIconsCart, context)
                               : ButtomAggCartNosessions(),
                           SizedBox(width: 10),
                           ElevatedButton.icon(
@@ -1009,27 +990,18 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
       ]),
     );
   }
-}
 
-class ButtomAggCartNosessions extends StatelessWidget {
-  const ButtomAggCartNosessions({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  ElevatedButton ButtomAggCartSessions(
+      Future<Null> _modalIconsCart(BuildContext context),
+      BuildContext context) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         primary: Color(0xff1a49ab), // background
         // foreground
       ),
       onPressed: () {
-        ElegantNotification.info(
-          width: 500,
-          title: Text("Info"),
-          description: Text('Upps... parece que no has iniciado session '),
-          animationDuration: const Duration(milliseconds: 200),
-          toastDuration: const Duration(milliseconds: 3500),
-        ).show(context);
-        ;
+        addToCart();
+        _modalIconsCart(context);
       },
       icon: Icon(
         IconlyLight.buy,

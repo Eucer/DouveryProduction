@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
 
 class SerchendWidgetsProducts extends StatelessWidget {

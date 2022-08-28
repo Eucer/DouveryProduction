@@ -21,7 +21,7 @@ import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 

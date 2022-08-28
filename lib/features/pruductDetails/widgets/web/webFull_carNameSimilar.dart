@@ -9,7 +9,7 @@ import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/models/product.dart';
 
@@ -18,14 +18,17 @@ import '../../../search/services/seachServices.dart';
 
 class WebFull_carNameSimilarProduct extends StatefulWidget {
   final String nameSimilarProduct;
-  const WebFull_carNameSimilarProduct({Key? key, required this.nameSimilarProduct})
+  const WebFull_carNameSimilarProduct(
+      {Key? key, required this.nameSimilarProduct})
       : super(key: key);
 
   @override
-  State<WebFull_carNameSimilarProduct> createState() => _WebFull_carNameSimilarProductState();
+  State<WebFull_carNameSimilarProduct> createState() =>
+      _WebFull_carNameSimilarProductState();
 }
 
-class _WebFull_carNameSimilarProductState extends State<WebFull_carNameSimilarProduct> {
+class _WebFull_carNameSimilarProductState
+    extends State<WebFull_carNameSimilarProduct> {
   List<Product>? productList;
   final SearchServices searchServices = SearchServices();
 

@@ -14,7 +14,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/ratings.dart';

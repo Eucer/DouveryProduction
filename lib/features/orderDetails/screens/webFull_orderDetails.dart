@@ -7,7 +7,7 @@ import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/models/order.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';

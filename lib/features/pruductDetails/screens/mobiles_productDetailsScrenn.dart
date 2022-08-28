@@ -28,6 +28,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
+import 'package:v1douvery/features/pruductDetails/button/buttonNoSession.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/features/pruductDetails/widgets/modalScreen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
@@ -369,19 +370,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             child: Row(
                               children: [
                                 const SizedBox(width: 10),
-                                ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xff1a49ab), // background
-                                    // foreground
-                                  ),
-                                  onPressed: () {
-                                    addToCart();
+                                Provider.of<UserProvider>(context)
+                                        .user
+                                        .token
+                                        .isNotEmpty
+                                    ? ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          primary:
+                                              Color(0xff1a49ab), // background
+                                          // foreground
+                                        ),
+                                        onPressed: () {
+                                          addToCart();
 
-                                    _modalIconsCart(context);
-                                  },
-                                  icon: Icon(IconlyLight.buy, size: 16),
-                                  label: Text("Añadir al Carrito"),
-                                ),
+                                          _modalIconsCart(context);
+                                        },
+                                        icon: Icon(IconlyLight.buy, size: 16),
+                                        label: Text("Añadir al Carrito"),
+                                      )
+                                    : ButtomAggCartNosessions(),
                                 SizedBox(width: 10),
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(

@@ -13,7 +13,7 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/cart/services/cardServices.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/features/pruductDetails/screens/webFull_productDetails.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/main.dart';

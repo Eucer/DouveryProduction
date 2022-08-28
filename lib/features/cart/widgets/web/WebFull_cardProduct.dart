@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/brands/screens/brandsScreen.dart';
 import 'package:v1douvery/features/cart/services/cardServices.dart';
-import 'package:v1douvery/features/pruductDetails/screens/productDetailsScrenn.dart';
+import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
