@@ -69,28 +69,44 @@ class Nosession extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          BottomNavSearchTitle(),
-          NotSessions(),
-          Container(
-            child: IconButton(
-              icon: GestureDetector(
-                child: Icon(
-                  IconlyLight.login,
-                  color: GlobalVariables.colorRosaRojVivo,
-                ),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AuthScreen(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          alignment: Alignment.center,
+          color: GlobalVariables.backgroundColor,
+          width: MediaQuery.of(context).size.width,
+          height: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/images/gifUserAccount.gif",
+                height: 125.0,
+                width: 125.0,
+              ),
+              NotSessions(),
+              Container(
+                color: GlobalVariables.backgroundColor,
+                alignment: Alignment.center,
+                child: IconButton(
+                  icon: GestureDetector(
+                    child: Icon(
+                      IconlyLight.login,
+                      color: GlobalVariables.colorRosaRojVivo,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AuthScreen(),
+                      ),
+                    ),
                   ),
+                  onPressed: () {},
                 ),
               ),
-              onPressed: () {},
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

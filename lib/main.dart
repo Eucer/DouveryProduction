@@ -14,6 +14,7 @@ import 'package:v1douvery/features/auth/services/auth_service.dart';
 import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 
 import 'package:v1douvery/models/user.dart';
+import 'package:v1douvery/provider/theme.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 import 'package:v1douvery/router.dart';
 
@@ -38,12 +39,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final AuthService authService = AuthService();
-
-  @override
-  void initState() {
-    super.initState();
-    authService.getUserData(context);
-  }
 
   @override
   Widget build(BuildContext context) {

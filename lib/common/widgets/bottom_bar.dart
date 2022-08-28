@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/screens/account_screen.dart';
 import 'package:v1douvery/features/cart/screens/cartScreen.dart';
+import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
@@ -54,21 +55,29 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               BottomNavigationBarItem(
                 icon: const Icon(Iconsax.home4),
-                activeIcon: Container(
-                  width: bottomBarWidth,
-                  margin: const EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: GlobalVariables.bottomNavHome,
-                        width: bottomBarBorderWidth,
-                      ),
+                activeIcon: GestureDetector(
+                  onDoubleTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ResponsiveLayaout(),
                     ),
                   ),
-                  height: 40,
-                  child: const Icon(
-                    Iconsax.home4,
-                    size: 30,
+                  child: Container(
+                    width: bottomBarWidth,
+                    margin: const EdgeInsets.only(),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: GlobalVariables.bottomNavHome,
+                          width: bottomBarBorderWidth,
+                        ),
+                      ),
+                    ),
+                    height: 40,
+                    child: const Icon(
+                      Iconsax.home4,
+                      size: 30,
+                    ),
                   ),
                 ),
               ),
