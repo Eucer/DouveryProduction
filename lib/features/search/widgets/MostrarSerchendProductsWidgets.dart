@@ -137,7 +137,8 @@ class SerchendWidgetsProducts extends StatelessWidget {
                                 '( ' +
                                     avgRating.toString() +
                                     ' ) ' +
-                                    product.rating!.length.toString(),
+                                    product.rating!.length
+                                        .toStringAsPrecision(2),
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 9,

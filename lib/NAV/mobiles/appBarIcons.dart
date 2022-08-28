@@ -22,7 +22,7 @@ class AppBarIcons extends StatelessWidget {
           height: 100,
           child: CachedNetworkImage(
             imageUrl:
-                'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                'https://res.cloudinary.com/douvery/image/upload/v1661701638/LOGO/iizi2nvlhon5wwzdph3i.png',
           ),
         ),
       ),
