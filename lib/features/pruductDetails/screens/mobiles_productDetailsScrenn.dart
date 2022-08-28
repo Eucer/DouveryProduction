@@ -143,15 +143,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    CustomnIconsButton(
-                                        onPressed: () =>
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      HomeScreen()),
-                                            ).then((_) => setState(() {})),
-                                        icon: Icon(Icons.abc)),
                                     Container(
                                       child: Column(
                                         mainAxisAlignment:
@@ -172,7 +163,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       width: 50,
                                       child: Text(
                                         '(' +
-                                            avgRating.toString() +
+                                            avgRating.toStringAsPrecision(2) +
                                             ') ' +
                                             widget.product.rating!.length
                                                 .toString(),
@@ -341,7 +332,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               style: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 17.0,
+                                fontSize: 15.0,
                               ),
                             ),
                           ),

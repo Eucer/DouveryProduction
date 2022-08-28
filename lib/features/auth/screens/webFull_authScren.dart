@@ -173,18 +173,20 @@ class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
                                                         const EdgeInsets.only(
                                                             right: 8.0),
                                                     child: TextButton(
-                                                        onPressed: () {
-                                                          Navigator
-                                                              .pushReplacement(
-                                                            context,
-                                                            CupertinoPageRoute(
-                                                              builder: (context) =>
-                                                                  ResponsiveLayaout(),
-                                                            ),
-                                                          );
-                                                        },
-                                                        child: const Text(
-                                                            '← Regresar')),
+                                                      onPressed: () {
+                                                        Navigator
+                                                            .pushReplacement(
+                                                          context,
+                                                          CupertinoPageRoute(
+                                                            builder: (context) =>
+                                                                ResponsiveLayaout(),
+                                                          ),
+                                                        );
+                                                      },
+                                                      child: const Text(
+                                                        '← Regresar',
+                                                      ),
+                                                    ),
                                                   ),
                                                 ],
                                               ),

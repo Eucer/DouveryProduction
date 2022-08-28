@@ -38,6 +38,13 @@ class _CartProductState extends State<CartProduct> {
     );
   }
 
+  void deleteAllQuantity(Product product) {
+    cartServices.removeAllFromCart(
+      context: context,
+      product: product,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final productCart = context.watch<UserProvider>().user.cart[widget.index];
@@ -49,6 +56,7 @@ class _CartProductState extends State<CartProduct> {
         children: [
           GestureDetector(
             child: Container(
+              padding: EdgeInsets.all(10),
               margin: const EdgeInsets.only(
                 left: 0,
               ),
@@ -63,7 +71,7 @@ class _CartProductState extends State<CartProduct> {
                     imageUrl: product.images[0],
                     fit: BoxFit.contain,
                     height: 120,
-                    width: 130,
+                    width: 120,
                   ),
                   Column(
                     children: [
@@ -100,14 +108,15 @@ class _CartProductState extends State<CartProduct> {
                           'Disponible',
                           style: TextStyle(
                             fontSize: 10,
-                            color: Color(0xff212121),
+                            fontWeight: FontWeight.w500,
+                            color: GlobalVariables.colorgreen,
                           ),
                           maxLines: 2,
                         ),
                       ),
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 15, top: 8, bottom: 8),
+                            const EdgeInsets.only(left: 0, top: 8, bottom: 8),
                         color: GlobalVariables.backgroundNavBarColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,6 +175,30 @@ class _CartProductState extends State<CartProduct> {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black12,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.black12,
+                              ),
+                              child: InkWell(
+                                onTap: () => deleteAllQuantity(product),
+                                child: Container(
+                                  width: 52,
+                                  height: 22,
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                    size: 16,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
