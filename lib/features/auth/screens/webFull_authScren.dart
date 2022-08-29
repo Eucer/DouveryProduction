@@ -97,7 +97,7 @@ class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
                             padding: const EdgeInsets.all(8.0),
                             height: 400,
                             child: ContainedTabBarView(
-                              initialIndex: 0,
+                              initialIndex: 1,
                               tabs: const [
                                 Text(
                                   'Iniciar Session',

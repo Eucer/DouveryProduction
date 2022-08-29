@@ -59,7 +59,7 @@ class SearchStactic extends StatelessWidget {
               height: 55,
               child: CachedNetworkImage(
                 imageUrl:
-                    'https://res.cloudinary.com/douvery/image/upload/v1661703207/LOGO/ttzjvxhgv6rkadtwgx7p.png',
+                    'https://res.cloudinary.com/douvery/image/upload/v1661792667/LOGO/jhqc0zvlowcjtsimcggb.png',
               ),
             ),
           ),

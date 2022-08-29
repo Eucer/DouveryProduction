@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double bottomBarBorderWidth = 2;
     List<Widget> data = [
       HomeScreen(),
-      const CartScreen(),
+      CartScreen(),
       HomeScreen(),
       AccountScreen(),
     ];
@@ -128,21 +128,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(
                   Iconsax.user_octagon,
                 ),
-                activeIcon: Container(
-                  width: bottomBarWidth,
-                  margin: EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: GlobalVariables.buttomColor,
-                        width: bottomBarBorderWidth,
-                      ),
+                activeIcon: GestureDetector(
+                  onDoubleTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ResponsiveLayaout(),
                     ),
                   ),
-                  height: 40,
-                  child: Icon(
-                    Iconsax.user_octagon,
-                    size: 30,
+                  child: Container(
+                    width: bottomBarWidth,
+                    margin: EdgeInsets.only(),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: GlobalVariables.buttomColor,
+                          width: bottomBarBorderWidth,
+                        ),
+                      ),
+                    ),
+                    height: 40,
+                    child: Icon(
+                      Iconsax.user_octagon,
+                      size: 30,
+                    ),
                   ),
                 ),
               ),

@@ -40,6 +40,10 @@ class _WebFull_BannerWidgetState extends State<WebFull_BannerWidget> {
                     height: 340,
                     viewportFraction: 1,
                     aspectRatio: 1 / 1,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 250),
+                    pauseAutoPlayOnManualNavigate: true,
+                    padEnds: true,
                     onPageChanged: (index, reason) {
                       setState(() {
                         _current = index;

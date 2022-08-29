@@ -75,6 +75,8 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
   Stream<SwipeRefreshState> get _stream => _controller.stream;
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+
     void _reset() {
       Navigator.pushReplacement(
         context,
@@ -115,7 +117,12 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
                                   ),
                                 ],
                               ),
-                              WebFull_vertUser()
+                              Provider.of<UserProvider>(context)
+                                      .user
+                                      .token
+                                      .isNotEmpty
+                                  ? WebFull_Sessions_vertUser()
+                                  : WebFull_NoSessions_vertUser(),
                             ],
                           ),
                         ),

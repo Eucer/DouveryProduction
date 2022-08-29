@@ -106,6 +106,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: AppBar(
+          automaticallyImplyLeading: false,
+          leading: Container(
+            child: CustomnIconsButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
+              ),
+              onPressed: () => Navigator.pop(
+                context,
+              ),
+            ),
+          ),
           elevation: 0,
           title: FadeInLeft(
             from: 10,

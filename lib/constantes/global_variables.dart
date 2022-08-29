@@ -32,6 +32,7 @@ class GlobalVariables {
   static const colorstarsrating = Color(0xffe67E22);
   static const colorgreen = Color.fromARGB(255, 4, 161, 17);
   static const colorUser = Color.fromARGB(255, 3, 207, 207);
+  static const colorYelow = Color(0xffFBD316);
 
   static const loaderColor = LinearGradient(
     colors: [
