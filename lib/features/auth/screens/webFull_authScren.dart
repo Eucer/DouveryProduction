@@ -73,13 +73,21 @@ class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 5.0, right: 0, left: 30),
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 250,
-                    height: 100,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => ResponsiveLayaout(),
+                      ),
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 250,
+                      height: 100,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                      ),
                     ),
                   ),
                 ),
@@ -97,7 +105,7 @@ class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
                             padding: const EdgeInsets.all(8.0),
                             height: 400,
                             child: ContainedTabBarView(
-                              initialIndex: 1,
+                              initialIndex: 0,
                               tabs: const [
                                 Text(
                                   'Iniciar Session',
@@ -174,8 +182,7 @@ class _WebFullAuthScreenState extends State<WebFullAuthScreen> {
                                                             right: 8.0),
                                                     child: TextButton(
                                                       onPressed: () {
-                                                        Navigator
-                                                            .pushReplacement(
+                                                        Navigator.push(
                                                           context,
                                                           CupertinoPageRoute(
                                                             builder: (context) =>

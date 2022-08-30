@@ -46,12 +46,7 @@ class MainScreenHomeScreenWebFull extends StatelessWidget {
       ),
       builder: (context, child) {
         return Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(75),
-            child: Center(
-              child: Web_AppBarIcons(),
-            ),
-          ),
+          endDrawerEnableOpenDragGesture: false,
           body: child,
         );
       },
@@ -89,7 +84,12 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
 
     return Scaffold(
         backgroundColor: GlobalVariables.greyBackgroundCOlor,
-
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(75),
+          child: Center(
+            child: Web_AppBarIcons(),
+          ),
+        ),
         //SelectBody
         body: Scrollbar(
           child: SingleChildScrollView(

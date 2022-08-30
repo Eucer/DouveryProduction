@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
 import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
+import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
@@ -64,6 +65,12 @@ class _WebFullCategoryDealsScreenState
     final userCartLen = context.watch<UserProvider>().user.cart.length;
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(75),
+        child: Center(
+          child: Web_AppBarIcons(),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

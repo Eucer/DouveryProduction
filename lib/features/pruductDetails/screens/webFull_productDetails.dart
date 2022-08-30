@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hovering/hovering.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
@@ -99,6 +100,12 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
 
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(75),
+        child: Center(
+          child: Web_AppBarIcons(),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           child: Column(children: [

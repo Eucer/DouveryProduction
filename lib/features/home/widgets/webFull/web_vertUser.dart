@@ -4,20 +4,8 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/Nosession.dart';
+import 'package:v1douvery/features/auth/responsive/authResponsivelayout.dart';
 import 'package:v1douvery/provider/user_provider.dart';
-
-class Cont_vertUser extends StatelessWidget {
-  const Cont_vertUser({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? WebFull_Sessions_vertUser()
-          : WebFull_NoSessions_vertUser(),
-    );
-  }
-}
 
 class WebFull_Sessions_vertUser extends StatefulWidget {
   WebFull_Sessions_vertUser({Key? key}) : super(key: key);
@@ -218,8 +206,24 @@ class _WebFull_NoSessions_vertUserState
                         Container(
                           alignment: Alignment.topCenter,
                           padding: EdgeInsets.only(top: 50),
-                          child: Text(
-                            'Ningun producto agregado',
+                          child: Container(
+                            child: IconButton(
+                              icon: GestureDetector(
+                                child: Icon(
+                                  IconlyLight.login,
+                                  color: GlobalVariables.colorRosaRojVivo,
+                                ),
+                                onTap: () => Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        WebFullResponsiveLayaout(),
+                                  ),
+                                  (route) => false,
+                                ),
+                              ),
+                              onPressed: () {},
+                            ),
                           ),
                         ),
                         Container(
