@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
+import 'package:v1douvery/common/widgets/carouselCustonIconsArrow.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -210,15 +212,28 @@ class _WebFull_carPopularState extends State<WebFull_carPopular> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Flexible(
-                                  child: ElevatedButton(
-                                    onPressed: () => _controller.previousPage(),
-                                    child: Text('←'),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CarouselconsButton(
+                                      onPressed: () =>
+                                          _controller.previousPage(),
+                                      icon: Icon(
+                                        IconlyLight.arrowLeft2,
+                                        size: 20,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Flexible(
-                                  child: ElevatedButton(
-                                    onPressed: () => _controller.nextPage(),
-                                    child: Text('→'),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CarouselconsButton(
+                                      onPressed: () => _controller.nextPage(),
+                                      icon: Icon(
+                                        IconlyLight.arrowRight2,
+                                        size: 20,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],

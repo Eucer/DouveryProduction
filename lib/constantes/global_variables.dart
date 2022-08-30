@@ -58,6 +58,7 @@ class GlobalVariables {
   ];
 
   static List<String> carouselImagesWeb = [
+    'https://res.cloudinary.com/douvery/image/upload/v1661850780/banner/ytlhajitpuposk3gvrta.png',
     'https://res.cloudinary.com/douvery/image/upload/v1660209142/banner/o1zskktmuzkbq5lsuqyf.png',
     'https://m.media-amazon.com/images/I/7174eQSxuFL._SX3000_.jpg',
     'https://m.media-amazon.com/images/I/61tX6L542kL._SX3000_.jpg',
