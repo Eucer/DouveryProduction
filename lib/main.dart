@@ -41,6 +41,12 @@ class _MyAppState extends State<MyApp> {
   final AuthService authService = AuthService();
 
   @override
+  void initState() {
+    super.initState();
+    authService.getUserData(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,

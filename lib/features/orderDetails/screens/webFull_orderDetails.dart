@@ -273,3 +273,49 @@ class _WebFullOrderDetailScreenState extends State<WebFullOrderDetailScreen> {
     );
   }
 }
+
+class WebFullVetUserOrderDetailScreen extends StatefulWidget {
+  final Order order;
+  const WebFullVetUserOrderDetailScreen({Key? key, required this.order})
+      : super(key: key);
+
+  @override
+  State<WebFullVetUserOrderDetailScreen> createState() =>
+      _WebFullVetUserOrderDetailScreenState();
+}
+
+class _WebFullVetUserOrderDetailScreenState
+    extends State<WebFullVetUserOrderDetailScreen> {
+  List<Product>? productList;
+  final HomeServices homeServices = HomeServices();
+
+  int currentStep = 0;
+  final AdminServices adminServices = AdminServices();
+
+  @override
+  void initState() {
+    super.initState();
+    currentStep = widget.order.status;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      height: 100,
+      child: widget.order.status == 0 ? CompletadoOrder() : Text('cam,ino'),
+    );
+  }
+}
+
+class CompletadoOrder extends StatelessWidget {
+  const CompletadoOrder({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: Text('Orden Completada'),
+    );
+  }
+}

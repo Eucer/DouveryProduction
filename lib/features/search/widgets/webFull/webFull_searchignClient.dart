@@ -59,18 +59,18 @@ class _WebFull_searchingPageState extends State<WebFull_searchingPage> {
         ),
         builder: (context, child) {
           return Scaffold(
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(75),
-              child: Center(
-                child: Web_AppBarIcons(),
-              ),
-            ),
             body: child,
           );
         },
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             backgroundColor: GlobalVariables.greyBackgroundCOlor,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(75),
+              child: Center(
+                child: Web_AppBarIcons(),
+              ),
+            ),
             body: Container(
               child: Column(children: [
                 WebFull_NavCategory(),
