@@ -120,7 +120,11 @@ class _WebFull_Sessions_vertUserState extends State<WebFull_Sessions_vertUser> {
               views: [
                 SingleChildScrollView(
                   child: orders == null
-                      ? Center(child: const Loader())
+                      ? Container(
+                          width: 250,
+                          height: 240,
+                          child: const Loader(),
+                        )
                       : Container(
                           width: 250,
                           height: 240,
