@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:v1douvery/features/admin/screens/Full/screens/accountBrands.dart';
 import 'package:v1douvery/features/admin/screens/Full/screens/adminScreens.dart';
+import 'package:v1douvery/features/admin/screens/Full/screens/ordersScreen.dart';
 import 'package:vertical_tabs/vertical_tabs.dart';
 
 class WebFullAdminNavRail extends StatelessWidget {
@@ -16,15 +18,21 @@ class WebFullAdminNavRail extends StatelessWidget {
           direction: TextDirection.ltr,
           contentScrollAxis: Axis.vertical,
           changePageDuration: const Duration(milliseconds: 500),
-          backgroundColor: Color(0xff0b347b),
+          backgroundColor: Color.fromARGB(255, 232, 232, 233),
           tabsShadowColor: Colors.black54,
           selectedTabBackgroundColor: const Color(0x1100ff00),
-          tabBackgroundColor: const Color(0xff0b347b),
+          tabBackgroundColor: Color.fromARGB(255, 245, 245, 245),
           tabs: const <Tab>[
-            Tab(child: Center(child: Text('Flutter')), icon: Icon(Icons.phone)),
+            Tab(child: Center(child: Text('Home')), icon: Icon(Icons.phone)),
+            Tab(child: Center(child: Text('Orders')), icon: Icon(Icons.phone)),
+            Tab(
+                child: Center(child: Text('Accaount')),
+                icon: Icon(Icons.phone)),
           ],
           contents: <Widget>[
             AdminWebScreens(),
+            WebFull_OrdersScreen(),
+            WebFull_AccountsBrands()
           ],
         ),
       ),

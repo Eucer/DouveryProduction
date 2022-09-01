@@ -1,5 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hovering/hovering.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
@@ -303,7 +307,7 @@ class _WebFullVetUserOrderDetailScreenState
     return Container(
       width: 150,
       height: 100,
-      child: widget.order.status == 0 ? CompletadoOrder() : Text('cam,ino'),
+      child: widget.order.status == 0 ? CompletadoOrder() : ProductoEnCamino(),
     );
   }
 }
@@ -313,9 +317,147 @@ class CompletadoOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Text('Orden Completada'),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Orden Completada',
+              style: TextStyle(fontSize: 12),
+            ),
+            HoverWidget(
+              hoverChild: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Ver detalles',
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.openSans(fontSize: 12),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        IconlyLight.document,
+                        size: 14,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onHover: (PointerEnterEvent event) {},
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Ver detalles',
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.openSans(fontSize: 12),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        IconlyLight.document,
+                        size: 13,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProductoEnCamino extends StatelessWidget {
+  const ProductoEnCamino({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Orden en camino',
+              style: TextStyle(fontSize: 12),
+            ),
+            HoverWidget(
+              hoverChild: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Ver estado',
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.openSans(
+                        fontSize: 12,
+                        color: GlobalVariables.colorgreen,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        IconlyLight.swap,
+                        color: GlobalVariables.colorgreen,
+                        size: 14,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onHover: (PointerEnterEvent event) {},
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Ver estado',
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.openSans(
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 3, 119, 12),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        IconlyLight.swap,
+                        color: Color.fromARGB(255, 3, 119, 12),
+                        size: 13,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
