@@ -74,66 +74,68 @@ class _SearchingPageState extends State<SearchingPage> {
             backgroundColor: GlobalVariables.appBarbackgroundColor,
           ),
         ),
-        body: Column(children: [
-          Container(
-            margin: const EdgeInsets.only(left: 10),
-            height: 30,
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom:
-                    BorderSide(color: Color.fromARGB(12, 0, 0, 0), width: 1),
+        body: SelectionArea(
+          child: Column(children: [
+            Container(
+              margin: const EdgeInsets.only(left: 10),
+              height: 30,
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom:
+                      BorderSide(color: Color.fromARGB(12, 0, 0, 0), width: 1),
+                ),
+                color: GlobalVariables.backgroundColor,
               ),
-              color: GlobalVariables.backgroundColor,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  width: 160,
-                  alignment: Alignment.center,
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Buscar :',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Container(
-                        width: 100,
-                        child: Text(
-                          widget.searchQuery,
-                          maxLines: 1,
-                          softWrap: false,
-                          overflow: TextOverflow.ellipsis,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 160,
+                    alignment: Alignment.center,
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Buscar :',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
+                        Container(
+                          width: 100,
+                          child: Text(
+                            widget.searchQuery,
+                            maxLines: 1,
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          products == null
-              ? const Loader()
-              : Expanded(
-                  flex: 2,
-                  child: ListView.builder(
-                    addAutomaticKeepAlives: false,
-                    addRepaintBoundaries: false,
-                    addSemanticIndexes: false,
-                    itemCount: products!.length,
-                    itemBuilder: (context, index) {
-                      print('object : $index');
-                      return GestureDetector(
-                        child: products == null
-                            ? const Loader()
-                            : SerchendWidgetsProducts(
-                                product: products![index],
-                              ),
-                      );
-                    },
+            products == null
+                ? const Loader()
+                : Expanded(
+                    flex: 2,
+                    child: ListView.builder(
+                      addAutomaticKeepAlives: false,
+                      addRepaintBoundaries: false,
+                      addSemanticIndexes: false,
+                      itemCount: products!.length,
+                      itemBuilder: (context, index) {
+                        print('object : $index');
+                        return GestureDetector(
+                          child: products == null
+                              ? const Loader()
+                              : SerchendWidgetsProducts(
+                                  product: products![index],
+                                ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-        ]));
+          ]),
+        ));
   }
 }
 

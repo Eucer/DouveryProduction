@@ -71,75 +71,77 @@ class _WebFull_searchingPageState extends State<WebFull_searchingPage> {
                 child: Web_AppBarIcons(),
               ),
             ),
-            body: Container(
-              child: Column(children: [
-                WebFull_NavCategory(),
-                Container(
-                  height: 30,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                          color: Color.fromARGB(12, 0, 0, 0), width: 1),
-                    ),
-                    color: GlobalVariables.backgroundColor,
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.only(left: 370),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 160,
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              const Text(
-                                'Buscar :',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 10),
-                                width: 100,
-                                child: Text(
-                                  widget.searchQuery,
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                products == null
-                    ? const Loader()
-                    : Expanded(
-                        flex: 1,
-                        child: Container(
-                          width: 1200,
-                          child: ListView.builder(
-                            addAutomaticKeepAlives: false,
-                            addRepaintBoundaries: false,
-                            addSemanticIndexes: false,
-                            itemCount: products!.length,
-                            itemBuilder: (context, index) {
-                              print('object : $index');
-                              return GestureDetector(
-                                child: products == null
-                                    ? const Loader()
-                                    : WebFullSerchendWidgetsProducts(
-                                        product: products![index],
-                                      ),
-                              );
-                            },
-                          ),
-                        ),
+            body: SelectionArea(
+              child: Container(
+                child: Column(children: [
+                  WebFull_NavCategory(),
+                  Container(
+                    height: 30,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromARGB(12, 0, 0, 0), width: 1),
                       ),
-              ]),
+                      color: GlobalVariables.backgroundColor,
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.only(left: 370),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 160,
+                            alignment: Alignment.center,
+                            child: Row(
+                              children: [
+                                const Text(
+                                  'Buscar :',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  width: 100,
+                                  child: Text(
+                                    widget.searchQuery,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  products == null
+                      ? const Loader()
+                      : Expanded(
+                          flex: 1,
+                          child: Container(
+                            width: 1200,
+                            child: ListView.builder(
+                              addAutomaticKeepAlives: false,
+                              addRepaintBoundaries: false,
+                              addSemanticIndexes: false,
+                              itemCount: products!.length,
+                              itemBuilder: (context, index) {
+                                print('object : $index');
+                                return GestureDetector(
+                                  child: products == null
+                                      ? const Loader()
+                                      : WebFullSerchendWidgetsProducts(
+                                          product: products![index],
+                                        ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                ]),
+              ),
             )));
   }
 }

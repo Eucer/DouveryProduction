@@ -8,6 +8,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -586,12 +587,12 @@ class _CarouselProductToNamedCategoryState
                                                 height: 40,
                                                 width: 120.0,
                                                 color: Color(0xffFffffff),
-                                                child: FlatButton(
+                                                child: CustomnIconsButton(
                                                   onPressed: () {
                                                     _modalInteriorFerce(
                                                         context);
                                                   },
-                                                  child: Icon(
+                                                  icon: Icon(
                                                       Icons.keyboard_control),
                                                 ),
                                               ),
