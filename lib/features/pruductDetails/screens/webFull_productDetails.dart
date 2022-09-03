@@ -256,7 +256,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                                                           padding:
                                                                               const EdgeInsets.all(8.0),
                                                                           height:
-                                                                              500,
+                                                                              1000,
                                                                           child:
                                                                               ContainedTabBarView(
                                                                             tabBarProperties:
@@ -279,7 +279,46 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                                                             ],
                                                                             views: [
                                                                               ContainerDescription(),
-                                                                              Container(child: Text('text')),
+                                                                              Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  borderRadius: BorderRadius.circular(10),
+                                                                                  border: Border.all(
+                                                                                    width: 1,
+                                                                                    color: Color.fromARGB(31, 166, 176, 195),
+                                                                                  ),
+                                                                                  color: Color(0XFFeee),
+                                                                                ),
+                                                                                width: 600,
+                                                                                padding: const EdgeInsets.all(8.0),
+                                                                                height: 860,
+                                                                                child: ContainedTabBarView(
+                                                                                  tabBarProperties: TabBarProperties(
+                                                                                    indicatorWeight: 1.0,
+                                                                                    indicatorColor: Provider.of<UserProvider>(context).user.token.isNotEmpty ? Color.fromARGB(88, 221, 221, 221) : GlobalVariables.colorgreen,
+                                                                                  ),
+                                                                                  tabs: const [
+                                                                                    Text(
+                                                                                      'Reviews',
+                                                                                      style: TextStyle(
+                                                                                        color: Color.fromARGB(206, 0, 0, 0),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                  views: [
+                                                                                    Column(
+                                                                                      children: [
+                                                                                        Container(
+                                                                                          height: 600,
+                                                                                          child: StackReviews(context),
+                                                                                        ),
+                                                                                        ContaienrBoxStarsEndCoemnd(context, user, reviewClient),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ],
+                                                                                  // ignore: avoid_print
+                                                                                  onChange: (index) => print(index),
+                                                                                ),
+                                                                              ),
                                                                             ],
                                                                             // ignore: avoid_print
                                                                             onChange: (index) =>
@@ -292,88 +331,6 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                                                 ),
                                                               )
                                                             ],
-                                                          ),
-                                                          Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              border:
-                                                                  Border.all(
-                                                                width: 1,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        31,
-                                                                        166,
-                                                                        176,
-                                                                        195),
-                                                              ),
-                                                              color: Color(
-                                                                  0XFFeee),
-                                                            ),
-                                                            width: 400,
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(8.0),
-                                                            height: 760,
-                                                            child:
-                                                                ContainedTabBarView(
-                                                              tabBarProperties:
-                                                                  TabBarProperties(
-                                                                indicatorWeight:
-                                                                    1.0,
-                                                                indicatorColor: Provider.of<UserProvider>(
-                                                                            context)
-                                                                        .user
-                                                                        .token
-                                                                        .isNotEmpty
-                                                                    ? Color
-                                                                        .fromARGB(
-                                                                            88,
-                                                                            221,
-                                                                            221,
-                                                                            221)
-                                                                    : GlobalVariables
-                                                                        .colorgreen,
-                                                              ),
-                                                              tabs: const [
-                                                                Text(
-                                                                  'Reviews',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            206,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              views: [
-                                                                Column(
-                                                                  children: [
-                                                                    Container(
-                                                                      height:
-                                                                          500,
-                                                                      child: StackReviews(
-                                                                          context),
-                                                                    ),
-                                                                    ContaienrBoxStarsEndCoemnd(
-                                                                        context,
-                                                                        user,
-                                                                        reviewClient),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                              // ignore: avoid_print
-                                                              onChange:
-                                                                  (index) =>
-                                                                      print(
-                                                                          index),
-                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -398,6 +355,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
   Container ContaienrBoxStarsEndCoemnd(
       BuildContext context, User user, TextEditingController reviewClient) {
     return Container(
+      height: 250,
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -414,14 +372,14 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                 child: Column(
                   children: [
                     Container(
-                      width: 600,
+                      width: 500,
                       child: Row(
                         children: [
                           Container(
                             padding: EdgeInsets.only(top: 10, right: 10),
                             child: Text(
                               user.name,
-                              style: TextStyle(fontSize: 13),
+                              style: TextStyle(fontSize: 16),
                             ),
                           ),
                           RatingBar.builder(
@@ -452,7 +410,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                         Column(
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width / 5.3,
+                              width: MediaQuery.of(context).size.width / 3.5,
                               height: 100,
                               child: Column(
                                 children: [
@@ -462,7 +420,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                     child: CustomTextField(
                                       controller: reviewClient,
                                       hintText: '',
-                                      maxLines: 2,
+                                      maxLines: 4,
                                     ),
                                   ),
                                 ],
@@ -472,30 +430,55 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                         ),
                       ],
                     ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xff1a49ab), // background
-                        // foreground
-                      ),
-                      onPressed: () {
-                        productDetailsServices.rateProduct(
-                          context: context,
-                          product: widget.product,
-                          comment: reviewClient.text,
-                          rating: totalRating,
-                        );
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        IconlyLight.buy,
-                        size: 10,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        "Enviar",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              CustomnIconsButton(
+                                  onPressed: () {},
+                                  icon: Icon(IconlyLight.infoSquare)),
+                              Text(
+                                'Porfavor introduce tu mas sicera opinion.',
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color.fromARGB(
+                                      183,
+                                      33,
+                                      33,
+                                      33,
+                                    )),
+                              ),
+                            ],
+                          ),
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  GlobalVariables.secondaryColor, // background
+                              // foreground
+                            ),
+                            onPressed: () {
+                              productDetailsServices.rateProduct(
+                                context: context,
+                                product: widget.product,
+                                comment: reviewClient.text,
+                                rating: totalRating,
+                              );
+                              setState(() {});
+                            },
+                            icon: Icon(
+                              IconlyLight.send,
+                              size: 25,
+                              color: Colors.white,
+                            ),
+                            label: Text(
+                              "Crear opinion",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   ],
@@ -591,36 +574,52 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                       padding: EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.only(bottom: 5),
-                            alignment: Alignment.bottomLeft,
-                            child: Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image:
-                                          AssetImage("assets/images/user.jpg"),
-                                      // picked file
-                                      fit: BoxFit.cover,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                alignment: Alignment.bottomLeft,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(right: 10),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/user.jpg"),
+                                          // picked file
+                                          fit: BoxFit.cover,
+                                        ),
+                                        color: Colors.red,
+                                      ),
                                     ),
-                                    color: Colors.red,
-                                  ),
+                                    Text(
+                                      rating.userName == ''
+                                          ? 'Nombre no disponible'
+                                          : rating.userName,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400,
+                                        color:
+                                            GlobalVariables.colorTextBlckBold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  rating.userName,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromARGB(155, 0, 0, 0),
-                                  ),
+                              ),
+                              CustomnIconsButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  IconlyLight.shieldDone,
+                                  size: 15,
+                                  color: GlobalVariables.colorgreen,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           Container(
                             padding: EdgeInsets.only(bottom: 5),
@@ -635,18 +634,30 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                     //! los comentarios.
 
                                     //  Container(
-                                    //  margin: EdgeInsets.only(right: 5),
-                                    //  width: 150,
-                                    //   height: 100,
-                                    //  child: Image(
-                                    //   image: AssetImage(
-                                    //       ""),
+                                    //   margin: EdgeInsets.only(right: 5),
+                                    //   width:
+                                    //      MediaQuery.of(context).size.width / 3,
+                                    //  height: 100,
+                                    //   child: Row(
+                                    //    children: [
+                                    //      Image(
+                                    //        image: AssetImage(""),
+                                    ////      ),
+                                    //     Image(
+                                    //      image: AssetImage(""),
+                                    //    ),
+                                    //    Image(
+                                    //      image: AssetImage(""),
+                                    //      ),
+                                    //    ],
+                                    //   ),
                                     //  ),
-                                    // ),
                                   ],
                                 ),
                                 Text(
-                                  rating.userComment,
+                                  rating.userComment == ''
+                                      ? 'Comentario no disponible'
+                                      : rating.userComment,
                                   style: TextStyle(
                                       fontSize: 13,
                                       color: Color.fromARGB(
@@ -682,14 +693,6 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                               CustomnIconsButton(
                                 onPressed: () {},
                                 icon: Icon(
-                                  Icons.share,
-                                  size: 15,
-                                  color: Colors.blueGrey,
-                                ),
-                              ),
-                              CustomnIconsButton(
-                                onPressed: () {},
-                                icon: Icon(
                                   Icons.thumb_up_off_alt,
                                   size: 15,
                                   color: Colors.blueGrey,
@@ -717,6 +720,9 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
   }
 
   Padding Carousel(BuildContext context) {
+    final TextEditingController reviewClient = TextEditingController();
+    final user = Provider.of<UserProvider>(context).user;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -777,7 +783,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
             Container(
               padding: EdgeInsets.only(top: 10, left: 30),
               width: 800,
-              height: 700,
+              height: 1500,
               child: Padding(
                 padding: const EdgeInsets.all(1.0),
                 child: Row(
@@ -785,7 +791,7 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                     Column(
                       children: [
                         Stack(
-                          alignment: AlignmentDirectional.bottomEnd,
+                          alignment: AlignmentDirectional.bottomCenter,
                           children: [
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -803,10 +809,14 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
                                         return Builder(
                                           builder: (BuildContext context) =>
                                               Padding(
-                                            padding: const EdgeInsets.all(1.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Container(
-                                              color: GlobalVariables
-                                                  .backgroundColor,
+                                              decoration: BoxDecoration(
+                                                color: GlobalVariables
+                                                    .backgroundColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
                                               child: CachedNetworkImage(
                                                 imageUrl: i,
                                                 height: 1500,

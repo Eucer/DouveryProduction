@@ -25,8 +25,7 @@ class Rating {
     return Rating(
       userId: map['userId'] ?? '',
       userName: map['userName'] ?? '',
-      userComment: map['userComment'] ??
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit in length',
+      userComment: map['userComment'] ?? 'Comentario no agregado',
       rating: map['rating']?.toDouble() ?? 0.0,
     );
   }

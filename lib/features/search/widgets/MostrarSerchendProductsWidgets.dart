@@ -135,10 +135,10 @@ class SerchendWidgetsProducts extends StatelessWidget {
                               width: MediaQuery.of(context).size.width / 2.7,
                               child: Text(
                                 '( ' +
-                                    avgRating.toString() +
+                                    avgRating.toStringAsPrecision(2) +
                                     ' ) ' +
                                     product.rating!.length
-                                        .toStringAsPrecision(2),
+                                        .toStringAsPrecision(1),
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 9,
