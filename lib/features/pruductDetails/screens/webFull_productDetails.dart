@@ -12,6 +12,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hovering/hovering.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:modals/modals.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/web/Web_appBarIcons.dart';
 import 'package:v1douvery/NAV/web/Web_bottomNavSearchTitle.dart';
@@ -106,247 +107,244 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
           child: Web_AppBarIcons(),
         ),
       ),
-      body: SelectionArea(
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(children: [
-              Product == null
-                  ? const Loader()
-                  : Column(children: [
-                      WebFull_NavCategory(),
-                      ConPricer(context),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Container(
-                                color: Colors.white,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Carousel(context),
-                                    Container(
-                                      alignment: Alignment.bottomLeft,
-                                      padding: const EdgeInsets.only(top: 30.0),
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  1.8,
-                                              child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    GestureDetector(
-                                                      onTap: () =>
-                                                          Navigator.push(
-                                                        context,
-                                                        PageRouteBuilder(
-                                                          pageBuilder:
-                                                              (_, __, ___) =>
-                                                                  BrandsScreen(
-                                                            brands: widget
-                                                                .product.marca,
-                                                          ),
-                                                          settings:
-                                                              RouteSettings(
-                                                            arguments: widget
-                                                                .product.marca,
-                                                          ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(children: [
+            Product == null
+                ? const Loader()
+                : Column(children: [
+                    WebFull_NavCategory(),
+                    ConPricer(context),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Container(
+                              color: Colors.white,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Carousel(context),
+                                  Container(
+                                    alignment: Alignment.bottomLeft,
+                                    padding: const EdgeInsets.only(top: 30.0),
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.8,
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () => Navigator.push(
+                                                      context,
+                                                      PageRouteBuilder(
+                                                        pageBuilder:
+                                                            (_, __, ___) =>
+                                                                BrandsScreen(
+                                                          brands: widget
+                                                              .product.marca,
+                                                        ),
+                                                        settings: RouteSettings(
+                                                          arguments: widget
+                                                              .product.marca,
                                                         ),
                                                       ),
-                                                      child: Container(
-                                                        margin: EdgeInsets.only(
-                                                            right: 10),
-                                                        width: 660,
-                                                        height: 30,
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: RichText(
-                                                          text: TextSpan(
-                                                            children: [
-                                                              WidgetSpan(
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .house_outlined,
-                                                                  size: 16,
-                                                                  color: Color(
-                                                                      0xff10375C),
-                                                                ),
+                                                    ),
+                                                    child: Container(
+                                                      margin: EdgeInsets.only(
+                                                          right: 10),
+                                                      width: 660,
+                                                      height: 30,
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: RichText(
+                                                        text: TextSpan(
+                                                          children: [
+                                                            WidgetSpan(
+                                                              child: Icon(
+                                                                Icons
+                                                                    .house_outlined,
+                                                                size: 16,
+                                                                color: Color(
+                                                                    0xff10375C),
                                                               ),
-                                                              TextSpan(
-                                                                text: widget
-                                                                    .product
-                                                                    .marca,
+                                                            ),
+                                                            TextSpan(
+                                                              text: widget
+                                                                  .product
+                                                                  .marca,
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xff10375C),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Container(
+                                                              width: 660,
+                                                              height: 80,
+                                                              child: Text(
+                                                                widget.product
+                                                                    .name,
                                                                 style:
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                   color: Color(
-                                                                      0xff10375C),
+                                                                      0xff1C2833),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  letterSpacing:
+                                                                      0.4,
+                                                                  fontSize:
+                                                                      20.0,
                                                                 ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                maxLines: 3,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                               ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      child: Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Container(
-                                                                width: 660,
-                                                                height: 80,
-                                                                child: Text(
-                                                                  widget.product
-                                                                      .name,
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    color: Color(
-                                                                        0xff1C2833),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    letterSpacing:
-                                                                        0.4,
-                                                                    fontSize:
-                                                                        20.0,
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .start,
-                                                                  maxLines: 3,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        Container(
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            border:
-                                                                                Border(
-                                                                              bottom: BorderSide(width: 1, color: Color(0xfff1f5f9)),
-                                                                            ),
-                                                                            color:
-                                                                                GlobalVariables.backgroundColor,
+                                                            ),
+                                                            Container(
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Row(
+                                                                    children: [
+                                                                      Container(
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border(
+                                                                            bottom:
+                                                                                BorderSide(width: 1, color: Color(0xfff1f5f9)),
                                                                           ),
-                                                                          width:
-                                                                              600,
-                                                                          padding:
-                                                                              const EdgeInsets.all(8.0),
-                                                                          height:
-                                                                              1000,
-                                                                          child:
-                                                                              ContainedTabBarView(
-                                                                            tabBarProperties:
-                                                                                const TabBarProperties(
-                                                                              indicatorColor: Colors.red,
-                                                                            ),
-                                                                            tabs: const [
-                                                                              Text(
-                                                                                'Descripcion',
-                                                                                style: TextStyle(
-                                                                                  color: Color.fromARGB(206, 0, 0, 0),
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Servicio',
-                                                                                style: TextStyle(
-                                                                                  color: Color.fromARGB(206, 0, 0, 0),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                            views: [
-                                                                              ContainerDescription(),
-                                                                              Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  borderRadius: BorderRadius.circular(10),
-                                                                                  border: Border.all(
-                                                                                    width: 1,
-                                                                                    color: Color.fromARGB(31, 166, 176, 195),
-                                                                                  ),
-                                                                                  color: Color(0XFFeee),
-                                                                                ),
-                                                                                width: 600,
-                                                                                padding: const EdgeInsets.all(8.0),
-                                                                                height: 860,
-                                                                                child: ContainedTabBarView(
-                                                                                  tabBarProperties: TabBarProperties(
-                                                                                    indicatorWeight: 1.0,
-                                                                                    indicatorColor: Provider.of<UserProvider>(context).user.token.isNotEmpty ? Color.fromARGB(88, 221, 221, 221) : GlobalVariables.colorgreen,
-                                                                                  ),
-                                                                                  tabs: const [
-                                                                                    Text(
-                                                                                      'Reviews',
-                                                                                      style: TextStyle(
-                                                                                        color: Color.fromARGB(206, 0, 0, 0),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                  views: [
-                                                                                    Column(
-                                                                                      children: [
-                                                                                        Container(
-                                                                                          height: 600,
-                                                                                          child: StackReviews(context),
-                                                                                        ),
-                                                                                        ContaienrBoxStarsEndCoemnd(context, user, reviewClient),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ],
-                                                                                  // ignore: avoid_print
-                                                                                  onChange: (index) => print(index),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                            // ignore: avoid_print
-                                                                            onChange: (index) =>
-                                                                                print(index),
-                                                                          ),
+                                                                          color:
+                                                                              GlobalVariables.backgroundColor,
                                                                         ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
+                                                                        width:
+                                                                            600,
+                                                                        padding:
+                                                                            const EdgeInsets.all(8.0),
+                                                                        height:
+                                                                            1000,
+                                                                        child:
+                                                                            ContainedTabBarView(
+                                                                          tabBarProperties:
+                                                                              const TabBarProperties(
+                                                                            indicatorColor:
+                                                                                Colors.red,
+                                                                          ),
+                                                                          tabs: const [
+                                                                            Text(
+                                                                              'Descripcion',
+                                                                              style: TextStyle(
+                                                                                color: Color.fromARGB(206, 0, 0, 0),
+                                                                              ),
+                                                                            ),
+                                                                            Text(
+                                                                              'Servicio',
+                                                                              style: TextStyle(
+                                                                                color: Color.fromARGB(206, 0, 0, 0),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                          views: [
+                                                                            ContainerDescription(),
+                                                                            Container(
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(10),
+                                                                                border: Border.all(
+                                                                                  width: 1,
+                                                                                  color: Color.fromARGB(31, 166, 176, 195),
+                                                                                ),
+                                                                                color: Color(0XFFeee),
+                                                                              ),
+                                                                              width: 600,
+                                                                              padding: const EdgeInsets.all(8.0),
+                                                                              height: 860,
+                                                                              child: ContainedTabBarView(
+                                                                                tabBarProperties: TabBarProperties(
+                                                                                  indicatorWeight: 1.0,
+                                                                                  indicatorColor: Provider.of<UserProvider>(context).user.token.isNotEmpty ? Color.fromARGB(88, 221, 221, 221) : GlobalVariables.colorgreen,
+                                                                                ),
+                                                                                tabs: const [
+                                                                                  Text(
+                                                                                    'Reviews',
+                                                                                    style: TextStyle(
+                                                                                      color: Color.fromARGB(206, 0, 0, 0),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                                views: [
+                                                                                  Column(
+                                                                                    children: [
+                                                                                      Container(
+                                                                                        height: 600,
+                                                                                        child: StackReviews(context),
+                                                                                      ),
+                                                                                      ContaienrBoxStarsEndCoemnd(context, user, reviewClient),
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                                // ignore: avoid_print
+                                                                                onChange: (index) => print(index),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                          // ignore: avoid_print
+                                                                          onChange: (index) =>
+                                                                              print(index),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ]),
-                                            ),
-                                          ]),
-                                    )
-                                  ],
-                                )),
-                          ],
-                        ),
+                                                  ),
+                                                ]),
+                                          ),
+                                        ]),
+                                  )
+                                ],
+                              )),
+                        ],
                       ),
-                    ]),
-            ]),
-          ),
+                    ),
+                  ]),
+          ]),
         ),
       ),
     );
@@ -1024,7 +1022,11 @@ class _WebFull_productDetailsState extends State<WebFull_productDetails> {
       ),
       onPressed: () {
         addToCart();
-        _modalIconsCart(context);
+        ElegantNotification.success(
+            showProgressIndicator: true,
+            width: MediaQuery.of(context).size.width / 1,
+            title: Text("Agregado"),
+            description: Text("Tu carrito se actualizo correctamente"));
       },
       icon: Icon(
         IconlyLight.buy,
