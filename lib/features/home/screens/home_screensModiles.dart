@@ -40,6 +40,9 @@ import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../models/themePreference.dart';
+import '../../../provider/theme.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
   HomeScreen({Key? key}) : super(key: key);
@@ -54,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Stream<SwipeRefreshState> get _stream => _controller.stream;
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     void _reset() {
       Navigator.pushReplacement(
         context,
@@ -65,7 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-        backgroundColor: GlobalVariables.greyBackgroundCOlor,
+        backgroundColor: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkOFbackgroundColor
+            : GlobalVariables.greyBackgroundCOlor,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(105),
           child: Center(

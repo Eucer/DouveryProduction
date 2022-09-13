@@ -19,6 +19,7 @@ import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetails
 import 'package:v1douvery/features/pruductDetails/services/pruductDetailsServices.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/ratings.dart';
+import 'package:v1douvery/provider/theme.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
 class CardsOneWidget extends StatefulWidget {
@@ -32,60 +33,81 @@ class _CardsOneWidget extends State<CardsOneWidget> {
   double scrollPosition = 0;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 10,
-            right: 10,
-            top: 5,
-            bottom: 10,
-          ),
-          child: ClipRRect(
-            child: Container(
-              height: 180,
-              color: const Color(0xffC70039),
-              width: 85.0,
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50.0),
-                    child: Center(
-                      child: Text(
-                        'Articulos Nuevos',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color(0xffe9ebee),
-                            fontWeight: FontWeight.w600),
-                      ),
+    final currentTheme = Provider.of<ThemeProvider>(context);
+    return Container(
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 5,
+              bottom: 10,
+            ),
+            child: ClipRRect(
+              child: Container(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Container(
+                    height: 180,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.colorArtNewdarkbackgroundColor
+                        : GlobalVariables.colorArtNewWhithebackgroundColor,
+                    width: 85.0,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 50.0),
+                          child: Center(
+                            child: Text(
+                              'Articulos Nuevos',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables
+                                          .text20darkbackgroundColor
+                                      : GlobalVariables
+                                          .text20darkbackgroundColor,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          indent: 10,
+                          endIndent: 10,
+                        ),
+                        Container(
+                          child: TextButton(
+                            onPressed: () {
+                              // Respond to button press
+                            },
+                            child: Text(
+                              'Ver mas',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables
+                                          .text20darkbackgroundColor
+                                      : GlobalVariables
+                                          .text20darkbackgroundColor,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const Divider(
-                    color: Colors.white,
-                    indent: 10,
-                    endIndent: 10,
-                  ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {
-                        // Respond to button press
-                      },
-                      child: const Text(
-                        'Ver mas',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color(0xffe9ebee),
-                            fontWeight: FontWeight.w900),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-        SliderCards(),
-      ],
+          SliderCards(),
+        ],
+      ),
     );
   }
 }
@@ -147,12 +169,15 @@ class _CarouselProductToNamedCategoryState
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     //edit modal
     final userCartLen = context.watch<UserProvider>().user.cart.length;
     return widget.productList == null
         ? const Loader()
         : Container(
-            color: GlobalVariables.backgroundColor,
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.darkbackgroundColor
+                : GlobalVariables.backgroundColor,
             child: SizedBox(
               height: 180,
               width: double.infinity,
@@ -501,13 +526,17 @@ class _CarouselProductToNamedCategoryState
                       ),
                     ),
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         border: Border(
                             left: BorderSide(
-                          color: GlobalVariables.colorTextGreylv10,
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.borderColorsDarklv10
+                              : GlobalVariables.borderColorsWhithelv10,
                           width: 1,
                         )),
-                        color: Colors.white,
+                        color: currentTheme.isDarkTheme()
+                            ? GlobalVariables.darkbackgroundColor
+                            : GlobalVariables.backgroundColor,
                       ),
                       child: Column(
                         children: [
@@ -523,7 +552,11 @@ class _CarouselProductToNamedCategoryState
                                   child: Text(
                                     product.name,
                                     style: TextStyle(
-                                      color: Color(0xff1C2833),
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables
+                                              .text1darkbackgroundColor
+                                          : GlobalVariables
+                                              .text1WhithegroundColor,
                                       fontWeight: FontWeight.w400,
                                       letterSpacing: 0.4,
                                       fontSize: 11.0,
@@ -537,23 +570,50 @@ class _CarouselProductToNamedCategoryState
                             ),
                           ),
                           Container(
-                            width: 120.0,
-                            height: 100.0,
-                            child: widget.productList == null
-                                ? const Loader()
-                                : SingleProduct(
-                                    imagen: product.images[0],
-                                  ),
-                          ),
+                              width: 120.0,
+                              height: 100.0,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.darkbackgroundColor
+                                  : GlobalVariables.backgroundColor,
+                              child: widget.productList == null
+                                  ? const Loader()
+                                  : Container(
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables.darkbackgroundColor
+                                          : GlobalVariables.backgroundColor,
+                                      child: GestureDetector(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 0.0, top: 0.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                            child: CachedNetworkImage(
+                                              imageUrl: product.images[0],
+                                              width: 150,
+                                              height: 110.0,
+                                              fit: BoxFit.scaleDown,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )),
                           Container(
                             height: 40,
                             width: 120.0,
-                            color: Color(0xffFffffff),
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.darkbackgroundColor
+                                : GlobalVariables.backgroundColor,
                             child: CustomnIconsButton(
                               onPressed: () {
                                 _modalInteriorFerce(context);
                               },
-                              icon: Icon(Icons.keyboard_control),
+                              icon: Icon(
+                                Icons.keyboard_control,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : GlobalVariables.text1WhithegroundColor,
+                              ),
                             ),
                           ),
                         ],

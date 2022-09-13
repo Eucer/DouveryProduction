@@ -44,37 +44,30 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     authService.getUserData(context);
+    getCurrentAppTheme();
+  }
+
+  ThemeProvider themeChangeProvider = new ThemeProvider();
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.setTheme =
+        await themeChangeProvider.themePreference.getTheme();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Douvery',
-      theme: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-        scaffoldBackgroundColor: GlobalVariables.secondaryColor,
-        colorScheme: const ColorScheme.light(
-          primary: GlobalVariables.appBarbackgroundColor,
-        ),
-        scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.all(Color.fromARGB(36, 0, 0, 0))),
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-        ),
-        useMaterial3: true,
+    return ChangeNotifierProvider.value(
+      value: themeChangeProvider,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Douvery',
+        onGenerateRoute: (settings) => generateRoute(settings),
+        home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+            ? Provider.of<UserProvider>(context).user.type == 'user'
+                ? ResponsiveLayaout()
+                : AdminResponsiveLayaout()
+            : ResponsiveLayaout(),
       ),
-      onGenerateRoute: (settings) => generateRoute(settings),
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? Provider.of<UserProvider>(context).user.type == 'user'
-              ? ResponsiveLayaout()
-              : AdminResponsiveLayaout()
-          : ResponsiveLayaout(),
     );
   }
 }

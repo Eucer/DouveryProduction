@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
+import 'package:v1douvery/provider/theme.dart';
 
 class DealOfDay extends StatefulWidget {
   const DealOfDay({Key? key}) : super(key: key);
@@ -30,6 +32,7 @@ class _DealOfDayState extends State<DealOfDay> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return product == null
         ? const Loader()
         : product!.name.isEmpty
@@ -46,15 +49,22 @@ class _DealOfDayState extends State<DealOfDay> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    color: GlobalVariables.backgroundColor,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.darkbackgroundColor
+                        : GlobalVariables.backgroundColor,
                     child: Column(
                       children: [
                         Container(
                           alignment: Alignment.topLeft,
                           padding: const EdgeInsets.only(left: 10, top: 15),
-                          child: const Text(
+                          child: Text(
                             'Deal of the day',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
+                            ),
                           ),
                         ),
                         Container(
@@ -70,7 +80,12 @@ class _DealOfDayState extends State<DealOfDay> {
                           alignment: Alignment.topLeft,
                           child: Text(
                             r'$' + product!.price.toString(),
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text2darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
+                            ),
                           ),
                         ),
                         Container(
@@ -81,6 +96,11 @@ class _DealOfDayState extends State<DealOfDay> {
                             product!.marca,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
+                            ),
                           ),
                         ),
                         Container(
@@ -91,7 +111,9 @@ class _DealOfDayState extends State<DealOfDay> {
                           child: Text(
                             'See all deals',
                             style: TextStyle(
-                              color: Colors.cyan[800],
+                              color: currentTheme.isDarkTheme()
+                                  ? Colors.cyan[500]
+                                  : Colors.cyan[800],
                             ),
                           ),
                         ),

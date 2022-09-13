@@ -13,6 +13,8 @@ import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../provider/theme.dart';
+
 class MainScreen extends StatelessWidget {
   static const String routeName = '/actual-home';
   @override
@@ -47,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
       HomeScreen(),
       AccountScreen(),
     ];
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return CupertinoPageScaffold(
         resizeToAvoidBottomInset: false,
         child: CupertinoTabScaffold(
@@ -160,7 +162,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Color.fromARGB(26, 5, 12, 43),
               ),
             ),
-            backgroundColor: GlobalVariables.backgroundNavBarColor,
+            backgroundColor: currentTheme.isDarkTheme()
+                ? GlobalVariables.navBardarkbackgroundColor
+                : GlobalVariables.navBarbackgroundColor,
             activeColor: GlobalVariables.buttomColor,
             inactiveColor: GlobalVariables.unselectedNavBarColor,
             iconSize: 28,

@@ -9,8 +9,7 @@ class GlobalVariables {
   static const primaryColor = Color.fromARGB(255, 13, 71, 161);
   static const secondaryColor = Color(0xff2c3e50);
   static const buttomColor = Color(0xff1a49ab);
-  static const backgroundColor = Color(0xffFDFEFE);
-  static const Color greyBackgroundCOlor = Color(0xfff1f5f9);
+
   static const backgroundNavBarColor = Colors.white;
   static const selectedNavBarColor = Color(0xffebecee);
   static const unselectedNavBarColor = Colors.black87;
@@ -33,6 +32,36 @@ class GlobalVariables {
   static const colorgreen = Color.fromARGB(255, 4, 161, 17);
   static const colorUser = Color.fromARGB(255, 3, 207, 207);
   static const colorYelow = Color(0xffFBD316);
+
+  //* DartColors
+  static const darkOFbackgroundColor = Color(0xff393E46);
+  static const darkbackgroundColor = Color(0xff222831);
+  static const text1darkbackgroundColor = Color.fromARGB(214, 241, 245, 249);
+  static const text2darkbackgroundColor = Color.fromARGB(255, 241, 245, 249);
+  static const text20darkbackgroundColor = Color(0xffe9ebee);
+
+  static const colorArtNewdarkbackgroundColor = Color.fromARGB(255, 155, 0, 44);
+
+  //*BorderColorsDark
+  static const borderColorsDarklv10 = Color.fromARGB(17, 252, 252, 252);
+
+  //* NavBAR
+
+  static const navBardarkbackgroundColor = Color(0xff1C2833);
+
+  //* WhitheColors
+  static const greyBackgroundCOlor = Color(0xfff1f5f9);
+  static const backgroundColor = Color(0xffFDFEFE);
+  static const text1WhithegroundColor = Color(0xff1C2833);
+
+  static const colorArtNewWhithebackgroundColor = Color(0xffC70039);
+
+  //*BorderColorsWhithe
+  static const borderColorsWhithelv10 = Color.fromARGB(10, 0, 0, 0);
+
+  //* NavBAR
+
+  static const navBarbackgroundColor = Colors.white;
 
   static const loaderColor = LinearGradient(
     colors: [
