@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class ThemePreference {
   static const THEME_MODE = "MODE";
   static const DARK = "DARK";

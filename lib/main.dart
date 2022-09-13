@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
-        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        scaffoldBackgroundColor: GlobalVariables.secondaryColor,
         colorScheme: const ColorScheme.light(
           primary: GlobalVariables.appBarbackgroundColor,
         ),
