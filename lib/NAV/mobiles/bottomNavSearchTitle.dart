@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 
 import 'package:v1douvery/constantes/global_variables.dart';
 
 import 'package:v1douvery/features/category/screens/categoryDealsScreen.dart';
+
+import '../../provider/theme.dart';
 
 class BottomNavSearchTitle extends StatelessWidget {
   const BottomNavSearchTitle({Key? key}) : super(key: key);
@@ -37,6 +40,7 @@ class NavCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return SizedBox(
       height: 30,
       width: MediaQuery.of(context).size.width,
@@ -70,7 +74,11 @@ class NavCategory extends StatelessWidget {
                     ),
                     child: Text(
                       GlobalVariables.categoryTitle[index]['title']!,
-                      style: TextStyle(color: Colors.white, fontSize: 13),
+                      style: TextStyle(
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.text1darkbackgroundColor
+                              : Colors.white,
+                          fontSize: 13),
                     ),
                   ),
                 ],

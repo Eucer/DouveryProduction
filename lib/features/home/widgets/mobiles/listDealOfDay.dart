@@ -49,44 +49,46 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
         child: Column(
           children: [
             Container(
-                alignment: Alignment.bottomLeft,
+              alignment: Alignment.bottomLeft,
+              decoration: BoxDecoration(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
+              ),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 decoration: BoxDecoration(
                   color: currentTheme.isDarkTheme()
                       ? GlobalVariables.darkbackgroundColor
                       : GlobalVariables.backgroundColor,
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1,
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.borderColorsDarklv10
+                          : GlobalVariables.borderColorsWhithelv10,
+                    ),
+                  ),
                 ),
                 child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                    decoration: BoxDecoration(
-                      color: currentTheme.isDarkTheme()
-                          ? GlobalVariables.darkbackgroundColor
-                          : GlobalVariables.backgroundColor,
-                      border: Border(
-                        bottom: BorderSide(
-                          width: 1,
-                          color: currentTheme.isDarkTheme()
-                              ? GlobalVariables.borderColorsDarklv10
-                              : GlobalVariables.borderColorsWhithelv10,
-                        ),
+                  height: 25,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Popular',
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.text1darkbackgroundColor
+                                : GlobalVariables.text1WhithegroundColor),
                       ),
-                    ),
-                    child: Container(
-                      height: 25,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Popular',
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: currentTheme.isDarkTheme()
-                                    ? GlobalVariables.text1darkbackgroundColor
-                                    : GlobalVariables.text1WhithegroundColor),
-                          ),
-                        ],
-                      ),
-                    ))),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             productList == null
                 ? const Loader()
                 : Container(

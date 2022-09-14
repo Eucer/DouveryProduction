@@ -3,20 +3,25 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/SeveryCrypto/Screens/SeveryScreen.dart';
+import 'package:v1douvery/provider/theme.dart';
 
 class CartCrypto extends StatelessWidget {
   const CartCrypto({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: GlobalVariables.backgroundColor,
+          color: currentTheme.isDarkTheme()
+              ? GlobalVariables.darkbackgroundColor
+              : GlobalVariables.backgroundColor,
         ),
         child: Row(
           children: [
@@ -54,7 +59,9 @@ class CartCrypto extends StatelessWidget {
                               child: Text(
                                 'Severy ... ',
                                 style: GoogleFonts.roboto(
-                                  color: Colors.black,
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : GlobalVariables.text1WhithegroundColor,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 14.0,
                                 ),
@@ -70,7 +77,9 @@ class CartCrypto extends StatelessWidget {
                               child: Text(
                                 'Quieres ver de los beneficios de la moneda ?',
                                 style: GoogleFonts.roboto(
-                                  color: Colors.black,
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : GlobalVariables.text1WhithegroundColor,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 14.0,
                                 ),
@@ -97,16 +106,22 @@ class CartCrypto extends StatelessWidget {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: 'Ver ahora',
+                                        text: 'Ver ahora ',
                                         style: TextStyle(
-                                          color: Color(0xff10375C),
+                                          color: currentTheme.isDarkTheme()
+                                              ? Color.fromARGB(255, 2, 112, 214)
+                                              : Color(0xff10375C),
                                         ),
                                       ),
                                       WidgetSpan(
                                         child: Icon(
                                           Iconsax.arrow_circle_right,
                                           size: 16,
-                                          color: Color(0xff10375C),
+                                          color: currentTheme.isDarkTheme()
+                                              ? Color.fromARGB(255, 2, 112, 214)
+                                              : Color(
+                                                  0xff10375C,
+                                                ),
                                         ),
                                       ),
                                     ],

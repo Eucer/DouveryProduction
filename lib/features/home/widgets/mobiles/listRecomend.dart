@@ -16,6 +16,8 @@ import 'package:v1douvery/main.dart';
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../../provider/theme.dart';
+
 class RecomendProduct extends StatefulWidget {
   const RecomendProduct({
     Key? key,
@@ -45,18 +47,27 @@ class _RecomendProductState extends State<RecomendProduct> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: GlobalVariables.backgroundColor,
+        color: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkbackgroundColor
+            : GlobalVariables.backgroundColor,
         child: Column(
           children: [
             Container(
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.only(left: 10, top: 15),
-              child: const Text(
+              child: Text(
                 'Productos Recomendados',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
+                ),
               ),
             ),
             productList == null
@@ -64,7 +75,9 @@ class _RecomendProductState extends State<RecomendProduct> {
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      color: GlobalVariables.backgroundColor,
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.darkbackgroundColor
+                          : GlobalVariables.backgroundColor,
                       height: 360,
                       width: double.infinity,
                       padding: EdgeInsets.only(top: 8),
@@ -97,6 +110,24 @@ class _RecomendProductState extends State<RecomendProduct> {
                                       child: Center(
                                         child: Container(
                                           alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .darkbackgroundColor
+                                                : GlobalVariables
+                                                    .backgroundColor,
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                width: 1,
+                                                color: currentTheme
+                                                        .isDarkTheme()
+                                                    ? GlobalVariables
+                                                        .borderColorsDarklv10
+                                                    : GlobalVariables
+                                                        .borderColorsWhithelv10,
+                                              ),
+                                            ),
+                                          ),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -104,11 +135,15 @@ class _RecomendProductState extends State<RecomendProduct> {
                                               Container(
                                                 padding:
                                                     EdgeInsets.only(top: 10),
-                                                child: CachedNetworkImage(
-                                                  imageUrl: product.images[0],
-                                                  width: 100,
-                                                  height: 100,
-                                                  fit: BoxFit.contain,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: product.images[0],
+                                                    width: 100,
+                                                    height: 100,
+                                                    fit: BoxFit.contain,
+                                                  ),
                                                 ),
                                               ),
                                               GestureDetector(
@@ -143,10 +178,12 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                               1.6,
                                                           child: Text(
                                                             product.name,
-                                                            style:
-                                                                const TextStyle(
-                                                              color: Color(
-                                                                  0xff1C2833),
+                                                            style: TextStyle(
+                                                              color: currentTheme.isDarkTheme()
+                                                                  ? GlobalVariables
+                                                                      .text1darkbackgroundColor
+                                                                  : GlobalVariables
+                                                                      .text1WhithegroundColor,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400,
@@ -198,8 +235,9 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                                           'Recomend',
                                                                           style:
                                                                               TextStyle(
-                                                                            color:
-                                                                                Colors.white,
+                                                                            color: currentTheme.isDarkTheme()
+                                                                                ? GlobalVariables.text1darkbackgroundColor
+                                                                                : GlobalVariables.text1darkbackgroundColor,
                                                                             fontSize:
                                                                                 13,
                                                                           ),

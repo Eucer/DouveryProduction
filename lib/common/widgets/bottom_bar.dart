@@ -159,14 +159,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
             border: Border(
               top: BorderSide(
-                color: Color.fromARGB(26, 5, 12, 43),
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.borderColorsDarklv10
+                    : Color.fromARGB(26, 5, 12, 43),
               ),
             ),
             backgroundColor: currentTheme.isDarkTheme()
-                ? GlobalVariables.navBardarkbackgroundColor
+                ? GlobalVariables.darkbackgroundColor
                 : GlobalVariables.navBarbackgroundColor,
             activeColor: GlobalVariables.buttomColor,
-            inactiveColor: GlobalVariables.unselectedNavBarColor,
+            inactiveColor: currentTheme.isDarkTheme()
+                ? Color.fromARGB(255, 86, 89, 94)
+                : GlobalVariables.unselectedNavBarColor,
             iconSize: 28,
           ),
           tabBuilder: (context, index) {
