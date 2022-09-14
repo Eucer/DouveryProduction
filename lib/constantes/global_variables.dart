@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/theme.dart';
 
 String uri = 'http://10.0.0.7:3000';
 
 class GlobalVariables {
   //* COLORES
+  final currentTheme = Provider.of<ThemeProvider>;
 
   static const appBarbackgroundColor = Color.fromARGB(255, 13, 71, 161);
   static const primaryColor = Color.fromARGB(255, 13, 71, 161);
@@ -39,15 +43,8 @@ class GlobalVariables {
   static const text1darkbackgroundColor = Color.fromARGB(214, 241, 245, 249);
   static const text2darkbackgroundColor = Color.fromARGB(255, 241, 245, 249);
   static const text20darkbackgroundColor = Color(0xffe9ebee);
-
+  static const text1GreygroundColor = Color.fromARGB(255, 83, 83, 83);
   static const colorArtNewdarkbackgroundColor = Color.fromARGB(255, 155, 0, 44);
-
-  //*BorderColorsDark
-  static const borderColorsDarklv10 = Color.fromARGB(17, 252, 252, 252);
-
-  //* NavBAR
-
-  static const navBardarkbackgroundColor = Color(0xff1C2833);
 
   //* WhitheColors
   static const greyBackgroundCOlor = Color(0xfff1f5f9);
@@ -56,11 +53,12 @@ class GlobalVariables {
 
   static const colorArtNewWhithebackgroundColor = Color(0xffC70039);
 
-  //*BorderColorsWhithe
+  //*BorderColors
+  static const borderColorsDarklv10 = Color.fromARGB(17, 252, 252, 252);
   static const borderColorsWhithelv10 = Color.fromARGB(10, 0, 0, 0);
 
   //* NavBAR
-
+  static const navBardarkbackgroundColor = Color(0xff222831);
   static const navBarbackgroundColor = Colors.white;
 
   static const loaderColor = LinearGradient(
