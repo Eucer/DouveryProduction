@@ -46,7 +46,9 @@ class NavCategory extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Container(
         padding: EdgeInsets.only(right: 0),
-        color: GlobalVariables.secondaryColor,
+        color: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkbackgroundColor
+            : GlobalVariables.secondaryColor,
         child: ListView.builder(
           itemCount: GlobalVariables.categoryTitle.length,
           scrollDirection: Axis.horizontal,

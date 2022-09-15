@@ -4,10 +4,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
+
+import '../../../provider/theme.dart';
 
 class SerchendWidgetsProducts extends StatelessWidget {
   final Product product;
@@ -24,7 +27,7 @@ class SerchendWidgetsProducts extends StatelessWidget {
     if (totalRating != 0) {
       avgRating = totalRating / product.rating!.length;
     }
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         GestureDetector(
@@ -38,11 +41,16 @@ class SerchendWidgetsProducts extends StatelessWidget {
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            decoration: const BoxDecoration(
-                color: GlobalVariables.backgroundColor,
+            decoration: BoxDecoration(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
                 border: Border(
                     top: BorderSide(
-                        width: 1, color: Color.fromARGB(5, 0, 0, 0)))),
+                        width: 1,
+                        color: currentTheme.isDarkTheme()
+                            ? GlobalVariables.borderColorsDarklv10
+                            : Color.fromARGB(5, 0, 0, 0)))),
             margin: const EdgeInsets.symmetric(
               horizontal: 0,
             ),
@@ -51,7 +59,9 @@ class SerchendWidgetsProducts extends StatelessWidget {
                 Container(
                   height: 105,
                   width: 135,
-                  color: Colors.white,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.darkbackgroundColor
+                      : GlobalVariables.backgroundColor,
                   child: CarouselSlider(
                     items: product.images.map(
                       (i) {
@@ -92,7 +102,9 @@ class SerchendWidgetsProducts extends StatelessWidget {
                         product.name,
                         style: GoogleFonts.roboto(
                           fontSize: 14,
-                          color: Color(0xff212121),
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.text1darkbackgroundColor
+                              : GlobalVariables.text1WhithegroundColor,
                         ),
                         maxLines: 2,
                       ),
@@ -108,7 +120,9 @@ class SerchendWidgetsProducts extends StatelessWidget {
                           Text(
                             product.marca,
                             style: GoogleFonts.roboto(
-                              color: Color(0xff383838),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text20darkbackgroundColor
+                                  : Color(0xff383838),
                               fontWeight: FontWeight.w400,
                               letterSpacing: 0.4,
                               fontSize: 11.0,
@@ -172,7 +186,9 @@ class SerchendWidgetsProducts extends StatelessWidget {
                       child: Text(
                         '\$${product.price}',
                         style: GoogleFonts.roboto(
-                          color: Color(0xff1C2833),
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.text20darkbackgroundColor
+                              : GlobalVariables.text1WhithegroundColor,
                           fontWeight: FontWeight.w400,
                           letterSpacing: 0.4,
                           fontSize: 15.0,

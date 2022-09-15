@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -8,6 +9,8 @@ import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/home/services/homeServices.dart';
 import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/models/product.dart';
+
+import '../../../provider/theme.dart';
 
 class CarouselRecentSearch extends StatefulWidget {
   const CarouselRecentSearch({Key? key}) : super(key: key);
@@ -35,20 +38,55 @@ class _CarouselRecentSearchState extends State<CarouselRecentSearch> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          color: Colors.white,
-          child: headerDoubleText(
-            textHeader: 'Historial Click',
-            textAction: 'Ver mas',
+          alignment: Alignment.bottomLeft,
+          decoration: BoxDecoration(
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.darkbackgroundColor
+                : GlobalVariables.backgroundColor,
+          ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            decoration: BoxDecoration(
+              color: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.borderColorsDarklv10
+                      : GlobalVariables.borderColorsWhithelv10,
+                ),
+              ),
+            ),
+            child: Container(
+              height: 25,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Popular',
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: currentTheme.isDarkTheme()
+                            ? GlobalVariables.text1darkbackgroundColor
+                            : GlobalVariables.text1WhithegroundColor),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
         productList == null
             ? const Loader()
             : Container(
-                color: GlobalVariables.backgroundColor,
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
                 child: SizedBox(
                   height: 135,
                   width: double.infinity,
@@ -77,9 +115,29 @@ class _CarouselRecentSearchState extends State<CarouselRecentSearch> {
                                     ? const Loader()
                                     : Column(
                                         children: [
-                                          SingleProduct(
-                                            imagen: product.images[0],
-                                          ),
+                                          Container(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .darkbackgroundColor
+                                                : GlobalVariables
+                                                    .backgroundColor,
+                                            child: GestureDetector(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 0.0, top: 0.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(0),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: product.images[0],
+                                                    width: 150,
+                                                    height: 110.0,
+                                                    fit: BoxFit.scaleDown,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
                                         ],
                                       ),
                               ),

@@ -92,7 +92,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
             productList == null
                 ? const Loader()
                 : Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 0),
                     color: currentTheme.isDarkTheme()
                         ? GlobalVariables.darkbackgroundColor
                         : GlobalVariables.backgroundColor,
@@ -169,7 +169,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                                                         .text1WhithegroundColor,
                                                 fontWeight: FontWeight.w400,
                                                 letterSpacing: 0.4,
-                                                fontSize: 11.0,
+                                                fontSize: 10.0,
                                               ),
                                               textAlign: TextAlign.start,
                                               maxLines: 2,
@@ -201,7 +201,11 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                                           child: Text(
                                             r'$' + product.price.toString(),
                                             style: GoogleFonts.roboto(
-                                              color: Color(0xff1C2833),
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .text20darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .text1WhithegroundColor,
                                               fontWeight: FontWeight.w400,
                                               letterSpacing: 0.4,
                                               fontSize: 15.0,

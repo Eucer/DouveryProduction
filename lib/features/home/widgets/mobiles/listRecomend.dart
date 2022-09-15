@@ -137,7 +137,7 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                     EdgeInsets.only(top: 10),
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(8.0),
+                                                      const EdgeInsets.all(2.0),
                                                   child: CachedNetworkImage(
                                                     imageUrl: product.images[0],
                                                     width: 100,
@@ -175,7 +175,7 @@ class _RecomendProductState extends State<RecomendProduct> {
                                                                       context)
                                                                   .size
                                                                   .width /
-                                                              1.6,
+                                                              2,
                                                           child: Text(
                                                             product.name,
                                                             style: TextStyle(

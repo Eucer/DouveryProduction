@@ -2,12 +2,15 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/widgets/carousel_recent_search_widgets.dart';
 import 'package:v1douvery/features/search/widgets/recomendYou.dart';
 
 import 'package:v1douvery/features/search/widgets/searchignClient.dart';
+
+import '../../../provider/theme.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -17,17 +20,40 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      backgroundColor: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkOFbackgroundColor
+          : GlobalVariables.greyBackgroundCOlor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(105),
         child: AppBar(
           elevation: 0,
+          automaticallyImplyLeading: false,
+          leading: Container(
+            child: CustomnIconsButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.text20darkbackgroundColor
+                    : GlobalVariables.text20darkbackgroundColor,
+                size: 20,
+              ),
+              onPressed: () => Navigator.pop(
+                context,
+              ),
+            ),
+          ),
           title: FadeInLeft(
             duration: const Duration(milliseconds: 300),
             from: 10,
             child: Text(
               'Buscador',
+              style: TextStyle(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.text20darkbackgroundColor
+                    : GlobalVariables.text20darkbackgroundColor,
+              ),
             ),
           ),
           actions: [
@@ -74,6 +100,7 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Container(
       child: Column(children: [
         SizedBox(
@@ -89,9 +116,11 @@ class _SearchWidgetState extends State<SearchWidget> {
                   child: TextFormField(
                     autofocus: true,
                     onFieldSubmitted: navigateToSearchingScreen,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: currentTheme.isDarkTheme()
+                          ? GlobalVariables.darkbackgroundColor
+                          : GlobalVariables.backgroundColor,
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(8, 5, 8, 0),
                       hintText: 'Busca tu articulo ...',

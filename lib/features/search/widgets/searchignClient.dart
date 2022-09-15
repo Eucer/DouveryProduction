@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -11,6 +12,8 @@ import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/features/search/widgets/MostrarSerchendProductsWidgets.dart';
 
 import 'package:v1douvery/models/product.dart';
+
+import '../../../provider/theme.dart';
 
 class SearchingPage extends StatefulWidget {
   static const String routeName = '/search-screen';
@@ -49,16 +52,40 @@ class _SearchingPageState extends State<SearchingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
+        backgroundColor: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkOFbackgroundColor
+            : GlobalVariables.greyBackgroundCOlor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(105),
           child: AppBar(
             elevation: 0,
+            automaticallyImplyLeading: false,
+            leading: Container(
+              child: CustomnIconsButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text20darkbackgroundColor
+                      : GlobalVariables.text20darkbackgroundColor,
+                  size: 20,
+                ),
+                onPressed: () => Navigator.pop(
+                  context,
+                ),
+              ),
+            ),
             title: FadeInLeft(
               duration: const Duration(milliseconds: 300),
               from: 10,
               child: Text(
                 'Buscador',
+                style: TextStyle(
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text20darkbackgroundColor
+                      : GlobalVariables.text20darkbackgroundColor,
+                ),
               ),
             ),
             actions: [
@@ -77,14 +104,20 @@ class _SearchingPageState extends State<SearchingPage> {
         body: SelectionArea(
           child: Column(children: [
             Container(
-              margin: const EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 0),
+              padding: EdgeInsets.only(left: 10),
               height: 30,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
-                  bottom:
-                      BorderSide(color: Color.fromARGB(12, 0, 0, 0), width: 1),
+                  bottom: BorderSide(
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.borderColorsDarklv10
+                          : GlobalVariables.borderColorsDarklv10,
+                      width: 1),
                 ),
-                color: GlobalVariables.backgroundColor,
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -94,9 +127,14 @@ class _SearchingPageState extends State<SearchingPage> {
                     alignment: Alignment.center,
                     child: Row(
                       children: [
-                        const Text(
-                          'Buscar :',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Text(
+                          'Buscar : ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.text1darkbackgroundColor
+                                : GlobalVariables.text1WhithegroundColor,
+                          ),
                         ),
                         Container(
                           width: 100,
@@ -105,6 +143,11 @@ class _SearchingPageState extends State<SearchingPage> {
                             maxLines: 1,
                             softWrap: false,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
+                            ),
                           ),
                         ),
                       ],
@@ -161,6 +204,7 @@ class _SearchingWidgetState extends State<SearchingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return SizedBox(
       child: Container(
         height: 55,
@@ -172,10 +216,13 @@ class _SearchingWidgetState extends State<SearchingWidget> {
             borderRadius: BorderRadius.circular(4),
             child: Material(
               child: TextFormField(
+                cursorColor: Colors.grey,
                 onFieldSubmitted: navigateToSearchingScreen,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: currentTheme.isDarkTheme()
+                      ? GlobalVariables.darkbackgroundColor
+                      : GlobalVariables.backgroundColor,
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.fromLTRB(8, 5, 8, 0),
                   hintText: 'Buscar articulos...',
@@ -183,6 +230,8 @@ class _SearchingWidgetState extends State<SearchingWidget> {
                   prefixIcon: Icon(
                     Icons.search,
                     size: 20,
+                    color:
+                        currentTheme.isDarkTheme() ? Colors.grey : Colors.grey,
                   ),
                 ),
               ),
