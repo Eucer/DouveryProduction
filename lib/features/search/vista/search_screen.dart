@@ -113,6 +113,7 @@ class _SearchWidgetState extends State<SearchWidget> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: Material(
+                  color: Colors.red,
                   child: TextFormField(
                     autofocus: true,
                     onFieldSubmitted: navigateToSearchingScreen,

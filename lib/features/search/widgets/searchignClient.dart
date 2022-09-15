@@ -123,7 +123,7 @@ class _SearchingPageState extends State<SearchingPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 160,
+                    width: 300,
                     alignment: Alignment.center,
                     child: Row(
                       children: [
@@ -137,7 +137,7 @@ class _SearchingPageState extends State<SearchingPage> {
                           ),
                         ),
                         Container(
-                          width: 100,
+                          width: 200,
                           child: Text(
                             widget.searchQuery,
                             maxLines: 1,

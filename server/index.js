@@ -1,7 +1,7 @@
 //* IMPORTAR OTROS PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
+
 
 
 
@@ -25,7 +25,7 @@ app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
 app.use(userRouter);
-app.use(cors());
+
 
 //* CONEXION
 
