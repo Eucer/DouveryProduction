@@ -101,7 +101,7 @@ class _SearchingPageState extends State<SearchingPage> {
             backgroundColor: GlobalVariables.appBarbackgroundColor,
           ),
         ),
-        body: SelectionArea(
+        body: Container(
           child: Column(children: [
             Container(
               margin: const EdgeInsets.only(left: 0),
