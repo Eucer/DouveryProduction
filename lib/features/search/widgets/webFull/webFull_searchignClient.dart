@@ -71,7 +71,7 @@ class _WebFull_searchingPageState extends State<WebFull_searchingPage> {
                 child: Web_AppBarIcons(),
               ),
             ),
-            body: SelectionArea(
+            body: Container(
               child: Container(
                 child: Column(children: [
                   WebFull_NavCategory(),
