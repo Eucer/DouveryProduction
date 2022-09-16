@@ -36,6 +36,8 @@ import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/models/ratings.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+
 class ProductDetailsScreen extends StatefulWidget {
   static const String routeName = '/product-details';
   final Product product;
@@ -101,8 +103,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           });
     }
 
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      backgroundColor: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkOFbackgroundColor
+          : GlobalVariables.greyBackgroundCOlor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: AppBar(
@@ -149,7 +154,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: Container(
                           height: 33,
                           width: MediaQuery.of(context).size.width,
-                          color: Colors.white,
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.darkbackgroundColor
+                              : GlobalVariables.backgroundColor,
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -190,13 +197,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     Text(
                                       'Precio: ',
                                       style: TextStyle(
-                                          color: Colors.black54, fontSize: 15),
+                                          color: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .text1darkbackgroundColor
+                                              : Colors.black54,
+                                          fontSize: 15),
                                     ),
 
                                     Text(
                                       '\$${widget.product.price}',
                                       style: TextStyle(
-                                        color: Color(0xff1C2833),
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .text20darkbackgroundColor
+                                            : Color(0xff1C2833),
                                         fontWeight: FontWeight.w500,
                                         letterSpacing: 0.4,
                                         fontSize: 15.0,
@@ -224,7 +238,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 Stack(
                   children: [
                     Container(
-                      color: Colors.white,
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.darkbackgroundColor
+                          : GlobalVariables.backgroundColor,
                       child: CarouselSlider(
                         items: widget.product.images.map(
                           (i) {
@@ -257,7 +273,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ],
                 ),
                 Container(
-                  color: GlobalVariables.backgroundColor,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.darkbackgroundColor
+                      : GlobalVariables.backgroundColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: widget.product.images.asMap().entries.map(
@@ -286,12 +304,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 5.0, top: 5.0, right: 5.0),
+              padding: const EdgeInsets.only(left: 3.0, top: 5.0, right: 3.0),
               child: Column(
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    color: Colors.white,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.darkbackgroundColor
+                        : GlobalVariables.backgroundColor,
                     child: Column(
                       children: [
                         GestureDetector(
@@ -310,7 +330,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             height: 30,
                             alignment: Alignment.centerLeft,
                             margin: EdgeInsets.only(
-                              top: 20,
+                              top: 0,
                               left: 10,
                             ),
                             child: RichText(
@@ -320,13 +340,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     child: Icon(
                                       Icons.house_outlined,
                                       size: 16,
-                                      color: Color(0xff10375C),
+                                      color: currentTheme.isDarkTheme()
+                                          ? Color.fromARGB(255, 5, 111, 209)
+                                          : Color(0xff10375C),
                                     ),
                                   ),
                                   TextSpan(
                                     text: widget.product.marca,
                                     style: TextStyle(
-                                      color: Color(0xff10375C),
+                                      color: currentTheme.isDarkTheme()
+                                          ? Color.fromARGB(255, 5, 111, 209)
+                                          : Color(0xff10375C),
                                     ),
                                   ),
                                 ],
@@ -335,14 +359,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              left: 8.0, right: 8, top: 8, bottom: 15),
                           child: Container(
                             alignment: Alignment.bottomLeft,
                             margin: EdgeInsets.only(left: 5),
                             child: Text(
                               widget.product.name,
                               style: GoogleFonts.roboto(
-                                color: Colors.black,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : GlobalVariables.text1WhithegroundColor,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15.0,
                               ),
@@ -364,7 +391,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.all(0),
-                    color: Colors.white,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.darkbackgroundColor
+                        : GlobalVariables.backgroundColor,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -429,34 +458,44 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           bottom:
                               BorderSide(width: 1, color: Color(0xfff1f5f9)),
                         ),
-                        color: Colors.white,
+                        color: currentTheme.isDarkTheme()
+                            ? GlobalVariables.darkbackgroundColor
+                            : GlobalVariables.backgroundColor,
                       ),
                       padding: const EdgeInsets.all(8.0),
                       height: 500,
                       child: ContainedTabBarView(
-                        tabs: const [
+                        tabs: [
                           Text(
                             'Descripcion',
                             style: TextStyle(
-                              color: Color.fromARGB(206, 0, 0, 0),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : Color.fromARGB(206, 0, 0, 0),
                             ),
                           ),
                           Text(
                             'Servicio',
                             style: TextStyle(
-                              color: Color.fromARGB(206, 0, 0, 0),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : Color.fromARGB(206, 0, 0, 0),
                             ),
                           ),
                           Text(
                             'Reseñas',
                             style: TextStyle(
-                              color: Color.fromARGB(206, 0, 0, 0),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : Color.fromARGB(206, 0, 0, 0),
                             ),
                           ),
                           Text(
                             'Similar',
                             style: TextStyle(
-                              color: Color.fromARGB(206, 0, 0, 0),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : Color.fromARGB(206, 0, 0, 0),
                             ),
                           ),
                         ],
@@ -466,6 +505,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 widget.product.description,
+                                style: TextStyle(
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : GlobalVariables.text1WhithegroundColor,
+                                ),
                               ),
                             ),
                           ),
@@ -474,9 +518,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Container(child: Text('Tu rating :  ')),
                                   Container(
-                                    color: Colors.white,
+                                      child: Text(
+                                    'Tu rating :  ',
+                                    style: TextStyle(
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .text1darkbackgroundColor
+                                            : GlobalVariables
+                                                .text1WhithegroundColor),
+                                  )),
+                                  Container(
+                                    color: currentTheme.isDarkTheme()
+                                        ? GlobalVariables.darkbackgroundColor
+                                        : GlobalVariables.backgroundColor,
                                     child: RatingBar.builder(
                                       initialRating: myRating,
                                       minRating: 1,
@@ -515,7 +570,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               alignment: Alignment.bottomLeft,
                                               child: Text(
                                                 rating.userId,
-                                                style: TextStyle(fontSize: 16),
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: currentTheme
+                                                          .isDarkTheme()
+                                                      ? GlobalVariables
+                                                          .text1darkbackgroundColor
+                                                      : GlobalVariables
+                                                          .text1WhithegroundColor,
+                                                ),
                                               ),
                                             ),
                                             Container(
@@ -524,7 +587,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               alignment: Alignment.bottomLeft,
                                               child: Text(
                                                 rating.userName,
-                                                style: TextStyle(fontSize: 16),
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: currentTheme
+                                                          .isDarkTheme()
+                                                      ? GlobalVariables
+                                                          .text1darkbackgroundColor
+                                                      : GlobalVariables
+                                                          .text1WhithegroundColor,
+                                                ),
                                               ),
                                             ),
                                             Container(

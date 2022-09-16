@@ -58,19 +58,6 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                decoration: BoxDecoration(
-                  color: currentTheme.isDarkTheme()
-                      ? GlobalVariables.darkbackgroundColor
-                      : GlobalVariables.backgroundColor,
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 1,
-                      color: currentTheme.isDarkTheme()
-                          ? GlobalVariables.borderColorsDarklv10
-                          : GlobalVariables.borderColorsWhithelv10,
-                    ),
-                  ),
-                ),
                 child: Container(
                   height: 25,
                   child: Row(
@@ -79,7 +66,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                       Text(
                         'Popular',
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 13,
                             color: currentTheme.isDarkTheme()
                                 ? GlobalVariables.text1darkbackgroundColor
                                 : GlobalVariables.text1WhithegroundColor),
@@ -92,12 +79,12 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
             productList == null
                 ? const Loader()
                 : Container(
-                    padding: const EdgeInsets.symmetric(vertical: 0),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     color: currentTheme.isDarkTheme()
                         ? GlobalVariables.darkbackgroundColor
                         : GlobalVariables.backgroundColor,
                     child: SizedBox(
-                      height: 180,
+                      height: 170,
                       width: double.infinity,
                       child: ListView.builder(
                         itemCount: productList!.length,
@@ -119,7 +106,7 @@ class _ListDealOfDayState extends State<ListDealOfDay> {
                                 children: [
                                   Container(
                                       width: 135.0,
-                                      height: 110.0,
+                                      height: 100.0,
                                       child: productList == null
                                           ? const Loader()
                                           : Container(

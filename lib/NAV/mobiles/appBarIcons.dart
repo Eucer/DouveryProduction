@@ -10,6 +10,8 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/models/themePreference.dart';
 import 'package:v1douvery/provider/theme.dart';
 
+import '../../features/Drawer/screen/mobiles_drawerScreen.dart';
+
 class AppBarIcons extends StatelessWidget {
   const AppBarIcons({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class AppBarIcons extends StatelessWidget {
     final currentTheme = Provider.of<ThemeProvider>(context);
     return AppBar(
       elevation: 0,
+      automaticallyImplyLeading: false,
       title: Padding(
         padding: const EdgeInsets.only(top: 25.0, right: 40),
         child: Container(
@@ -31,31 +34,16 @@ class AppBarIcons extends StatelessWidget {
         ),
       ),
       actions: [
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Icon(Icons.wb_sunny,
-                  color: currentTheme.isDarkTheme()
-                      ? Color.fromARGB(104, 5, 5, 5)
-                      : Colors.white),
-              Switch(
-                  value: currentTheme.isDarkTheme(),
-                  onChanged: (value) {
-                    String newTheme =
-                        value ? ThemePreference.DARK : ThemePreference.LIGHT;
-                    currentTheme.setTheme = newTheme;
-                  }),
-              Icon(Icons.brightness_2,
-                  color: currentTheme.isDarkTheme()
-                      ? Colors.white
-                      : Color.fromARGB(104, 5, 5, 5))
-            ],
-          ),
-        ),
-        CustomnIconsButton(
-          icon: Icon(Iconsax.user),
-          onPressed: () {},
+        Builder(
+          builder: (context) {
+            return CustomnIconsButton(
+              icon: Icon(Iconsax.user_octagon,
+                  size: 28, color: Color.fromARGB(235, 255, 255, 255)),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
         ),
         IconCart()
       ],

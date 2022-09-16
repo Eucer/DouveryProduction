@@ -42,6 +42,7 @@ import 'package:v1douvery/provider/user_provider.dart';
 
 import '../../../models/themePreference.dart';
 import '../../../provider/theme.dart';
+import '../../Drawer/screen/mobiles_drawerScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: AppBarIcons(),
           ),
         ),
-
+        drawer: DrawerScreen(),
         //SelectBody
         body: Scrollbar(
           child: SingleChildScrollView(

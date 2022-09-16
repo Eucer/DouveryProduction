@@ -39,10 +39,10 @@ class _CardsOneWidget extends State<CardsOneWidget> {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              left: 10,
+              left: 8,
               right: 10,
               top: 5,
-              bottom: 10,
+              bottom: 5,
             ),
             child: ClipRRect(
               child: Container(

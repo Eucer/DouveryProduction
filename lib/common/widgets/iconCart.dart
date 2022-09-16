@@ -11,6 +11,8 @@ import 'package:v1douvery/features/pruductDetails/services/pruductDetailsService
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../provider/theme.dart';
+
 class ModalIcons extends StatefulWidget {
   ModalIcons({Key? key}) : super(key: key);
 
@@ -27,18 +29,38 @@ class _ModalIconsState extends State<ModalIcons> {
     user.cart
         .map((e) => sum += e['quantity'] * e['product']['price'] as int)
         .toList();
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return SingleChildScrollView(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
+            decoration: BoxDecoration(
+              color: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.borderColorsDarklv10
+                      : GlobalVariables.borderColorsWhithelv10,
+                ),
+              ),
+            ),
             alignment: Alignment.topLeft,
             padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Tu carrito',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.text1darkbackgroundColor
+                        : GlobalVariables.text1WhithegroundColor,
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(right: 20),
@@ -74,7 +96,9 @@ class _ModalIconsState extends State<ModalIcons> {
             ),
           ),
           Container(
-            color: GlobalVariables.greyBackgroundCOlor,
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.darkOFbackgroundColor
+                : GlobalVariables.greyBackgroundCOlor,
             height: 350,
             child: ListView.builder(
               itemCount: user.cart.length,
@@ -126,15 +150,18 @@ class _ContainerCartState extends State<ContainerCart> {
     final productCart = context.watch<UserProvider>().user.cart[widget.index];
     final product = Product.fromMap(productCart['product']);
     final quantity = productCart['quantity'];
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 0.0),
       child: Container(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             GestureDetector(
               child: Container(
-                color: GlobalVariables.backgroundColor,
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
                 margin: const EdgeInsets.only(
                   left: 0,
                 ),
@@ -154,8 +181,11 @@ class _ContainerCartState extends State<ContainerCart> {
                               horizontal: 10, vertical: 5),
                           child: Text(
                             product.name,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 13,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
                             ),
                             maxLines: 2,
                           ),
@@ -165,8 +195,10 @@ class _ContainerCartState extends State<ContainerCart> {
                           padding: const EdgeInsets.only(left: 0, top: 5),
                           child: Text(
                             '\$${product.price}',
-                            style: const TextStyle(
-                              color: GlobalVariables.colorPriceSecond,
+                            style: TextStyle(
+                              color: currentTheme.isDarkTheme()
+                                  ? Color.fromARGB(255, 12, 98, 247)
+                                  : GlobalVariables.colorPriceSecond,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 0.5,
                               fontSize: 16.0,
@@ -177,11 +209,13 @@ class _ContainerCartState extends State<ContainerCart> {
                         Container(
                           width: 235,
                           padding: const EdgeInsets.only(left: 0, top: 5),
-                          child: const Text(
+                          child: Text(
                             'Disponible',
                             style: TextStyle(
                               fontSize: 12,
-                              color: Color(0xff212121),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : Color(0xff212121),
                             ),
                             maxLines: 2,
                           ),
@@ -189,7 +223,9 @@ class _ContainerCartState extends State<ContainerCart> {
                         Container(
                           margin: const EdgeInsets.only(
                               left: 15, top: 8, bottom: 8),
-                          color: GlobalVariables.backgroundNavBarColor,
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.darkbackgroundColor
+                              : GlobalVariables.backgroundColor,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -220,7 +256,10 @@ class _ContainerCartState extends State<ContainerCart> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.black12, width: 1.5),
-                                        color: Colors.white,
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .darkbackgroundColor
+                                            : GlobalVariables.backgroundColor,
                                         borderRadius: BorderRadius.circular(0),
                                       ),
                                       child: Container(
@@ -229,6 +268,13 @@ class _ContainerCartState extends State<ContainerCart> {
                                         alignment: Alignment.center,
                                         child: Text(
                                           quantity.toString(),
+                                          style: TextStyle(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .text1darkbackgroundColor
+                                                : GlobalVariables
+                                                    .text1WhithegroundColor,
+                                          ),
                                         ),
                                       ),
                                     ),

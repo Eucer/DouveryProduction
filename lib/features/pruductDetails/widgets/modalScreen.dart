@@ -13,6 +13,8 @@ import 'package:v1douvery/features/pruductDetails/services/pruductDetailsService
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+
 class ModalCartProductDetails extends StatefulWidget {
   ModalCartProductDetails({Key? key}) : super(key: key);
 
@@ -30,74 +32,116 @@ class _ModalCartProductDetailsState extends State<ModalCartProductDetails> {
     user.cart
         .map((e) => sum += e['quantity'] * e['product']['price'] as int)
         .toList();
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          ElegantNotification.success(
-              showProgressIndicator: false,
-              width: MediaQuery.of(context).size.width / 1,
-              title: Text("Agregado"),
-              description: Text("Tu carrito se actualizo correctamente")),
-          Container(
-            alignment: Alignment.topLeft,
-            padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Tu carrito',
-                  style: TextStyle(fontSize: 20),
+      child: Container(
+        color: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkbackgroundColor
+            : GlobalVariables.backgroundColor,
+        child: Column(
+          children: [
+            ElegantNotification.success(
+                background: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
+                showProgressIndicator: false,
+                width: MediaQuery.of(context).size.width / 1,
+                title: Text(
+                  "Agregado",
+                  style: TextStyle(
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.text1darkbackgroundColor
+                        : GlobalVariables.text1WhithegroundColor,
+                  ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 20),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: ElevatedButton.icon(
-                          autofocus: false,
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffed174f), // background
-                            // foreground
-                          ),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AddressScreen(
-                                totalAmount: sum.toString(),
-                                cantid: user.cart.length.toString(),
+                description: Text(
+                  "Tu carrito se actualizo correctamente",
+                  style: TextStyle(
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.text1darkbackgroundColor
+                        : GlobalVariables.text1WhithegroundColor,
+                  ),
+                )),
+            Container(
+              alignment: Alignment.topLeft,
+              padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
+              decoration: BoxDecoration(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
+                border: Border(
+                  top: BorderSide(
+                    width: 1,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.borderColorsDarklv10
+                        : GlobalVariables.borderColorsWhithelv10,
+                  ),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Tu carrito',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.text1darkbackgroundColor
+                          : GlobalVariables.text1WhithegroundColor,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: ElevatedButton.icon(
+                            autofocus: false,
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xffed174f), // background
+                              // foreground
+                            ),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddressScreen(
+                                  totalAmount: sum.toString(),
+                                  cantid: user.cart.length.toString(),
+                                ),
                               ),
                             ),
-                          ),
-                          icon: Icon(Icons.payments, size: 36),
-                          label: Text(
-                            "Proceder a pagar (${user.cart.length} items)",
+                            icon: Icon(Icons.payments, size: 36),
+                            label: Text(
+                              "Proceder a pagar (${user.cart.length} items)",
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            color: GlobalVariables.greyBackgroundCOlor,
-            height: 350,
-            child: ListView.builder(
-              itemCount: user.cart.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  child: ContenedorProductCart(
-                    index: index,
-                  ),
-                );
-              },
+            Container(
+              color: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkOFbackgroundColor
+                  : GlobalVariables.greyBackgroundCOlor,
+              height: 350,
+              child: ListView.builder(
+                itemCount: user.cart.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: ContenedorProductCart(
+                      index: index,
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -137,7 +181,7 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
     final productCart = context.watch<UserProvider>().user.cart[widget.index];
     final product = Product.fromMap(productCart['product']);
     final quantity = productCart['quantity'];
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 0.0),
       child: Container(
@@ -145,7 +189,9 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
           children: [
             GestureDetector(
               child: Container(
-                color: GlobalVariables.backgroundColor,
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
                 margin: const EdgeInsets.only(
                   left: 0,
                 ),
@@ -165,8 +211,11 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                               horizontal: 10, vertical: 5),
                           child: Text(
                             product.name,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 13,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
                             ),
                             maxLines: 2,
                           ),
@@ -176,8 +225,10 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                           padding: const EdgeInsets.only(left: 0, top: 5),
                           child: Text(
                             '\$${product.price}',
-                            style: const TextStyle(
-                              color: GlobalVariables.colorPriceSecond,
+                            style: TextStyle(
+                              color: currentTheme.isDarkTheme()
+                                  ? Color.fromARGB(255, 12, 98, 247)
+                                  : GlobalVariables.colorPriceSecond,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 0.5,
                               fontSize: 16.0,
@@ -188,11 +239,13 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                         Container(
                           width: 235,
                           padding: const EdgeInsets.only(left: 0, top: 5),
-                          child: const Text(
+                          child: Text(
                             'Disponible',
                             style: TextStyle(
                               fontSize: 12,
-                              color: Color(0xff212121),
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.text1darkbackgroundColor
+                                  : GlobalVariables.text1WhithegroundColor,
                             ),
                             maxLines: 2,
                           ),
@@ -200,7 +253,9 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                         Container(
                           margin: const EdgeInsets.only(
                               left: 15, top: 8, bottom: 8),
-                          color: GlobalVariables.backgroundNavBarColor,
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.darkbackgroundColor
+                              : GlobalVariables.backgroundColor,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -224,6 +279,7 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                                         child: const Icon(
                                           Icons.remove,
                                           size: 16,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -231,7 +287,10 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.black12, width: 1.5),
-                                        color: Colors.white,
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .darkbackgroundColor
+                                            : GlobalVariables.backgroundColor,
                                         borderRadius: BorderRadius.circular(0),
                                       ),
                                       child: Container(
@@ -240,6 +299,13 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                                         alignment: Alignment.center,
                                         child: Text(
                                           quantity.toString(),
+                                          style: TextStyle(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .text1darkbackgroundColor
+                                                : GlobalVariables
+                                                    .text1WhithegroundColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -252,6 +318,7 @@ class _ContenedorProductCartState extends State<ContenedorProductCart> {
                                         child: const Icon(
                                           Icons.add,
                                           size: 16,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),

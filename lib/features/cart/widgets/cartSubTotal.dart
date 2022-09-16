@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 
+import '../../../provider/theme.dart';
 import '../../../provider/user_provider.dart';
 
 class CartSubtotal extends StatelessWidget {
@@ -14,7 +15,7 @@ class CartSubtotal extends StatelessWidget {
     user.cart
         .map((e) => sum += e['quantity'] * e['product']['price'] as int)
         .toList();
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20),
       child: Column(
@@ -22,10 +23,13 @@ class CartSubtotal extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Text(
+              Text(
                 'Envio :          ',
                 style: TextStyle(
                   fontSize: 16,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
                 ),
               ),
               const Text(
@@ -40,17 +44,23 @@ class CartSubtotal extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Text(
+              Text(
                 'Subtotal :  ',
                 style: TextStyle(
                   fontSize: 16,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
                 ),
               ),
               Text(
                 '\$$sum',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
                 ),
                 maxLines: 2,
               ),
@@ -59,10 +69,13 @@ class CartSubtotal extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Que mas necesitas?  ',
                 style: TextStyle(
                   fontSize: 16,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
                 ),
               ),
               TextButton(onPressed: () {}, child: const Text('Enabled'))

@@ -113,10 +113,15 @@ class _SearchWidgetState extends State<SearchWidget> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: Material(
-                  color: Colors.red,
                   child: TextFormField(
+                    cursorColor: Colors.grey,
                     autofocus: true,
                     onFieldSubmitted: navigateToSearchingScreen,
+                    style: TextStyle(
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.text1darkbackgroundColor
+                          : GlobalVariables.text1WhithegroundColor,
+                    ),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: currentTheme.isDarkTheme()
@@ -129,6 +134,9 @@ class _SearchWidgetState extends State<SearchWidget> {
                       prefixIcon: Icon(
                         Icons.search,
                         size: 20,
+                        color: currentTheme.isDarkTheme()
+                            ? Colors.grey
+                            : Colors.grey,
                       ),
                     ),
                   ),

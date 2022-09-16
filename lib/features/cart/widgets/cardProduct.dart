@@ -8,6 +8,8 @@ import 'package:v1douvery/features/pruductDetails/services/pruductDetailsService
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+
 class CartProduct extends StatefulWidget {
   final int index;
   const CartProduct({
@@ -50,7 +52,7 @@ class _CartProductState extends State<CartProduct> {
     final productCart = context.watch<UserProvider>().user.cart[widget.index];
     final product = Product.fromMap(productCart['product']);
     final quantity = productCart['quantity'];
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Container(
       child: Column(
         children: [
@@ -61,17 +63,22 @@ class _CartProductState extends State<CartProduct> {
                 left: 0,
               ),
               decoration: BoxDecoration(
-                  color: GlobalVariables.backgroundColor,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.darkbackgroundColor
+                      : GlobalVariables.backgroundColor,
                   border: Border(
                       bottom: BorderSide(
                           color: Color.fromARGB(8, 0, 0, 0), width: 1))),
               child: Row(
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: product.images[0],
-                    fit: BoxFit.contain,
-                    height: 120,
-                    width: 120,
+                  Container(
+                    padding: EdgeInsets.only(right: 5),
+                    child: CachedNetworkImage(
+                      imageUrl: product.images[0],
+                      fit: BoxFit.contain,
+                      height: 120,
+                      width: 100,
+                    ),
                   ),
                   Column(
                     children: [
@@ -81,8 +88,11 @@ class _CartProductState extends State<CartProduct> {
                             horizontal: 0, vertical: 5),
                         child: Text(
                           product.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.text1darkbackgroundColor
+                                : GlobalVariables.text1WhithegroundColor,
                           ),
                           maxLines: 2,
                         ),
@@ -92,8 +102,10 @@ class _CartProductState extends State<CartProduct> {
                         padding: const EdgeInsets.only(left: 10, top: 5),
                         child: Text(
                           '\$${product.price}',
-                          style: const TextStyle(
-                            color: GlobalVariables.colorPriceSecond,
+                          style: TextStyle(
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.text1darkbackgroundColor
+                                : GlobalVariables.colorPriceSecond,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.5,
                             fontSize: 18.0,
@@ -117,7 +129,9 @@ class _CartProductState extends State<CartProduct> {
                       Container(
                         margin:
                             const EdgeInsets.only(left: 0, top: 8, bottom: 8),
-                        color: GlobalVariables.backgroundNavBarColor,
+                        color: currentTheme.isDarkTheme()
+                            ? GlobalVariables.darkbackgroundColor
+                            : GlobalVariables.backgroundColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -149,7 +163,9 @@ class _CartProductState extends State<CartProduct> {
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Colors.black12, width: 1.5),
-                                      color: Colors.white,
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables.darkbackgroundColor
+                                          : GlobalVariables.backgroundColor,
                                       borderRadius: BorderRadius.circular(0),
                                     ),
                                     child: Container(
@@ -158,6 +174,13 @@ class _CartProductState extends State<CartProduct> {
                                       alignment: Alignment.center,
                                       child: Text(
                                         quantity.toString(),
+                                        style: TextStyle(
+                                          color: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .text1darkbackgroundColor
+                                              : GlobalVariables
+                                                  .text1WhithegroundColor,
+                                        ),
                                       ),
                                     ),
                                   ),

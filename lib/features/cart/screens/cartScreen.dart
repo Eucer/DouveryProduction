@@ -18,6 +18,9 @@ import 'package:v1douvery/features/cart/widgets/cartSubTotal.dart';
 import 'package:v1douvery/features/pruductDetails/screens/mobiles_productDetailsScrenn.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+import '../../Drawer/screen/mobiles_drawerScreen.dart';
+
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -28,16 +31,18 @@ class CartScreen extends StatelessWidget {
     user.cart
         .map((e) => sum += e['quantity'] * e['product']['price'] as int)
         .toList();
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: GlobalVariables.backgroundColor,
+      backgroundColor: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkbackgroundColor
+          : GlobalVariables.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: Center(
           child: AppBarIcons(),
         ),
       ),
-
+      drawer: DrawerScreen(),
       //SelectBody
       body: user == null
           ? const Loader()
@@ -70,11 +75,15 @@ class CartScreen extends StatelessWidget {
                   CartSubtotal(),
                   const SizedBox(height: 15),
                   Container(
-                    color: Colors.black12.withOpacity(0.08),
+                    color: currentTheme.isDarkTheme()
+                        ? Colors.white70.withOpacity(0.08)
+                        : Colors.black12.withOpacity(0.08),
                     height: 1,
                   ),
                   Container(
-                    color: GlobalVariables.greyBackgroundCOlor,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.darkOFbackgroundColor
+                        : GlobalVariables.greyBackgroundCOlor,
                     height: 450,
                     child: ListView.builder(
                       itemCount: user.cart.length,

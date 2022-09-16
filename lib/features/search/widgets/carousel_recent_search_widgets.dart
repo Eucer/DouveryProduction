@@ -71,7 +71,7 @@ class _CarouselRecentSearchState extends State<CarouselRecentSearch> {
                   Text(
                     'Popular',
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 13,
                         color: currentTheme.isDarkTheme()
                             ? GlobalVariables.text1darkbackgroundColor
                             : GlobalVariables.text1WhithegroundColor),
@@ -84,6 +84,7 @@ class _CarouselRecentSearchState extends State<CarouselRecentSearch> {
         productList == null
             ? const Loader()
             : Container(
+                padding: EdgeInsets.only(top: 10),
                 color: currentTheme.isDarkTheme()
                     ? GlobalVariables.darkbackgroundColor
                     : GlobalVariables.backgroundColor,

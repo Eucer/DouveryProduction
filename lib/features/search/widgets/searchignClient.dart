@@ -218,6 +218,11 @@ class _SearchingWidgetState extends State<SearchingWidget> {
               child: TextFormField(
                 cursorColor: Colors.grey,
                 onFieldSubmitted: navigateToSearchingScreen,
+                style: TextStyle(
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
+                ),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: currentTheme.isDarkTheme()
