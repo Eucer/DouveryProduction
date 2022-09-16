@@ -210,9 +210,13 @@ class _CarouselProductToNamedCategoryState
                       context: context,
                       builder: (BuildContext bc) {
                         final product = widget.productList![index];
+                        final currentTheme =
+                            Provider.of<ThemeProvider>(context);
                         return Container(
                           height: 700,
-                          color: GlobalVariables.greyBackgroundCOlor,
+                          color: currentTheme.isDarkTheme()
+                              ? GlobalVariables.darkOFbackgroundColor
+                              : GlobalVariables.greyBackgroundCOlor,
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -229,97 +233,128 @@ class _CarouselProductToNamedCategoryState
                                         width:
                                             MediaQuery.of(context).size.width,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .darkbackgroundColor
+                                                : GlobalVariables
+                                                    .backgroundColor,
                                             border: Border(
                                                 bottom: BorderSide(
                                                     width: 1,
-                                                    color: GlobalVariables
-                                                        .colorTextGreylv10))),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        if (avgRating >= 5) ...[
-                                                          Flash(
-                                                              child: Stars(
-                                                                  rating:
-                                                                      avgRating)),
-                                                        ] else ...[
-                                                          Stars(
-                                                              rating:
-                                                                  avgRating),
+                                                    color: currentTheme
+                                                            .isDarkTheme()
+                                                        ? GlobalVariables
+                                                            .borderColorsDarklv10
+                                                        : GlobalVariables
+                                                            .borderColorsWhithelv10))),
+                                        child: Container(
+                                          color: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .darkbackgroundColor
+                                              : GlobalVariables.backgroundColor,
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          if (avgRating >=
+                                                              5) ...[
+                                                            Flash(
+                                                                child: Stars(
+                                                                    rating:
+                                                                        avgRating)),
+                                                          ] else ...[
+                                                            Stars(
+                                                                rating:
+                                                                    avgRating),
+                                                          ],
                                                         ],
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
 
-                                                  Container(
-                                                    width: 50,
-                                                    child: Text(
-                                                      '(' +
-                                                          avgRating.toString() +
-                                                          ') ' +
-                                                          product.rating!.length
-                                                              .toString(),
+                                                    Container(
+                                                      width: 50,
+                                                      child: Text(
+                                                        '(' +
+                                                            avgRating
+                                                                .toString() +
+                                                            ') ' +
+                                                            product
+                                                                .rating!.length
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 13),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Text(
+                                                      'Precio: ',
                                                       style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 13),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
+                                                          color: currentTheme
+                                                                  .isDarkTheme()
+                                                              ? GlobalVariables
+                                                                  .text1darkbackgroundColor
+                                                              : Colors.black54,
+                                                          fontSize: 15),
                                                     ),
-                                                  ),
-                                                  SizedBox(width: 10),
-                                                  Text(
-                                                    'Precio: ',
-                                                    style: TextStyle(
-                                                        color: Colors.black54,
-                                                        fontSize: 15),
-                                                  ),
 
-                                                  Text(
-                                                    '\$${product.price}',
-                                                    style: TextStyle(
-                                                      color: Color(0xff1C2833),
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      letterSpacing: 0.4,
-                                                      fontSize: 15.0,
+                                                    Text(
+                                                      '\$${product.price}',
+                                                      style: TextStyle(
+                                                        color: currentTheme
+                                                                .isDarkTheme()
+                                                            ? GlobalVariables
+                                                                .text20darkbackgroundColor
+                                                            : Color(0xff1C2833),
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        letterSpacing: 0.4,
+                                                        fontSize: 15.0,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  SizedBox(width: 10),
-                                                  //
-                                                  Text(
-                                                    'Envio: ',
-                                                    style: TextStyle(
-                                                        color: Colors.black54,
-                                                        fontSize: 15),
-                                                  ),
+                                                    SizedBox(width: 10),
+                                                    //
+                                                    Text(
+                                                      'Envio: ',
+                                                      style: TextStyle(
+                                                          color: currentTheme
+                                                                  .isDarkTheme()
+                                                              ? GlobalVariables
+                                                                  .text1darkbackgroundColor
+                                                              : Colors.black54,
+                                                          fontSize: 15),
+                                                    ),
 
-                                                  Text(
-                                                    'Gratis',
-                                                    style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 4, 161, 17),
-                                                        fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                            ]),
+                                                    Text(
+                                                      'Gratis',
+                                                      style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              255, 4, 161, 17),
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ]),
+                                        ),
                                       ),
                                     ),
                                     Container(
-                                      color: GlobalVariables.backgroundColor,
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables.darkbackgroundColor
+                                          : GlobalVariables.backgroundColor,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
                                           height: 250,
@@ -355,11 +390,18 @@ class _CarouselProductToNamedCategoryState
                                     Padding(
                                       padding: const EdgeInsets.only(top: 3.0),
                                       child: Container(
-                                        color: GlobalVariables.backgroundColor,
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .darkbackgroundColor
+                                            : GlobalVariables.backgroundColor,
                                         child: Column(
                                           children: [
                                             Container(
-                                              color: Colors.white,
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .backgroundColor,
                                               height: 30,
                                               alignment: Alignment.centerLeft,
                                               margin: EdgeInsets.only(
@@ -373,15 +415,27 @@ class _CarouselProductToNamedCategoryState
                                                       child: Icon(
                                                         Icons.house_outlined,
                                                         size: 16,
-                                                        color:
-                                                            Color(0xff10375C),
+                                                        color: currentTheme
+                                                                .isDarkTheme()
+                                                            ? Color.fromARGB(
+                                                                255,
+                                                                5,
+                                                                111,
+                                                                209)
+                                                            : Color(0xff10375C),
                                                       ),
                                                     ),
                                                     TextSpan(
                                                       text: product.marca,
                                                       style: TextStyle(
-                                                        color:
-                                                            Color(0xff10375C),
+                                                        color: currentTheme
+                                                                .isDarkTheme()
+                                                            ? Color.fromARGB(
+                                                                255,
+                                                                5,
+                                                                111,
+                                                                209)
+                                                            : Color(0xff10375C),
                                                       ),
                                                     ),
                                                   ],
@@ -389,7 +443,11 @@ class _CarouselProductToNamedCategoryState
                                               ),
                                             ),
                                             Container(
-                                              color: Colors.white,
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .backgroundColor,
                                               margin: const EdgeInsets.only(
                                                   top: 5, left: 10),
                                               width: double.infinity,
@@ -397,7 +455,12 @@ class _CarouselProductToNamedCategoryState
                                               child: Text(
                                                 product.name,
                                                 style: TextStyle(
-                                                  color: Color(0xff1C2833),
+                                                  color: currentTheme
+                                                          .isDarkTheme()
+                                                      ? GlobalVariables
+                                                          .text1darkbackgroundColor
+                                                      : GlobalVariables
+                                                          .text1WhithegroundColor,
                                                   fontWeight: FontWeight.w400,
                                                   letterSpacing: 0.4,
                                                   fontSize: 15.0,
@@ -418,12 +481,22 @@ class _CarouselProductToNamedCategoryState
                                                 width: double.infinity,
                                                 padding: EdgeInsets.all(0),
                                                 decoration: BoxDecoration(
-                                                    color: Colors.white,
+                                                    color: currentTheme
+                                                            .isDarkTheme()
+                                                        ? GlobalVariables
+                                                            .darkbackgroundColor
+                                                        : GlobalVariables
+                                                            .backgroundColor,
                                                     border: Border(
                                                         top: BorderSide(
-                                                            width: 1,
-                                                            color: GlobalVariables
-                                                                .colorTextGreylv10))),
+                                                      width: 1,
+                                                      color: currentTheme
+                                                              .isDarkTheme()
+                                                          ? GlobalVariables
+                                                              .text1darkbackgroundColor
+                                                          : GlobalVariables
+                                                              .text1WhithegroundColor,
+                                                    ))),
                                                 child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
