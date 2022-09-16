@@ -72,7 +72,7 @@ class _ListRandomState extends State<ListRandom> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Popular',
+                      'Menos de 100',
                       style: TextStyle(
                         fontSize: 15,
                         color: currentTheme.isDarkTheme()
