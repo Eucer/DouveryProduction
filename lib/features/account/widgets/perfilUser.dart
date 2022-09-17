@@ -8,13 +8,15 @@ import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+
 class PerfilUsuario extends StatelessWidget {
   const PerfilUsuario({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         Padding(
@@ -23,7 +25,9 @@ class PerfilUsuario extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: GlobalVariables.backgroundColor,
+              color: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
             ),
             child: Column(
               children: [
@@ -55,15 +59,25 @@ class PerfilUsuario extends StatelessWidget {
                                 Text(
                                   user.name,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    color: currentTheme.isDarkTheme()
+                                        ? GlobalVariables
+                                            .text2darkbackgroundColor
+                                        : GlobalVariables
+                                            .text1WhithegroundColor,
+                                  ),
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(right: 25),
                                   child: Text(
                                     'Super Usuario',
                                     style: TextStyle(
-                                        fontSize: 14, color: Colors.black45),
+                                        fontSize: 14,
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .text1darkbackgroundColor
+                                            : Colors.black45),
                                   ),
                                 ),
                               ],
@@ -77,7 +91,9 @@ class PerfilUsuario extends StatelessWidget {
                         icon: GestureDetector(
                           child: Icon(
                             Icons.ios_share_outlined,
-                            color: GlobalVariables.colorTextGreylv180,
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.text1darkbackgroundColor
+                                : GlobalVariables.colorTextGreylv180,
                           ),
                           onTap: () => Navigator.push(
                             context,
@@ -91,6 +107,9 @@ class PerfilUsuario extends StatelessWidget {
                     ),
                     Container(
                         child: PopupMenuButton(
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.text1darkbackgroundColor
+                          : GlobalVariables.colorTextGreylv180,
                       itemBuilder: (context) => [
                         PopupMenuItem(
                           child: Text('Reportar'),
@@ -111,7 +130,9 @@ class PerfilUsuario extends StatelessWidget {
                           height: 35,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Color(0xffe6f2ff),
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.darkOFbackgroundColor
+                                : Color(0xffe6f2ff),
                           ),
                           child: TextButton(
                             child: Text(
@@ -119,8 +140,10 @@ class PerfilUsuario extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   letterSpacing: 0.5,
-                                  fontSize: 15,
-                                  color: Color.fromARGB(255, 5, 68, 177)),
+                                  fontSize: 14,
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : Color.fromARGB(255, 5, 68, 177)),
                             ),
                             onPressed: () async {},
                           ),
@@ -138,7 +161,9 @@ class PerfilUsuario extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 0.5,
                                 fontSize: 15,
-                                color: GlobalVariables.colorTextBlckLight,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : GlobalVariables.text1WhithegroundColor,
                               ),
                             ),
                             onPressed: () async {},
@@ -154,10 +179,13 @@ class PerfilUsuario extends StatelessWidget {
                             child: Text(
                               "Report",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.5,
-                                  fontSize: 15,
-                                  color: GlobalVariables.colorTextBlckLight),
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 0.5,
+                                fontSize: 15,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : GlobalVariables.text1WhithegroundColor,
+                              ),
                             ),
                             onPressed: () async {},
                           ),

@@ -7,17 +7,22 @@ import 'package:v1douvery/features/account/services/accountServices.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+
 class WelcomeUser extends StatelessWidget {
   const WelcomeUser({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: GlobalVariables.rgbGradient,
+          color: currentTheme.isDarkTheme()
+              ? GlobalVariables.darkbackgroundColor
+              : GlobalVariables.rgbGradient,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(

@@ -493,9 +493,9 @@ class _CarouselProductToNamedCategoryState
                                                       color: currentTheme
                                                               .isDarkTheme()
                                                           ? GlobalVariables
-                                                              .text1darkbackgroundColor
+                                                              .borderColorsDarklv10
                                                           : GlobalVariables
-                                                              .text1WhithegroundColor,
+                                                              .borderColorsWhithelv10,
                                                     ))),
                                                 child: Row(
                                                     mainAxisAlignment:

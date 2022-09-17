@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,15 +20,21 @@ import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+import '../../Drawer/screen/mobiles_drawerScreen.dart';
+
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final userCartLen = context.watch<UserProvider>().user.cart.length;
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      backgroundColor: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkOFbackgroundColor
+          : GlobalVariables.greyBackgroundCOlor,
+      drawer: DrawerScreen(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(105),
         child: Center(
@@ -68,12 +75,15 @@ class Nosession extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           alignment: Alignment.center,
-          color: GlobalVariables.backgroundColor,
+          color: currentTheme.isDarkTheme()
+              ? GlobalVariables.darkbackgroundColor
+              : GlobalVariables.backgroundColor,
           width: MediaQuery.of(context).size.width,
           height: 300,
           child: Column(
@@ -86,18 +96,25 @@ class Nosession extends StatelessWidget {
               ),
               NotSessions(),
               Container(
-                color: GlobalVariables.backgroundColor,
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
                 alignment: Alignment.center,
                 child: IconButton(
                   icon: GestureDetector(
                     child: Icon(
                       IconlyLight.login,
-                      color: GlobalVariables.colorRosaRojVivo,
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.colorRosaRojVivo
+                          : GlobalVariables.colorRosaRojVivo,
                     ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AuthScreen(),
+                    onTap: () =>
+                        Navigator.of(context, rootNavigator: true).push(
+                      // ensures fullscreen
+                      CupertinoPageRoute(
+                        builder: (BuildContext context) {
+                          return AuthScreen();
+                        },
                       ),
                     ),
                   ),

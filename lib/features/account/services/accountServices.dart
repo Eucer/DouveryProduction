@@ -54,10 +54,12 @@ class AccountServices {
           await SharedPreferences.getInstance();
       await sharedPreferences.setString('x-auth-token', '');
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
-        context,
+      Navigator.of(context, rootNavigator: true).push(
+        // ensures fullscreen
         CupertinoPageRoute(
-          builder: (context) => WebFullResponsiveLayaout(),
+          builder: (BuildContext context) {
+            return WebFullResponsiveLayaout();
+          },
         ),
       );
     } catch (e) {

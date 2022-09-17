@@ -1,12 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:contained_tab_bar_view_with_custom_page_navigator/contained_tab_bar_view_with_custom_page_navigator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/custom.button.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/common/widgets/custon_button.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/auth/services/auth_service.dart';
+
+import '../../../provider/theme.dart';
+import '../../home/responsive/responsive_layaout.dart';
 
 enum Auth {
   signin,
@@ -59,25 +64,35 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: GlobalVariables.appBarbackgroundColor,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0, right: 0, left: 30),
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 250,
-                    height: 100,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                GestureDetector(
+                  onDoubleTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ResponsiveLayaout(),
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 5.0, right: 0, left: 30),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 250,
+                      height: 100,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://res.cloudinary.com/douvery/image/upload/v1659297990/LOGO/of4ya7v8cmrg0mg8us0c.png',
+                      ),
                     ),
                   ),
                 ),
@@ -89,23 +104,33 @@ class _AuthScreenState extends State<AuthScreen> {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.darkbackgroundColor
+                                  : GlobalVariables.backgroundColor,
                             ),
                             padding: const EdgeInsets.all(8.0),
                             height: 400,
                             child: ContainedTabBarView(
                               initialIndex: 0,
-                              tabs: const [
+                              tabs: [
                                 Text(
                                   'Iniciar Session',
                                   style: TextStyle(
-                                    color: Color.fromARGB(250, 0, 0, 0),
+                                    color: currentTheme.isDarkTheme()
+                                        ? GlobalVariables
+                                            .text1darkbackgroundColor
+                                        : GlobalVariables
+                                            .text1WhithegroundColor,
                                   ),
                                 ),
                                 Text(
                                   'Crear Cuenta',
                                   style: TextStyle(
-                                    color: Color.fromARGB(250, 0, 0, 0),
+                                    color: currentTheme.isDarkTheme()
+                                        ? GlobalVariables
+                                            .text1darkbackgroundColor
+                                        : GlobalVariables
+                                            .text1WhithegroundColor,
                                   ),
                                 ),
                               ],
@@ -114,7 +139,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                   child: Container(
                                     padding: EdgeInsets.only(
                                         left: 8, right: 8, top: 20),
-                                    color: GlobalVariables.backgroundColor,
+                                    color: currentTheme.isDarkTheme()
+                                        ? GlobalVariables.darkbackgroundColor
+                                        : GlobalVariables.backgroundColor,
                                     child: Form(
                                       key: _signInFormKey,
                                       child: SingleChildScrollView(
@@ -136,8 +163,11 @@ class _AuthScreenState extends State<AuthScreen> {
                                             ),
                                             CustomnButton(
                                               text: 'Sign Up',
-                                              color: GlobalVariables
-                                                  .secondaryColor,
+                                              color: currentTheme.isDarkTheme()
+                                                  ? Color.fromARGB(
+                                                      255, 58, 92, 124)
+                                                  : GlobalVariables
+                                                      .secondaryColor,
                                               onTap: () {
                                                 if (_signInFormKey.currentState!
                                                     .validate()) {
@@ -157,8 +187,14 @@ class _AuthScreenState extends State<AuthScreen> {
                                               ),
                                             ),
                                             Container(
-                                              color: Colors.white,
-                                              width: 100,
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .backgroundColor,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               height: 50,
                                               alignment: Alignment.center,
                                               child: Row(
@@ -189,7 +225,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       left: 8, right: 8, top: 20),
-                                  color: GlobalVariables.backgroundColor,
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.darkbackgroundColor
+                                      : GlobalVariables.backgroundColor,
                                   child: Form(
                                     key: _signUpFormKey,
                                     child: Column(
@@ -217,7 +255,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                         ),
                                         CustomnButton(
                                           text: 'Sign Up',
-                                          color: GlobalVariables.secondaryColor,
+                                          color: currentTheme.isDarkTheme()
+                                              ? Color.fromARGB(255, 58, 92, 124)
+                                              : GlobalVariables.secondaryColor,
                                           onTap: () {
                                             if (_signUpFormKey.currentState!
                                                 .validate()) {

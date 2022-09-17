@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../constantes/global_variables.dart';
+import '../../provider/theme.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -13,18 +17,29 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: TextStyle(
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.text1darkbackgroundColor
+                : Colors.grey),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.black45),
+          borderSide: BorderSide(
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.borderColorsDarklv10
+                : Colors.black45,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(7),
           borderSide: BorderSide(
-            color: Colors.black38,
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.borderColorsDarklv10
+                : Colors.black45,
           ),
         ),
       ),
