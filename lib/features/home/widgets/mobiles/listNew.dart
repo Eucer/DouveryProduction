@@ -206,6 +206,7 @@ class _CarouselProductToNamedCategoryState
 
                   //* MOballlll ********************************
                   void _modalInteriorFerce(BuildContext context) {
+                    bool a = false;
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext bc) {
@@ -220,6 +221,38 @@ class _CarouselProductToNamedCategoryState
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
+                                a == true
+                                    ? ElegantNotification.success(
+                                        background: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .darkbackgroundColor
+                                            : GlobalVariables.backgroundColor,
+                                        showProgressIndicator: true,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1,
+                                        title: Text(
+                                          "Agregado",
+                                          style: TextStyle(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .text1darkbackgroundColor
+                                                : GlobalVariables
+                                                    .text1WhithegroundColor,
+                                          ),
+                                        ),
+                                        description: Text(
+                                          "Tu carrito se actualizo correctamente",
+                                          style: TextStyle(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .text1darkbackgroundColor
+                                                : GlobalVariables
+                                                    .text1WhithegroundColor,
+                                          ),
+                                        ),
+                                      )
+                                    : Container(),
                                 Column(
                                   children: [
                                     Padding(
@@ -520,18 +553,7 @@ class _CarouselProductToNamedCategoryState
                                                               ),
                                                               onPressed: () {
                                                                 addToCart();
-                                                                ElegantNotification.success(
-                                                                        showProgressIndicator:
-                                                                            false,
-                                                                        width: MediaQuery.of(context).size.width /
-                                                                            1.1,
-                                                                        title: Text(
-                                                                            "Agregado"),
-                                                                        description:
-                                                                            Text(
-                                                                                "Tu carrito se actualizo correctamente"))
-                                                                    .show(
-                                                                        context);
+                                                                a = true;
                                                               },
                                                               icon: Icon(
                                                                   IconlyLight

@@ -104,8 +104,10 @@ class _ModalIconsState extends State<ModalIcons> {
               itemCount: user.cart.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return ContainerCart(
-                  index: index,
+                return GestureDetector(
+                  child: ContainerCart(
+                    index: index,
+                  ),
                 );
               },
             ),
@@ -153,156 +155,168 @@ class _ContainerCartState extends State<ContainerCart> {
     final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 0.0),
-      child: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GestureDetector(
-              child: Container(
-                color: currentTheme.isDarkTheme()
-                    ? GlobalVariables.darkbackgroundColor
-                    : GlobalVariables.backgroundColor,
-                margin: const EdgeInsets.only(
-                  left: 0,
-                ),
-                child: Row(
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: product.images[0],
-                      fit: BoxFit.contain,
-                      height: 85,
-                      width: 95,
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 1.4,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
-                          child: Text(
-                            product.name,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: currentTheme.isDarkTheme()
-                                  ? GlobalVariables.text1darkbackgroundColor
-                                  : GlobalVariables.text1WhithegroundColor,
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(
+              product: product,
+            ),
+          ),
+        ),
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GestureDetector(
+                child: Container(
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.darkbackgroundColor
+                      : GlobalVariables.backgroundColor,
+                  margin: const EdgeInsets.only(
+                    left: 0,
+                  ),
+                  child: Row(
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: product.images[0],
+                        fit: BoxFit.contain,
+                        height: 85,
+                        width: 95,
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.4,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            child: Text(
+                              product.name,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : GlobalVariables.text1WhithegroundColor,
+                              ),
+                              maxLines: 2,
                             ),
-                            maxLines: 2,
                           ),
-                        ),
-                        Container(
-                          width: 235,
-                          padding: const EdgeInsets.only(left: 0, top: 5),
-                          child: Text(
-                            '\$${product.price}',
-                            style: TextStyle(
-                              color: currentTheme.isDarkTheme()
-                                  ? Color.fromARGB(255, 12, 98, 247)
-                                  : GlobalVariables.colorPriceSecond,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.5,
-                              fontSize: 16.0,
+                          Container(
+                            width: 235,
+                            padding: const EdgeInsets.only(left: 0, top: 5),
+                            child: Text(
+                              '\$${product.price}',
+                              style: TextStyle(
+                                color: currentTheme.isDarkTheme()
+                                    ? Color.fromARGB(255, 12, 98, 247)
+                                    : GlobalVariables.colorPriceSecond,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.5,
+                                fontSize: 16.0,
+                              ),
+                              maxLines: 2,
                             ),
-                            maxLines: 2,
                           ),
-                        ),
-                        Container(
-                          width: 235,
-                          padding: const EdgeInsets.only(left: 0, top: 5),
-                          child: Text(
-                            'Disponible',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: currentTheme.isDarkTheme()
-                                  ? GlobalVariables.text1darkbackgroundColor
-                                  : Color(0xff212121),
+                          Container(
+                            width: 235,
+                            padding: const EdgeInsets.only(left: 0, top: 5),
+                            child: Text(
+                              'Disponible',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : Color(0xff212121),
+                              ),
+                              maxLines: 2,
                             ),
-                            maxLines: 2,
                           ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(
-                              left: 15, top: 8, bottom: 8),
-                          color: currentTheme.isDarkTheme()
-                              ? GlobalVariables.darkbackgroundColor
-                              : GlobalVariables.backgroundColor,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.black12,
-                                ),
-                                child: Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: () => decreaseQuantity(product),
-                                      child: Container(
-                                        width: 30,
-                                        height: 22,
-                                        alignment: Alignment.center,
-                                        child: const Icon(
-                                          Icons.remove,
-                                          size: 16,
-                                        ),
-                                      ),
+                          Container(
+                            margin: const EdgeInsets.only(
+                                left: 15, top: 8, bottom: 8),
+                            color: currentTheme.isDarkTheme()
+                                ? GlobalVariables.darkbackgroundColor
+                                : GlobalVariables.backgroundColor,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black12,
+                                      width: 1,
                                     ),
-                                    DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.black12, width: 1.5),
-                                        color: currentTheme.isDarkTheme()
-                                            ? GlobalVariables
-                                                .darkbackgroundColor
-                                            : GlobalVariables.backgroundColor,
-                                        borderRadius: BorderRadius.circular(0),
-                                      ),
-                                      child: Container(
-                                        width: 25,
-                                        height: 22,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          quantity.toString(),
-                                          style: TextStyle(
-                                            color: currentTheme.isDarkTheme()
-                                                ? GlobalVariables
-                                                    .text1darkbackgroundColor
-                                                : GlobalVariables
-                                                    .text1WhithegroundColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.black12,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () => decreaseQuantity(product),
+                                        child: Container(
+                                          width: 30,
+                                          height: 22,
+                                          alignment: Alignment.center,
+                                          child: const Icon(
+                                            Icons.remove,
+                                            size: 16,
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    InkWell(
-                                      onTap: () => increaseQuantity(product),
-                                      child: Container(
-                                        width: 30,
-                                        height: 22,
-                                        alignment: Alignment.center,
-                                        child: const Icon(
-                                          Icons.add,
-                                          size: 16,
+                                      DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.black12,
+                                              width: 1.5),
+                                          color: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .darkbackgroundColor
+                                              : GlobalVariables.backgroundColor,
+                                          borderRadius:
+                                              BorderRadius.circular(0),
+                                        ),
+                                        child: Container(
+                                          width: 25,
+                                          height: 22,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            quantity.toString(),
+                                            style: TextStyle(
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .text1darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .text1WhithegroundColor,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      InkWell(
+                                        onTap: () => increaseQuantity(product),
+                                        child: Container(
+                                          width: 30,
+                                          height: 22,
+                                          alignment: Alignment.center,
+                                          child: const Icon(
+                                            Icons.add,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

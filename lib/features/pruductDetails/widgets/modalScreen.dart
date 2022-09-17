@@ -41,27 +41,28 @@ class _ModalCartProductDetailsState extends State<ModalCartProductDetails> {
         child: Column(
           children: [
             ElegantNotification.success(
-                background: currentTheme.isDarkTheme()
-                    ? GlobalVariables.darkbackgroundColor
-                    : GlobalVariables.backgroundColor,
-                showProgressIndicator: false,
-                width: MediaQuery.of(context).size.width / 1,
-                title: Text(
-                  "Agregado",
-                  style: TextStyle(
-                    color: currentTheme.isDarkTheme()
-                        ? GlobalVariables.text1darkbackgroundColor
-                        : GlobalVariables.text1WhithegroundColor,
-                  ),
+              background: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
+              showProgressIndicator: false,
+              width: MediaQuery.of(context).size.width / 1,
+              title: Text(
+                "Agregado",
+                style: TextStyle(
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
                 ),
-                description: Text(
-                  "Tu carrito se actualizo correctamente",
-                  style: TextStyle(
-                    color: currentTheme.isDarkTheme()
-                        ? GlobalVariables.text1darkbackgroundColor
-                        : GlobalVariables.text1WhithegroundColor,
-                  ),
-                )),
+              ),
+              description: Text(
+                "Tu carrito se actualizo correctamente",
+                style: TextStyle(
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.text1darkbackgroundColor
+                      : GlobalVariables.text1WhithegroundColor,
+                ),
+              ),
+            ),
             Container(
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
