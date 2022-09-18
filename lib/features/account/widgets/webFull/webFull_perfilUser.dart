@@ -10,8 +10,10 @@ import 'package:v1douvery/common/widgets/header_text.dart';
 
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
+import 'package:v1douvery/models/themePreference.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../../provider/theme.dart';
 import '../WelcomeUser.dart';
 
 class WebFullPerfilUsuario extends StatelessWidget {
@@ -20,7 +22,7 @@ class WebFullPerfilUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         Padding(
@@ -30,7 +32,9 @@ class WebFullPerfilUsuario extends StatelessWidget {
             height: 770,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: GlobalVariables.backgroundColor,
+              color: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
             ),
             child: Column(
               children: [
@@ -272,7 +276,7 @@ class WebFullPerfilUsuario extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Password :',
+                                          'Address :',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color:
@@ -281,7 +285,7 @@ class WebFullPerfilUsuario extends StatelessWidget {
                                       ],
                                     ),
                                     Text(
-                                      user.password,
+                                      user.address,
                                       style: TextStyle(
                                           color: Color.fromARGB(180, 0, 0, 0)),
                                     ),
@@ -296,19 +300,23 @@ class WebFullPerfilUsuario extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Address :',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color:
-                                                  Color.fromARGB(230, 0, 0, 0)),
-                                        ),
+                                        Icon(Icons.wb_sunny,
+                                            color: currentTheme.isDarkTheme()
+                                                ? Color.fromARGB(104, 5, 5, 5)
+                                                : Colors.white),
+                                        Switch(
+                                            value: currentTheme.isDarkTheme(),
+                                            onChanged: (value) {
+                                              String newTheme = value
+                                                  ? ThemePreference.DARK
+                                                  : ThemePreference.LIGHT;
+                                              currentTheme.setTheme = newTheme;
+                                            }),
+                                        Icon(Icons.brightness_2,
+                                            color: currentTheme.isDarkTheme()
+                                                ? Colors.white
+                                                : Color.fromARGB(104, 5, 5, 5))
                                       ],
-                                    ),
-                                    Text(
-                                      user.address,
-                                      style: TextStyle(
-                                          color: Color.fromARGB(180, 0, 0, 0)),
                                     ),
                                   ],
                                 ),

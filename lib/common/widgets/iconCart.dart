@@ -11,6 +11,7 @@ import 'package:v1douvery/features/pruductDetails/services/pruductDetailsService
 import 'package:v1douvery/models/product.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../features/noSessions/screens/NoSessionsUser.dart';
 import '../../provider/theme.dart';
 
 class ModalIcons extends StatefulWidget {
@@ -31,88 +32,95 @@ class _ModalIconsState extends State<ModalIcons> {
         .toList();
     final currentTheme = Provider.of<ThemeProvider>(context);
     return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: currentTheme.isDarkTheme()
-                  ? GlobalVariables.darkbackgroundColor
-                  : GlobalVariables.backgroundColor,
-              border: Border(
-                bottom: BorderSide(
-                  width: 1,
-                  color: currentTheme.isDarkTheme()
-                      ? GlobalVariables.borderColorsDarklv10
-                      : GlobalVariables.borderColorsWhithelv10,
+      child: Container(
+        color: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkbackgroundColor
+            : GlobalVariables.backgroundColor,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.borderColorsDarklv10
+                        : GlobalVariables.borderColorsWhithelv10,
+                  ),
                 ),
               ),
-            ),
-            alignment: Alignment.topLeft,
-            padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Tu carrito',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: currentTheme.isDarkTheme()
-                        ? GlobalVariables.text1darkbackgroundColor
-                        : GlobalVariables.text1WhithegroundColor,
+              alignment: Alignment.topLeft,
+              padding: const EdgeInsets.only(left: 10, top: 5, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Tu carrito',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.text1darkbackgroundColor
+                          : GlobalVariables.text1WhithegroundColor,
+                    ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(right: 20),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: ElevatedButton.icon(
-                          autofocus: false,
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffed174f), // background
-                            // foreground
-                          ),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AddressScreen(
-                                totalAmount: sum.toString(),
-                                cantid: user.cart.length.toString(),
+                  Container(
+                    margin: EdgeInsets.only(right: 20),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: ElevatedButton.icon(
+                            autofocus: false,
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xffed174f), // background
+                              // foreground
+                            ),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddressScreen(
+                                  totalAmount: sum.toString(),
+                                  cantid: user.cart.length.toString(),
+                                ),
                               ),
                             ),
-                          ),
-                          icon: Icon(Icons.payments, size: 36),
-                          label: Text(
-                            "Proceder a pagar (${user.cart.length} items)",
+                            icon: Icon(Icons.payments, size: 36),
+                            label: Text(
+                              "Proceder a pagar (${user.cart.length} items)",
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            color: currentTheme.isDarkTheme()
-                ? GlobalVariables.darkOFbackgroundColor
-                : GlobalVariables.greyBackgroundCOlor,
-            height: 350,
-            child: ListView.builder(
-              itemCount: user.cart.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  child: ContainerCart(
-                    index: index,
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+            user.cart.length != 0
+                ? Container(
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.darkOFbackgroundColor
+                        : GlobalVariables.greyBackgroundCOlor,
+                    height: 350,
+                    child: ListView.builder(
+                      itemCount: user.cart.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          child: ContainerCart(
+                            index: index,
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                : NoSessionsUser()
+          ],
+        ),
       ),
     );
   }

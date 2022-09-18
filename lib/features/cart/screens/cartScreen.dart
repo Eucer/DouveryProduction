@@ -20,6 +20,7 @@ import 'package:v1douvery/provider/user_provider.dart';
 
 import '../../../provider/theme.dart';
 import '../../Drawer/screen/mobiles_drawerScreen.dart';
+import '../../noSessions/screens/NoSessionsUser.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -44,62 +45,86 @@ class CartScreen extends StatelessWidget {
       ),
       drawer: DrawerScreen(),
       //SelectBody
-      body: user == null
-          ? const Loader()
-          : SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ElevatedButton.icon(
-                      autofocus: false,
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xffed174f), // background
-                        // foreground
-                      ),
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddressScreen(
-                            totalAmount: sum.toString(),
-                            cantid: user.cart.length.toString(),
-                          ),
-                        ),
-                      ),
-                      icon: Icon(Icons.payments, size: 36),
-                      label: Text(
-                        "Proceder a pagar (${user.cart.length} items)",
-                      ),
-                    ),
+      body: user.cart.length != 0 ? SessionsCart() : NoSessionsUser(),
+    );
+  }
+}
+
+class SessionsCart extends StatefulWidget {
+  SessionsCart({Key? key}) : super(key: key);
+
+  @override
+  State<SessionsCart> createState() => _SessionsCartState();
+}
+
+class _SessionsCartState extends State<SessionsCart> {
+  @override
+  Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>().user;
+    int sum = 0;
+    user.cart
+        .map((e) => sum += e['quantity'] * e['product']['price'] as int)
+        .toList();
+    final currentTheme = Provider.of<ThemeProvider>(context);
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: ElevatedButton.icon(
+              autofocus: false,
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xffed174f), // background
+                // foreground
+              ),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddressScreen(
+                    totalAmount: sum.toString(),
+                    cantid: user.cart.length.toString(),
                   ),
-                  CartSubtotal(),
-                  const SizedBox(height: 15),
-                  Container(
-                    color: currentTheme.isDarkTheme()
-                        ? Colors.white70.withOpacity(0.08)
-                        : Colors.black12.withOpacity(0.08),
-                    height: 1,
-                  ),
-                  Container(
-                    color: currentTheme.isDarkTheme()
-                        ? GlobalVariables.darkOFbackgroundColor
-                        : GlobalVariables.greyBackgroundCOlor,
-                    height: 450,
-                    child: ListView.builder(
-                      itemCount: user.cart.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          child: CartProduct(
-                            index: index,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
+              ),
+              icon: Icon(Icons.payments, size: 36),
+              label: Text(
+                "Proceder a pagar (${user.cart.length} items)",
               ),
             ),
+          ),
+          CartSubtotal(),
+          const SizedBox(height: 15),
+          Container(
+            color: currentTheme.isDarkTheme()
+                ? Colors.white70.withOpacity(0.08)
+                : Colors.black12.withOpacity(0.08),
+            height: 1,
+          ),
+          Container(
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.darkOFbackgroundColor
+                : GlobalVariables.greyBackgroundCOlor,
+            height: 550,
+            child: ListView.builder(
+              itemCount: user.cart.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: CartProduct(
+                    index: index,
+                  ),
+                );
+              },
+            ),
+          ),
+          Container(
+            color: currentTheme.isDarkTheme()
+                ? Colors.white70.withOpacity(0.08)
+                : Colors.black12.withOpacity(0.08),
+            height: 1,
+          ),
+        ],
+      ),
     );
   }
 }

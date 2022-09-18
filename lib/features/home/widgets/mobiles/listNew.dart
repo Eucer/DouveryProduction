@@ -222,33 +222,36 @@ class _CarouselProductToNamedCategoryState
                             child: Column(
                               children: [
                                 a == true
-                                    ? ElegantNotification.success(
-                                        background: currentTheme.isDarkTheme()
-                                            ? GlobalVariables
-                                                .darkbackgroundColor
-                                            : GlobalVariables.backgroundColor,
-                                        showProgressIndicator: true,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1,
-                                        title: Text(
-                                          "Agregado",
-                                          style: TextStyle(
-                                            color: currentTheme.isDarkTheme()
-                                                ? GlobalVariables
-                                                    .text1darkbackgroundColor
-                                                : GlobalVariables
-                                                    .text1WhithegroundColor,
+                                    ? FadeIn(
+                                        child: ElegantNotification.success(
+                                          background: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .darkbackgroundColor
+                                              : GlobalVariables.backgroundColor,
+                                          showProgressIndicator: true,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1,
+                                          title: Text(
+                                            "Agregado",
+                                            style: TextStyle(
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .text1darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .text1WhithegroundColor,
+                                            ),
                                           ),
-                                        ),
-                                        description: Text(
-                                          "Tu carrito se actualizo correctamente",
-                                          style: TextStyle(
-                                            color: currentTheme.isDarkTheme()
-                                                ? GlobalVariables
-                                                    .text1darkbackgroundColor
-                                                : GlobalVariables
-                                                    .text1WhithegroundColor,
+                                          description: Text(
+                                            "Tu carrito se actualizo correctamente",
+                                            style: TextStyle(
+                                              color: currentTheme.isDarkTheme()
+                                                  ? GlobalVariables
+                                                      .text1darkbackgroundColor
+                                                  : GlobalVariables
+                                                      .text1WhithegroundColor,
+                                            ),
                                           ),
                                         ),
                                       )

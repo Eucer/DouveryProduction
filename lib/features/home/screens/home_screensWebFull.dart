@@ -34,6 +34,7 @@ import 'package:v1douvery/models/product.dart';
 
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
 import '../widgets/webFull/web_conMarca.dart';
 
 class MainScreenHomeScreenWebFull extends StatelessWidget {
@@ -82,8 +83,11 @@ class _HomeScreenWebFullState extends State<HomeScreenWebFull> {
       );
     }
 
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-        backgroundColor: GlobalVariables.greyBackgroundCOlor,
+        backgroundColor: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkOFbackgroundColor
+            : GlobalVariables.greyBackgroundCOlor,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(75),
           child: Center(

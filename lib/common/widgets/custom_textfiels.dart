@@ -20,6 +20,11 @@ class CustomTextField extends StatelessWidget {
     final currentTheme = Provider.of<ThemeProvider>(context);
     return TextFormField(
       controller: controller,
+      style: TextStyle(
+        color: currentTheme.isDarkTheme()
+            ? GlobalVariables.text1darkbackgroundColor
+            : GlobalVariables.text1WhithegroundColor,
+      ),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(

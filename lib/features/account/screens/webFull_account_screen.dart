@@ -25,6 +25,8 @@ import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+
 class WebFullAccountScreen extends StatelessWidget {
   const WebFullAccountScreen({Key? key}) : super(key: key);
 
@@ -60,8 +62,11 @@ class Session extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      backgroundColor: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkOFbackgroundColor
+          : GlobalVariables.greyBackgroundCOlor,
       body: SingleChildScrollView(
         child: Column(
           children: [
