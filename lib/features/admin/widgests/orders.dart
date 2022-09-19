@@ -136,7 +136,7 @@ class OrdersListPreview extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 0.0),
+                          padding: const EdgeInsets.only(top: 10.0),
                           child: Container(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
