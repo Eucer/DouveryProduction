@@ -103,7 +103,20 @@ class OrdersListPreview extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                color: Colors.red,
+                                decoration: BoxDecoration(
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.darkbackgroundColor
+                                      : GlobalVariables.backgroundColor,
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables
+                                              .text1darkbackgroundColor
+                                          : GlobalVariables
+                                              .text1WhithegroundColor,
+                                    ),
+                                  ),
+                                ),
                                 width: MediaQuery.of(context).size.width / 3,
                                 child: Text(
                                   orderData.orderedAt.toString(),
@@ -115,6 +128,7 @@ class OrdersListPreview extends StatelessWidget {
                                         : GlobalVariables
                                             .text1WhithegroundColor,
                                   ),
+                                  textAlign: TextAlign.center,
                                   maxLines: 2,
                                 ),
                               ),

@@ -109,72 +109,83 @@ class _PostsScreenState extends State<PostsScreen> {
                       color: currentTheme.isDarkTheme()
                           ? GlobalVariables.darkbackgroundColor
                           : GlobalVariables.backgroundColor,
-                      height: 500,
-                      child: Form(
+                      height: 700,
+                      child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            Container(
-                              color: currentTheme.isDarkTheme()
-                                  ? GlobalVariables.darkbackgroundColor
-                                  : GlobalVariables.backgroundColor,
-                              child: GestureDetector(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 0.0, top: 0.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(0),
-                                    child: CachedNetworkImage(
-                                      imageUrl: productData.images[0],
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 300.0,
-                                      fit: BoxFit.scaleDown,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Deseas Eliminar este producto ? ',
-                              style: TextStyle(
-                                  color: currentTheme.isDarkTheme()
-                                      ? GlobalVariables.text1darkbackgroundColor
-                                      : GlobalVariables.text1WhithegroundColor),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 3,
-                              child: Row(
+                            Form(
+                              child: Column(
                                 children: [
                                   Container(
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text(
-                                        'No',
+                                    color: currentTheme.isDarkTheme()
+                                        ? GlobalVariables.darkbackgroundColor
+                                        : GlobalVariables.backgroundColor,
+                                    child: GestureDetector(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 0.0, top: 50.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(0),
+                                          child: CachedNetworkImage(
+                                            imageUrl: productData.images[0],
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 300.0,
+                                            fit: BoxFit.scaleDown,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
+                                  Text(
+                                    'Deseas Eliminar este producto ? ',
+                                    style: TextStyle(
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .text1darkbackgroundColor
+                                            : GlobalVariables
+                                                .text1WhithegroundColor),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
                                   Container(
-                                    child: TextButton(
-                                      onPressed: () {},
-                                      child: const Text(
-                                        'Si',
-                                      ),
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          child: TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text(
+                                              'No',
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: TextButton(
+                                            onPressed: () {},
+                                            child: const Text(
+                                              'Si',
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   )
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
-                      padding: EdgeInsets.all(40.0),
                     );
                   });
             }
