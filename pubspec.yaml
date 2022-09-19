@@ -58,6 +58,7 @@ dependencies:
   auto_size_text: ^3.0.0
   modals: ^0.0.3
   pie_menu: ^1.2.1
+  dropdown_button2: ^1.8.1
 
 dev_dependencies:
   flutter_test:

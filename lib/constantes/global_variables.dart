@@ -57,7 +57,8 @@ class GlobalVariables {
   //*BorderColors
   static const borderColorsDarklv10 = Color.fromARGB(17, 252, 252, 252);
   static const borderColorsWhithelv10 = Color.fromARGB(10, 0, 0, 0);
-
+  static const borderColorsDarklv20 = Color.fromARGB(90, 252, 252, 252);
+  static const borderColorsWhithelv20 = Color.fromARGB(157, 0, 0, 0);
   //* NavBAR
   static const navBardarkbackgroundColor = Color(0xff222831);
   static const navBarbackgroundColor = Colors.white;

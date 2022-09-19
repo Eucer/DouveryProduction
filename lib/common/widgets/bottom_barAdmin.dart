@@ -14,6 +14,7 @@ import 'package:v1douvery/features/admin/screens/analtyScreen.dart';
 import 'package:v1douvery/features/admin/screens/ordersScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 
+import '../../features/home/responsive/responsive_layaout.dart';
 import '../../provider/theme.dart';
 
 class MainScreenAdmin extends StatelessWidget {
@@ -58,21 +59,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Container(
                   child: Icon(Iconsax.home4),
                 ),
-                activeIcon: Container(
-                  width: bottomBarWidth,
-                  margin: EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xff19323C),
-                        width: bottomBarBorderWidth,
-                      ),
+                activeIcon: GestureDetector(
+                  onDoubleTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => MainScreenAdmin(),
                     ),
                   ),
-                  height: 40,
-                  child: Icon(
-                    Iconsax.home4,
-                    size: 30,
+                  child: Container(
+                    width: bottomBarWidth,
+                    margin: EdgeInsets.only(),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xff19323C),
+                          width: bottomBarBorderWidth,
+                        ),
+                      ),
+                    ),
+                    height: 40,
+                    child: Icon(
+                      Iconsax.home4,
+                      size: 30,
+                    ),
                   ),
                 ),
               ),

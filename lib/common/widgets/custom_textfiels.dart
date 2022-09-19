@@ -44,7 +44,7 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide(
             color: currentTheme.isDarkTheme()
                 ? GlobalVariables.borderColorsDarklv10
-                : Colors.black45,
+                : Colors.black38,
           ),
         ),
       ),

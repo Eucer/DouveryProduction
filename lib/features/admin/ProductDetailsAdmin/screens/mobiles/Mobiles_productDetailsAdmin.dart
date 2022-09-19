@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/IconButton.dart';
+import 'package:v1douvery/features/admin/ProductDetailsAdmin/widgets/imgProduct.dart';
+import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/models/product.dart';
+import 'package:v1douvery/provider/theme.dart';
 
 import '../../../../../constantes/global_variables.dart';
-import '../../../../../provider/theme.dart';
 import '../../../../Drawer/screen/mobiles_drawerScreen.dart';
 import '../../../../pruductDetails/screens/mobiles_productDetailsScrenn.dart';
-import '../../../screens/Full/screens/adminScreens.dart';
-import '../../widgets/imgProduct.dart';
 
 class MobilesProductDetailsAdmin extends StatefulWidget {
   final Product product;
