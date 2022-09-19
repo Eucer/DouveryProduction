@@ -7,7 +7,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/account/screens/account_screen.dart';
+import 'package:v1douvery/features/account/screens/mobiles/account_screen.dart';
 import 'package:v1douvery/features/cart/screens/cartScreen.dart';
 import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';

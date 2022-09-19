@@ -114,7 +114,7 @@ class _AddressScreenState extends State<AddressScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(55),
+        preferredSize: const Size.fromHeight(155),
         child: AppBar(
           elevation: 0,
           flexibleSpace: Container(
@@ -261,7 +261,6 @@ class _AddressScreenState extends State<AddressScreen> {
                     paymentItems: paymentItems,
                     width: double.infinity,
                     height: 50,
-                    style: GooglePayButtonStyle.black,
                     type: GooglePayButtonType.buy,
                     margin: const EdgeInsets.only(top: 15),
                     loadingIndicator: const Center(

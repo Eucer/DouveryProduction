@@ -58,7 +58,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(45),
+        preferredSize: Size.fromHeight(105),
         child: TopTitleButtom(
           title: 'volver',
         ),
@@ -66,7 +66,6 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CenterSearchNav(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(

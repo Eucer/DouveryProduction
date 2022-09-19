@@ -20,8 +20,8 @@ import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
-import '../../../provider/theme.dart';
-import '../../Drawer/screen/mobiles_drawerScreen.dart';
+import '../../../../provider/theme.dart';
+import '../../../Drawer/screen/mobiles_drawerScreen.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);

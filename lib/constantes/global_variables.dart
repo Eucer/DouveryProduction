@@ -50,6 +50,7 @@ class GlobalVariables {
   static const greyBackgroundCOlor = Color(0xfff1f5f9);
   static const backgroundColor = Color(0xffFDFEFE);
   static const text1WhithegroundColor = Color(0xff1C2833);
+  static const text2WhithegroundColor = Color.fromARGB(255, 12, 17, 22);
 
   static const colorArtNewWhithebackgroundColor = Color(0xffC70039);
 
@@ -76,6 +77,13 @@ class GlobalVariables {
     ],
     stops: [0.5, 1.0],
   );
+
+//* OrdersColors
+  static const colorOrden0 = Color(0xff00ADB5);
+  static const colorOrden1 = Color(0xff005691);
+  static const colorOrden2 = Color(0xff6D9886);
+  static const colorOrden3 = Color(0xff59CE8F);
+  static const colorOrden4 = Color(0xffC21010);
 
 // STATIC IMAGES
   static List<String> carouselImagesMobil = [

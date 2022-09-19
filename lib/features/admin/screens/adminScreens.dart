@@ -9,6 +9,7 @@ import 'package:v1douvery/features/admin/widgests/NAV/AdmintopTitleButtom.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/centerSearchNav.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../Drawer/screen/mobiles_drawerScreen.dart';
 import '../widgests/postsScreens.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -64,13 +65,6 @@ class _AdminScreenState extends State<AdminScreen> {
                       ],
                     ),
                   ),
-                  Text(
-                    user.type,
-                    style: GoogleFonts.lato(
-                      color: Color(0xffFCFCFC),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
                 ],
               ),
               toolbarHeight: 60,
@@ -79,6 +73,7 @@ class _AdminScreenState extends State<AdminScreen> {
           ],
         ),
       ),
+      drawer: DrawerScreen(),
       body: pages[_page],
     );
   }

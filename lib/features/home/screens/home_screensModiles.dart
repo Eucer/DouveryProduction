@@ -81,27 +81,34 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: DrawerScreen(),
         //SelectBody
-        body: Scrollbar(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                NavCategory(),
-                BannerWidget(),
-                CardsOneWidget(),
-                ListDealOfDay(),
-                DealOfDay(),
-                ListRandom(),
-                RecomendProduct(),
-                ListMarca(),
-                CartCrypto(),
-                CarAnimationsTesting(),
-                CardBrands(),
-                DealOfDay(),
-                DealOfDay(),
-                DealOfDay(),
-              ],
-            ),
-          ),
-        ));
+        body: SwipeRefresh.cupertino(
+            refreshTriggerPullDistance: 20,
+            refreshIndicatorExtent: 20,
+            stateStream: _stream,
+            onRefresh: _reset,
+            children: [
+              Scrollbar(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      NavCategory(),
+                      BannerWidget(),
+                      CardsOneWidget(),
+                      ListDealOfDay(),
+                      DealOfDay(),
+                      ListRandom(),
+                      RecomendProduct(),
+                      ListMarca(),
+                      CartCrypto(),
+                      CarAnimationsTesting(),
+                      CardBrands(),
+                      DealOfDay(),
+                      DealOfDay(),
+                      DealOfDay(),
+                    ],
+                  ),
+                ),
+              )
+            ]));
   }
 }

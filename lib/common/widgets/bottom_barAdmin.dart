@@ -5,13 +5,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/account/screens/account_screen.dart';
+import 'package:v1douvery/features/account/screens/mobiles/account_screen.dart';
 import 'package:v1douvery/features/admin/screens/accountBrands.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/features/admin/screens/analtyScreen.dart';
 import 'package:v1douvery/features/admin/screens/ordersScreen.dart';
 import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
+
+import '../../provider/theme.dart';
 
 class MainScreenAdmin extends StatelessWidget {
   static const String routeName = '/actual-home';
@@ -45,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
       AnalyticsScreen(),
       AccountsBrands(),
     ];
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return CupertinoPageScaffold(
         resizeToAvoidBottomInset: false,
         child: CupertinoTabScaffold(
@@ -91,13 +94,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
             border: Border(
               top: BorderSide(
-                color: Color.fromARGB(26, 5, 12, 43),
+                color: currentTheme.isDarkTheme()
+                    ? Color.fromARGB(3, 252, 252, 252)
+                    : Color.fromARGB(26, 5, 12, 43),
               ),
             ),
-            backgroundColor: GlobalVariables.backgroundNavBarColor,
-            activeColor: GlobalVariables.buttomColor,
-            inactiveColor: GlobalVariables.unselectedNavBarColor,
-            iconSize: 28,
+            backgroundColor: currentTheme.isDarkTheme()
+                ? GlobalVariables.navBardarkbackgroundColor
+                : GlobalVariables.navBarbackgroundColor,
+            activeColor: currentTheme.isDarkTheme()
+                ? Color(0XFFFCFCFC)
+                : GlobalVariables.appBarbackgroundColor,
+            inactiveColor: currentTheme.isDarkTheme()
+                ? Color.fromARGB(228, 144, 144, 144)
+                : GlobalVariables.unselectedNavBarColor,
+            iconSize: 27,
           ),
           tabBuilder: (context, index) {
             return Container(

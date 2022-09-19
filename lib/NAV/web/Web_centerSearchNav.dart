@@ -7,7 +7,7 @@ import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/iconCart.dart';
 import 'package:v1douvery/common/widgets/webFull_iconCart.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/account/screens/webFull_account_screen.dart';
+import 'package:v1douvery/features/account/screens/web/webFull_account_screen.dart';
 import 'package:v1douvery/features/home/screens/home_screensWebFull.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/features/search/widgets/searchignClient.dart';

@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/common/widgets/custom.button.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/common/widgets/stars.dart';
@@ -12,6 +14,8 @@ import 'package:v1douvery/features/account/services/accountServices.dart';
 import 'package:v1douvery/features/admin/screens/adminScreens.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';
 import 'package:v1douvery/provider/user_provider.dart';
+
+import '../../Drawer/screen/mobiles_drawerScreen.dart';
 
 class AccountsBrands extends StatefulWidget {
   AccountsBrands({Key? key}) : super(key: key);
@@ -101,13 +105,6 @@ class _AccountsBrandsState extends State<AccountsBrands> {
                       onPressed: () {},
                     ),
                   ),
-                  Text(
-                    user.type,
-                    style: GoogleFonts.lato(
-                      color: Color(0xffFCFCFC),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
                 ],
               ),
               toolbarHeight: 60,
@@ -116,6 +113,7 @@ class _AccountsBrandsState extends State<AccountsBrands> {
           ],
         ),
       ),
+      drawer: DrawerScreen(),
       body: SingleChildScrollView(
         child: Container(
           color: GlobalVariables.backgroundColor,

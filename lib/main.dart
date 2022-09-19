@@ -14,6 +14,7 @@ import 'package:v1douvery/features/auth/services/auth_service.dart';
 import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
 
 import 'package:v1douvery/models/user.dart';
+import 'package:v1douvery/provider/ordersProviders.dart';
 import 'package:v1douvery/provider/theme.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 import 'package:v1douvery/router.dart';
@@ -24,9 +25,8 @@ void main() {
     if (kReleaseMode) exit(1);
   };
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => UserProvider(),
-    ),
+    ChangeNotifierProvider(create: (context) => UserProvider()),
+    ChangeNotifierProvider(create: (context) => OrderProvider()),
   ], child: const MyApp()));
 }
 
