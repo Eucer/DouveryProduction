@@ -109,7 +109,7 @@ class _PostsScreenState extends State<PostsScreen> {
                       color: currentTheme.isDarkTheme()
                           ? GlobalVariables.darkbackgroundColor
                           : GlobalVariables.backgroundColor,
-                      height: 700,
+                      height: 500,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -123,7 +123,7 @@ class _PostsScreenState extends State<PostsScreen> {
                                     child: GestureDetector(
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 0.0, top: 50.0),
+                                            left: 0.0, top: 0.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(0),
@@ -203,26 +203,31 @@ class _PostsScreenState extends State<PostsScreen> {
                 padding: EdgeInsets.all(2.0),
                 child: Container(
                   width: 110,
-                  color: currentTheme.isDarkTheme()
-                      ? GlobalVariables.darkbackgroundColor
-                      : GlobalVariables.backgroundColor,
+                  decoration: BoxDecoration(
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.darkbackgroundColor
+                          : GlobalVariables.backgroundColor,
+                      borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            GestureDetector(
-                              onTap: _showModalSheet,
-                              child: Icon(
-                                Icons.more_vert,
-                                color: currentTheme.isDarkTheme()
-                                    ? GlobalVariables.text1darkbackgroundColor
-                                    : GlobalVariables.text1WhithegroundColor,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                onTap: _showModalSheet,
+                                child: Icon(
+                                  Icons.more_vert,
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : GlobalVariables.text1WhithegroundColor,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Container(
@@ -238,7 +243,7 @@ class _PostsScreenState extends State<PostsScreen> {
                               color: currentTheme.isDarkTheme()
                                   ? GlobalVariables.darkbackgroundColor
                                   : GlobalVariables.backgroundColor,
-                              margin: EdgeInsets.only(left: 3),
+                              padding: EdgeInsets.only(left: 10, right: 8),
                               child: Text(
                                 productData.name,
                                 style: TextStyle(
@@ -258,7 +263,7 @@ class _PostsScreenState extends State<PostsScreen> {
                               children: [
                                 Container(
                                   alignment: Alignment.bottomLeft,
-                                  margin: EdgeInsets.only(left: 3),
+                                  margin: EdgeInsets.only(left: 9, top: 2),
                                   child: Text(
                                     productData.category,
                                     style: TextStyle(
@@ -271,47 +276,53 @@ class _PostsScreenState extends State<PostsScreen> {
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      color: currentTheme.isDarkTheme()
-                                          ? GlobalVariables.darkbackgroundColor
-                                          : GlobalVariables.backgroundColor,
-                                      child: Text(
-                                        'C : ' +
-                                            productData.quantity.toString() +
-                                            ' -',
-                                        style: TextStyle(
-                                          color: currentTheme.isDarkTheme()
-                                              ? GlobalVariables
-                                                  .text1darkbackgroundColor
-                                              : GlobalVariables
-                                                  .text1WhithegroundColor,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 0.5,
-                                          fontSize: 14.0,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 8.0, top: 8),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .darkbackgroundColor
+                                            : GlobalVariables.backgroundColor,
+                                        child: Text(
+                                          'C' +
+                                              productData.quantity.toString() +
+                                              ' -',
+                                          style: TextStyle(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .text1darkbackgroundColor
+                                                : GlobalVariables
+                                                    .text1WhithegroundColor,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 0.5,
+                                            fontSize: 14.0,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Container(
-                                      color: currentTheme.isDarkTheme()
-                                          ? GlobalVariables.darkbackgroundColor
-                                          : GlobalVariables.backgroundColor,
-                                      child: Text(
-                                        ' \$${productData.price}',
-                                        style: TextStyle(
-                                          color: currentTheme.isDarkTheme()
-                                              ? GlobalVariables
-                                                  .text1darkbackgroundColor
-                                              : GlobalVariables
-                                                  .text1WhithegroundColor,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 0.5,
-                                          fontSize: 14.0,
+                                      Container(
+                                        color: currentTheme.isDarkTheme()
+                                            ? GlobalVariables
+                                                .darkbackgroundColor
+                                            : GlobalVariables.backgroundColor,
+                                        child: Text(
+                                          ' \$${productData.price}',
+                                          style: TextStyle(
+                                            color: currentTheme.isDarkTheme()
+                                                ? GlobalVariables
+                                                    .text1darkbackgroundColor
+                                                : GlobalVariables
+                                                    .text1WhithegroundColor,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 0.5,
+                                            fontSize: 14.0,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

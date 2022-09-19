@@ -9,6 +9,7 @@ import 'package:v1douvery/features/admin/widgests/NAV/AdmintopTitleButtom.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/centerSearchNav.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
 import '../../Drawer/screen/mobiles_drawerScreen.dart';
 import '../widgests/postsScreens.dart';
 
@@ -37,6 +38,8 @@ class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
+    final currentTheme = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
@@ -84,8 +87,12 @@ class ContainerNavOpci extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
+
     return Container(
-      color: Color(0xff19323C),
+      color: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkbackgroundColor
+          : Color(0xff19323C),
       height: 30,
       width: MediaQuery.of(context).size.width,
       child: Row(
