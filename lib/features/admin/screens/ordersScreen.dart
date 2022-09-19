@@ -18,6 +18,7 @@ import 'package:v1douvery/provider/theme.dart';
 
 import '../../Drawer/screen/mobiles_drawerScreen.dart';
 import '../../search/widgets/searchignClient.dart';
+import '../widgests/orders.dart';
 
 class OrdersScreen extends StatefulWidget {
   OrdersScreen({Key? key}) : super(key: key);
@@ -106,7 +107,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           child: Material(
                             child: TextFormField(
                               cursorColor: Colors.grey,
-                              autofocus: true,
                               style: TextStyle(
                                 color: currentTheme.isDarkTheme()
                                     ? GlobalVariables.text1darkbackgroundColor
@@ -141,341 +141,24 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ),
         ),
         drawer: DrawerScreen(),
-        body: SwipeRefresh.cupertino(
-            refreshTriggerPullDistance: 20,
-            refreshIndicatorExtent: 20,
-            stateStream: _stream,
-            onRefresh: _reset,
-            children: [
-              Container(
+        body: orders == null
+            ? const Loader()
+            : Container(
                 color: currentTheme.isDarkTheme()
                     ? GlobalVariables.darkOFbackgroundColor
                     : GlobalVariables.greyBackgroundCOlor,
-                child: orders == null
-                    ? Loader()
-                    : ListView.builder(
-                        itemCount: orders!.length,
-                        itemBuilder: (context, index) {
-                          final orderData = orders![index];
-
-                          return GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderDetailScreen(
-                                  order: orders![index],
-                                ),
-                                settings: RouteSettings(
-                                  arguments: orders![index],
-                                ),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Container(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                width: MediaQuery.of(context).size.width,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                    color: currentTheme.isDarkTheme()
-                                        ? GlobalVariables.darkbackgroundColor
-                                        : GlobalVariables.backgroundColor,
-                                    border: Border(
-                                        top: BorderSide(
-                                            width: 1,
-                                            color: currentTheme.isDarkTheme()
-                                                ? GlobalVariables
-                                                    .borderColorsDarklv10
-                                                : GlobalVariables
-                                                    .borderColorsWhithelv10))),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      color: currentTheme.isDarkTheme()
-                                          ? GlobalVariables.darkbackgroundColor
-                                          : GlobalVariables.backgroundColor,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          ImagesOrdersList(
-                                              orderData: orderData,
-                                              currentTheme: currentTheme),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            padding: const EdgeInsets.only(
-                                                left: 5.0, top: 5),
-                                            child: orderData.status == 4
-                                                ? Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 2.0),
-                                                    child: Container(
-                                                      width: 150,
-                                                      height: 15,
-                                                      child: Text(
-                                                        'Orden Completada',
-                                                        style: TextStyle(
-                                                          fontSize: 11,
-                                                          color: currentTheme
-                                                                  .isDarkTheme()
-                                                              ? GlobalVariables
-                                                                  .text1darkbackgroundColor
-                                                              : GlobalVariables
-                                                                  .text1WhithegroundColor,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                : Text(
-                                                    'Orden Pendiente',
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text1WhithegroundColor,
-                                                    ),
-                                                  ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 0.0),
-                                            child: Container(
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    'Num. Orden  ',
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text1WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    orderData.orderedAt
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text2WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 0.0),
-                                            child: Container(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Precio. Orden  ',
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text1WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    r'$' +
-                                                        orderData.totalPrice
-                                                            .toString(),
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text2WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 0.0),
-                                            child: Container(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Address. Orden  ',
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text1WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                      orderData.address
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: currentTheme
-                                                                .isDarkTheme()
-                                                            ? GlobalVariables
-                                                                .text1darkbackgroundColor
-                                                            : GlobalVariables
-                                                                .text2WhithegroundColor,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 0.0),
-                                            child: Container(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Status. Orden  ',
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text1WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                      orderData.status
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: currentTheme
-                                                                .isDarkTheme()
-                                                            ? GlobalVariables
-                                                                .text1darkbackgroundColor
-                                                            : GlobalVariables
-                                                                .text2WhithegroundColor,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 0.0),
-                                            child: Container(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Product. Orden  ',
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: currentTheme
-                                                              .isDarkTheme()
-                                                          ? GlobalVariables
-                                                              .text1darkbackgroundColor
-                                                          : GlobalVariables
-                                                              .text1WhithegroundColor,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                      orderData.products.length
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: currentTheme
-                                                                .isDarkTheme()
-                                                            ? GlobalVariables
-                                                                .text1darkbackgroundColor
-                                                            : GlobalVariables
-                                                                .text2WhithegroundColor,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
+                child: ListView.builder(
+                  itemCount: orders!.length,
+                  itemBuilder: (context, index) {
+                    final orderData = orders![index];
+                    return GestureDetector(
+                      child: OrdersListPreview(
+                        orderData: orders![index],
                       ),
-              ),
-            ]));
+                    );
+                  },
+                ),
+              ));
   }
 }
 

@@ -81,9 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: DrawerScreen(),
         //SelectBody
-        body: SwipeRefresh.cupertino(
-            refreshTriggerPullDistance: 20,
-            refreshIndicatorExtent: 20,
+        body: SwipeRefresh.material(
             stateStream: _stream,
             onRefresh: _reset,
             children: [

@@ -1,10 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/widgets/ordenesUser.dart';
 import 'package:v1douvery/features/admin/widgests/addProductScreen.dart';
 import 'package:v1douvery/features/admin/servicios/adminServices.dart';
 import 'package:v1douvery/models/product.dart';
+
+import '../../../common/widgets/custom.button.dart';
+import '../../../provider/theme.dart';
+import '../ProductDetailsAdmin/screens/mobiles/Mobiles_productDetailsAdmin.dart';
 
 class PostsScreen extends StatefulWidget {
   PostsScreen({Key? key}) : super(key: key);
@@ -49,18 +56,27 @@ class _PostsScreenState extends State<PostsScreen> {
   }
 
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
+
     return products == null
         ? Loader()
         : Scaffold(
+            backgroundColor: currentTheme.isDarkTheme()
+                ? GlobalVariables.darkOFbackgroundColor
+                : GlobalVariables.greyBackgroundCOlor,
             body: Widgets(),
             floatingActionButton: FloatingActionButton(
-              child: const Icon(
+              child: Icon(
                 Icons.add,
-                color: Color(0XFF0D3B66),
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.text1darkbackgroundColor
+                    : Color(0XFF0D3B66),
               ),
               onPressed: navigateToAddProduct,
               tooltip: 'Add Productos',
-              backgroundColor: GlobalVariables.backgroundColor,
+              backgroundColor: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
@@ -68,9 +84,13 @@ class _PostsScreenState extends State<PostsScreen> {
   }
 
   Padding Widgets() {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Container(
+        color: currentTheme.isDarkTheme()
+            ? GlobalVariables.darkOFbackgroundColor
+            : GlobalVariables.greyBackgroundCOlor,
         child: GridView.builder(
           itemCount: products!.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -80,107 +100,215 @@ class _PostsScreenState extends State<PostsScreen> {
           ),
           itemBuilder: (context, index) {
             final productData = products![index];
-            return Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Container(
-                width: 110,
-                color: GlobalVariables.backgroundColor,
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                              onPressed: () =>
-                                  deleteProduct(productData, index),
-                              icon: Icon(
-                                Icons.delete_forever,
-                                color: Color(0xff19323C),
-                              ))
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: SingleProduct(
-                        imagen: productData.images[0],
-                      ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            color: Colors.white,
-                            margin: EdgeInsets.only(left: 3),
-                            child: Text(
-                              productData.name,
-                              style: TextStyle(
-                                color: Color(0xff1C2833),
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 0.4,
-                                fontSize: 12.0,
-                              ),
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                alignment: Alignment.bottomLeft,
-                                margin: EdgeInsets.only(left: 3),
-                                child: Text(
-                                  productData.category,
-                                  style: TextStyle(
-                                    color:
-                                        GlobalVariables.appBarbackgroundColor,
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: 0.4,
-                                    fontSize: 12.0,
+            final currentTheme = Provider.of<ThemeProvider>(context);
+            void _showModalSheet() {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (builder) {
+                    return Container(
+                      color: currentTheme.isDarkTheme()
+                          ? GlobalVariables.darkbackgroundColor
+                          : GlobalVariables.backgroundColor,
+                      height: 500,
+                      child: Form(
+                        child: Column(
+                          children: [
+                            Container(
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.darkbackgroundColor
+                                  : GlobalVariables.backgroundColor,
+                              child: GestureDetector(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0.0, top: 0.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: productData.images[0],
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 300.0,
+                                      fit: BoxFit.scaleDown,
+                                    ),
                                   ),
                                 ),
                               ),
-                              Row(
+                            ),
+                            Text(
+                              'Deseas Eliminar este producto ? ',
+                              style: TextStyle(
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : GlobalVariables.text1WhithegroundColor),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 3,
+                              child: Row(
                                 children: [
                                   Container(
-                                    color: Colors.white,
-                                    child: Text(
-                                      'C : ' +
-                                          productData.quantity.toString() +
-                                          ' -',
-                                      style: TextStyle(
-                                        color:
-                                            GlobalVariables.colorTextBlckLight,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 0.5,
-                                        fontSize: 14.0,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'No',
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    color: Colors.white,
-                                    child: Text(
-                                      ' \$${productData.price}',
-                                      style: TextStyle(
-                                        color: GlobalVariables
-                                            .colorPriceDetailsPrin,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 0.5,
-                                        fontSize: 14.0,
+                                    child: TextButton(
+                                      onPressed: () {},
+                                      child: const Text(
+                                        'Si',
                                       ),
                                     ),
-                                  ),
+                                  )
                                 ],
                               ),
-                            ],
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      padding: EdgeInsets.all(40.0),
+                    );
+                  });
+            }
+
+            return GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MobilesProductDetailsAdmin(
+                    product: productData,
+                  ),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(2.0),
+                child: Container(
+                  width: 110,
+                  color: currentTheme.isDarkTheme()
+                      ? GlobalVariables.darkbackgroundColor
+                      : GlobalVariables.backgroundColor,
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: _showModalSheet,
+                              child: Icon(
+                                Icons.more_vert,
+                                color: currentTheme.isDarkTheme()
+                                    ? GlobalVariables.text1darkbackgroundColor
+                                    : GlobalVariables.text1WhithegroundColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: SingleProduct(
+                          imagen: productData.images[0],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              color: currentTheme.isDarkTheme()
+                                  ? GlobalVariables.darkbackgroundColor
+                                  : GlobalVariables.backgroundColor,
+                              margin: EdgeInsets.only(left: 3),
+                              child: Text(
+                                productData.name,
+                                style: TextStyle(
+                                  color: currentTheme.isDarkTheme()
+                                      ? GlobalVariables.text1darkbackgroundColor
+                                      : GlobalVariables.text1WhithegroundColor,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 0.4,
+                                  fontSize: 12.0,
+                                ),
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.bottomLeft,
+                                  margin: EdgeInsets.only(left: 3),
+                                  child: Text(
+                                    productData.category,
+                                    style: TextStyle(
+                                      color: currentTheme.isDarkTheme()
+                                          ? Color.fromARGB(255, 13, 95, 219)
+                                          : Color.fromARGB(255, 11, 109, 255),
+                                      fontWeight: FontWeight.w400,
+                                      letterSpacing: 0.4,
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables.darkbackgroundColor
+                                          : GlobalVariables.backgroundColor,
+                                      child: Text(
+                                        'C : ' +
+                                            productData.quantity.toString() +
+                                            ' -',
+                                        style: TextStyle(
+                                          color: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .text1darkbackgroundColor
+                                              : GlobalVariables
+                                                  .text1WhithegroundColor,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.5,
+                                          fontSize: 14.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      color: currentTheme.isDarkTheme()
+                                          ? GlobalVariables.darkbackgroundColor
+                                          : GlobalVariables.backgroundColor,
+                                      child: Text(
+                                        ' \$${productData.price}',
+                                        style: TextStyle(
+                                          color: currentTheme.isDarkTheme()
+                                              ? GlobalVariables
+                                                  .text1darkbackgroundColor
+                                              : GlobalVariables
+                                                  .text1WhithegroundColor,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.5,
+                                          fontSize: 14.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
