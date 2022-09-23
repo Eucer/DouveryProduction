@@ -110,11 +110,17 @@ class _MobilesProductDetailsAdminState
                     ),
                   ],
                   views: [
-                    VendedorProductDetails(
-                      product: widget.product,
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: VendedorProductDetails(
+                        product: widget.product,
+                      ),
                     ),
-                    ProductDetailsScreen(
-                      product: widget.product,
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: ProductDetailsScreen(
+                        product: widget.product,
+                      ),
                     ),
                   ],
                   // ignore: avoid_print
