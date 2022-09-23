@@ -1,14 +1,15 @@
 import 'dart:io';
 
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 void showSnackBar(BuildContext context, String text) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(text),
-    ),
-  );
+  ElegantNotification.info(title: Text("Info"), description: Text(text))
+      .show(context);
+  ;
+
+  print(text);
 }
 
 Future<List<File>> pickImages() async {

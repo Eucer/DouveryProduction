@@ -12,6 +12,7 @@ void httpErrorHandle({
   switch (response.statusCode) {
     case 200:
       onSuccess();
+
       break;
     case 400:
       showSnackBar(

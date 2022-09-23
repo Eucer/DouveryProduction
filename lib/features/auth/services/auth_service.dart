@@ -8,7 +8,8 @@ import 'package:v1douvery/common/widgets/bottom_bar.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/constantes/error_handling.dart';
 import 'package:v1douvery/constantes/utils.dart';
-import 'package:v1douvery/features/home/screens/home_screens.dart';
+import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
+import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 
 import 'package:v1douvery/models/user.dart';
 import 'package:http/http.dart' as http;
@@ -47,7 +48,7 @@ class AuthService {
         onSuccess: () {
           showSnackBar(
             context,
-            'Account created! Login with the same credentials!',
+            '¡Cuenta creada! ¡Inicia sesión con las mismas credenciales!',
           );
         },
       );
@@ -83,8 +84,8 @@ class AuthService {
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+            CupertinoPageRoute(
+              builder: (context) => ResponsiveLayaout(),
             ),
           );
         },

@@ -8,7 +8,8 @@ class User {
   final String address;
   final String type;
   final String token;
-  final List<dynamic> cart;
+  late final List<dynamic> cart;
+
   User({
     required this.id,
     required this.name,

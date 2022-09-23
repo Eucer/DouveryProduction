@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
-import 'package:v1douvery/NAV/topTitleButtom.dart';
+import 'package:provider/provider.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/topTitleButtom.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/AdmintopTitleButtom.dart';
 import 'package:v1douvery/features/admin/widgests/NAV/centerSearchNav.dart';
+import 'package:v1douvery/provider/user_provider.dart';
 
+import '../../../provider/theme.dart';
+import '../../Drawer/screen/mobiles_drawerScreen.dart';
 import '../widgests/postsScreens.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -33,6 +37,9 @@ class _AdminScreenState extends State<AdminScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+    final currentTheme = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
@@ -52,7 +59,7 @@ class _AdminScreenState extends State<AdminScreen> {
                       children: [
                         Icon(Icons.admin_panel_settings),
                         Text(
-                          'Douvery',
+                          user.name,
                           style: GoogleFonts.lato(
                             color: Color(0xffFCFCFC),
                             fontWeight: FontWeight.bold,
@@ -61,13 +68,6 @@ class _AdminScreenState extends State<AdminScreen> {
                       ],
                     ),
                   ),
-                  Text(
-                    'Admin',
-                    style: GoogleFonts.lato(
-                      color: Color(0xffFCFCFC),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
                 ],
               ),
               toolbarHeight: 60,
@@ -76,6 +76,7 @@ class _AdminScreenState extends State<AdminScreen> {
           ],
         ),
       ),
+      drawer: DrawerScreen(),
       body: pages[_page],
     );
   }
@@ -86,8 +87,12 @@ class ContainerNavOpci extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
+
     return Container(
-      color: Color(0xff19323C),
+      color: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkbackgroundColor
+          : Color(0xff19323C),
       height: 30,
       width: MediaQuery.of(context).size.width,
       child: Row(

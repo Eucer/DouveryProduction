@@ -4,8 +4,8 @@ import 'package:v1douvery/features/address/screens/addresScreens.dart';
 import 'package:v1douvery/features/admin/widgests/addProductScreen.dart';
 import 'package:v1douvery/features/admin/widgests/addProductScreen.dart';
 import 'package:v1douvery/features/auth/screens/auth_screen.dart';
-import 'package:v1douvery/features/home/screens/categoryDealsScreen.dart';
-import 'package:v1douvery/features/home/screens/home_screens.dart';
+
+import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {

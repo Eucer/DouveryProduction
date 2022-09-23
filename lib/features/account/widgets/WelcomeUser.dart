@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:v1douvery/common/widgets/IconButton.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/services/accountServices.dart';
 import 'package:v1douvery/features/search/vista/search_screen.dart';
 import 'package:v1douvery/provider/user_provider.dart';
+
+import '../../../provider/theme.dart';
 
 class WelcomeUser extends StatelessWidget {
   const WelcomeUser({Key? key}) : super(key: key);
@@ -12,11 +15,14 @@ class WelcomeUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: GlobalVariables.rgbGradient,
+          color: currentTheme.isDarkTheme()
+              ? GlobalVariables.darkbackgroundColor
+              : GlobalVariables.rgbGradient,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -61,49 +67,46 @@ class WelcomeUser extends StatelessWidget {
               ),
             ),
             Container(
-              child: IconButton(
-                icon: GestureDetector(
-                  child: Icon(
-                    IconlyLight.setting,
-                    color: GlobalVariables.colorTextWhiteLight,
-                  ),
-                  onTap: () => Navigator.push(
+              child: CustomnIconsButton(
+                icon: Icon(
+                  IconlyLight.setting,
+                  color: GlobalVariables.colorTextWhiteLight,
+                ),
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => SearchPage(),
                     ),
-                  ),
-                ),
-                onPressed: () {},
+                  );
+                },
               ),
             ),
             Container(
-              child: IconButton(
-                icon: GestureDetector(
-                  child: Icon(
-                    IconlyLight.bag,
-                    color: GlobalVariables.colorTextWhiteLight,
-                  ),
-                  onTap: () => Navigator.push(
+              child: CustomnIconsButton(
+                icon: Icon(
+                  IconlyLight.bag,
+                  color: GlobalVariables.colorTextWhiteLight,
+                ),
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => SearchPage(),
                     ),
-                  ),
-                ),
-                onPressed: () {},
+                  );
+                },
               ),
             ),
             Container(
-              child: IconButton(
-                icon: GestureDetector(
-                  child: Icon(
-                    IconlyLight.logout,
-                    color: GlobalVariables.colorTextWhiteLight,
-                  ),
-                  onTap: () => AccountServices().logOut(context),
+              child: CustomnIconsButton(
+                icon: Icon(
+                  IconlyLight.logout,
+                  color: GlobalVariables.colorTextWhiteLight,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  AccountServices().logOut(context);
+                },
               ),
             ),
           ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
+
+import '../../../provider/theme.dart';
 
 class CategoriasUser extends StatefulWidget {
   const CategoriasUser({Key? key}) : super(key: key);
@@ -34,8 +37,11 @@ class _CategoriasUserState extends State<CategoriasUser> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Container(
-      color: Color.fromARGB(255, 254, 255, 255),
+      color: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkbackgroundColor
+          : Color.fromARGB(255, 254, 255, 255),
       height: 120.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -96,6 +102,7 @@ class ImagenCarouselProd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
@@ -103,15 +110,20 @@ class ImagenCarouselProd extends StatelessWidget {
           width: 80,
           height: 100,
           decoration: BoxDecoration(
-            border:
-                Border.all(color: GlobalVariables.colorTextGreylv15, width: 1),
+            border: Border.all(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.borderColorsDarklv10
+                    : GlobalVariables.borderColorsWhithelv10,
+                width: 1),
             shape: BoxShape.circle,
             image: DecorationImage(
               image: AssetImage(imagen),
               // picked file
               fit: BoxFit.contain,
             ),
-            color: GlobalVariables.backgroundColor,
+            color: currentTheme.isDarkTheme()
+                ? GlobalVariables.darkOFbackgroundColor
+                : GlobalVariables.backgroundColor,
           ),
         ),
       ),

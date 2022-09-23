@@ -3,7 +3,7 @@ const adminRouter = express.Router();
 const admin = require("../middlewares/admin");
 const Order = require("../modelos/order");
 const { Product } = require("../modelos/product");
-
+const User = require("../modelos/user");
 
 //* Add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
@@ -28,7 +28,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
 //* Get ALL products
   adminRouter.get("/admin/get-products", admin, async (_req,res) => {
     try{
-      const products  = await Product.find({});
+      const products  = await Product.find({}).sort({_id: -1});
       res.json(products );
     }catch(e){
       res.status(500).json({ error: e.message });
@@ -48,6 +48,9 @@ adminRouter.post("/admin/delete-product", admin, async (req,res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+
 
 //* View Order the products
 adminRouter.get("/admin/get-orders", admin, async (req, res) => {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,8 @@ import 'package:v1douvery/features/auth/screens/auth_screen.dart';
 import 'package:v1douvery/models/order.dart';
 import 'package:v1douvery/provider/user_provider.dart';
 import 'package:http/http.dart' as http;
+
+import '../../auth/responsive/authResponsivelayout.dart';
 
 class AccountServices {
   Future<List<Order>> fetchMyOrders({
@@ -50,10 +53,13 @@ class AccountServices {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       await sharedPreferences.setString('x-auth-token', '');
-      var future = Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AuthScreen(),
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).push(
+        // ensures fullscreen
+        CupertinoPageRoute(
+          builder: (BuildContext context) {
+            return WebFullResponsiveLayaout();
+          },
         ),
       );
     } catch (e) {

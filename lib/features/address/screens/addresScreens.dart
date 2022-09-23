@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 
 import 'package:provider/provider.dart';
-import 'package:v1douvery/NAV/bottomNavSearchTitle.dart';
-import 'package:v1douvery/NAV/centerSearchNav.dart';
+import 'package:v1douvery/NAV/mobiles/bottomNavSearchTitle.dart';
+import 'package:v1douvery/NAV/mobiles/centerSearchNav.dart';
 import 'package:v1douvery/common/widgets/custom.button.dart';
 import 'package:v1douvery/common/widgets/custom_textfiels.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
@@ -114,7 +114,7 @@ class _AddressScreenState extends State<AddressScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45),
+        preferredSize: const Size.fromHeight(155),
         child: AppBar(
           elevation: 0,
           flexibleSpace: Container(
@@ -138,7 +138,6 @@ class _AddressScreenState extends State<AddressScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CenterSearchNav(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -206,10 +205,14 @@ class _AddressScreenState extends State<AddressScreen> {
                         Row(
                           children: [
                             Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
                               child: Text(
                                 widget.cantid + ' items',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w300),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                maxLines: 2,
                               ),
                             ),
                           ],
@@ -258,7 +261,6 @@ class _AddressScreenState extends State<AddressScreen> {
                     paymentItems: paymentItems,
                     width: double.infinity,
                     height: 50,
-                    style: GooglePayButtonStyle.black,
                     type: GooglePayButtonType.buy,
                     margin: const EdgeInsets.only(top: 15),
                     loadingIndicator: const Center(

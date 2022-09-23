@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:v1douvery/models/ratings.dart';
+import 'package:v1douvery/models/viewed.dart';
 
 class Product {
   final String name;
@@ -12,6 +13,7 @@ class Product {
   final double price;
   final String? id;
   final List<Rating>? rating;
+  final List<Viewed>? viewed;
 
   Product({
     required this.name,
@@ -23,7 +25,10 @@ class Product {
     required this.price,
     this.id,
     this.rating,
+    this.viewed,
   });
+
+  get length => null;
 
   Map<String, dynamic> toMap() {
     return {
@@ -36,6 +41,7 @@ class Product {
       'price': price,
       'id': id,
       'rating': rating,
+      'viewed': viewed,
     };
   }
 
@@ -56,6 +62,13 @@ class Product {
               ),
             )
           : null,
+      viewed: map['viewed'] != null
+          ? List<Viewed>.from(
+              map['viewed']?.map(
+                (x) => Viewed.fromMap(x),
+              ),
+            )
+          : null,
     );
   }
 
@@ -63,4 +76,8 @@ class Product {
 
   factory Product.fromJson(String source) =>
       Product.fromMap(json.decode(source));
+
+  static find(Map<dynamic, Map<dynamic, String>> map) {}
+
+  fetchNewProducts() {}
 }

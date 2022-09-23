@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:v1douvery/common/widgets/header_double.dart';
 import 'package:v1douvery/common/widgets/loader.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
 import 'package:v1douvery/features/account/services/accountServices.dart';
 import 'package:v1douvery/features/orderDetails/screens/orderDetails.dart';
 import 'package:v1douvery/models/order.dart';
+import 'package:v1douvery/provider/theme.dart';
 
 class OrdersUser extends StatefulWidget {
   const OrdersUser({Key? key}) : super(key: key);
@@ -31,15 +33,50 @@ class _OrdersUserState extends State<OrdersUser> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Container(
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-            color: Colors.white,
-            child: headerDoubleText(
-              textHeader: 'Orders',
-              textAction: 'Ver mas',
+            padding: const EdgeInsets.only(bottom: 3.0),
+            alignment: Alignment.bottomLeft,
+            decoration: BoxDecoration(
+              color: currentTheme.isDarkTheme()
+                  ? GlobalVariables.darkbackgroundColor
+                  : GlobalVariables.backgroundColor,
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              decoration: BoxDecoration(
+                color: currentTheme.isDarkTheme()
+                    ? GlobalVariables.darkbackgroundColor
+                    : GlobalVariables.backgroundColor,
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: currentTheme.isDarkTheme()
+                        ? GlobalVariables.borderColorsDarklv10
+                        : GlobalVariables.borderColorsWhithelv10,
+                  ),
+                ),
+              ),
+              child: Container(
+                height: 25,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Tu ordenes',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: currentTheme.isDarkTheme()
+                            ? GlobalVariables.text1darkbackgroundColor
+                            : GlobalVariables.text1WhithegroundColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           orders == null
@@ -82,11 +119,14 @@ class SingleProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return Container(
-      color: GlobalVariables.backgroundColor,
+      color: currentTheme.isDarkTheme()
+          ? GlobalVariables.darkbackgroundColor
+          : GlobalVariables.backgroundColor,
       child: GestureDetector(
         child: Padding(
-          padding: const EdgeInsets.only(left: 10.0, top: 0.0),
+          padding: const EdgeInsets.only(left: 0.0, top: 0.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(0),
             child: CachedNetworkImage(

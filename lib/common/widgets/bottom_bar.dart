@@ -3,14 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/constantes/global_variables.dart';
-import 'package:v1douvery/features/account/screens/account_screen.dart';
+import 'package:v1douvery/features/account/screens/mobiles/account_screen.dart';
 import 'package:v1douvery/features/cart/screens/cartScreen.dart';
-import 'package:v1douvery/features/home/screens/home_screens.dart';
+import 'package:v1douvery/features/home/responsive/responsive_layaout.dart';
+import 'package:v1douvery/features/home/screens/home_screensModiles.dart';
 import 'package:v1douvery/provider/user_provider.dart';
+
+import '../../provider/theme.dart';
 
 class MainScreen extends StatelessWidget {
   static const String routeName = '/actual-home';
@@ -46,31 +49,37 @@ class _MyHomePageState extends State<MyHomePage> {
       HomeScreen(),
       AccountScreen(),
     ];
-
+    final currentTheme = Provider.of<ThemeProvider>(context);
     return CupertinoPageScaffold(
         resizeToAvoidBottomInset: false,
         child: CupertinoTabScaffold(
           tabBar: CupertinoTabBar(
             items: [
               BottomNavigationBarItem(
-                icon: Container(
-                  child: Icon(Iconsax.home4),
-                ),
-                activeIcon: Container(
-                  width: bottomBarWidth,
-                  margin: EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: GlobalVariables.bottomNavHome,
-                        width: bottomBarBorderWidth,
-                      ),
+                icon: const Icon(Iconsax.home4),
+                activeIcon: GestureDetector(
+                  onDoubleTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ResponsiveLayaout(),
                     ),
                   ),
-                  height: 40,
-                  child: const Icon(
-                    Iconsax.home4,
-                    size: 30,
+                  child: Container(
+                    width: bottomBarWidth,
+                    margin: const EdgeInsets.only(),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: GlobalVariables.bottomNavHome,
+                          width: bottomBarBorderWidth,
+                        ),
+                      ),
+                    ),
+                    height: 40,
+                    child: const Icon(
+                      Iconsax.home4,
+                      size: 30,
+                    ),
                   ),
                 ),
               ),
@@ -91,14 +100,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: Color(0xffed174f),
+                        color: Color(0xff3CCF4E),
                         width: bottomBarBorderWidth,
                       ),
                     ),
                   ),
                   height: 40,
-                  child: Icon(
-                    IconlyLight.buy,
+                  child: Container(
+                    child: Badge(
+                      toAnimate: false,
+                      badgeContent: Text(
+                        userCartLen.toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      badgeColor: Color(0xff3CCF4E),
+                      child: Icon(
+                        IconlyLight.buy,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -111,34 +130,50 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(
                   Iconsax.user_octagon,
                 ),
-                activeIcon: Container(
-                  width: bottomBarWidth,
-                  margin: EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: GlobalVariables.buttomColor,
-                        width: bottomBarBorderWidth,
-                      ),
+                activeIcon: GestureDetector(
+                  onDoubleTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ResponsiveLayaout(),
                     ),
                   ),
-                  height: 40,
-                  child: Icon(
-                    Iconsax.user_octagon,
-                    size: 30,
+                  child: Container(
+                    width: bottomBarWidth,
+                    margin: EdgeInsets.only(),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: GlobalVariables.buttomColor,
+                          width: bottomBarBorderWidth,
+                        ),
+                      ),
+                    ),
+                    height: 40,
+                    child: Icon(
+                      Iconsax.user_octagon,
+                      size: 30,
+                    ),
                   ),
                 ),
               ),
             ],
             border: Border(
               top: BorderSide(
-                color: Color.fromARGB(26, 5, 12, 43),
+                color: currentTheme.isDarkTheme()
+                    ? Color.fromARGB(3, 252, 252, 252)
+                    : Color.fromARGB(26, 5, 12, 43),
               ),
             ),
-            backgroundColor: GlobalVariables.backgroundNavBarColor,
-            activeColor: GlobalVariables.buttomColor,
-            inactiveColor: GlobalVariables.unselectedNavBarColor,
-            iconSize: 28,
+            backgroundColor: currentTheme.isDarkTheme()
+                ? GlobalVariables.navBardarkbackgroundColor
+                : GlobalVariables.navBarbackgroundColor,
+            activeColor: currentTheme.isDarkTheme()
+                ? Color(0XFFFCFCFC)
+                : Color.fromARGB(225, 15, 15, 15),
+            inactiveColor: currentTheme.isDarkTheme()
+                ? Color.fromARGB(228, 144, 144, 144)
+                : GlobalVariables.unselectedNavBarColor,
+            iconSize: 27,
           ),
           tabBuilder: (context, index) {
             return Container(
