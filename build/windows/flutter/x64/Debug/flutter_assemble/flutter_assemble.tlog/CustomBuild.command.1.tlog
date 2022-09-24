@@ -1,0 +1,28 @@
+^C:\USERS\GERMI\ONEDRIVE\ESCRITORIO\APPSTABLE\REAL\DOUVERYPRODUCTION\BUILD\WINDOWS\CMAKEFILES\37D29B258557B77BC93B6980529B57E8\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\src\flutter PROJECT_DIR=C:\Users\germi\OneDrive\Escritorio\appStable\Real\DouveryProduction FLUTTER_ROOT=C:\src\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\germi\OneDrive\Escritorio\appStable\Real\DouveryProduction\windows\flutter\ephemeral PROJECT_DIR=C:\Users\germi\OneDrive\Escritorio\appStable\Real\DouveryProduction FLUTTER_TARGET=C:\Users\germi\OneDrive\Escritorio\appStable\Real\DouveryProduction\lib\main.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false EXTRA_FRONT_END_OPTIONS=--no-sound-null-safety TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\germi\OneDrive\Escritorio\appStable\Real\DouveryProduction\.dart_tool\package_config.json C:/src/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\GERMI\ONEDRIVE\ESCRITORIO\APPSTABLE\REAL\DOUVERYPRODUCTION\BUILD\WINDOWS\CMAKEFILES\DE22E14049DDDFC1FF5751DE4FF6565A\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\GERMI\ONEDRIVE\ESCRITORIO\APPSTABLE\REAL\DOUVERYPRODUCTION\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/germi/OneDrive/Escritorio/appStable/Real/DouveryProduction/windows -BC:/Users/germi/OneDrive/Escritorio/appStable/Real/DouveryProduction/build/windows --check-stamp-file C:/Users/germi/OneDrive/Escritorio/appStable/Real/DouveryProduction/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
