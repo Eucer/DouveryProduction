@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:v1douvery/provider/theme.dart';
 
-String uri = 'https://douvery-production-hm94-21kmbffwc-germisgarcia39-gmailcom.vercel.app/';
+String uri =
+    'https://douvery-production-hm94-21kmbffwc-germisgarcia39-gmailcom.vercel.app/';
 
 class GlobalVariables {
   //* COLORES
